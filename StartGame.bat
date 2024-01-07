@@ -1,5 +1,5 @@
 @echo off
-set Q4ModName=xanzcoop
+set Q4ModName=MODNAMEHERE
 set Q4InstallPath=C:\Program Files (x86)\Steam\steamapps\common\Quake 4
 set CWD=%cd%
 cd %Q4InstallPath%
