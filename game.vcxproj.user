@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LocalDebuggerCommand>C:\Program Files (x86)\Steam\steamapps\common\Quake 4\Quake4.exe</LocalDebuggerCommand>
+    <LocalDebuggerWorkingDirectory>C:\Program Files (x86)\Steam\steamapps\common\Quake 4</LocalDebuggerWorkingDirectory>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+    <LocalDebuggerCommandArguments>+set fs_game MODNAMEHERE +set com_allowConsole 1 +set logfile 2  +set win_allowmultipleInstances 1</LocalDebuggerCommandArguments>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LocalDebuggerCommand>C:\Program Files (x86)\Steam\steamapps\common\Quake 4\Quake4.exe</LocalDebuggerCommand>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+    <LocalDebuggerCommandArguments>+set fs_game MODNAMEHERE +set com_allowConsole 1 +set logfile 2  +set win_allowmultipleInstances 1</LocalDebuggerCommandArguments>
+    <LocalDebuggerWorkingDirectory>C:\Program Files (x86)\Steam\steamapps\common\Quake 4\</LocalDebuggerWorkingDirectory>
+  </PropertyGroup>
+</Project>
