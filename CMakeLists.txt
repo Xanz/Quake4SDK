@@ -5,8 +5,8 @@ file(GLOB_RECURSE SOURCES src/*.cpp src/*.c src/game/game.def)
 
 file(GLOB_RECURSE HEADERS src/*.h)
 
-add_compile_definitions(_DEBUG)
-# add_compile_definitions(_RELEASE)
+set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} /D _DEBUG")
+set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} /D _RELEASE")
 
 add_compile_definitions(_WINDOWS)
 add_compile_definitions(GAME_DLL)
