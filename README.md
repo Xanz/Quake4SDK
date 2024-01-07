@@ -1,6 +1,5 @@
 # Quake4SDK
-This the standard Quake 4 SDK, fixed so that it can be compiled using Visual Studio 2022 and 2019. I've also provided some useful info below about building and deploying game DLL's along with some useful scripts. I've also done some other smaller bug fixes to make it a little easier to use.
-This should compile on Linux using the SCons file though I haven't had the chance to test this.
+This the standard Quake 4 SDK, fixed so that it can be compiled using Visual Studio 2022/2019 along with some bugfixes and general quality of life fixes such as deployment scripts.
 
 # Features
 - Visual Studio 2022/2019 support.
