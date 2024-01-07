@@ -1,0 +1,1479 @@
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(531,5): warning MSB8028: The intermediate directory (Builds/Win32/Debug/) contains files shared from another project (idLib.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  AF.cpp
+C:\Quake4-1.4.2-SDK\source\idlib\Lib.h(120,41): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Quake4-1.4.2-SDK\source\idlib\math\Random.h(35,39): warning C4458: declaration of 'seed' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Random.h(28,10): message : see declaration of 'idRandom::seed'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Random.h(97,50): warning C4458: declaration of 'seed' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Random.h(87,18): message : see declaration of 'idRandom2::seed'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Complex.h(82,44): warning C4458: declaration of 'r' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Complex.h(15,11): message : see declaration of 'idComplex::r'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Complex.h(82,59): warning C4458: declaration of 'i' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Complex.h(16,11): message : see declaration of 'idComplex::i'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Vector.h(101,41): warning C4458: declaration of 'x' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Vector.h(31,10): message : see declaration of 'idVec2::x'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Vector.h(101,56): warning C4458: declaration of 'y' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Vector.h(32,10): message : see declaration of 'idVec2::y'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Vector.h(600,41): warning C4458: declaration of 'x' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Vector.h(328,10): message : see declaration of 'idVec3::x'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Vector.h(600,56): warning C4458: declaration of 'y' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Vector.h(329,10): message : see declaration of 'idVec3::y'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Vector.h(600,71): warning C4458: declaration of 'z' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Vector.h(330,10): message : see declaration of 'idVec3::z'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Vector.h(1220,41): warning C4458: declaration of 'x' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Vector.h(1140,10): message : see declaration of 'idVec4::x'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Vector.h(1220,56): warning C4458: declaration of 'y' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Vector.h(1141,10): message : see declaration of 'idVec4::y'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Vector.h(1220,71): warning C4458: declaration of 'z' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Vector.h(1142,10): message : see declaration of 'idVec4::z'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Vector.h(1220,86): warning C4458: declaration of 'w' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Vector.h(1143,10): message : see declaration of 'idVec4::w'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Vector.h(2443,43): warning C4458: declaration of 'radius' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Vector.h(2418,10): message : see declaration of 'idPolar3::radius'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Vector.h(2443,63): warning C4458: declaration of 'theta' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Vector.h(2418,18): message : see declaration of 'idPolar3::theta'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Vector.h(2443,82): warning C4458: declaration of 'phi' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Vector.h(2418,25): message : see declaration of 'idPolar3::phi'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Angles.h(110,37): warning C4458: declaration of 'pitch' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Angles.h(30,10): message : see declaration of 'idAngles::pitch'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Angles.h(110,50): warning C4458: declaration of 'yaw' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Angles.h(31,10): message : see declaration of 'idAngles::yaw'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Angles.h(110,61): warning C4458: declaration of 'roll' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Angles.h(32,10): message : see declaration of 'idAngles::roll'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Quat.h(221,35): warning C4458: declaration of 'x' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Quat.h(23,10): message : see declaration of 'idQuat::x'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Quat.h(221,44): warning C4458: declaration of 'y' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Quat.h(24,10): message : see declaration of 'idQuat::y'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Quat.h(221,53): warning C4458: declaration of 'z' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Quat.h(25,10): message : see declaration of 'idQuat::z'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Quat.h(221,62): warning C4458: declaration of 'w' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Quat.h(26,10): message : see declaration of 'idQuat::w'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Quat.h(320,36): warning C4458: declaration of 'x' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Quat.h(282,10): message : see declaration of 'idCQuat::x'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Quat.h(320,45): warning C4458: declaration of 'y' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Quat.h(283,10): message : see declaration of 'idCQuat::y'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Quat.h(320,54): warning C4458: declaration of 'z' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Quat.h(284,10): message : see declaration of 'idCQuat::z'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Radians.h(89,37): warning C4458: declaration of 'pitch' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Radians.h(28,10): message : see declaration of 'rvAngles::pitch'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Radians.h(89,50): warning C4458: declaration of 'yaw' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Radians.h(29,10): message : see declaration of 'rvAngles::yaw'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Radians.h(89,61): warning C4458: declaration of 'roll' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Radians.h(30,10): message : see declaration of 'rvAngles::roll'
+C:\Quake4-1.4.2-SDK\source\idlib\bv\Frustum.h(125,52): warning C4458: declaration of 'origin' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\bv\Frustum.h(91,11): message : see declaration of 'idFrustum::origin'
+C:\Quake4-1.4.2-SDK\source\idlib\bv\Frustum.h(129,50): warning C4458: declaration of 'axis' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\bv\Frustum.h(92,11): message : see declaration of 'idFrustum::axis'
+C:\Quake4-1.4.2-SDK\source\idlib\bv\Frustum.h(133,42): warning C4458: declaration of 'dNear' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\bv\Frustum.h(93,10): message : see declaration of 'idFrustum::dNear'
+C:\Quake4-1.4.2-SDK\source\idlib\bv\Frustum.h(133,55): warning C4458: declaration of 'dFar' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\bv\Frustum.h(94,10): message : see declaration of 'idFrustum::dFar'
+C:\Quake4-1.4.2-SDK\source\idlib\bv\Frustum.h(133,67): warning C4458: declaration of 'dLeft' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\bv\Frustum.h(95,10): message : see declaration of 'idFrustum::dLeft'
+C:\Quake4-1.4.2-SDK\source\idlib\bv\Frustum.h(133,80): warning C4458: declaration of 'dUp' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\bv\Frustum.h(96,10): message : see declaration of 'idFrustum::dUp'
+C:\Quake4-1.4.2-SDK\source\idlib\bv\Frustum.h(142,45): warning C4458: declaration of 'dNear' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\bv\Frustum.h(93,10): message : see declaration of 'idFrustum::dNear'
+C:\Quake4-1.4.2-SDK\source\idlib\bv\Frustum.h(142,58): warning C4458: declaration of 'dFar' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\bv\Frustum.h(94,10): message : see declaration of 'idFrustum::dFar'
+C:\Quake4-1.4.2-SDK\source\idlib\bv\Frustum.h(151,51): warning C4458: declaration of 'dNear' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\bv\Frustum.h(93,10): message : see declaration of 'idFrustum::dNear'
+C:\Quake4-1.4.2-SDK\source\idlib\bv\Frustum.h(156,50): warning C4458: declaration of 'dFar' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\bv\Frustum.h(94,10): message : see declaration of 'idFrustum::dFar'
+C:\Quake4-1.4.2-SDK\source\idlib\geometry\DrawVert.h(145,44): warning C4458: declaration of 'color' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\geometry\DrawVert.h(16,9): message : see declaration of 'idDrawVert::color'
+C:\Quake4-1.4.2-SDK\source\idlib\Str.h(406,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Quake4-1.4.2-SDK\source\idlib\Str.h(446,3): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Quake4-1.4.2-SDK\source\idlib\Str.h(501,6): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Quake4-1.4.2-SDK\source\idlib\Str.h(503,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Quake4-1.4.2-SDK\source\idlib\Str.h(512,6): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Quake4-1.4.2-SDK\source\idlib\Str.h(514,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Quake4-1.4.2-SDK\source\idlib\Str.h(527,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Quake4-1.4.2-SDK\source\idlib\Str.h(605,2): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Quake4-1.4.2-SDK\source\idlib\Str.h(615,2): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Quake4-1.4.2-SDK\source\idlib\Str.h(625,2): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Quake4-1.4.2-SDK\source\idlib\Str.h(634,2): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Quake4-1.4.2-SDK\source\idlib\Str.h(643,2): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Quake4-1.4.2-SDK\source\idlib\Str.h(652,2): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Quake4-1.4.2-SDK\source\idlib\Str.h(946,40): warning C4458: declaration of 'len' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\Str.h(357,10): message : see declaration of 'idStr::len'
+C:\Quake4-1.4.2-SDK\source\idlib\Str.h(950,41): warning C4458: declaration of 'len' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\Str.h(357,10): message : see declaration of 'idStr::len'
+C:\Quake4-1.4.2-SDK\source\idlib\Str.h(958,34): warning C4458: declaration of 'len' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\Str.h(357,10): message : see declaration of 'idStr::len'
+C:\Quake4-1.4.2-SDK\source\idlib\Str.h(962,35): warning C4458: declaration of 'len' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\Str.h(357,10): message : see declaration of 'idStr::len'
+C:\Quake4-1.4.2-SDK\source\idlib\Lexer.h(457,39): warning C4458: declaration of 'flags' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\Lexer.h(273,9): message : see declaration of 'idLexer::flags'
+C:\Quake4-1.4.2-SDK\source\idlib\Base64.h(80,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Quake4-1.4.2-SDK\source\idlib\containers\StrPool.h(74,50): warning C4458: declaration of 'caseSensitive' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\containers\StrPool.h(64,10): message : see declaration of 'idStrPool::caseSensitive'
+C:\Quake4-1.4.2-SDK\source\idlib\BitMsg.h(520,60): warning C4458: declaration of 'base' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\BitMsg.h(501,18): message : see declaration of 'idBitMsgDelta::base'
+C:\Quake4-1.4.2-SDK\source\idlib\BitMsg.h(520,76): warning C4458: declaration of 'newBase' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\BitMsg.h(502,14): message : see declaration of 'idBitMsgDelta::newBase'
+C:\Quake4-1.4.2-SDK\source\idlib\BitMsg.h(528,60): warning C4458: declaration of 'base' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\BitMsg.h(501,18): message : see declaration of 'idBitMsgDelta::base'
+C:\Quake4-1.4.2-SDK\source\idlib\BitMsg.h(528,76): warning C4458: declaration of 'newBase' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\BitMsg.h(502,14): message : see declaration of 'idBitMsgDelta::newBase'
+C:\Quake4-1.4.2-SDK\source\framework\CVarSystem.h(127,34): warning C4458: declaration of 'value' hides class member
+C:\Quake4-1.4.2-SDK\source\framework\CVarSystem.h(141,17): message : see declaration of 'idCVar::value'
+C:\Quake4-1.4.2-SDK\source\framework\CVarSystem.h(128,31): warning C4458: declaration of 'value' hides class member
+C:\Quake4-1.4.2-SDK\source\framework\CVarSystem.h(141,17): message : see declaration of 'idCVar::value'
+C:\Quake4-1.4.2-SDK\source\framework\CVarSystem.h(129,33): warning C4458: declaration of 'value' hides class member
+C:\Quake4-1.4.2-SDK\source\framework\CVarSystem.h(141,17): message : see declaration of 'idCVar::value'
+C:\Quake4-1.4.2-SDK\source\framework\CVarSystem.h(130,33): warning C4458: declaration of 'value' hides class member
+C:\Quake4-1.4.2-SDK\source\framework\CVarSystem.h(141,17): message : see declaration of 'idCVar::value'
+C:\Quake4-1.4.2-SDK\source\framework\CVarSystem.h(339,42): warning C4458: declaration of 'name' hides class member
+C:\Quake4-1.4.2-SDK\source\framework\CVarSystem.h(140,17): message : see declaration of 'idCVar::name'
+C:\Quake4-1.4.2-SDK\source\framework\CVarSystem.h(339,60): warning C4458: declaration of 'value' hides class member
+C:\Quake4-1.4.2-SDK\source\framework\CVarSystem.h(141,17): message : see declaration of 'idCVar::value'
+C:\Quake4-1.4.2-SDK\source\framework\CVarSystem.h(339,71): warning C4458: declaration of 'flags' hides class member
+C:\Quake4-1.4.2-SDK\source\framework\CVarSystem.h(143,11): message : see declaration of 'idCVar::flags'
+C:\Quake4-1.4.2-SDK\source\framework\CVarSystem.h(339,90): warning C4458: declaration of 'description' hides class member
+C:\Quake4-1.4.2-SDK\source\framework\CVarSystem.h(142,17): message : see declaration of 'idCVar::description'
+C:\Quake4-1.4.2-SDK\source\framework\CVarSystem.h(340,14): warning C4458: declaration of 'valueMin' hides class member
+C:\Quake4-1.4.2-SDK\source\framework\CVarSystem.h(144,12): message : see declaration of 'idCVar::valueMin'
+C:\Quake4-1.4.2-SDK\source\framework\CVarSystem.h(340,30): warning C4458: declaration of 'valueMax' hides class member
+C:\Quake4-1.4.2-SDK\source\framework\CVarSystem.h(145,12): message : see declaration of 'idCVar::valueMax'
+C:\Quake4-1.4.2-SDK\source\framework\CVarSystem.h(340,53): warning C4458: declaration of 'valueStrings' hides class member
+C:\Quake4-1.4.2-SDK\source\framework\CVarSystem.h(146,18): message : see declaration of 'idCVar::valueStrings'
+C:\Quake4-1.4.2-SDK\source\framework\CVarSystem.h(340,83): warning C4458: declaration of 'valueCompletion' hides class member
+C:\Quake4-1.4.2-SDK\source\framework\CVarSystem.h(147,20): message : see declaration of 'idCVar::valueCompletion'
+C:\Quake4-1.4.2-SDK\source\framework\Common.h(52,2): warning C4091: 'typedef ': ignored on left of '<unnamed-enum-EDITOR_NONE>' when no variable is declared
+C:\Quake4-1.4.2-SDK\source\aas\AASFile.h(95,2): warning C4091: 'typedef ': ignored on left of '<unnamed-enum-RE_WALK>' when no variable is declared
+C:\Quake4-1.4.2-SDK\source\game\Game_local.h(7,14): warning C4595: 'operator new': non-member operator new or delete functions may not be declared inline
+C:\Quake4-1.4.2-SDK\source\game\Game_local.h(8,13): warning C4595: 'operator delete': non-member operator new or delete functions may not be declared inline
+C:\Quake4-1.4.2-SDK\source\game\Game_local.h(9,14): warning C4595: 'operator new[]': non-member operator new or delete functions may not be declared inline
+C:\Quake4-1.4.2-SDK\source\game\Game_local.h(10,13): warning C4595: 'operator delete[]': non-member operator new or delete functions may not be declared inline
+C:\Quake4-1.4.2-SDK\source\game\gamesys\Class.h(466,38): warning C4458: declaration of 'superclass' hides class member
+C:\Quake4-1.4.2-SDK\source\game\gamesys\Class.h(430,18): message : see declaration of 'idTypeInfo::superclass'
+C:\Quake4-1.4.2-SDK\source\game\Game_local.h(465,75): warning C4458: declaration of 'userInfo' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Game_local.h(326,13): message : see declaration of 'idGameLocal::userInfo'
+C:\Quake4-1.4.2-SDK\source\game\Game_local.h(493,62): warning C4458: declaration of 'numClients' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Game_local.h(325,11): message : see declaration of 'idGameLocal::numClients'
+C:\Quake4-1.4.2-SDK\source\game\physics\Force_Field.h(44,50): warning C4458: declaration of 'type' hides class member
+C:\Quake4-1.4.2-SDK\source\game\physics\Force_Field.h(64,18): message : see declaration of 'idForce_Field::type'
+C:\Quake4-1.4.2-SDK\source\game\physics\Physics_AF.h(353,35): warning C4458: declaration of 'e' hides class member
+C:\Quake4-1.4.2-SDK\source\game\physics\Physics_AF.h(98,21): message : see declaration of 'idAFConstraint::e'
+C:\Quake4-1.4.2-SDK\source\game\physics\Physics_AF.h(517,35): warning C4458: declaration of 'e' hides class member
+C:\Quake4-1.4.2-SDK\source\game\physics\Physics_AF.h(98,21): message : see declaration of 'idAFConstraint::e'
+C:\Quake4-1.4.2-SDK\source\game\physics\Physics_AF.h(549,35): warning C4458: declaration of 'e' hides class member
+C:\Quake4-1.4.2-SDK\source\game\physics\Physics_AF.h(98,21): message : see declaration of 'idAFConstraint::e'
+C:\Quake4-1.4.2-SDK\source\game\script\Script_Interpreter.h(151,3): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Quake4-1.4.2-SDK\source\game\script\Script_Interpreter.h(153,3): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(108,58): warning C4458: declaration of 'startTime' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(42,11): message : see declaration of 'idInterpolate<idQuat>::startTime'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(108,91): message : while compiling class template member function 'type idInterpolate<type>::GetDeltaValue(float,float) const'
+          with
+          [
+              type=idQuat
+          ]
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(128,39): message : see reference to class template instantiation 'idInterpolate<idQuat>' being compiled
+C:\Quake4-1.4.2-SDK\source\idlib\math\Curve.h(1913,74): warning C4458: declaration of 'order' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Curve.h(1807,10): message : see declaration of 'idCurve_BSpline<type>::order'
+          with
+          [
+              type=idVec3
+          ]
+C:\Quake4-1.4.2-SDK\source\idlib\math\Curve.h(1913,103): message : while compiling class template member function 'float idCurve_BSpline<type>::Basis(const int,const int,const float) const'
+          with
+          [
+              type=idVec3
+          ]
+C:\Quake4-1.4.2-SDK\source\idlib\math\Curve.h(1832,81): message : while compiling class template member function 'type idCurve_BSpline<type>::GetCurrentValue(const float) const'
+          with
+          [
+              type=idVec3
+          ]
+C:\Quake4-1.4.2-SDK\source\idlib\math\Curve.h(1971,44): message : see reference to class template instantiation 'idCurve_BSpline<type>' being compiled
+          with
+          [
+              type=idVec3
+          ]
+C:\Quake4-1.4.2-SDK\source\framework\declPlayback.h(168,39): message : see reference to class template instantiation 'idCurve_UniformCubicBSpline<idVec3>' being compiled
+C:\Quake4-1.4.2-SDK\source\idlib\math\Curve.h(1943,89): warning C4458: declaration of 'order' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Curve.h(1807,10): message : see declaration of 'idCurve_BSpline<type>::order'
+          with
+          [
+              type=idVec3
+          ]
+C:\Quake4-1.4.2-SDK\source\idlib\math\Curve.h(1943,118): message : while compiling class template member function 'float idCurve_BSpline<type>::BasisFirstDerivative(const int,const int,const float) const'
+          with
+          [
+              type=idVec3
+          ]
+C:\Quake4-1.4.2-SDK\source\idlib\math\Curve.h(1873,5): message : see the first reference to 'idCurve_BSpline<type>::BasisFirstDerivative' in 'idCurve_BSpline<type>::GetCurrentFirstDerivative'
+          with
+          [
+              type=idVec3
+          ]
+C:\Quake4-1.4.2-SDK\source\idlib\math\Curve.h(1956,90): warning C4458: declaration of 'order' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Curve.h(1807,10): message : see declaration of 'idCurve_BSpline<type>::order'
+          with
+          [
+              type=idVec3
+          ]
+C:\Quake4-1.4.2-SDK\source\idlib\math\Curve.h(1956,119): message : while compiling class template member function 'float idCurve_BSpline<type>::BasisSecondDerivative(const int,const int,const float) const'
+          with
+          [
+              type=idVec3
+          ]
+C:\Quake4-1.4.2-SDK\source\idlib\math\Curve.h(1900,5): message : see the first reference to 'idCurve_BSpline<type>::BasisSecondDerivative' in 'idCurve_BSpline<type>::GetCurrentSecondDerivative'
+          with
+          [
+              type=idVec3
+          ]
+C:\Quake4-1.4.2-SDK\source\game\AF.cpp(1074,47): warning C4458: declaration of 'name' hides class member
+C:\Quake4-1.4.2-SDK\source\game\AF.h(74,12): message : see declaration of 'idAF::name'
+C:\Quake4-1.4.2-SDK\source\game\AF.cpp(1140,8): warning C4458: declaration of 'name' hides class member
+C:\Quake4-1.4.2-SDK\source\game\AF.h(74,12): message : see declaration of 'idAF::name'
+C:\Quake4-1.4.2-SDK\source\game\AF.cpp(1152,4): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Quake4-1.4.2-SDK\source\game\AF.cpp(1172,8): warning C4458: declaration of 'name' hides class member
+C:\Quake4-1.4.2-SDK\source\game\AF.h(74,12): message : see declaration of 'idAF::name'
+C:\Quake4-1.4.2-SDK\source\game\AF.cpp(1282,5): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Quake4-1.4.2-SDK\source\game\AF.cpp(1290,5): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Quake4-1.4.2-SDK\source\game\AF.cpp(1321,8): warning C4458: declaration of 'name' hides class member
+C:\Quake4-1.4.2-SDK\source\game\AF.h(74,12): message : see declaration of 'idAF::name'
+  Actor.cpp
+C:\Quake4-1.4.2-SDK\source\game\Actor.cpp(1198,14): warning C4458: declaration of 'animator' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Entity.h(783,16): message : see declaration of 'idAnimatedEntity::animator'
+C:\Quake4-1.4.2-SDK\source\game\Actor.cpp(2382,47): warning C4458: declaration of 'damageScale' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Actor.h(277,18): message : see declaration of 'idActor::damageScale'
+C:\Quake4-1.4.2-SDK\source\game\Actor.cpp(3690,51): warning C4458: declaration of 'name' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Entity.h(124,12): message : see declaration of 'idEntity::name'
+C:\Quake4-1.4.2-SDK\source\game\Actor.cpp(3756,48): warning C4458: declaration of 'damageScale' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Actor.h(277,18): message : see declaration of 'idActor::damageScale'
+  AFEntity.cpp
+C:\Quake4-1.4.2-SDK\source\game\AFEntity.cpp(122,40): warning C4458: declaration of 'name' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Entity.h(124,12): message : see declaration of 'idEntity::name'
+C:\Quake4-1.4.2-SDK\source\game\AFEntity.cpp(1354,64): warning C4458: declaration of 'name' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Entity.h(124,12): message : see declaration of 'idEntity::name'
+C:\Quake4-1.4.2-SDK\source\game\AFEntity.cpp(2292,39): warning C4458: declaration of 'steerAngle' hides class member
+C:\Quake4-1.4.2-SDK\source\game\AFEntity.h(370,12): message : see declaration of 'idAFEntity_Vehicle::steerAngle'
+C:\Quake4-1.4.2-SDK\source\game\AFEntity.cpp(2467,39): warning C4458: declaration of 'steerAngle' hides class member
+C:\Quake4-1.4.2-SDK\source\game\AFEntity.h(370,12): message : see declaration of 'idAFEntity_Vehicle::steerAngle'
+C:\Quake4-1.4.2-SDK\source\game\AFEntity.cpp(3103,3): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  AAS.cpp
+  AAS_debug.cpp
+  AAS_Find.cpp
+C:\Quake4-1.4.2-SDK\source\game\ai\AAS_Find.cpp(58,6): warning C4458: declaration of 'PVSAreas' hides class member
+C:\Quake4-1.4.2-SDK\source\game\ai\AAS_Find.h(33,10): message : see declaration of 'rvAASFindGoalForHide::PVSAreas'
+C:\Quake4-1.4.2-SDK\source\game\ai\AAS_Find.cpp(152,6): warning C4458: declaration of 'PVSAreas' hides class member
+C:\Quake4-1.4.2-SDK\source\game\ai\AAS_Find.h(83,12): message : see declaration of 'rvAASFindGoalForAttack::PVSAreas'
+C:\Quake4-1.4.2-SDK\source\game\ai\AAS_Find.cpp(194,10): warning C4456: declaration of 'localPoint' hides previous local declaration
+C:\Quake4-1.4.2-SDK\source\game\ai\AAS_Find.cpp(176,9): message : see declaration of 'localPoint'
+C:\Quake4-1.4.2-SDK\source\game\ai\AAS_Find.cpp(195,9): warning C4456: declaration of 'bestZ' hides previous local declaration
+C:\Quake4-1.4.2-SDK\source\game\ai\AAS_Find.cpp(177,8): message : see declaration of 'bestZ'
+  AAS_pathing.cpp
+  AAS_routing.cpp
+  AAS_tactical.cpp
+  AI.cpp
+C:\Quake4-1.4.2-SDK\source\game\ai\AI.cpp(154,2): warning C5205: delete of an abstract class 'rvAASTacticalSensor' that has a non-virtual destructor results in undefined behavior
+C:\Quake4-1.4.2-SDK\source\game\ai\AAS_tactical.h(23,8): message : see declaration of 'rvAASTacticalSensor'
+C:\Quake4-1.4.2-SDK\source\game\ai\AI.cpp(2692,24): warning C4456: declaration of 'shader' hides previous local declaration
+C:\Quake4-1.4.2-SDK\source\game\ai\AI.cpp(2684,23): message : see declaration of 'shader'
+C:\Quake4-1.4.2-SDK\source\game\ai\AI.cpp(2713,8): warning C4458: declaration of 'damageScale' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Actor.h(277,18): message : see declaration of 'idActor::damageScale'
+C:\Quake4-1.4.2-SDK\source\game\ai\AI.cpp(2840,8): warning C4458: declaration of 'damageScale' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Actor.h(277,18): message : see declaration of 'idActor::damageScale'
+C:\Quake4-1.4.2-SDK\source\game\ai\AI.cpp(3358,13): warning C4456: declaration of 'axis' hides previous local declaration
+C:\Quake4-1.4.2-SDK\source\game\ai\AI.cpp(3145,10): message : see declaration of 'axis'
+C:\Quake4-1.4.2-SDK\source\game\ai\AI.cpp(4585,11): warning C4456: declaration of 'tr' hides previous local declaration
+C:\Quake4-1.4.2-SDK\source\game\ai\AI.cpp(4549,11): message : see declaration of 'tr'
+C:\Quake4-1.4.2-SDK\source\game\ai\AI.cpp(5069,64): warning C4458: declaration of 'animPrefix' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Actor.h(293,12): message : see declaration of 'idActor::animPrefix'
+  AI_Actions.cpp
+  AI_Announcements.cpp
+  AI_Debug.cpp
+  AI_events.cpp
+C:\Quake4-1.4.2-SDK\source\game\ai\AI_events.cpp(599,12): warning C4458: declaration of 'af' hides class member
+C:\Quake4-1.4.2-SDK\source\game\AFEntity.h(227,11): message : see declaration of 'idAFEntity_Base::af'
+  AI_Manager.cpp
+  AI_Medic.cpp
+  AI_Move.cpp
+C:\Quake4-1.4.2-SDK\source\game\ai\AI_Move.cpp(923,39): warning C4458: declaration of 'tether' hides class member
+C:\Quake4-1.4.2-SDK\source\game\ai\AI.h(867,26): message : see declaration of 'idAI::tether'
+C:\Quake4-1.4.2-SDK\source\game\ai\AI_Move.cpp(1750,11): warning C4456: declaration of 'end' hides previous local declaration
+C:\Quake4-1.4.2-SDK\source\game\ai\AI_Move.cpp(1725,9): message : see declaration of 'end'
+C:\Quake4-1.4.2-SDK\source\game\ai\AI_Move.cpp(3400,17): warning C4456: declaration of 'area' hides previous local declaration
+C:\Quake4-1.4.2-SDK\source\game\ai\AI_Move.cpp(3315,23): message : see declaration of 'area'
+  AI_pathing.cpp
+  AI_States.cpp
+C:\Quake4-1.4.2-SDK\source\game\ai\AI_States.cpp(792,12): warning C4458: declaration of 'head' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Actor.h(309,30): message : see declaration of 'idActor::head'
+  AI_Tactical.cpp
+  AI_Util.cpp
+  Generating Code...
+  Compiling...
+  Monster_Berserker.cpp
+  Monster_BossBuddy.cpp
+C:\Quake4-1.4.2-SDK\source\game\ai\Monster_BossBuddy.cpp(370,48): warning C4458: declaration of 'damageScale' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Actor.h(277,18): message : see declaration of 'idActor::damageScale'
+  Monster_BossMakron.cpp
+C:\Quake4-1.4.2-SDK\source\game\ai\Monster_BossMakron.cpp(974,48): warning C4458: declaration of 'damageScale' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Actor.h(277,18): message : see declaration of 'idActor::damageScale'
+  Monster_ConvoyGround.cpp
+C:\Quake4-1.4.2-SDK\source\game\ai\Monster_ConvoyGround.cpp(244,137): warning C4458: declaration of 'damageScale' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Actor.h(277,18): message : see declaration of 'idActor::damageScale'
+  Monster_ConvoyHover.cpp
+C:\Quake4-1.4.2-SDK\source\game\ai\Monster_ConvoyHover.cpp(252,10): warning C4458: declaration of 'maxHeight' hides class member
+C:\Quake4-1.4.2-SDK\source\game\ai\Monster_ConvoyHover.cpp(47,12): message : see declaration of 'rvMonsterConvoyHover::maxHeight'
+  Monster_FailedTransfer.cpp
+  Monster_Fatty.cpp
+  Monster_Gladiator.cpp
+C:\Quake4-1.4.2-SDK\source\game\ai\Monster_Gladiator.cpp(486,47): warning C4458: declaration of 'damageScale' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Actor.h(277,18): message : see declaration of 'idActor::damageScale'
+  Monster_Grunt.cpp
+  Monster_Gunner.cpp
+  Monster_Harvester.cpp
+C:\Quake4-1.4.2-SDK\source\game\ai\Monster_Harvester.cpp(503,50): warning C4458: declaration of 'damageScale' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Actor.h(277,18): message : see declaration of 'idActor::damageScale'
+  Monster_HarvesterDispersal.cpp
+  Monster_HeavyHoverTank.cpp
+C:\Quake4-1.4.2-SDK\source\game\ai\Monster_HeavyHoverTank.cpp(197,139): warning C4458: declaration of 'damageScale' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Actor.h(277,18): message : see declaration of 'idActor::damageScale'
+  Monster_IronMaiden.cpp
+  Monster_LightTank.cpp
+  Monster_NetworkGuardian.cpp
+  Monster_RepairBot.cpp
+  Monster_Scientist.cpp
+  Monster_Sentry.cpp
+  Monster_SlimyTransfer.cpp
+  Generating Code...
+  Compiling...
+  Monster_StreamProtector.cpp
+C:\Quake4-1.4.2-SDK\source\game\ai\Monster_StreamProtector.cpp(230,50): warning C4458: declaration of 'damageScale' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Actor.h(277,18): message : see declaration of 'idActor::damageScale'
+  Monster_StroggFlyer.cpp
+  Monster_StroggHover.cpp
+C:\Quake4-1.4.2-SDK\source\game\ai\Monster_StroggHover.cpp(723,50): warning C4458: declaration of 'damageScale' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Actor.h(277,18): message : see declaration of 'idActor::damageScale'
+C:\Quake4-1.4.2-SDK\source\game\ai\Monster_StroggHover.cpp(1076,13): warning C4456: declaration of 'vel' hides previous local declaration
+C:\Quake4-1.4.2-SDK\source\game\ai\Monster_StroggHover.cpp(1062,9): message : see declaration of 'vel'
+  Monster_StroggMarine.cpp
+  Monster_TeleportDropper.cpp
+  Monster_Turret.cpp
+  Monster_TurretFlying.cpp
+  VehicleAI.cpp
+  Anim.cpp
+  Anim_Blend.cpp
+C:\Quake4-1.4.2-SDK\source\game\anim\Anim_Blend.cpp(121,45): warning C4458: declaration of 'modelDef' hides class member
+C:\Quake4-1.4.2-SDK\source\game\anim\Anim.h(317,30): message : see declaration of 'idAnim::modelDef'
+C:\Quake4-1.4.2-SDK\source\game\anim\Anim_Blend.cpp(299,60): warning C4458: declaration of 'modelDef' hides class member
+C:\Quake4-1.4.2-SDK\source\game\anim\Anim.h(317,30): message : see declaration of 'idAnim::modelDef'
+C:\Quake4-1.4.2-SDK\source\game\anim\Anim_Blend.cpp(824,6): warning C4458: declaration of 'flags' hides class member
+C:\Quake4-1.4.2-SDK\source\game\anim\Anim.h(324,18): message : see declaration of 'idAnim::flags'
+C:\Quake4-1.4.2-SDK\source\game\anim\Anim_Blend.cpp(1255,75): warning C4458: declaration of 'modelDef' hides class member
+C:\Quake4-1.4.2-SDK\source\game\anim\Anim.h(480,30): message : see declaration of 'idAnimBlend::modelDef'
+C:\Quake4-1.4.2-SDK\source\game\anim\Anim_Blend.cpp(1455,51): warning C4458: declaration of 'modelDef' hides class member
+C:\Quake4-1.4.2-SDK\source\game\anim\Anim.h(480,30): message : see declaration of 'idAnimBlend::modelDef'
+C:\Quake4-1.4.2-SDK\source\game\anim\Anim_Blend.cpp(1498,52): warning C4458: declaration of 'modelDef' hides class member
+C:\Quake4-1.4.2-SDK\source\game\anim\Anim.h(480,30): message : see declaration of 'idAnimBlend::modelDef'
+C:\Quake4-1.4.2-SDK\source\game\anim\Anim_Blend.cpp(1549,51): warning C4458: declaration of 'modelDef' hides class member
+C:\Quake4-1.4.2-SDK\source\game\anim\Anim.h(480,30): message : see declaration of 'idAnimBlend::modelDef'
+C:\Quake4-1.4.2-SDK\source\game\anim\Anim_Blend.cpp(4532,10): warning C4458: declaration of 'numJoints' hides class member
+C:\Quake4-1.4.2-SDK\source\game\anim\Anim.h(726,12): message : see declaration of 'idAnimator::numJoints'
+C:\Quake4-1.4.2-SDK\source\game\anim\Anim_Blend.cpp(4574,14): warning C4458: declaration of 'joints' hides class member
+C:\Quake4-1.4.2-SDK\source\game\anim\Anim.h(727,18): message : see declaration of 'idAnimator::joints'
+C:\Quake4-1.4.2-SDK\source\game\anim\Anim_Blend.cpp(4814,10): warning C4458: declaration of 'numJoints' hides class member
+C:\Quake4-1.4.2-SDK\source\game\anim\Anim.h(726,12): message : see declaration of 'idAnimator::numJoints'
+C:\Quake4-1.4.2-SDK\source\game\anim\Anim_Blend.cpp(5251,34): warning C4458: declaration of 'numJoints' hides class member
+C:\Quake4-1.4.2-SDK\source\game\anim\Anim.h(726,12): message : see declaration of 'idAnimator::numJoints'
+C:\Quake4-1.4.2-SDK\source\game\anim\Anim_Blend.cpp(5411,6): warning C4458: declaration of 'numJoints' hides class member
+C:\Quake4-1.4.2-SDK\source\game\anim\Anim.h(726,12): message : see declaration of 'idAnimator::numJoints'
+C:\Quake4-1.4.2-SDK\source\game\anim\Anim_Blend.cpp(5412,14): warning C4458: declaration of 'joints' hides class member
+C:\Quake4-1.4.2-SDK\source\game\anim\Anim.h(727,18): message : see declaration of 'idAnimator::joints'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(232,71): warning C4458: declaration of 'startTime' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(202,11): message : see declaration of 'idInterpolateAccelDecelLinear<idAngles>::startTime'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(232,197): message : while compiling class template member function 'void idInterpolateAccelDecelLinear<idAngles>::Init(const float,const float,const float,const float,const type &,const type &)'
+          with
+          [
+              type=idAngles
+          ]
+C:\Quake4-1.4.2-SDK\source\game\anim\Anim_Blend.cpp(3997,34): message : see the first reference to 'idInterpolateAccelDecelLinear<idAngles>::Init' in 'idAnimator::FindJointMod'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(232,94): warning C4458: declaration of 'accelTime' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(203,11): message : see declaration of 'idInterpolateAccelDecelLinear<idAngles>::accelTime'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(232,117): warning C4458: declaration of 'decelTime' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(205,11): message : see declaration of 'idInterpolateAccelDecelLinear<idAngles>::decelTime'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(232,162): warning C4458: declaration of 'startValue' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(206,10): message : see declaration of 'idInterpolateAccelDecelLinear<idAngles>::startValue'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(232,186): warning C4458: declaration of 'endValue' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(207,10): message : see declaration of 'idInterpolateAccelDecelLinear<idAngles>::endValue'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Extrapolate.h(75,55): warning C4458: declaration of 'startTime' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Extrapolate.h(44,11): message : see declaration of 'idExtrapolate<type>::startTime'
+          with
+          [
+              type=idAngles
+          ]
+C:\Quake4-1.4.2-SDK\source\idlib\math\Extrapolate.h(75,196): message : while compiling class template member function 'void idExtrapolate<type>::Init(const float,const float,const type &,const type &,const type &,const extrapolation_t)'
+          with
+          [
+              type=idAngles
+          ]
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(253,19): message : see the first reference to 'idExtrapolate<type>::Init' in 'idInterpolateAccelDecelLinear<idAngles>::Init'
+          with
+          [
+              type=idAngles
+          ]
+C:\Quake4-1.4.2-SDK\source\game\anim\Anim_Blend.cpp(3997,34): message : see the first reference to 'idInterpolateAccelDecelLinear<idAngles>::Init' in 'idAnimator::FindJointMod'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(220,80): message : while compiling class template member function 'idInterpolateAccelDecelLinear<idAngles>::idInterpolateAccelDecelLinear(void)'
+C:\Quake4-1.4.2-SDK\source\game\anim\Anim.h(86,1): message : see the first reference to 'idInterpolateAccelDecelLinear<idAngles>::idInterpolateAccelDecelLinear' in 'jointMod_t::jointMod_t'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Extrapolate.h(75,78): warning C4458: declaration of 'duration' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Extrapolate.h(45,11): message : see declaration of 'idExtrapolate<type>::duration'
+          with
+          [
+              type=idAngles
+          ]
+C:\Quake4-1.4.2-SDK\source\idlib\math\Extrapolate.h(75,100): warning C4458: declaration of 'startValue' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Extrapolate.h(46,10): message : see declaration of 'idExtrapolate<type>::startValue'
+          with
+          [
+              type=idAngles
+          ]
+C:\Quake4-1.4.2-SDK\source\idlib\math\Extrapolate.h(75,124): warning C4458: declaration of 'baseSpeed' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Extrapolate.h(47,10): message : see declaration of 'idExtrapolate<type>::baseSpeed'
+          with
+          [
+              type=idAngles
+          ]
+C:\Quake4-1.4.2-SDK\source\idlib\math\Extrapolate.h(75,147): warning C4458: declaration of 'speed' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Extrapolate.h(48,10): message : see declaration of 'idExtrapolate<type>::speed'
+          with
+          [
+              type=idAngles
+          ]
+C:\Quake4-1.4.2-SDK\source\idlib\math\Extrapolate.h(75,176): warning C4458: declaration of 'extrapolationType' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Extrapolate.h(43,19): message : see declaration of 'idExtrapolate<type>::extrapolationType'
+          with
+          [
+              type=idAngles
+          ]
+  Anim_Import.cpp
+C:\Quake4-1.4.2-SDK\source\game\anim\Anim_Import.cpp(321,14): warning C4459: declaration of 'game' hides global declaration
+C:\Quake4-1.4.2-SDK\source\game\Game.h(373,21): message : see declaration of 'game'
+  Anim_Testmodel.cpp
+C:\Quake4-1.4.2-SDK\source\game\anim\Anim_Testmodel.cpp(380,11): warning C4456: declaration of 'axis' hides previous local declaration
+C:\Quake4-1.4.2-SDK\source\game\anim\Anim_Testmodel.cpp(248,9): message : see declaration of 'axis'
+C:\Quake4-1.4.2-SDK\source\game\anim\Anim_Testmodel.cpp(540,10): warning C4458: declaration of 'name' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Entity.h(124,12): message : see declaration of 'idEntity::name'
+  BrittleFracture.cpp
+C:\Quake4-1.4.2-SDK\source\game\BrittleFracture.cpp(331,61): warning C4458: declaration of 'renderEntity' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Entity.h(526,19): message : see declaration of 'idEntity::renderEntity'
+C:\Quake4-1.4.2-SDK\source\game\BrittleFracture.cpp(331,95): warning C4458: declaration of 'renderView' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Entity.h(132,19): message : see declaration of 'idEntity::renderView'
+  Camera.cpp
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(23,35): warning C4458: declaration of 'endValue' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(45,10): message : see declaration of 'idInterpolate<float>::endValue'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(23,10): message : while compiling class template member function 'void idInterpolate<float>::SetEndValue(const type &)'
+          with
+          [
+              type=float
+          ]
+C:\Quake4-1.4.2-SDK\source\game\Camera.cpp(113,17): message : see the first reference to 'idInterpolate<float>::SetEndValue' in 'idCameraView::Restore'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(22,37): warning C4458: declaration of 'startValue' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(44,10): message : see declaration of 'idInterpolate<float>::startValue'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(22,10): message : while compiling class template member function 'void idInterpolate<float>::SetStartValue(const type &)'
+          with
+          [
+              type=float
+          ]
+C:\Quake4-1.4.2-SDK\source\game\Camera.cpp(111,19): message : see the first reference to 'idInterpolate<float>::SetStartValue' in 'idCameraView::Restore'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(21,29): warning C4458: declaration of 'duration' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(43,11): message : see declaration of 'idInterpolate<float>::duration'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(21,10): message : while compiling class template member function 'void idInterpolate<float>::SetDuration(float)'
+C:\Quake4-1.4.2-SDK\source\game\Camera.cpp(107,17): message : see the first reference to 'idInterpolate<float>::SetDuration' in 'idCameraView::Restore'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(68,55): warning C4458: declaration of 'startTime' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(42,11): message : see declaration of 'idInterpolate<float>::startTime'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(68,135): message : while compiling class template member function 'void idInterpolate<float>::Init(const float,const float,const type &,const type &)'
+          with
+          [
+              type=float
+          ]
+C:\Quake4-1.4.2-SDK\source\game\Camera.cpp(73,11): message : see the first reference to 'idInterpolate<float>::Init' in 'idCameraView::idCameraView'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(68,78): warning C4458: declaration of 'duration' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(43,11): message : see declaration of 'idInterpolate<float>::duration'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(68,100): warning C4458: declaration of 'startValue' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(44,10): message : see declaration of 'idInterpolate<float>::startValue'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(68,124): warning C4458: declaration of 'endValue' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(45,10): message : see declaration of 'idInterpolate<float>::endValue'
+  ClientAFEntity.cpp
+  ClientEffect.cpp
+  ClientEntity.cpp
+C:\Quake4-1.4.2-SDK\source\game\client\ClientEntity.cpp(362,13): warning C4458: declaration of 'physics' hides class member
+C:\Quake4-1.4.2-SDK\source\game\client\ClientEntity.h(76,17): message : see declaration of 'rvClientEntity::physics'
+  ClientModel.cpp
+C:\Quake4-1.4.2-SDK\source\game\client\ClientModel.cpp(245,57): warning C4458: declaration of 'renderEntity' hides class member
+C:\Quake4-1.4.2-SDK\source\game\client\ClientModel.h(54,20): message : see declaration of 'rvClientModel::renderEntity'
+  ClientMoveable.cpp
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(68,55): warning C4458: declaration of 'startTime' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(42,11): message : see declaration of 'idInterpolate<float>::startTime'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(68,135): message : while compiling class template member function 'void idInterpolate<float>::Init(const float,const float,const type &,const type &)'
+          with
+          [
+              type=float
+          ]
+C:\Quake4-1.4.2-SDK\source\game\client\ClientMoveable.cpp(40,12): message : see the first reference to 'idInterpolate<float>::Init' in 'rvClientMoveable::rvClientMoveable'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(68,78): warning C4458: declaration of 'duration' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(43,11): message : see declaration of 'idInterpolate<float>::duration'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(68,100): warning C4458: declaration of 'startValue' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(44,10): message : see declaration of 'idInterpolate<float>::startValue'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(68,124): warning C4458: declaration of 'endValue' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(45,10): message : see declaration of 'idInterpolate<float>::endValue'
+  Effect.cpp
+C:\Quake4-1.4.2-SDK\source\game\Effect.cpp(121,8): warning C4458: declaration of 'name' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Entity.h(124,12): message : see declaration of 'idEntity::name'
+  Generating Code...
+  Compiling...
+  Entity.cpp
+C:\Quake4-1.4.2-SDK\source\game\Entity.cpp(1657,52): warning C4458: declaration of 'renderEntity' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Entity.h(526,19): message : see declaration of 'idEntity::renderEntity'
+C:\Quake4-1.4.2-SDK\source\game\Entity.cpp(1657,86): warning C4458: declaration of 'renderView' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Entity.h(132,19): message : see declaration of 'idEntity::renderView'
+C:\Quake4-1.4.2-SDK\source\game\Entity.cpp(4091,10): warning C4458: declaration of 'targets' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Entity.h(135,34): message : see declaration of 'idEntity::targets'
+C:\Quake4-1.4.2-SDK\source\game\Entity.cpp(4118,17): warning C4456: declaration of 'token3' hides previous local declaration
+C:\Quake4-1.4.2-SDK\source\game\Entity.cpp(4078,26): message : see declaration of 'token3'
+C:\Quake4-1.4.2-SDK\source\game\Entity.cpp(4949,16): warning C4458: declaration of 'bindJoint' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Entity.h(531,18): message : see declaration of 'idEntity::bindJoint'
+C:\Quake4-1.4.2-SDK\source\game\Entity.cpp(5622,47): warning C4458: declaration of 'name' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Entity.h(124,12): message : see declaration of 'idEntity::name'
+C:\Quake4-1.4.2-SDK\source\game\Entity.cpp(6641,14): warning C4458: declaration of 'animator' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Entity.h(783,16): message : see declaration of 'idAnimatedEntity::animator'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Curve.h(2261,83): warning C4458: declaration of 'order' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Curve.h(1807,10): message : see declaration of 'idCurve_BSpline<type>::order'
+          with
+          [
+              type=idVec3
+          ]
+C:\Quake4-1.4.2-SDK\source\idlib\math\Curve.h(2261,126): message : while compiling class template member function 'void idCurve_NonUniformBSpline<idVec3>::Basis(const int,const int,const float,float *) const'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Curve.h(2186,7): message : see the first reference to 'idCurve_NonUniformBSpline<idVec3>::Basis' in 'idCurve_NonUniformBSpline<idVec3>::GetCurrentValue'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Curve.h(2163,78): message : while compiling class template member function 'idCurve_NonUniformBSpline<idVec3>::idCurve_NonUniformBSpline(void)'
+C:\Quake4-1.4.2-SDK\source\game\Entity.cpp(4633,10): message : see the first reference to 'idCurve_NonUniformBSpline<idVec3>::idCurve_NonUniformBSpline' in 'idEntity::GetSpline'
+C:\Quake4-1.4.2-SDK\source\game\Entity.cpp(4633,49): message : see reference to class template instantiation 'idCurve_NonUniformBSpline<idVec3>' being compiled
+C:\Quake4-1.4.2-SDK\source\idlib\math\Curve.h(2286,98): warning C4458: declaration of 'order' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Curve.h(1807,10): message : see declaration of 'idCurve_BSpline<type>::order'
+          with
+          [
+              type=idVec3
+          ]
+C:\Quake4-1.4.2-SDK\source\idlib\math\Curve.h(2286,141): message : while compiling class template member function 'void idCurve_NonUniformBSpline<idVec3>::BasisFirstDerivative(const int,const int,const float,float *) const'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Curve.h(2215,22): message : see the first reference to 'idCurve_NonUniformBSpline<idVec3>::BasisFirstDerivative' in 'idCurve_NonUniformBSpline<idVec3>::GetCurrentFirstDerivative'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Curve.h(2306,99): warning C4458: declaration of 'order' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Curve.h(1807,10): message : see declaration of 'idCurve_BSpline<type>::order'
+          with
+          [
+              type=idVec3
+          ]
+C:\Quake4-1.4.2-SDK\source\idlib\math\Curve.h(2306,142): message : while compiling class template member function 'void idCurve_NonUniformBSpline<idVec3>::BasisSecondDerivative(const int,const int,const float,float *) const'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Curve.h(2244,23): message : see the first reference to 'idCurve_NonUniformBSpline<idVec3>::BasisSecondDerivative' in 'idCurve_NonUniformBSpline<idVec3>::GetCurrentSecondDerivative'
+  FreeView.cpp
+  GameEdit.cpp
+C:\Quake4-1.4.2-SDK\source\game\GameEdit.cpp(314,16): warning C4458: declaration of 'bodyName' hides class member
+C:\Quake4-1.4.2-SDK\source\game\GameEdit.h(57,12): message : see declaration of 'idDragEntity::bodyName'
+C:\Quake4-1.4.2-SDK\source\game\GameEdit.cpp(336,8): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  Class.cpp
+  DebugGraph.cpp
+  Event.cpp
+C:\Quake4-1.4.2-SDK\source\game\gamesys\Event.cpp(55,3): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Quake4-1.4.2-SDK\source\game\gamesys\Event.cpp(97,4): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Quake4-1.4.2-SDK\source\game\gamesys\Event.cpp(114,5): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Quake4-1.4.2-SDK\source\game\gamesys\Event.cpp(121,5): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Quake4-1.4.2-SDK\source\game\gamesys\Event.cpp(135,3): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Quake4-1.4.2-SDK\source\game\gamesys\Event.cpp(409,67): warning C4458: declaration of 'time' hides class member
+C:\Quake4-1.4.2-SDK\source\game\gamesys\Event.h(65,12): message : see declaration of 'idEvent::time'
+  SaveGame.cpp
+C:\Quake4-1.4.2-SDK\source\game\gamesys\SaveGame.cpp(1083,2): warning C4996: 'vsprintf': This function or variable may be unsafe. Consider using vsprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Quake4-1.4.2-SDK\source\idlib\math\Extrapolate.h(75,55): warning C4458: declaration of 'startTime' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Extrapolate.h(44,11): message : see declaration of 'idExtrapolate<int>::startTime'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Extrapolate.h(75,196): message : while compiling class template member function 'void idExtrapolate<int>::Init(const float,const float,const type &,const type &,const type &,const extrapolation_t)'
+          with
+          [
+              type=int
+          ]
+C:\Quake4-1.4.2-SDK\source\game\gamesys\SaveGame.cpp(1527,13): message : see the first reference to 'idExtrapolate<int>::Init' in 'idRestoreGame::ReadExtrapolate'
+C:\Quake4-1.4.2-SDK\source\game\gamesys\SaveGame.cpp(520,23): message : see reference to class template instantiation 'idExtrapolate<int>' being compiled
+C:\Quake4-1.4.2-SDK\source\idlib\math\Extrapolate.h(75,78): warning C4458: declaration of 'duration' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Extrapolate.h(45,11): message : see declaration of 'idExtrapolate<int>::duration'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Extrapolate.h(75,100): warning C4458: declaration of 'startValue' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Extrapolate.h(46,10): message : see declaration of 'idExtrapolate<int>::startValue'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Extrapolate.h(75,124): warning C4458: declaration of 'baseSpeed' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Extrapolate.h(47,10): message : see declaration of 'idExtrapolate<int>::baseSpeed'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Extrapolate.h(75,147): warning C4458: declaration of 'speed' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Extrapolate.h(48,10): message : see declaration of 'idExtrapolate<int>::speed'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Extrapolate.h(75,176): warning C4458: declaration of 'extrapolationType' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Extrapolate.h(43,19): message : see declaration of 'idExtrapolate<int>::extrapolationType'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(232,71): warning C4458: declaration of 'startTime' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(202,11): message : see declaration of 'idInterpolateAccelDecelLinear<int>::startTime'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(232,197): message : while compiling class template member function 'void idInterpolateAccelDecelLinear<int>::Init(const float,const float,const float,const float,const type &,const type &)'
+          with
+          [
+              type=int
+          ]
+C:\Quake4-1.4.2-SDK\source\game\gamesys\SaveGame.cpp(1600,11): message : see the first reference to 'idInterpolateAccelDecelLinear<int>::Init' in 'idRestoreGame::ReadInterpolate'
+C:\Quake4-1.4.2-SDK\source\game\gamesys\SaveGame.cpp(565,18): message : see reference to class template instantiation 'idInterpolateAccelDecelLinear<int>' being compiled
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(232,94): warning C4458: declaration of 'accelTime' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(203,11): message : see declaration of 'idInterpolateAccelDecelLinear<int>::accelTime'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(232,117): warning C4458: declaration of 'decelTime' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(205,11): message : see declaration of 'idInterpolateAccelDecelLinear<int>::decelTime'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(232,162): warning C4458: declaration of 'startValue' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(206,10): message : see declaration of 'idInterpolateAccelDecelLinear<int>::startValue'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(232,186): warning C4458: declaration of 'endValue' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(207,10): message : see declaration of 'idInterpolateAccelDecelLinear<int>::endValue'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(68,55): warning C4458: declaration of 'startTime' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(42,11): message : see declaration of 'idInterpolate<int>::startTime'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(68,135): message : while compiling class template member function 'void idInterpolate<int>::Init(const float,const float,const type &,const type &)'
+          with
+          [
+              type=int
+          ]
+C:\Quake4-1.4.2-SDK\source\game\gamesys\SaveGame.cpp(1671,11): message : see the first reference to 'idInterpolate<int>::Init' in 'idRestoreGame::ReadInterpolate'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(68,78): warning C4458: declaration of 'duration' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(43,11): message : see declaration of 'idInterpolate<int>::duration'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(68,100): warning C4458: declaration of 'startValue' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(44,10): message : see declaration of 'idInterpolate<int>::startValue'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(68,124): warning C4458: declaration of 'endValue' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(45,10): message : see declaration of 'idInterpolate<int>::endValue'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(108,58): warning C4458: declaration of 'startTime' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(42,11): message : see declaration of 'idInterpolate<idVec3>::startTime'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(108,91): message : while compiling class template member function 'type idInterpolate<type>::GetDeltaValue(float,float) const'
+          with
+          [
+              type=idVec3
+          ]
+  State.cpp
+C:\Quake4-1.4.2-SDK\source\game\gamesys\State.cpp(98,54): warning C4458: declaration of 'name' hides class member
+C:\Quake4-1.4.2-SDK\source\game\gamesys\State.h(133,13): message : see declaration of 'rvStateThread::name'
+C:\Quake4-1.4.2-SDK\source\game\gamesys\State.cpp(133,53): warning C4458: declaration of 'name' hides class member
+C:\Quake4-1.4.2-SDK\source\game\gamesys\State.h(133,13): message : see declaration of 'rvStateThread::name'
+C:\Quake4-1.4.2-SDK\source\game\gamesys\State.cpp(143,59): warning C4458: declaration of 'name' hides class member
+C:\Quake4-1.4.2-SDK\source\game\gamesys\State.h(133,13): message : see declaration of 'rvStateThread::name'
+C:\Quake4-1.4.2-SDK\source\game\gamesys\State.cpp(165,49): warning C4458: declaration of 'name' hides class member
+C:\Quake4-1.4.2-SDK\source\game\gamesys\State.h(133,13): message : see declaration of 'rvStateThread::name'
+C:\Quake4-1.4.2-SDK\source\game\gamesys\State.cpp(392,64): warning C4458: declaration of 'owner' hides class member
+C:\Quake4-1.4.2-SDK\source\game\gamesys\State.h(134,15): message : see declaration of 'rvStateThread::owner'
+  SysCmds.cpp
+C:\Quake4-1.4.2-SDK\source\game\gamesys\SysCmds.cpp(810,2): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Quake4-1.4.2-SDK\source\game\gamesys\SysCmds.cpp(1304,13): warning C4456: declaration of 'ent' hides previous local declaration
+C:\Quake4-1.4.2-SDK\source\game\gamesys\SysCmds.cpp(1292,12): message : see declaration of 'ent'
+C:\Quake4-1.4.2-SDK\source\game\gamesys\SysCmds.cpp(1676,12): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Quake4-1.4.2-SDK\source\game\gamesys\SysCmds.cpp(1891,14): warning C4456: declaration of 'animator' hides previous local declaration
+C:\Quake4-1.4.2-SDK\source\game\gamesys\SysCmds.cpp(1885,15): message : see declaration of 'animator'
+  SysCvar.cpp
+C:\Quake4-1.4.2-SDK\source\game\gamesys\SysCvar.cpp(35,26): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  Game_Debug.cpp
+C:\Quake4-1.4.2-SDK\source\game\Game_Debug.cpp(337,32): warning C4458: declaration of 'jumpIndex' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Game_Debug.h(75,12): message : see declaration of 'rvGameDebug::jumpIndex'
+  Game_local.cpp
+C:\Quake4-1.4.2-SDK\source\game\Game_local.cpp(1157,70): warning C4458: declaration of 'userInfo' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Game_local.h(326,13): message : see declaration of 'idGameLocal::userInfo'
+C:\Quake4-1.4.2-SDK\source\game\Game_local.cpp(1157,85): warning C4458: declaration of 'isClient' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Game_local.h(405,11): message : see declaration of 'idGameLocal::isClient'
+C:\Quake4-1.4.2-SDK\source\game\Game_local.cpp(1508,12): warning C4456: declaration of 'i' hides previous local declaration
+C:\Quake4-1.4.2-SDK\source\game\Game_local.cpp(1498,6): message : see declaration of 'i'
+C:\Quake4-1.4.2-SDK\source\game\Game_local.cpp(1576,10): warning C4458: declaration of 'newInfo' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Game_local.h(996,13): message : see declaration of 'idGameLocal::newInfo'
+C:\Quake4-1.4.2-SDK\source\game\Game_local.cpp(1679,12): warning C4458: declaration of 'newInfo' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Game_local.h(996,13): message : see declaration of 'idGameLocal::newInfo'
+C:\Quake4-1.4.2-SDK\source\game\Game_local.cpp(1897,89): warning C4458: declaration of 'isServer' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Game_local.h(404,11): message : see declaration of 'idGameLocal::isServer'
+C:\Quake4-1.4.2-SDK\source\game\Game_local.cpp(1897,104): warning C4458: declaration of 'isClient' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Game_local.h(405,11): message : see declaration of 'idGameLocal::isClient'
+C:\Quake4-1.4.2-SDK\source\game\Game_local.cpp(3567,14): warning C4456: declaration of 'player' hides previous local declaration
+C:\Quake4-1.4.2-SDK\source\game\Game_local.cpp(3466,12): message : see declaration of 'player'
+C:\Quake4-1.4.2-SDK\source\game\Game_local.cpp(3719,4): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Quake4-1.4.2-SDK\source\game\Game_local.cpp(4858,5): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Quake4-1.4.2-SDK\source\game\Game_local.cpp(4990,47): warning C4458: declaration of 'spawnArgs' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Game_local.h(958,13): message : see declaration of 'idGameLocal::spawnArgs'
+C:\Quake4-1.4.2-SDK\source\game\Game_local.cpp(5691,27): warning C4458: declaration of 'push' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Game_local.h(362,13): message : see declaration of 'idGameLocal::push'
+C:\Quake4-1.4.2-SDK\source\game\Game_local.cpp(5818,85): warning C4458: declaration of 'push' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Game_local.h(362,13): message : see declaration of 'idGameLocal::push'
+C:\Quake4-1.4.2-SDK\source\game\Game_local.cpp(5917,95): warning C4458: declaration of 'push' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Game_local.h(362,13): message : see declaration of 'idGameLocal::push'
+C:\Quake4-1.4.2-SDK\source\game\Game_local.cpp(6169,15): warning C4456: declaration of 'client' hides previous local declaration
+C:\Quake4-1.4.2-SDK\source\game\Game_local.cpp(6086,12): message : see declaration of 'client'
+C:\Quake4-1.4.2-SDK\source\game\Game_local.cpp(6249,52): warning C4458: declaration of 'time' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Game_local.h(390,11): message : see declaration of 'idGameLocal::time'
+C:\Quake4-1.4.2-SDK\source\game\Game_local.cpp(6712,9): warning C4458: declaration of 'mapFileName' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Game_local.h(925,12): message : see declaration of 'idGameLocal::mapFileName'
+C:\Quake4-1.4.2-SDK\source\game\Game_local.cpp(6757,9): warning C4458: declaration of 'mapFileName' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Game_local.h(925,12): message : see declaration of 'idGameLocal::mapFileName'
+C:\Quake4-1.4.2-SDK\source\game\Game_local.cpp(7275,10): warning C4458: declaration of 'newInfo' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Game_local.h(996,13): message : see declaration of 'idGameLocal::newInfo'
+C:\Quake4-1.4.2-SDK\source\game\Game_local.cpp(8307,2): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Quake4-1.4.2-SDK\source\game\Game_local.cpp(8322,2): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  Game_Log.cpp
+C:\Quake4-1.4.2-SDK\source\game\Game_Log.cpp(146,15): warning C4456: declaration of 'out' hides previous local declaration
+C:\Quake4-1.4.2-SDK\source\game\Game_Log.cpp(90,14): message : see declaration of 'out'
+  Game_network.cpp
+C:\Quake4-1.4.2-SDK\source\game\Game_network.cpp(92,64): warning C4458: declaration of 'numClients' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Game_local.h(325,11): message : see declaration of 'idGameLocal::numClients'
+C:\Quake4-1.4.2-SDK\source\game\Game_network.cpp(888,8): warning C4457: declaration of 'clientNum' hides function parameter
+C:\Quake4-1.4.2-SDK\source\game\Game_network.cpp(784,53): message : see declaration of 'clientNum'
+C:\Quake4-1.4.2-SDK\source\game\Game_network.cpp(1343,11): warning C4456: declaration of 'i' hides previous local declaration
+C:\Quake4-1.4.2-SDK\source\game\Game_network.cpp(1009,11): message : see declaration of 'i'
+C:\Quake4-1.4.2-SDK\source\game\Game_network.cpp(1862,8): warning C4457: declaration of 'clientNum' hides function parameter
+C:\Quake4-1.4.2-SDK\source\game\Game_network.cpp(1737,53): message : see declaration of 'clientNum'
+C:\Quake4-1.4.2-SDK\source\game\Game_network.cpp(1878,8): warning C4457: declaration of 'clientNum' hides function parameter
+C:\Quake4-1.4.2-SDK\source\game\Game_network.cpp(1737,53): message : see declaration of 'clientNum'
+C:\Quake4-1.4.2-SDK\source\game\Game_network.cpp(2028,5): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Quake4-1.4.2-SDK\source\game\Game_network.cpp(2286,3): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  Healing_Station.cpp
+  Icon.cpp
+  IconManager.cpp
+  IK.cpp
+C:\Quake4-1.4.2-SDK\source\game\IK.cpp(97,28): warning C4458: declaration of 'self' hides class member
+C:\Quake4-1.4.2-SDK\source\game\IK.h(35,16): message : see declaration of 'idIK::self'
+C:\Quake4-1.4.2-SDK\source\game\IK.cpp(97,66): warning C4458: declaration of 'modelOffset' hides class member
+C:\Quake4-1.4.2-SDK\source\game\IK.h(38,13): message : see declaration of 'idIK::modelOffset'
+C:\Quake4-1.4.2-SDK\source\game\IK.cpp(368,33): warning C4458: declaration of 'self' hides class member
+C:\Quake4-1.4.2-SDK\source\game\IK.h(35,16): message : see declaration of 'idIK::self'
+C:\Quake4-1.4.2-SDK\source\game\IK.cpp(368,71): warning C4458: declaration of 'modelOffset' hides class member
+C:\Quake4-1.4.2-SDK\source\game\IK.h(38,13): message : see declaration of 'idIK::modelOffset'
+C:\Quake4-1.4.2-SDK\source\game\IK.cpp(886,34): warning C4458: declaration of 'self' hides class member
+C:\Quake4-1.4.2-SDK\source\game\IK.h(35,16): message : see declaration of 'idIK::self'
+C:\Quake4-1.4.2-SDK\source\game\IK.cpp(886,72): warning C4458: declaration of 'modelOffset' hides class member
+C:\Quake4-1.4.2-SDK\source\game\IK.h(38,13): message : see declaration of 'idIK::modelOffset'
+  Instance.cpp
+  Item.cpp
+C:\Quake4-1.4.2-SDK\source\game\Item.cpp(159,50): warning C4458: declaration of 'renderEntity' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Entity.h(526,19): message : see declaration of 'idEntity::renderEntity'
+C:\Quake4-1.4.2-SDK\source\game\Item.cpp(159,84): warning C4458: declaration of 'renderView' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Entity.h(132,19): message : see declaration of 'idEntity::renderView'
+C:\Quake4-1.4.2-SDK\source\game\Item.cpp(1631,5): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Quake4-1.4.2-SDK\source\game\Item.cpp(2314,41): warning C4458: declaration of 'powerup' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Item.h(182,11): message : see declaration of 'riDeadZonePowerup::powerup'
+  Generating Code...
+  Compiling...
+  Light.cpp
+C:\Quake4-1.4.2-SDK\source\game\Light.cpp(478,14): warning C4458: declaration of 'lightGUI' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Light.h(93,24): message : see declaration of 'idLight::lightGUI'
+  LipSync.cpp
+  Misc.cpp
+C:\Quake4-1.4.2-SDK\source\game\Misc.cpp(102,6): warning C4458: declaration of 'entityNumber' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Entity.h(114,11): message : see declaration of 'idEntity::entityNumber'
+C:\Quake4-1.4.2-SDK\source\game\Misc.cpp(2073,6): warning C4458: declaration of 'anim' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Misc.h(349,11): message : see declaration of 'idAnimated::anim'
+C:\Quake4-1.4.2-SDK\source\game\Misc.cpp(2095,6): warning C4458: declaration of 'anim' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Misc.h(349,11): message : see declaration of 'idAnimated::anim'
+C:\Quake4-1.4.2-SDK\source\game\Misc.cpp(2972,53): warning C4458: declaration of 'area' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Misc.h(637,11): message : see declaration of 'rvGravityArea::area'
+C:\Quake4-1.4.2-SDK\source\game\Misc.cpp(2982,54): warning C4458: declaration of 'area' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Misc.h(637,11): message : see declaration of 'rvGravityArea::area'
+C:\Quake4-1.4.2-SDK\source\game\Misc.cpp(2991,54): warning C4458: declaration of 'area' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Misc.h(637,11): message : see declaration of 'rvGravityArea::area'
+C:\Quake4-1.4.2-SDK\source\game\Misc.cpp(3000,54): warning C4458: declaration of 'area' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Misc.h(637,11): message : see declaration of 'rvGravityArea::area'
+C:\Quake4-1.4.2-SDK\source\game\Misc.cpp(3009,54): warning C4458: declaration of 'area' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Misc.h(637,11): message : see declaration of 'rvGravityArea::area'
+C:\Quake4-1.4.2-SDK\source\game\Misc.cpp(3101,72): warning C4458: declaration of 'physics' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Entity.h(534,17): message : see declaration of 'idEntity::physics'
+  Moveable.cpp
+C:\Quake4-1.4.2-SDK\source\game\Moveable.cpp(352,71): warning C4458: declaration of 'damage' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Moveable.h(51,12): message : see declaration of 'idMoveable::damage'
+C:\Quake4-1.4.2-SDK\source\game\Moveable.cpp(1055,45): warning C4458: declaration of 'name' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Entity.h(124,12): message : see declaration of 'idEntity::name'
+C:\Quake4-1.4.2-SDK\source\game\Moveable.cpp(1090,47): warning C4458: declaration of 'name' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Entity.h(124,12): message : see declaration of 'idEntity::name'
+C:\Quake4-1.4.2-SDK\source\game\Moveable.cpp(1152,78): warning C4458: declaration of 'damage' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Moveable.h(51,12): message : see declaration of 'idMoveable::damage'
+  Mover.cpp
+C:\Quake4-1.4.2-SDK\source\game\Mover.cpp(566,68): warning C4458: declaration of 'damage' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Mover.h(140,12): message : see declaration of 'idMover::damage'
+C:\Quake4-1.4.2-SDK\source\game\Mover.cpp(2670,42): warning C4458: declaration of 'name' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Entity.h(124,12): message : see declaration of 'idEntity::name'
+C:\Quake4-1.4.2-SDK\source\game\Mover.cpp(4397,58): warning C4458: declaration of 'trigger' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Mover.h(507,18): message : see declaration of 'idDoor::trigger'
+C:\Quake4-1.4.2-SDK\source\game\Mover.cpp(5198,58): warning C4458: declaration of 'trigger' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Mover.h(568,18): message : see declaration of 'idPlat::trigger'
+  Buying.cpp
+  CTF.cpp
+  GameState.cpp
+C:\Quake4-1.4.2-SDK\source\game\mp\GameState.cpp(459,14): warning C4456: declaration of 'i' hides previous local declaration
+C:\Quake4-1.4.2-SDK\source\game\mp\GameState.cpp(402,8): message : see declaration of 'i'
+C:\Quake4-1.4.2-SDK\source\game\mp\GameState.cpp(483,15): warning C4456: declaration of 'i' hides previous local declaration
+C:\Quake4-1.4.2-SDK\source\game\mp\GameState.cpp(402,8): message : see declaration of 'i'
+C:\Quake4-1.4.2-SDK\source\game\mp\GameState.cpp(617,14): warning C4456: declaration of 'i' hides previous local declaration
+C:\Quake4-1.4.2-SDK\source\game\mp\GameState.cpp(402,8): message : see declaration of 'i'
+C:\Quake4-1.4.2-SDK\source\game\mp\GameState.cpp(641,15): warning C4456: declaration of 'i' hides previous local declaration
+C:\Quake4-1.4.2-SDK\source\game\mp\GameState.cpp(402,8): message : see declaration of 'i'
+C:\Quake4-1.4.2-SDK\source\game\mp\GameState.cpp(2617,52): warning C4458: declaration of 'round' hides class member
+C:\Quake4-1.4.2-SDK\source\game\mp\GameState.h(333,11): message : see declaration of 'rvTourneyGameState::round'
+C:\Quake4-1.4.2-SDK\source\game\mp\GameState.cpp(2716,43): warning C4458: declaration of 'type' hides class member
+C:\Quake4-1.4.2-SDK\source\game\mp\GameState.h(91,25): message : see declaration of 'rvGameState::type'
+C:\Quake4-1.4.2-SDK\source\game\mp\GameState.cpp(2720,45): warning C4458: declaration of 'type' hides class member
+C:\Quake4-1.4.2-SDK\source\game\mp\GameState.h(121,25): message : see declaration of 'rvDMGameState::type'
+C:\Quake4-1.4.2-SDK\source\game\mp\GameState.cpp(2724,49): warning C4458: declaration of 'type' hides class member
+C:\Quake4-1.4.2-SDK\source\game\mp\GameState.h(143,25): message : see declaration of 'rvTeamDMGameState::type'
+C:\Quake4-1.4.2-SDK\source\game\mp\GameState.cpp(2728,46): warning C4458: declaration of 'type' hides class member
+C:\Quake4-1.4.2-SDK\source\game\mp\GameState.h(215,25): message : see declaration of 'rvCTFGameState::type'
+C:\Quake4-1.4.2-SDK\source\game\mp\GameState.cpp(2732,50): warning C4458: declaration of 'type' hides class member
+C:\Quake4-1.4.2-SDK\source\game\mp\GameState.h(351,25): message : see declaration of 'rvTourneyGameState::type'
+  StatEvent.cpp
+  StatManager.cpp
+C:\Quake4-1.4.2-SDK\source\game\mp\stats\StatManager.cpp(914,13): warning C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Quake4-1.4.2-SDK\source\game\mp\stats\StatManager.cpp(915,73): warning C4996: 'asctime': This function or variable may be unsafe. Consider using asctime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Quake4-1.4.2-SDK\source\game\mp\stats\StatManager.cpp(1097,17): warning C4458: declaration of 'playerStats' hides class member
+C:\Quake4-1.4.2-SDK\source\game\mp\stats\StatManager.h(315,18): message : see declaration of 'rvStatManager::playerStats'
+  StatWindow.cpp
+C:\Quake4-1.4.2-SDK\source\game\mp\stats\StatWindow.cpp(58,14): warning C4456: declaration of 'player' hides previous local declaration
+C:\Quake4-1.4.2-SDK\source\game\mp\stats\StatWindow.cpp(32,12): message : see declaration of 'player'
+  Tourney.cpp
+  VoiceComms.cpp
+  MultiplayerGame.cpp
+C:\Quake4-1.4.2-SDK\source\game\MultiplayerGame.cpp(827,60): warning C4458: declaration of 'scoreBoard' hides class member
+C:\Quake4-1.4.2-SDK\source\game\MultiplayerGame.h(702,19): message : see declaration of 'idMultiplayerGame::scoreBoard'
+C:\Quake4-1.4.2-SDK\source\game\MultiplayerGame.cpp(846,62): warning C4458: declaration of 'scoreBoard' hides class member
+C:\Quake4-1.4.2-SDK\source\game\MultiplayerGame.h(702,19): message : see declaration of 'idMultiplayerGame::scoreBoard'
+C:\Quake4-1.4.2-SDK\source\game\MultiplayerGame.cpp(1064,64): warning C4458: declaration of 'scoreBoard' hides class member
+C:\Quake4-1.4.2-SDK\source\game\MultiplayerGame.h(702,19): message : see declaration of 'idMultiplayerGame::scoreBoard'
+C:\Quake4-1.4.2-SDK\source\game\MultiplayerGame.cpp(1288,62): warning C4458: declaration of 'scoreBoard' hides class member
+C:\Quake4-1.4.2-SDK\source\game\MultiplayerGame.h(702,19): message : see declaration of 'idMultiplayerGame::scoreBoard'
+C:\Quake4-1.4.2-SDK\source\game\MultiplayerGame.cpp(1384,10): warning C4456: declaration of 'i' hides previous local declaration
+C:\Quake4-1.4.2-SDK\source\game\MultiplayerGame.cpp(1372,13): message : see declaration of 'i'
+C:\Quake4-1.4.2-SDK\source\game\MultiplayerGame.cpp(1431,65): warning C4458: declaration of 'scoreBoard' hides class member
+C:\Quake4-1.4.2-SDK\source\game\MultiplayerGame.h(702,19): message : see declaration of 'idMultiplayerGame::scoreBoard'
+C:\Quake4-1.4.2-SDK\source\game\MultiplayerGame.cpp(1552,3): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Quake4-1.4.2-SDK\source\game\MultiplayerGame.cpp(1764,7): warning C4456: declaration of 'i' hides previous local declaration
+C:\Quake4-1.4.2-SDK\source\game\MultiplayerGame.cpp(1737,6): message : see declaration of 'i'
+C:\Quake4-1.4.2-SDK\source\game\MultiplayerGame.cpp(1900,65): warning C4458: declaration of 'vote' hides class member
+C:\Quake4-1.4.2-SDK\source\game\MultiplayerGame.h(675,15): message : see declaration of 'idMultiplayerGame::vote'
+C:\Quake4-1.4.2-SDK\source\game\MultiplayerGame.cpp(2163,15): warning C4458: declaration of 'voteString' hides class member
+C:\Quake4-1.4.2-SDK\source\game\MultiplayerGame.h(681,10): message : see declaration of 'idMultiplayerGame::voteString'
+C:\Quake4-1.4.2-SDK\source\game\MultiplayerGame.cpp(2960,14): warning C4456: declaration of 'player' hides previous local declaration
+C:\Quake4-1.4.2-SDK\source\game\MultiplayerGame.cpp(2781,12): message : see declaration of 'player'
+C:\Quake4-1.4.2-SDK\source\game\MultiplayerGame.cpp(3345,2): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Quake4-1.4.2-SDK\source\game\MultiplayerGame.cpp(3597,12): warning C4456: declaration of 'i' hides previous local declaration
+C:\Quake4-1.4.2-SDK\source\game\MultiplayerGame.cpp(3531,6): message : see declaration of 'i'
+C:\Quake4-1.4.2-SDK\source\game\MultiplayerGame.cpp(4363,18): warning C4456: declaration of 'mapName' hides previous local declaration
+C:\Quake4-1.4.2-SDK\source\game\MultiplayerGame.cpp(4326,16): message : see declaration of 'mapName'
+C:\Quake4-1.4.2-SDK\source\game\MultiplayerGame.cpp(4513,18): warning C4456: declaration of 'mapName' hides previous local declaration
+C:\Quake4-1.4.2-SDK\source\game\MultiplayerGame.cpp(4462,16): message : see declaration of 'mapName'
+C:\Quake4-1.4.2-SDK\source\game\MultiplayerGame.cpp(4700,10): warning C4459: declaration of 'si_map' hides global declaration
+C:\Quake4-1.4.2-SDK\source\game\gamesys\SysCvar.h(385,15): message : see declaration of 'si_map'
+C:\Quake4-1.4.2-SDK\source\game\MultiplayerGame.cpp(5027,14): warning C4456: declaration of 'player' hides previous local declaration
+C:\Quake4-1.4.2-SDK\source\game\MultiplayerGame.cpp(4950,12): message : see declaration of 'player'
+C:\Quake4-1.4.2-SDK\source\game\MultiplayerGame.cpp(5102,13): warning C4456: declaration of 'localPlayer' hides previous local declaration
+C:\Quake4-1.4.2-SDK\source\game\MultiplayerGame.cpp(5063,12): message : see declaration of 'localPlayer'
+C:\Quake4-1.4.2-SDK\source\game\MultiplayerGame.cpp(6481,77): warning C4458: declaration of 'voteValue' hides class member
+C:\Quake4-1.4.2-SDK\source\game\MultiplayerGame.h(680,10): message : see declaration of 'idMultiplayerGame::voteValue'
+C:\Quake4-1.4.2-SDK\source\game\MultiplayerGame.cpp(6619,6): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Quake4-1.4.2-SDK\source\game\MultiplayerGame.cpp(6622,6): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Quake4-1.4.2-SDK\source\game\MultiplayerGame.cpp(6625,6): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Quake4-1.4.2-SDK\source\game\MultiplayerGame.cpp(6628,6): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Quake4-1.4.2-SDK\source\game\MultiplayerGame.cpp(6631,6): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Quake4-1.4.2-SDK\source\game\MultiplayerGame.cpp(6637,6): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  Clip.cpp
+C:\Quake4-1.4.2-SDK\source\game\physics\Clip.cpp(405,40): warning C4458: declaration of 'renderModelHandle' hides class member
+C:\Quake4-1.4.2-SDK\source\game\physics\Clip.h(107,11): message : see declaration of 'idClipModel::renderModelHandle'
+C:\Quake4-1.4.2-SDK\source\game\physics\Clip.cpp(749,103): warning C4458: declaration of 'renderModelHandle' hides class member
+C:\Quake4-1.4.2-SDK\source\game\physics\Clip.h(107,11): message : see declaration of 'idClipModel::renderModelHandle'
+C:\Quake4-1.4.2-SDK\source\game\physics\Clip.cpp(1102,19): warning C4456: declaration of 'bounds' hides previous local declaration
+C:\Quake4-1.4.2-SDK\source\game\physics\Clip.cpp(1091,11): message : see declaration of 'bounds'
+C:\Quake4-1.4.2-SDK\source\game\physics\Clip.cpp(1779,20): warning C4458: declaration of 'numContacts' hides class member
+C:\Quake4-1.4.2-SDK\source\game\physics\Clip.h(349,11): message : see declaration of 'idClip::numContacts'
+  Force.cpp
+  Force_Constant.cpp
+C:\Quake4-1.4.2-SDK\source\game\physics\Force_Constant.cpp(59,48): warning C4458: declaration of 'physics' hides class member
+C:\Quake4-1.4.2-SDK\source\game\physics\Force_Constant.h(39,16): message : see declaration of 'idForce_Constant::physics'
+C:\Quake4-1.4.2-SDK\source\game\physics\Force_Constant.cpp(59,61): warning C4458: declaration of 'id' hides class member
+C:\Quake4-1.4.2-SDK\source\game\physics\Force_Constant.h(40,10): message : see declaration of 'idForce_Constant::id'
+C:\Quake4-1.4.2-SDK\source\game\physics\Force_Constant.cpp(59,79): warning C4458: declaration of 'point' hides class member
+C:\Quake4-1.4.2-SDK\source\game\physics\Force_Constant.h(41,12): message : see declaration of 'idForce_Constant::point'
+C:\Quake4-1.4.2-SDK\source\game\physics\Force_Constant.cpp(70,48): warning C4458: declaration of 'force' hides class member
+C:\Quake4-1.4.2-SDK\source\game\physics\Force_Constant.h(38,12): message : see declaration of 'idForce_Constant::force'
+C:\Quake4-1.4.2-SDK\source\game\physics\Force_Constant.cpp(79,47): warning C4458: declaration of 'physics' hides class member
+C:\Quake4-1.4.2-SDK\source\game\physics\Force_Constant.h(39,16): message : see declaration of 'idForce_Constant::physics'
+  Force_Drag.cpp
+C:\Quake4-1.4.2-SDK\source\game\physics\Force_Drag.cpp(37,32): warning C4458: declaration of 'damping' hides class member
+C:\Quake4-1.4.2-SDK\source\game\physics\Force_Drag.h(38,11): message : see declaration of 'idForce_Drag::damping'
+C:\Quake4-1.4.2-SDK\source\game\physics\Force_Drag.cpp(48,53): warning C4458: declaration of 'id' hides class member
+C:\Quake4-1.4.2-SDK\source\game\physics\Force_Drag.h(42,10): message : see declaration of 'idForce_Drag::id'
+C:\Quake4-1.4.2-SDK\source\game\physics\Force_Drag.cpp(48,71): warning C4458: declaration of 'p' hides class member
+C:\Quake4-1.4.2-SDK\source\game\physics\Force_Drag.h(43,12): message : see declaration of 'idForce_Drag::p'
+  Force_Field.cpp
+C:\Quake4-1.4.2-SDK\source\game\physics\Force_Field.cpp(84,48): warning C4458: declaration of 'clipModel' hides class member
+C:\Quake4-1.4.2-SDK\source\game\physics\Force_Field.h(71,17): message : see declaration of 'idForce_Field::clipModel'
+  Force_Spring.cpp
+C:\Quake4-1.4.2-SDK\source\game\physics\Force_Spring.cpp(41,40): warning C4458: declaration of 'Kstretch' hides class member
+C:\Quake4-1.4.2-SDK\source\game\physics\Force_Spring.h(36,11): message : see declaration of 'idForce_Spring::Kstretch'
+C:\Quake4-1.4.2-SDK\source\game\physics\Force_Spring.cpp(41,56): warning C4458: declaration of 'Kcompress' hides class member
+C:\Quake4-1.4.2-SDK\source\game\physics\Force_Spring.h(37,11): message : see declaration of 'idForce_Spring::Kcompress'
+C:\Quake4-1.4.2-SDK\source\game\physics\Force_Spring.cpp(41,73): warning C4458: declaration of 'damping' hides class member
+C:\Quake4-1.4.2-SDK\source\game\physics\Force_Spring.h(38,11): message : see declaration of 'idForce_Spring::damping'
+C:\Quake4-1.4.2-SDK\source\game\physics\Force_Spring.cpp(41,88): warning C4458: declaration of 'restLength' hides class member
+C:\Quake4-1.4.2-SDK\source\game\physics\Force_Spring.h(39,11): message : see declaration of 'idForce_Spring::restLength'
+C:\Quake4-1.4.2-SDK\source\game\physics\Force_Spring.cpp(53,46): warning C4458: declaration of 'physics1' hides class member
+C:\Quake4-1.4.2-SDK\source\game\physics\Force_Spring.h(42,16): message : see declaration of 'idForce_Spring::physics1'
+C:\Quake4-1.4.2-SDK\source\game\physics\Force_Spring.cpp(53,60): warning C4458: declaration of 'id1' hides class member
+C:\Quake4-1.4.2-SDK\source\game\physics\Force_Spring.h(43,10): message : see declaration of 'idForce_Spring::id1'
+C:\Quake4-1.4.2-SDK\source\game\physics\Force_Spring.cpp(53,79): warning C4458: declaration of 'p1' hides class member
+C:\Quake4-1.4.2-SDK\source\game\physics\Force_Spring.h(44,12): message : see declaration of 'idForce_Spring::p1'
+C:\Quake4-1.4.2-SDK\source\game\physics\Force_Spring.cpp(53,94): warning C4458: declaration of 'physics2' hides class member
+C:\Quake4-1.4.2-SDK\source\game\physics\Force_Spring.h(45,16): message : see declaration of 'idForce_Spring::physics2'
+C:\Quake4-1.4.2-SDK\source\game\physics\Force_Spring.cpp(53,108): warning C4458: declaration of 'id2' hides class member
+C:\Quake4-1.4.2-SDK\source\game\physics\Force_Spring.h(46,10): message : see declaration of 'idForce_Spring::id2'
+C:\Quake4-1.4.2-SDK\source\game\physics\Force_Spring.cpp(53,127): warning C4458: declaration of 'p2' hides class member
+C:\Quake4-1.4.2-SDK\source\game\physics\Force_Spring.h(47,12): message : see declaration of 'idForce_Spring::p2'
+  Generating Code...
+  Compiling...
+  Physics.cpp
+  Physics_Actor.cpp
+  Physics_AF.cpp
+C:\Quake4-1.4.2-SDK\source\game\physics\Physics_AF.cpp(600,70): warning C4458: declaration of 'e' hides class member
+C:\Quake4-1.4.2-SDK\source\game\physics\Physics_AF.h(98,21): message : see declaration of 'idAFConstraint::e'
+C:\Quake4-1.4.2-SDK\source\game\physics\Physics_AF.cpp(1153,66): warning C4458: declaration of 'e' hides class member
+C:\Quake4-1.4.2-SDK\source\game\physics\Physics_AF.h(98,21): message : see declaration of 'idAFConstraint::e'
+C:\Quake4-1.4.2-SDK\source\game\physics\Physics_AF.cpp(1820,57): warning C4458: declaration of 'e' hides class member
+C:\Quake4-1.4.2-SDK\source\game\physics\Physics_AF.h(98,21): message : see declaration of 'idAFConstraint::e'
+C:\Quake4-1.4.2-SDK\source\game\physics\Physics_AF.cpp(2854,95): warning C4458: declaration of 'damping' hides class member
+C:\Quake4-1.4.2-SDK\source\game\physics\Physics_AF.h(457,12): message : see declaration of 'idAFConstraint_Spring::damping'
+C:\Quake4-1.4.2-SDK\source\game\physics\Physics_AF.cpp(2854,116): warning C4458: declaration of 'restLength' hides class member
+C:\Quake4-1.4.2-SDK\source\game\physics\Physics_AF.h(458,12): message : see declaration of 'idAFConstraint_Spring::restLength'
+C:\Quake4-1.4.2-SDK\source\game\physics\Physics_AF.cpp(2867,51): warning C4458: declaration of 'minLength' hides class member
+C:\Quake4-1.4.2-SDK\source\game\physics\Physics_AF.h(459,12): message : see declaration of 'idAFConstraint_Spring::minLength'
+C:\Quake4-1.4.2-SDK\source\game\physics\Physics_AF.cpp(2867,74): warning C4458: declaration of 'maxLength' hides class member
+C:\Quake4-1.4.2-SDK\source\game\physics\Physics_AF.h(460,12): message : see declaration of 'idAFConstraint_Spring::maxLength'
+C:\Quake4-1.4.2-SDK\source\game\physics\Physics_AF.cpp(3306,69): warning C4458: declaration of 'cc' hides class member
+C:\Quake4-1.4.2-SDK\source\game\physics\Physics_AF.h(501,26): message : see declaration of 'idAFConstraint_ContactFriction::cc'
+C:\Quake4-1.4.2-SDK\source\game\physics\Physics_AF.cpp(3500,81): warning C4458: declaration of 'coneAnchor' hides class member
+C:\Quake4-1.4.2-SDK\source\game\physics\Physics_AF.h(526,13): message : see declaration of 'idAFConstraint_ConeLimit::coneAnchor'
+C:\Quake4-1.4.2-SDK\source\game\physics\Physics_AF.cpp(3500,107): warning C4458: declaration of 'coneAxis' hides class member
+C:\Quake4-1.4.2-SDK\source\game\physics\Physics_AF.h(527,13): message : see declaration of 'idAFConstraint_ConeLimit::coneAxis'
+C:\Quake4-1.4.2-SDK\source\game\physics\Physics_AF.cpp(3500,154): warning C4458: declaration of 'body1Axis' hides class member
+C:\Quake4-1.4.2-SDK\source\game\physics\Physics_AF.h(528,13): message : see declaration of 'idAFConstraint_ConeLimit::body1Axis'
+C:\Quake4-1.4.2-SDK\source\game\physics\Physics_AF.cpp(3518,57): warning C4458: declaration of 'coneAnchor' hides class member
+C:\Quake4-1.4.2-SDK\source\game\physics\Physics_AF.h(526,13): message : see declaration of 'idAFConstraint_ConeLimit::coneAnchor'
+C:\Quake4-1.4.2-SDK\source\game\physics\Physics_AF.cpp(3527,60): warning C4458: declaration of 'body1Axis' hides class member
+C:\Quake4-1.4.2-SDK\source\game\physics\Physics_AF.h(528,13): message : see declaration of 'idAFConstraint_ConeLimit::body1Axis'
+C:\Quake4-1.4.2-SDK\source\game\physics\Physics_AF.cpp(3745,84): warning C4458: declaration of 'pyramidAnchor' hides class member
+C:\Quake4-1.4.2-SDK\source\game\physics\Physics_AF.h(558,13): message : see declaration of 'idAFConstraint_PyramidLimit::pyramidAnchor'
+C:\Quake4-1.4.2-SDK\source\game\physics\Physics_AF.cpp(3747,77): warning C4458: declaration of 'body1Axis' hides class member
+C:\Quake4-1.4.2-SDK\source\game\physics\Physics_AF.h(560,13): message : see declaration of 'idAFConstraint_PyramidLimit::body1Axis'
+C:\Quake4-1.4.2-SDK\source\game\physics\Physics_AF.cpp(3775,60): warning C4458: declaration of 'pyramidAnchor' hides class member
+C:\Quake4-1.4.2-SDK\source\game\physics\Physics_AF.h(558,13): message : see declaration of 'idAFConstraint_PyramidLimit::pyramidAnchor'
+C:\Quake4-1.4.2-SDK\source\game\physics\Physics_AF.cpp(3784,63): warning C4458: declaration of 'body1Axis' hides class member
+C:\Quake4-1.4.2-SDK\source\game\physics\Physics_AF.h(560,13): message : see declaration of 'idAFConstraint_PyramidLimit::body1Axis'
+C:\Quake4-1.4.2-SDK\source\game\physics\Physics_AF.cpp(4119,43): warning C4458: declaration of 'clipModel' hides class member
+C:\Quake4-1.4.2-SDK\source\game\physics\Physics_AF.h(643,18): message : see declaration of 'idAFBody::clipModel'
+C:\Quake4-1.4.2-SDK\source\game\physics\Physics_AF.cpp(5840,53): warning C4458: declaration of 'noMoveTime' hides class member
+C:\Quake4-1.4.2-SDK\source\game\physics\Physics_AF.h(918,12): message : see declaration of 'idPhysics_AF::noMoveTime'
+C:\Quake4-1.4.2-SDK\source\game\physics\Physics_AF.cpp(5840,77): warning C4458: declaration of 'noMoveTranslation' hides class member
+C:\Quake4-1.4.2-SDK\source\game\physics\Physics_AF.h(919,12): message : see declaration of 'idPhysics_AF::noMoveTranslation'
+C:\Quake4-1.4.2-SDK\source\game\physics\Physics_AF.cpp(5840,108): warning C4458: declaration of 'noMoveRotation' hides class member
+C:\Quake4-1.4.2-SDK\source\game\physics\Physics_AF.h(920,12): message : see declaration of 'idPhysics_AF::noMoveRotation'
+C:\Quake4-1.4.2-SDK\source\game\physics\Physics_AF.cpp(7406,84): warning C4458: declaration of 'contacts' hides class member
+C:\Quake4-1.4.2-SDK\source\game\physics\Physics_Base.h(144,24): message : see declaration of 'idPhysics_Base::contacts'
+  Physics_Base.cpp
+  Physics_Monster.cpp
+C:\Quake4-1.4.2-SDK\source\game\physics\Physics_Monster.cpp(66,98): warning C4458: declaration of 'delta' hides class member
+C:\Quake4-1.4.2-SDK\source\game\physics\Physics_Monster.h(111,13): message : see declaration of 'idPhysics_Monster::delta'
+C:\Quake4-1.4.2-SDK\source\game\physics\Physics_Monster.cpp(108,97): warning C4458: declaration of 'delta' hides class member
+C:\Quake4-1.4.2-SDK\source\game\physics\Physics_Monster.h(111,13): message : see declaration of 'idPhysics_Monster::delta'
+  Physics_Parametric.cpp
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(186,37): warning C4458: declaration of 'startValue' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(206,10): message : see declaration of 'idInterpolateAccelDecelLinear<idVec3>::startValue'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(186,10): message : while compiling class template member function 'void idInterpolateAccelDecelLinear<idVec3>::SetStartValue(const type &)'
+          with
+          [
+              type=idVec3
+          ]
+C:\Quake4-1.4.2-SDK\source\game\physics\Physics_Parametric.cpp(744,43): message : see the first reference to 'idInterpolateAccelDecelLinear<idVec3>::SetStartValue' in 'idPhysics_Parametric::SetOrigin'
+C:\Quake4-1.4.2-SDK\source\game\physics\Physics_Parametric.h(28,40): message : see reference to class template instantiation 'idInterpolateAccelDecelLinear<idVec3>' being compiled
+C:\Quake4-1.4.2-SDK\source\idlib\math\Extrapolate.h(75,55): warning C4458: declaration of 'startTime' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Extrapolate.h(44,11): message : see declaration of 'idExtrapolate<idVec3>::startTime'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Extrapolate.h(75,196): message : while compiling class template member function 'void idExtrapolate<idVec3>::Init(const float,const float,const type &,const type &,const type &,const extrapolation_t)'
+          with
+          [
+              type=idVec3
+          ]
+C:\Quake4-1.4.2-SDK\source\game\physics\Physics_Parametric.cpp(84,34): message : see the first reference to 'idExtrapolate<idVec3>::Init' in 'idPhysics_Parametric::idPhysics_Parametric'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Extrapolate.h(75,78): warning C4458: declaration of 'duration' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Extrapolate.h(45,11): message : see declaration of 'idExtrapolate<idVec3>::duration'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Extrapolate.h(75,100): warning C4458: declaration of 'startValue' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Extrapolate.h(46,10): message : see declaration of 'idExtrapolate<idVec3>::startValue'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Extrapolate.h(75,124): warning C4458: declaration of 'baseSpeed' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Extrapolate.h(47,10): message : see declaration of 'idExtrapolate<idVec3>::baseSpeed'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Extrapolate.h(75,147): warning C4458: declaration of 'speed' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Extrapolate.h(48,10): message : see declaration of 'idExtrapolate<idVec3>::speed'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Extrapolate.h(75,176): warning C4458: declaration of 'extrapolationType' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Extrapolate.h(43,19): message : see declaration of 'idExtrapolate<idVec3>::extrapolationType'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(232,71): warning C4458: declaration of 'startTime' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(202,11): message : see declaration of 'idInterpolateAccelDecelLinear<float>::startTime'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(232,197): message : while compiling class template member function 'void idInterpolateAccelDecelLinear<float>::Init(const float,const float,const float,const float,const type &,const type &)'
+          with
+          [
+              type=float
+          ]
+C:\Quake4-1.4.2-SDK\source\game\physics\Physics_Parametric.cpp(89,32): message : see the first reference to 'idInterpolateAccelDecelLinear<float>::Init' in 'idPhysics_Parametric::idPhysics_Parametric'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(232,94): warning C4458: declaration of 'accelTime' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(203,11): message : see declaration of 'idInterpolateAccelDecelLinear<float>::accelTime'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(232,117): warning C4458: declaration of 'decelTime' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(205,11): message : see declaration of 'idInterpolateAccelDecelLinear<float>::decelTime'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(232,162): warning C4458: declaration of 'startValue' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(206,10): message : see declaration of 'idInterpolateAccelDecelLinear<float>::startValue'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(232,186): warning C4458: declaration of 'endValue' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(207,10): message : see declaration of 'idInterpolateAccelDecelLinear<float>::endValue'
+  Physics_Particle.cpp
+  Physics_Player.cpp
+  Physics_RigidBody.cpp
+C:\Quake4-1.4.2-SDK\source\game\physics\Physics_RigidBody.cpp(695,42): warning C4458: declaration of 'mass' hides class member
+C:\Quake4-1.4.2-SDK\source\game\physics\Physics_RigidBody.h(144,12): message : see declaration of 'idPhysics_RigidBody::mass'
+  Physics_Static.cpp
+  Physics_StaticMulti.cpp
+  Physics_VehicleMonster.cpp
+  Push.cpp
+  Playback.cpp
+  Player.cpp
+C:\Quake4-1.4.2-SDK\source\game\Player.cpp(2072,2): warning C5205: delete of an abstract class 'rvAASTacticalSensor' that has a non-virtual destructor results in undefined behavior
+C:\Quake4-1.4.2-SDK\source\game\ai\AAS_tactical.h(23,8): message : see declaration of 'rvAASTacticalSensor'
+C:\Quake4-1.4.2-SDK\source\game\Player.cpp(2719,8): warning C4458: declaration of 'skin' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Player.h(861,22): message : see declaration of 'idPlayer::skin'
+C:\Quake4-1.4.2-SDK\source\game\Player.cpp(3453,20): warning C4458: declaration of 'hud' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Player.h(341,22): message : see declaration of 'idPlayer::hud'
+C:\Quake4-1.4.2-SDK\source\game\Player.cpp(3454,20): warning C4458: declaration of 'mphud' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Player.h(342,21): message : see declaration of 'idPlayer::mphud'
+C:\Quake4-1.4.2-SDK\source\game\Player.cpp(3455,20): warning C4458: declaration of 'cursor' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Player.h(922,21): message : see declaration of 'idPlayer::cursor'
+C:\Quake4-1.4.2-SDK\source\game\Player.cpp(3617,20): warning C4458: declaration of 'cursor' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Player.h(922,21): message : see declaration of 'idPlayer::cursor'
+C:\Quake4-1.4.2-SDK\source\game\Player.cpp(3928,50): warning C4458: declaration of 'weaponDef' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Player.h(338,27): message : see declaration of 'idPlayer::weaponDef'
+C:\Quake4-1.4.2-SDK\source\game\Player.cpp(4246,8): warning C4458: declaration of 'weapon' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Player.h(335,17): message : see declaration of 'idPlayer::weapon'
+C:\Quake4-1.4.2-SDK\source\game\Player.cpp(4624,57): warning C4458: declaration of 'team' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Actor.h(120,11): message : see declaration of 'idActor::team'
+C:\Quake4-1.4.2-SDK\source\game\Player.cpp(4819,19): warning C4458: declaration of 'hud' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Player.h(341,22): message : see declaration of 'idPlayer::hud'
+C:\Quake4-1.4.2-SDK\source\game\Player.cpp(4932,12): warning C4456: declaration of 'i' hides previous local declaration
+C:\Quake4-1.4.2-SDK\source\game\Player.cpp(4815,6): message : see declaration of 'i'
+C:\Quake4-1.4.2-SDK\source\game\Player.cpp(5075,36): warning C4458: declaration of 'weapon' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Player.h(335,17): message : see declaration of 'idPlayer::weapon'
+C:\Quake4-1.4.2-SDK\source\game\Player.cpp(5288,50): warning C4458: declaration of 'name' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Entity.h(124,12): message : see declaration of 'idEntity::name'
+C:\Quake4-1.4.2-SDK\source\game\Player.cpp(5305,49): warning C4458: declaration of 'name' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Entity.h(124,12): message : see declaration of 'idEntity::name'
+C:\Quake4-1.4.2-SDK\source\game\Player.cpp(6683,11): warning C4456: declaration of 'end' hides previous local declaration
+C:\Quake4-1.4.2-SDK\source\game\Player.cpp(6629,12): message : see declaration of 'end'
+C:\Quake4-1.4.2-SDK\source\game\Player.cpp(9667,21): warning C4458: declaration of 'weapon' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Player.h(335,17): message : see declaration of 'idPlayer::weapon'
+C:\Quake4-1.4.2-SDK\source\game\Player.cpp(9959,23): warning C4458: declaration of 'damageScale' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Actor.h(277,18): message : see declaration of 'idActor::damageScale'
+C:\Quake4-1.4.2-SDK\source\game\Player.cpp(9959,61): warning C4458: declaration of 'health' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Entity.h(137,11): message : see declaration of 'idEntity::health'
+C:\Quake4-1.4.2-SDK\source\game\Player.cpp(10059,48): warning C4458: declaration of 'damageScale' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Actor.h(277,18): message : see declaration of 'idActor::damageScale'
+C:\Quake4-1.4.2-SDK\source\game\Player.cpp(10202,13): warning C4457: declaration of 'attacker' hides function parameter
+C:\Quake4-1.4.2-SDK\source\game\Player.cpp(10058,55): message : see declaration of 'attacker'
+C:\Quake4-1.4.2-SDK\source\game\Player.cpp(10468,21): warning C4458: declaration of 'weapon' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Player.h(335,17): message : see declaration of 'idPlayer::weapon'
+C:\Quake4-1.4.2-SDK\source\game\Player.cpp(10601,16): warning C4458: declaration of 'viewAxis' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Actor.h(123,13): message : see declaration of 'idActor::viewAxis'
+C:\Quake4-1.4.2-SDK\source\game\Player.cpp(11113,10): warning C4458: declaration of 'viewAxis' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Actor.h(123,13): message : see declaration of 'idActor::viewAxis'
+C:\Quake4-1.4.2-SDK\source\game\Player.cpp(11231,19): warning C4458: declaration of 'cursor' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Player.h(922,21): message : see declaration of 'idPlayer::cursor'
+C:\Quake4-1.4.2-SDK\source\game\Player.cpp(11598,21): warning C4458: declaration of 'weapon' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Player.h(335,17): message : see declaration of 'idPlayer::weapon'
+C:\Quake4-1.4.2-SDK\source\game\Player.cpp(11651,21): warning C4458: declaration of 'weapon' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Player.h(335,17): message : see declaration of 'idPlayer::weapon'
+C:\Quake4-1.4.2-SDK\source\game\Player.cpp(12404,20): warning C4458: declaration of 'arena' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Player.h(962,11): message : see declaration of 'idPlayer::arena'
+C:\Quake4-1.4.2-SDK\source\game\Player.cpp(12695,10): warning C4458: declaration of 'team' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Actor.h(120,11): message : see declaration of 'idActor::team'
+C:\Quake4-1.4.2-SDK\source\game\Player.cpp(12992,8): warning C4458: declaration of 'weapon' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Player.h(335,17): message : see declaration of 'idPlayer::weapon'
+C:\Quake4-1.4.2-SDK\source\game\Player.cpp(13015,16): warning C4458: declaration of 'types' hides class member
+C:\Quake4-1.4.2-SDK\source\game\gamesys\Class.h(409,30): message : see declaration of 'idClass::types'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(68,55): warning C4458: declaration of 'startTime' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(42,11): message : see declaration of 'idInterpolate<float>::startTime'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(68,135): message : while compiling class template member function 'void idInterpolate<float>::Init(const float,const float,const type &,const type &)'
+          with
+          [
+              type=float
+          ]
+C:\Quake4-1.4.2-SDK\source\game\Player.cpp(1200,17): message : see the first reference to 'idInterpolate<float>::Init' in 'idPlayer::idPlayer'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(68,78): warning C4458: declaration of 'duration' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(43,11): message : see declaration of 'idInterpolate<float>::duration'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(68,100): warning C4458: declaration of 'startValue' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(44,10): message : see declaration of 'idInterpolate<float>::startValue'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(68,124): warning C4458: declaration of 'endValue' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(45,10): message : see declaration of 'idInterpolate<float>::endValue'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(108,58): warning C4458: declaration of 'startTime' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(42,11): message : see declaration of 'idInterpolate<idVec3>::startTime'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(108,91): message : while compiling class template member function 'type idInterpolate<type>::GetDeltaValue(float,float) const'
+          with
+          [
+              type=idVec3
+          ]
+C:\Quake4-1.4.2-SDK\source\game\Player.cpp(2231,30): message : see reference to class template instantiation 'idInterpolate<idVec3>' being compiled
+  PlayerView.cpp
+C:\Quake4-1.4.2-SDK\source\game\PlayerView.cpp(496,74): warning C4458: declaration of 'view' hides class member
+C:\Quake4-1.4.2-SDK\source\game\PlayerView.h(138,16): message : see declaration of 'idPlayerView::view'
+C:\Quake4-1.4.2-SDK\source\game\PlayerView.cpp(597,76): warning C4458: declaration of 'view' hides class member
+C:\Quake4-1.4.2-SDK\source\game\PlayerView.h(138,16): message : see declaration of 'idPlayerView::view'
+C:\Quake4-1.4.2-SDK\source\game\PlayerView.cpp(712,79): warning C4458: declaration of 'view' hides class member
+C:\Quake4-1.4.2-SDK\source\game\PlayerView.h(138,16): message : see declaration of 'idPlayerView::view'
+C:\Quake4-1.4.2-SDK\source\game\PlayerView.cpp(746,22): warning C4458: declaration of 'view' hides class member
+C:\Quake4-1.4.2-SDK\source\game\PlayerView.h(138,16): message : see declaration of 'idPlayerView::view'
+  Player_Cheats.cpp
+  Player_States.cpp
+  Projectile.cpp
+C:\Quake4-1.4.2-SDK\source\game\Projectile.cpp(556,11): warning C4458: declaration of 'speed' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Projectile.h(96,23): message : see declaration of 'idProjectile::speed'
+C:\Quake4-1.4.2-SDK\source\game\Projectile.cpp(833,13): warning C4456: declaration of 'dir' hides previous local declaration
+C:\Quake4-1.4.2-SDK\source\game\Projectile.cpp(634,11): message : see declaration of 'dir'
+C:\Quake4-1.4.2-SDK\source\game\Projectile.cpp(875,11): warning C4456: declaration of 'dir' hides previous local declaration
+C:\Quake4-1.4.2-SDK\source\game\Projectile.cpp(634,11): message : see declaration of 'dir'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(23,35): warning C4458: declaration of 'endValue' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(45,10): message : see declaration of 'idInterpolate<float>::endValue'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(23,10): message : while compiling class template member function 'void idInterpolate<float>::SetEndValue(const type &)'
+          with
+          [
+              type=float
+          ]
+C:\Quake4-1.4.2-SDK\source\game\Projectile.cpp(194,19): message : see the first reference to 'idInterpolate<float>::SetEndValue' in 'idProjectile::Restore'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(22,37): warning C4458: declaration of 'startValue' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(44,10): message : see declaration of 'idInterpolate<float>::startValue'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(22,10): message : while compiling class template member function 'void idInterpolate<float>::SetStartValue(const type &)'
+          with
+          [
+              type=float
+          ]
+C:\Quake4-1.4.2-SDK\source\game\Projectile.cpp(192,21): message : see the first reference to 'idInterpolate<float>::SetStartValue' in 'idProjectile::Restore'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(21,29): warning C4458: declaration of 'duration' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(43,11): message : see declaration of 'idInterpolate<float>::duration'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(21,10): message : while compiling class template member function 'void idInterpolate<float>::SetDuration(float)'
+C:\Quake4-1.4.2-SDK\source\game\Projectile.cpp(190,19): message : see the first reference to 'idInterpolate<float>::SetDuration' in 'idProjectile::Restore'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(68,55): warning C4458: declaration of 'startTime' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(42,11): message : see declaration of 'idInterpolate<idQuat>::startTime'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(68,135): message : while compiling class template member function 'void idInterpolate<idQuat>::Init(const float,const float,const type &,const type &)'
+          with
+          [
+              type=idQuat
+          ]
+C:\Quake4-1.4.2-SDK\source\game\Projectile.cpp(62,15): message : see the first reference to 'idInterpolate<idQuat>::Init' in 'idProjectile::idProjectile'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(68,78): warning C4458: declaration of 'duration' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(43,11): message : see declaration of 'idInterpolate<idQuat>::duration'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(68,100): warning C4458: declaration of 'startValue' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(44,10): message : see declaration of 'idInterpolate<idQuat>::startValue'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(68,124): warning C4458: declaration of 'endValue' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(45,10): message : see declaration of 'idInterpolate<idQuat>::endValue'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(232,71): warning C4458: declaration of 'startTime' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(202,11): message : see declaration of 'idInterpolateAccelDecelLinear<float>::startTime'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(232,197): message : while compiling class template member function 'void idInterpolateAccelDecelLinear<float>::Init(const float,const float,const float,const float,const type &,const type &)'
+          with
+          [
+              type=float
+          ]
+C:\Quake4-1.4.2-SDK\source\game\Projectile.cpp(1886,19): message : see the first reference to 'idInterpolateAccelDecelLinear<float>::Init' in 'rvDriftingProjectile::Think'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(232,94): warning C4458: declaration of 'accelTime' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(203,11): message : see declaration of 'idInterpolateAccelDecelLinear<float>::accelTime'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(232,117): warning C4458: declaration of 'decelTime' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(205,11): message : see declaration of 'idInterpolateAccelDecelLinear<float>::decelTime'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(232,162): warning C4458: declaration of 'startValue' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(206,10): message : see declaration of 'idInterpolateAccelDecelLinear<float>::startValue'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(232,186): warning C4458: declaration of 'endValue' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(207,10): message : see declaration of 'idInterpolateAccelDecelLinear<float>::endValue'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(108,58): warning C4458: declaration of 'startTime' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(42,11): message : see declaration of 'idInterpolate<idVec3>::startTime'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(108,91): message : while compiling class template member function 'type idInterpolate<type>::GetDeltaValue(float,float) const'
+          with
+          [
+              type=idVec3
+          ]
+C:\Quake4-1.4.2-SDK\source\game\Projectile.cpp(1841,30): message : see reference to class template instantiation 'idInterpolate<idVec3>' being compiled
+C:\Quake4-1.4.2-SDK\source\idlib\math\Extrapolate.h(75,55): warning C4458: declaration of 'startTime' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Extrapolate.h(44,11): message : see declaration of 'idExtrapolate<float>::startTime'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Extrapolate.h(75,196): message : while compiling class template member function 'void idExtrapolate<float>::Init(const float,const float,const type &,const type &,const type &,const extrapolation_t)'
+          with
+          [
+              type=float
+          ]
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(253,19): message : see the first reference to 'idExtrapolate<float>::Init' in 'idInterpolateAccelDecelLinear<float>::Init'
+C:\Quake4-1.4.2-SDK\source\game\Projectile.cpp(1886,19): message : see the first reference to 'idInterpolateAccelDecelLinear<float>::Init' in 'rvDriftingProjectile::Think'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(220,80): message : while compiling class template member function 'idInterpolateAccelDecelLinear<float>::idInterpolateAccelDecelLinear(void)'
+C:\Quake4-1.4.2-SDK\source\game\Projectile.cpp(1816,52): message : see the first reference to 'idInterpolateAccelDecelLinear<float>::idInterpolateAccelDecelLinear' in 'rvDriftingProjectile::rvDriftingProjectile'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Extrapolate.h(75,78): warning C4458: declaration of 'duration' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Extrapolate.h(45,11): message : see declaration of 'idExtrapolate<float>::duration'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Extrapolate.h(75,100): warning C4458: declaration of 'startValue' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Extrapolate.h(46,10): message : see declaration of 'idExtrapolate<float>::startValue'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Extrapolate.h(75,124): warning C4458: declaration of 'baseSpeed' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Extrapolate.h(47,10): message : see declaration of 'idExtrapolate<float>::baseSpeed'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Extrapolate.h(75,147): warning C4458: declaration of 'speed' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Extrapolate.h(48,10): message : see declaration of 'idExtrapolate<float>::speed'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Extrapolate.h(75,176): warning C4458: declaration of 'extrapolationType' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Extrapolate.h(43,19): message : see declaration of 'idExtrapolate<float>::extrapolationType'
+  Pvs.cpp
+  Generating Code...
+  Compiling...
+  ScriptFuncUtility.cpp
+C:\Quake4-1.4.2-SDK\source\game\script\ScriptFuncUtility.cpp(223,58): warning C4458: declaration of 'func' hides class member
+C:\Quake4-1.4.2-SDK\source\game\script\ScriptFuncUtility.h(66,21): message : see declaration of 'rvScriptFuncUtility::func'
+C:\Quake4-1.4.2-SDK\source\game\script\ScriptFuncUtility.cpp(232,58): warning C4458: declaration of 'parms' hides class member
+C:\Quake4-1.4.2-SDK\source\game\script\ScriptFuncUtility.h(67,18): message : see declaration of 'rvScriptFuncUtility::parms'
+  Script_Compiler.cpp
+C:\Quake4-1.4.2-SDK\source\game\script\Script_Compiler.cpp(226,2): warning C4996: 'vsprintf': This function or variable may be unsafe. Consider using vsprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Quake4-1.4.2-SDK\source\game\script\Script_Compiler.cpp(244,2): warning C4996: 'vsprintf': This function or variable may be unsafe. Consider using vsprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Quake4-1.4.2-SDK\source\game\script\Script_Compiler.cpp(2623,9): warning C4456: declaration of 'error' hides previous local declaration
+C:\Quake4-1.4.2-SDK\source\game\script\Script_Compiler.cpp(2570,7): message : see declaration of 'error'
+  Script_Interpreter.cpp
+C:\Quake4-1.4.2-SDK\source\game\script\Script_Interpreter.cpp(447,2): warning C4996: 'vsprintf': This function or variable may be unsafe. Consider using vsprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Quake4-1.4.2-SDK\source\game\script\Script_Interpreter.cpp(472,2): warning C4996: 'vsprintf': This function or variable may be unsafe. Consider using vsprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  Script_Program.cpp
+C:\Quake4-1.4.2-SDK\source\game\script\Script_Program.cpp(76,39): warning C4458: declaration of 'name' hides class member
+C:\Quake4-1.4.2-SDK\source\game\script\Script_Program.h(39,12): message : see declaration of 'function_t::name'
+C:\Quake4-1.4.2-SDK\source\game\script\Script_Program.cpp(273,67): warning C4458: declaration of 'name' hides class member
+C:\Quake4-1.4.2-SDK\source\game\script\Script_Program.h(72,14): message : see declaration of 'idTypeDef::name'
+C:\Quake4-1.4.2-SDK\source\game\script\Script_Program.cpp(290,61): warning C4458: declaration of 'name' hides class member
+C:\Quake4-1.4.2-SDK\source\game\script\Script_Program.h(72,14): message : see declaration of 'idTypeDef::name'
+C:\Quake4-1.4.2-SDK\source\game\script\Script_Program.cpp(543,2): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Quake4-1.4.2-SDK\source\game\script\Script_Program.cpp(587,2): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Quake4-1.4.2-SDK\source\game\script\Script_Program.cpp(631,2): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Quake4-1.4.2-SDK\source\game\script\Script_Program.cpp(759,2): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Quake4-1.4.2-SDK\source\game\script\Script_Program.cpp(1523,15): warning C4457: declaration of 'type' hides function parameter
+C:\Quake4-1.4.2-SDK\source\game\script\Script_Program.cpp(1495,43): message : see declaration of 'type'
+C:\Quake4-1.4.2-SDK\source\game\script\Script_Program.cpp(2169,42): warning C4458: declaration of 'filename' hides class member
+C:\Quake4-1.4.2-SDK\source\game\script\Script_Program.h(547,18): message : see declaration of 'idProgram::filename'
+  Script_Thread.cpp
+C:\Quake4-1.4.2-SDK\source\game\script\Script_Thread.cpp(919,2): warning C4996: 'vsprintf': This function or variable may be unsafe. Consider using vsprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Quake4-1.4.2-SDK\source\game\script\Script_Thread.cpp(935,2): warning C4996: 'vsprintf': This function or variable may be unsafe. Consider using vsprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Quake4-1.4.2-SDK\source\game\script\Script_Thread.cpp(2211,3): warning C4091: 'typedef ': ignored on left of 'idThread::Event_SendNamedEvent::<unnamed-enum-SNE_PLAYERHUD>' when no variable is declared
+  SecurityCamera.cpp
+  Sound.cpp
+  spawner.cpp
+C:\Quake4-1.4.2-SDK\source\game\spawner.cpp(291,16): warning C4458: declaration of 'types' hides class member
+C:\Quake4-1.4.2-SDK\source\game\gamesys\Class.h(409,30): message : see declaration of 'idClass::types'
+  SplineMover.cpp
+C:\Quake4-1.4.2-SDK\source\game\SplineMover.cpp(280,59): warning C4458: declaration of 'spline' hides class member
+C:\Quake4-1.4.2-SDK\source\game\SplineMover.h(150,26): message : see declaration of 'rvPhysics_Spline::spline'
+C:\Quake4-1.4.2-SDK\source\game\SplineMover.cpp(308,55): warning C4458: declaration of 'spline' hides class member
+C:\Quake4-1.4.2-SDK\source\game\SplineMover.h(150,26): message : see declaration of 'rvPhysics_Spline::spline'
+C:\Quake4-1.4.2-SDK\source\game\SplineMover.cpp(1663,3): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Quake4-1.4.2-SDK\source\game\SplineMover.cpp(1844,78): warning C4458: declaration of 'name' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Entity.h(124,12): message : see declaration of 'idEntity::name'
+C:\Quake4-1.4.2-SDK\source\game\SplineMover.cpp(2571,41): warning C4458: declaration of 'health' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Entity.h(137,11): message : see declaration of 'idEntity::health'
+  Target.cpp
+C:\Quake4-1.4.2-SDK\source\game\Target.cpp(659,25): warning C4456: declaration of 'kv' hides previous local declaration
+C:\Quake4-1.4.2-SDK\source\game\Target.cpp(640,21): message : see declaration of 'kv'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(23,35): warning C4458: declaration of 'endValue' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(45,10): message : see declaration of 'idInterpolate<int>::endValue'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(23,10): message : while compiling class template member function 'void idInterpolate<int>::SetEndValue(const type &)'
+          with
+          [
+              type=int
+          ]
+C:\Quake4-1.4.2-SDK\source\game\Target.cpp(1401,24): message : see the first reference to 'idInterpolate<int>::SetEndValue' in 'idTarget_SetFov::Restore'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(22,37): warning C4458: declaration of 'startValue' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(44,10): message : see declaration of 'idInterpolate<int>::startValue'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(22,10): message : while compiling class template member function 'void idInterpolate<int>::SetStartValue(const type &)'
+          with
+          [
+              type=int
+          ]
+C:\Quake4-1.4.2-SDK\source\game\Target.cpp(1399,26): message : see the first reference to 'idInterpolate<int>::SetStartValue' in 'idTarget_SetFov::Restore'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(21,29): warning C4458: declaration of 'duration' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(43,11): message : see declaration of 'idInterpolate<int>::duration'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(21,10): message : while compiling class template member function 'void idInterpolate<int>::SetDuration(float)'
+C:\Quake4-1.4.2-SDK\source\game\Target.cpp(1397,24): message : see the first reference to 'idInterpolate<int>::SetDuration' in 'idTarget_SetFov::Restore'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(68,55): warning C4458: declaration of 'startTime' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(42,11): message : see declaration of 'idInterpolate<int>::startTime'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(68,135): message : while compiling class template member function 'void idInterpolate<int>::Init(const float,const float,const type &,const type &)'
+          with
+          [
+              type=int
+          ]
+C:\Quake4-1.4.2-SDK\source\game\Target.cpp(1416,17): message : see the first reference to 'idInterpolate<int>::Init' in 'idTarget_SetFov::Event_Activate'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(68,78): warning C4458: declaration of 'duration' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(43,11): message : see declaration of 'idInterpolate<int>::duration'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(68,100): warning C4458: declaration of 'startValue' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(44,10): message : see declaration of 'idInterpolate<int>::startValue'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(68,124): warning C4458: declaration of 'endValue' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(45,10): message : see declaration of 'idInterpolate<int>::endValue'
+  TramGate.cpp
+  Trigger.cpp
+  Vehicle.cpp
+C:\Quake4-1.4.2-SDK\source\game\vehicle\Vehicle.cpp(860,125): warning C4458: declaration of 'damageScale' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Actor.h(277,18): message : see declaration of 'idActor::damageScale'
+C:\Quake4-1.4.2-SDK\source\game\vehicle\Vehicle.cpp(1577,2): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Quake4-1.4.2-SDK\source\game\vehicle\Vehicle.cpp(1606,41): warning C4458: declaration of 'health' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Entity.h(137,11): message : see declaration of 'idEntity::health'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(68,55): warning C4458: declaration of 'startTime' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(42,11): message : see declaration of 'idInterpolate<int>::startTime'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(68,135): message : while compiling class template member function 'void idInterpolate<int>::Init(const float,const float,const type &,const type &)'
+          with
+          [
+              type=int
+          ]
+C:\Quake4-1.4.2-SDK\source\game\vehicle\Vehicle.cpp(108,24): message : see the first reference to 'idInterpolate<int>::Init' in 'rvVehicle::Spawn'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(68,78): warning C4458: declaration of 'duration' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(43,11): message : see declaration of 'idInterpolate<int>::duration'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(68,100): warning C4458: declaration of 'startValue' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(44,10): message : see declaration of 'idInterpolate<int>::startValue'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(68,124): warning C4458: declaration of 'endValue' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(45,10): message : see declaration of 'idInterpolate<int>::endValue'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(108,58): warning C4458: declaration of 'startTime' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(42,11): message : see declaration of 'idInterpolate<idVec3>::startTime'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(108,91): message : while compiling class template member function 'type idInterpolate<type>::GetDeltaValue(float,float) const'
+          with
+          [
+              type=idVec3
+          ]
+C:\Quake4-1.4.2-SDK\source\game\vehicle\Vehicle.cpp(186,30): message : see reference to class template instantiation 'idInterpolate<idVec3>' being compiled
+  VehicleAnimated.cpp
+  VehicleController.cpp
+  VehicleDriver.cpp
+  VehicleMonster.cpp
+  VehicleParts.cpp
+C:\Quake4-1.4.2-SDK\source\game\vehicle\VehicleParts.cpp(1601,13): warning C4458: declaration of 'angles' hides class member
+C:\Quake4-1.4.2-SDK\source\game\vehicle\VehicleParts.h(385,12): message : see declaration of 'rvVehicleTurret::angles'
+C:\Quake4-1.4.2-SDK\source\game\vehicle\VehicleParts.cpp(1647,12): warning C4456: declaration of 'oldAngles' hides previous local declaration
+C:\Quake4-1.4.2-SDK\source\game\vehicle\VehicleParts.cpp(1573,11): message : see declaration of 'oldAngles'
+C:\Quake4-1.4.2-SDK\source\game\vehicle\VehicleParts.cpp(1964,10): warning C4456: declaration of 'axis' hides previous local declaration
+C:\Quake4-1.4.2-SDK\source\game\vehicle\VehicleParts.cpp(1884,9): message : see declaration of 'axis'
+C:\Quake4-1.4.2-SDK\source\game\vehicle\VehicleParts.cpp(2300,27): warning C4458: declaration of 'position' hides class member
+C:\Quake4-1.4.2-SDK\source\game\vehicle\VehicleParts.h(68,22): message : see declaration of 'rvVehiclePart::position'
+C:\Quake4-1.4.2-SDK\source\game\vehicle\VehicleParts.cpp(2354,37): warning C4838: conversion from 'const float' to 'int' requires a narrowing conversion
+C:\Quake4-1.4.2-SDK\source\game\vehicle\VehicleParts.cpp(2354,56): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(68,55): warning C4458: declaration of 'startTime' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(42,11): message : see declaration of 'idInterpolate<float>::startTime'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(68,135): message : while compiling class template member function 'void idInterpolate<float>::Init(const float,const float,const type &,const type &)'
+          with
+          [
+              type=float
+          ]
+C:\Quake4-1.4.2-SDK\source\game\vehicle\VehicleParts.cpp(295,21): message : see the first reference to 'idInterpolate<float>::Init' in 'rvVehicleSound::Attenuate'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(68,78): warning C4458: declaration of 'duration' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(43,11): message : see declaration of 'idInterpolate<float>::duration'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(68,100): warning C4458: declaration of 'startValue' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(44,10): message : see declaration of 'idInterpolate<float>::startValue'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(68,124): warning C4458: declaration of 'endValue' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(45,10): message : see declaration of 'idInterpolate<float>::endValue'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(108,58): warning C4458: declaration of 'startTime' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(42,11): message : see declaration of 'idInterpolate<idVec3>::startTime'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(108,91): message : while compiling class template member function 'type idInterpolate<type>::GetDeltaValue(float,float) const'
+          with
+          [
+              type=idVec3
+          ]
+C:\Quake4-1.4.2-SDK\source\game\vehicle\VehicleParts.cpp(322,31): message : see reference to class template instantiation 'idInterpolate<idVec3>' being compiled
+  VehiclePosition.cpp
+C:\Quake4-1.4.2-SDK\source\game\vehicle\VehiclePosition.cpp(534,8): warning C4456: declaration of 'i' hides previous local declaration
+C:\Quake4-1.4.2-SDK\source\game\vehicle\VehiclePosition.cpp(507,6): message : see declaration of 'i'
+  VehicleRigid.cpp
+  Generating Code...
+  Compiling...
+  VehicleSpline.cpp
+  VehicleStatic.cpp
+  Vehicle_DropPod.cpp
+  Vehicle_Walker.cpp
+  Weapon.cpp
+C:\Quake4-1.4.2-SDK\source\game\Weapon.cpp(207,48): warning C4458: declaration of 'name' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Entity.h(124,12): message : see declaration of 'idEntity::name'
+C:\Quake4-1.4.2-SDK\source\game\Weapon.cpp(2329,2): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Quake4-1.4.2-SDK\source\game\Weapon.cpp(2505,63): warning C4458: declaration of 'spread' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Weapon.h(336,14): message : see declaration of 'rvWeapon::spread'
+C:\Quake4-1.4.2-SDK\source\game\Weapon.cpp(2506,9): warning C4458: declaration of 'muzzleOrigin' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Weapon.h(328,15): message : see declaration of 'rvWeapon::muzzleOrigin'
+C:\Quake4-1.4.2-SDK\source\game\Weapon.cpp(2507,9): warning C4458: declaration of 'muzzleAxis' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Weapon.h(329,15): message : see declaration of 'rvWeapon::muzzleAxis'
+C:\Quake4-1.4.2-SDK\source\game\Weapon.cpp(2612,64): warning C4458: declaration of 'muzzleOrigin' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Weapon.h(328,15): message : see declaration of 'rvWeapon::muzzleOrigin'
+C:\Quake4-1.4.2-SDK\source\game\Weapon.cpp(2612,92): warning C4458: declaration of 'muzzleAxis' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Weapon.h(329,15): message : see declaration of 'rvWeapon::muzzleAxis'
+C:\Quake4-1.4.2-SDK\source\game\Weapon.cpp(2612,131): warning C4458: declaration of 'spread' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Weapon.h(336,14): message : see declaration of 'rvWeapon::spread'
+C:\Quake4-1.4.2-SDK\source\game\Weapon.cpp(2641,11): warning C4456: declaration of 'dir' hides previous local declaration
+C:\Quake4-1.4.2-SDK\source\game\Weapon.cpp(2617,11): message : see declaration of 'dir'
+C:\Quake4-1.4.2-SDK\source\game\Weapon.cpp(2740,59): warning C4458: declaration of 'muzzleOrigin' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Weapon.h(328,15): message : see declaration of 'rvWeapon::muzzleOrigin'
+C:\Quake4-1.4.2-SDK\source\game\Weapon.cpp(2740,87): warning C4458: declaration of 'muzzleAxis' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Weapon.h(329,15): message : see declaration of 'rvWeapon::muzzleAxis'
+C:\Quake4-1.4.2-SDK\source\game\Weapon.cpp(2740,123): warning C4458: declaration of 'spread' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Weapon.h(336,14): message : see declaration of 'rvWeapon::spread'
+  WeaponBlaster.cpp
+  WeaponDarkMatterGun.cpp
+  WeaponGauntlet.cpp
+  WeaponGrenadeLauncher.cpp
+  WeaponHyperblaster.cpp
+  WeaponLightningGun.cpp
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(23,35): warning C4458: declaration of 'endValue' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(45,10): message : see declaration of 'idInterpolate<float>::endValue'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(23,10): message : while compiling class template member function 'void idInterpolate<float>::SetEndValue(const type &)'
+          with
+          [
+              type=float
+          ]
+C:\Quake4-1.4.2-SDK\source\game\weapon\WeaponLightningGun.cpp(224,30): message : see the first reference to 'idInterpolate<float>::SetEndValue' in 'rvWeaponLightningGun::Restore'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(22,37): warning C4458: declaration of 'startValue' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(44,10): message : see declaration of 'idInterpolate<float>::startValue'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(22,10): message : while compiling class template member function 'void idInterpolate<float>::SetStartValue(const type &)'
+          with
+          [
+              type=float
+          ]
+C:\Quake4-1.4.2-SDK\source\game\weapon\WeaponLightningGun.cpp(222,32): message : see the first reference to 'idInterpolate<float>::SetStartValue' in 'rvWeaponLightningGun::Restore'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(21,29): warning C4458: declaration of 'duration' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(43,11): message : see declaration of 'idInterpolate<float>::duration'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(21,10): message : while compiling class template member function 'void idInterpolate<float>::SetDuration(float)'
+C:\Quake4-1.4.2-SDK\source\game\weapon\WeaponLightningGun.cpp(220,30): message : see the first reference to 'idInterpolate<float>::SetDuration' in 'rvWeaponLightningGun::Restore'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(68,55): warning C4458: declaration of 'startTime' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(42,11): message : see declaration of 'idInterpolate<float>::startTime'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(68,135): message : while compiling class template member function 'void idInterpolate<float>::Init(const float,const float,const type &,const type &)'
+          with
+          [
+              type=float
+          ]
+C:\Quake4-1.4.2-SDK\source\game\weapon\WeaponLightningGun.cpp(148,23): message : see the first reference to 'idInterpolate<float>::Init' in 'rvWeaponLightningGun::Spawn'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(68,78): warning C4458: declaration of 'duration' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(43,11): message : see declaration of 'idInterpolate<float>::duration'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(68,100): warning C4458: declaration of 'startValue' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(44,10): message : see declaration of 'idInterpolate<float>::startValue'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(68,124): warning C4458: declaration of 'endValue' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(45,10): message : see declaration of 'idInterpolate<float>::endValue'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(108,58): warning C4458: declaration of 'startTime' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(42,11): message : see declaration of 'idInterpolate<idVec3>::startTime'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(108,91): message : while compiling class template member function 'type idInterpolate<type>::GetDeltaValue(float,float) const'
+          with
+          [
+              type=idVec3
+          ]
+C:\Quake4-1.4.2-SDK\source\game\weapon\WeaponLightningGun.cpp(180,45): message : see reference to class template instantiation 'idInterpolate<idVec3>' being compiled
+  WeaponMachinegun.cpp
+  WeaponNailgun.cpp
+  WeaponNapalmGun.cpp
+C:\Quake4-1.4.2-SDK\source\game\weapon\WeaponNapalmGun.cpp(157,8): warning C4458: declaration of 'clipSize' hides class member
+C:\Quake4-1.4.2-SDK\source\game\Weapon.h(367,13): message : see declaration of 'rvWeapon::clipSize'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(68,55): warning C4458: declaration of 'startTime' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(42,11): message : see declaration of 'idInterpolate<float>::startTime'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(68,135): message : while compiling class template member function 'void idInterpolate<float>::Init(const float,const float,const type &,const type &)'
+          with
+          [
+              type=float
+          ]
+C:\Quake4-1.4.2-SDK\source\game\weapon\WeaponNapalmGun.cpp(101,26): message : see the first reference to 'idInterpolate<float>::Init' in 'WeaponNapalmGun::Spawn'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(68,78): warning C4458: declaration of 'duration' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(43,11): message : see declaration of 'idInterpolate<float>::duration'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(68,100): warning C4458: declaration of 'startValue' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(44,10): message : see declaration of 'idInterpolate<float>::startValue'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(68,124): warning C4458: declaration of 'endValue' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(45,10): message : see declaration of 'idInterpolate<float>::endValue'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(108,58): warning C4458: declaration of 'startTime' hides class member
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(42,11): message : see declaration of 'idInterpolate<idVec3>::startTime'
+C:\Quake4-1.4.2-SDK\source\idlib\math\Interpolate.h(108,91): message : while compiling class template member function 'type idInterpolate<type>::GetDeltaValue(float,float) const'
+          with
+          [
+              type=idVec3
+          ]
+C:\Quake4-1.4.2-SDK\source\game\weapon\WeaponNapalmGun.cpp(204,47): message : see reference to class template instantiation 'idInterpolate<idVec3>' being compiled
+  WeaponRailgun.cpp
+  WeaponRocketLauncher.cpp
+  WeaponShotgun.cpp
+  WorldSpawn.cpp
+  Generating Code...
+C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(1389,5): warning MSB8012: TargetPath(C:\Quake4-1.4.2-SDK\source\Builds\Win32\Debug\Game.dll) does not match the Linker's OutputFile property value (C:\Quake4-1.4.2-SDK\source\Builds\Win32\Debug\Gamex86.dll). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(1391,5): warning MSB8012: TargetName(Game) does not match the Linker's OutputFile property value (Gamex86). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+Actor.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
+     Creating library Builds\Win32\Debug\Gamex86.lib and object Builds\Win32\Debug\Gamex86.exp
+  game.vcxproj -> C:\Quake4-1.4.2-SDK\source\Builds\Win32\Debug\Game.dll
