@@ -1,1 +1,0 @@
-C:\Quake4-1.4.2-SDK\source\Builds\Win32\Debug\idLib.lib
