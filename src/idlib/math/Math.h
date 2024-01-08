@@ -1029,16 +1029,9 @@ ID_INLINE float idMath::Rint(float f)
 
 ID_INLINE int idMath::Ftoi(float f)
 {
-#ifdef ID_WIN_X86_SSE
-	// If a converted result is larger than the maximum signed doubleword integer,
-	// the floating-point invalid exception is raised, and if this exception is masked,
-	// the indefinite integer value (80000000H) is returned.
-	int i;
-	__asm cvttss2si eax, f __asm mov i, eax return i;
-#else
+	// Removed some ASM code. One of these days I will strip out all of it!
 	// If a converted result is larger than the maximum signed doubleword integer the result is undefined.
 	return (int)f;
-#endif
 }
 
 ID_INLINE int idMath::FtoiFast(float f)
@@ -1077,12 +1070,6 @@ ID_INLINE int idMath::FtoiFast(float f)
 
 ID_INLINE byte idMath::Ftob(float f)
 {
-#ifdef ID_WIN_X86_SSE
-	// If a converted result is negative the value (0) is returned and if the
-	// converted result is larger than the maximum byte the value (255) is returned.
-	byte b;
-	__asm movss xmm0, f __asm maxss xmm0, SSE_FLOAT_ZERO __asm minss xmm0, SSE_FLOAT_255 __asm cvttss2si eax, xmm0 __asm mov b, al return b;
-#else
 	// If a converted result is clamped to the range [0-255].
 	int i;
 	i = (int)f;
@@ -1095,7 +1082,6 @@ ID_INLINE byte idMath::Ftob(float f)
 		return 255;
 	}
 	return i;
-#endif
 }
 
 ID_INLINE signed char idMath::ClampChar(int i)

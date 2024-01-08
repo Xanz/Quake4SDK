@@ -1,0 +1,23 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Quake 4 Debug",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "C://Program Files (x86)//Steam//steamapps//common//Quake 4//Quake4.exe",
+            //The args must not have spaces in them. If you need a space split them.
+            "args": [
+            "+set","fs_game",
+            "MODNAMEHERE",
+            "+set","com_allowConsole",
+            "1",
+            "+set","win_allowmultipleInstances",
+            "1"
+            ],
+            "stopAtEntry": false,
+            "cwd": "C://Program Files (x86)//Steam//steamapps//common//Quake 4",
+            "environment": [],
+        }
+    ]
+}
