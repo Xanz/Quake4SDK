@@ -24,27 +24,28 @@
 
     lo[i] = - fabs( lo[i] * x[boxIndex[i]] )
     hi[i] = fabs( hi[i] * x[boxIndex[i]] )
-	boxIndex[boxIndex[i]] must be -1
-  
+  boxIndex[boxIndex[i]] must be -1
+
   Before calculating any of the bounded x[i] with boxIndex[i] != -1 the
   solver calculates all unbounded x[i] and all x[i] with boxIndex[i] == -1.
 
 ===============================================================================
 */
 
-class idLCP {
+class idLCP
+{
 public:
-	static idLCP *	AllocSquare( void );		// A must be a square matrix
-	static idLCP *	AllocSymmetric( void );		// A must be a symmetric matrix
+  static idLCP *AllocSquare(void);    // A must be a square matrix
+  static idLCP *AllocSymmetric(void); // A must be a symmetric matrix
 
-	virtual			~idLCP( void );
+  virtual ~idLCP(void);
 
-	virtual bool	Solve( const idMatX &A, idVecX &x, const idVecX &b, const idVecX &lo, const idVecX &hi, const int *boxIndex = NULL ) = 0;
-	virtual void	SetMaxIterations( int max );
-	virtual int		GetMaxIterations( void );
+  virtual bool Solve(const idMatX &A, idVecX &x, const idVecX &b, const idVecX &lo, const idVecX &hi, const int *boxIndex = NULL) = 0;
+  virtual void SetMaxIterations(int max);
+  virtual int GetMaxIterations(void);
 
 protected:
-	int				maxIterations;
+  int maxIterations;
 };
 
 #endif /* !__MATH_LCP_H__ */

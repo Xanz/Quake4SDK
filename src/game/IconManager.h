@@ -11,20 +11,21 @@
 
 const int ICON_STAY_TIME = 2000;
 
-class rvIconManager {
+class rvIconManager
+{
 public:
-	void				AddIcon( int clientNum, const char* iconName );
-	void				UpdateIcons( void );
-	void				UpdateTeamIcons( void );
-	void				UpdateChatIcons( void );
-	void				Shutdown( void );
+	void AddIcon(int clientNum, const char *iconName);
+	void UpdateIcons(void);
+	void UpdateTeamIcons(void);
+	void UpdateChatIcons(void);
+	void Shutdown(void);
 
 private:
-	idList<rvPair<rvIcon*, int> >	icons[ MAX_CLIENTS ];
-	rvIcon							teamIcons[ MAX_CLIENTS ];
-	rvIcon							chatIcons[ MAX_CLIENTS ];
+	idList<rvPair<rvIcon *, int>> icons[MAX_CLIENTS];
+	rvIcon teamIcons[MAX_CLIENTS];
+	rvIcon chatIcons[MAX_CLIENTS];
 };
 
-extern rvIconManager*	iconManager;
+extern rvIconManager *iconManager;
 
 #endif

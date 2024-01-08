@@ -10,38 +10,41 @@
 #include "../Game_local.h"
 #include "VehicleRigid.h"
 
-CLASS_DECLARATION( rvVehicle, rvVehicleRigid )
+CLASS_DECLARATION(rvVehicle, rvVehicleRigid)
 END_CLASS
 
-rvVehicleRigid::rvVehicleRigid ( void ) {
+rvVehicleRigid::rvVehicleRigid(void)
+{
 }
 
-rvVehicleRigid::~rvVehicleRigid ( void ) {
-	SetPhysics( NULL );
+rvVehicleRigid::~rvVehicleRigid(void)
+{
+	SetPhysics(NULL);
 }
 
-/* 
+/*
 ================
 rvVehicleRigid::Spawn
 ================
 */
-void rvVehicleRigid::Spawn( void ) {
-	physicsObj.SetSelf( this );	
+void rvVehicleRigid::Spawn(void)
+{
+	physicsObj.SetSelf(this);
 
-	SetClipModel ( );
+	SetClipModel();
 
-	physicsObj.SetOrigin( GetPhysics()->GetOrigin ( ) );
-	physicsObj.SetAxis ( GetPhysics()->GetAxis ( ) );
-	physicsObj.SetContents( CONTENTS_BODY );
-	physicsObj.SetClipMask( MASK_PLAYERSOLID|CONTENTS_VEHICLECLIP );
-	physicsObj.SetFriction ( spawnArgs.GetFloat ( "friction_linear", "1" ), spawnArgs.GetFloat ( "friction_angular", "1" ), spawnArgs.GetFloat ( "friction_contact", "1" ) );
-	physicsObj.SetBouncyness ( spawnArgs.GetFloat ( "bouncyness", "0.6" ) );
-	physicsObj.SetGravity( gameLocal.GetGravity() );
-	SetPhysics( &physicsObj );
-	
-	animator.CycleAnim ( ANIMCHANNEL_ALL, animator.GetAnim( spawnArgs.GetString( "anim", "idle" ) ), gameLocal.time, 0 );	
+	physicsObj.SetOrigin(GetPhysics()->GetOrigin());
+	physicsObj.SetAxis(GetPhysics()->GetAxis());
+	physicsObj.SetContents(CONTENTS_BODY);
+	physicsObj.SetClipMask(MASK_PLAYERSOLID | CONTENTS_VEHICLECLIP);
+	physicsObj.SetFriction(spawnArgs.GetFloat("friction_linear", "1"), spawnArgs.GetFloat("friction_angular", "1"), spawnArgs.GetFloat("friction_contact", "1"));
+	physicsObj.SetBouncyness(spawnArgs.GetFloat("bouncyness", "0.6"));
+	physicsObj.SetGravity(gameLocal.GetGravity());
+	SetPhysics(&physicsObj);
 
-	BecomeActive( TH_THINK );		
+	animator.CycleAnim(ANIMCHANNEL_ALL, animator.GetAnim(spawnArgs.GetString("anim", "idle")), gameLocal.time, 0);
+
+	BecomeActive(TH_THINK);
 }
 
 /*
@@ -49,38 +52,44 @@ void rvVehicleRigid::Spawn( void ) {
 rvVehicleRigid::SetClipModel
 ================
 */
-void rvVehicleRigid::SetClipModel ( void ) {	
-	idStr			clipModelName;
-	idTraceModel	trm;
-	float			mass;
+void rvVehicleRigid::SetClipModel(void)
+{
+	idStr clipModelName;
+	idTraceModel trm;
+	float mass;
 
 	// rebuild clipmodel
-	spawnArgs.GetString( "clipmodel", "", clipModelName );
+	spawnArgs.GetString("clipmodel", "", clipModelName);
 
 	// load the trace model
-	if ( clipModelName.Length() ) {
-		if ( !collisionModelManager->TrmFromModel( gameLocal.GetMapName(), clipModelName, trm ) ) {
-			gameLocal.Error( "rvVehicleRigid '%s': cannot load collision model %s", name.c_str(), clipModelName.c_str() );
+	if (clipModelName.Length())
+	{
+		if (!collisionModelManager->TrmFromModel(gameLocal.GetMapName(), clipModelName, trm))
+		{
+			gameLocal.Error("rvVehicleRigid '%s': cannot load collision model %s", name.c_str(), clipModelName.c_str());
 			return;
 		}
 
-		physicsObj.SetClipModel( new idClipModel( trm ), spawnArgs.GetFloat ( "density", "1" ) );
-	} else {
-		physicsObj.SetClipModel( new idClipModel( GetPhysics()->GetClipModel() ), spawnArgs.GetFloat ( "density", "1" ) );
+		physicsObj.SetClipModel(new idClipModel(trm), spawnArgs.GetFloat("density", "1"));
+	}
+	else
+	{
+		physicsObj.SetClipModel(new idClipModel(GetPhysics()->GetClipModel()), spawnArgs.GetFloat("density", "1"));
 	}
 
-	if ( spawnArgs.GetFloat ( "mass", "0", mass ) && mass > 0 )	{
-		physicsObj.SetMass ( mass );
+	if (spawnArgs.GetFloat("mass", "0", mass) && mass > 0)
+	{
+		physicsObj.SetMass(mass);
 	}
 }
-
 
 /*
 ================
 rvVehicleRigid::RunPrePhysics
 ================
 */
-void rvVehicleRigid::RunPrePhysics ( void ) {
+void rvVehicleRigid::RunPrePhysics(void)
+{
 	storedVelocity = physicsObj.GetLinearVelocity();
 }
 
@@ -89,19 +98,23 @@ void rvVehicleRigid::RunPrePhysics ( void ) {
 rvVehicleRigid::RunPostPhysics
 ================
 */
-void rvVehicleRigid::RunPostPhysics ( void ) {
+void rvVehicleRigid::RunPostPhysics(void)
+{
 
-	if ( autoCorrectionBegin + 1250 > static_cast<unsigned>( gameLocal.time )) {
+	if (autoCorrectionBegin + 1250 > static_cast<unsigned>(gameLocal.time))
+	{
 		autoCorrectionBegin = 0;
 
 		float lengthSq = physicsObj.GetLinearVelocity().LengthSqr();
-		if ( !autoCorrectionBegin && ( ( storedVelocity * 0.4f ).LengthSqr() >= lengthSq ) || ( lengthSq < 0.01f ) ) {
+		if (!autoCorrectionBegin && ((storedVelocity * 0.4f).LengthSqr() >= lengthSq) || (lengthSq < 0.01f))
+		{
 			autoCorrectionBegin = gameLocal.time;
 		}
 	}
 
-	if ( g_debugVehicle.GetInteger() == 10 ) {
-		gameLocal.Printf( "Speed: %f\n", physicsObj.GetLinearVelocity().Length() );
+	if (g_debugVehicle.GetInteger() == 10)
+	{
+		gameLocal.Printf("Speed: %f\n", physicsObj.GetLinearVelocity().Length());
 	}
 }
 
@@ -110,9 +123,10 @@ void rvVehicleRigid::RunPostPhysics ( void ) {
 rvVehicleRigid::WriteToSnapshot
 ================
 */
-void rvVehicleRigid::WriteToSnapshot( idBitMsgDelta &msg ) const {
-	rvVehicle::WriteToSnapshot( msg );
-	physicsObj.WriteToSnapshot( msg );
+void rvVehicleRigid::WriteToSnapshot(idBitMsgDelta &msg) const
+{
+	rvVehicle::WriteToSnapshot(msg);
+	physicsObj.WriteToSnapshot(msg);
 }
 
 /*
@@ -120,9 +134,10 @@ void rvVehicleRigid::WriteToSnapshot( idBitMsgDelta &msg ) const {
 rvVehicleRigid::ReadFromSnapshot
 ================
 */
-void rvVehicleRigid::ReadFromSnapshot( const idBitMsgDelta &msg ) {
-	rvVehicle::ReadFromSnapshot( msg );
-	physicsObj.ReadFromSnapshot( msg );
+void rvVehicleRigid::ReadFromSnapshot(const idBitMsgDelta &msg)
+{
+	rvVehicle::ReadFromSnapshot(msg);
+	physicsObj.ReadFromSnapshot(msg);
 }
 
 /*
@@ -130,10 +145,11 @@ void rvVehicleRigid::ReadFromSnapshot( const idBitMsgDelta &msg ) {
 rvVehicleRigid::Save
 ================
 */
-void rvVehicleRigid::Save ( idSaveGame *savefile ) const {
+void rvVehicleRigid::Save(idSaveGame *savefile) const
+{
 
-	savefile->WriteVec3 ( storedVelocity ); // cnicholson: Added unsaved var
-	savefile->WriteStaticObject ( physicsObj );
+	savefile->WriteVec3(storedVelocity); // cnicholson: Added unsaved var
+	savefile->WriteStaticObject(physicsObj);
 }
 
 /*
@@ -141,16 +157,17 @@ void rvVehicleRigid::Save ( idSaveGame *savefile ) const {
 rvVehicleRigid::Restore
 ================
 */
-void rvVehicleRigid::Restore ( idRestoreGame *savefile ) {
+void rvVehicleRigid::Restore(idRestoreGame *savefile)
+{
 
-	savefile->ReadVec3 ( storedVelocity ); // cnicholson: Added unrestored var
+	savefile->ReadVec3(storedVelocity); // cnicholson: Added unrestored var
 
-	physicsObj.SetSelf( this );	
-	
-	SetClipModel ( );
+	physicsObj.SetSelf(this);
 
-	savefile->ReadStaticObject ( physicsObj );
-	RestorePhysics( &physicsObj );
+	SetClipModel();
+
+	savefile->ReadStaticObject(physicsObj);
+	RestorePhysics(&physicsObj);
 }
 
 /*
@@ -158,6 +175,7 @@ void rvVehicleRigid::Restore ( idRestoreGame *savefile ) {
 rvVehicleRigid::SkipImpulse
 =====================
 */
-bool rvVehicleRigid::SkipImpulse( idEntity* ent, int id ) {	
+bool rvVehicleRigid::SkipImpulse(idEntity *ent, int id)
+{
 	return false;
 }

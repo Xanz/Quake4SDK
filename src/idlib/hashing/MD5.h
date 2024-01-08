@@ -11,6 +11,6 @@
 ===============================================================================
 */
 
-unsigned long MD5_BlockChecksum( const void *data, int length );
+unsigned long MD5_BlockChecksum(const void *data, int length);
 
 #endif /* !__MD5_H__ */

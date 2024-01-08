@@ -12,19 +12,24 @@
 idList<type>::RemoveContents
 ================
 */
-template< class type >
-ID_INLINE void idList<type>::RemoveContents( bool clear ) {
+template <class type>
+ID_INLINE void idList<type>::RemoveContents(bool clear)
+{
 	RemoveNull();
 
-	for( int ix = Num() - 1; ix >= 0; --ix ) {
-		list[ ix ]->PostEventMS( &EV_Remove, 0 );
-		list[ ix ] = NULL;
+	for (int ix = Num() - 1; ix >= 0; --ix)
+	{
+		list[ix]->PostEventMS(&EV_Remove, 0);
+		list[ix] = NULL;
 	}
 
-	if ( clear ) {
+	if (clear)
+	{
 		Clear();
-	} else {
-		memset( list, 0, Allocated() );
+	}
+	else
+	{
+		memset(list, 0, Allocated());
 	}
 }
 

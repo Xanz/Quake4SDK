@@ -7,64 +7,64 @@
 #ifndef __GAME_CLIENT_MOVEABLE_H__
 #define __GAME_CLIENT_MOVEABLE_H__
 
-class rvClientMoveable : public rvClientEntity {
+class rvClientMoveable : public rvClientEntity
+{
 public:
+	CLASS_PROTOTYPE(rvClientMoveable);
 
-	CLASS_PROTOTYPE( rvClientMoveable );
+	rvClientMoveable(void);
+	virtual ~rvClientMoveable(void);
 
-	rvClientMoveable ( void );
-	virtual ~rvClientMoveable ( void );
-	
-	virtual void			Spawn			( void );
-	virtual void			Think			( void );
-	virtual idPhysics*		GetPhysics		( void ) const;	
-	virtual bool			Collide			( const trace_t &collision, const idVec3 &velocity );
-	
-	renderEntity_t*			GetRenderEntity	( void );
+	virtual void Spawn(void);
+	virtual void Think(void);
+	virtual idPhysics *GetPhysics(void) const;
+	virtual bool Collide(const trace_t &collision, const idVec3 &velocity);
 
-	void					Save			( idSaveGame *savefile ) const;
-	void					Restore			( idRestoreGame *savefile );
-	
-	static void				SpawnClientMoveables ( idEntity* ent, const char *type, idList<rvClientMoveable *>* list );
+	renderEntity_t *GetRenderEntity(void);
 
-	virtual void			FreeEntityDef	( void );
+	void Save(idSaveGame *savefile) const;
+	void Restore(idRestoreGame *savefile);
 
-	void					SetOwner		( idEntity* ent );
+	static void SpawnClientMoveables(idEntity *ent, const char *type, idList<rvClientMoveable *> *list);
 
-	void					SetOrigin		( const idVec3& origin );
-	void					SetAxis			( const idMat3& axis );
+	virtual void FreeEntityDef(void);
+
+	void SetOwner(idEntity *ent);
+
+	void SetOrigin(const idVec3 &origin);
+	void SetAxis(const idMat3 &axis);
+
 protected:
-	renderEntity_t			renderEntity;
-	int						entityDefHandle;
+	renderEntity_t renderEntity;
+	int entityDefHandle;
 
-	rvClientEffectPtr		trailEffect;
-	float					trailAttenuateSpeed;
-		
-	idPhysics_RigidBody		physicsObj;
-	
-	int						bounceSoundTime;
-	const idSoundShader*	bounceSoundShader;
-	bool					mPlayBounceSoundOnce;
-	bool					mHasBounced;
+	rvClientEffectPtr trailEffect;
+	float trailAttenuateSpeed;
 
-	idInterpolate<float>	scale;
-	
+	idPhysics_RigidBody physicsObj;
+
+	int bounceSoundTime;
+	const idSoundShader *bounceSoundShader;
+	bool mPlayBounceSoundOnce;
+	bool mHasBounced;
+
+	idInterpolate<float> scale;
+
 private:
-	
-	void					Event_FadeOut			( int duration );
-	void					Event_ClearDepthHack	( void );
+	void Event_FadeOut(int duration);
+	void Event_ClearDepthHack(void);
 };
 
-ID_INLINE renderEntity_t* rvClientMoveable::GetRenderEntity ( void ) {
+ID_INLINE renderEntity_t *rvClientMoveable::GetRenderEntity(void)
+{
 	return &renderEntity;
 }
 
 extern const idEventDef CL_FadeOut;
 extern const idEventDef CL_ClearDepthHack;
 
-#define SIMPLE_TRI_NAME		"simpletri"
+#define SIMPLE_TRI_NAME "simpletri"
 
 extern idVec3 simpleTri[3];
-
 
 #endif // __GAME_CLIENT_MOVEABLE_H__

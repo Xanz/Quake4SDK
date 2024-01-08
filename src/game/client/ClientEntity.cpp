@@ -9,7 +9,7 @@
 
 #include "../Game_local.h"
 
-ABSTRACT_DECLARATION( idClass, rvClientEntity )
+ABSTRACT_DECLARATION(idClass, rvClientEntity)
 END_CLASS
 
 /*
@@ -17,7 +17,8 @@ END_CLASS
 rvClientEntity::rvClientEntity
 ================
 */
-rvClientEntity::rvClientEntity( void ) {
+rvClientEntity::rvClientEntity(void)
+{
 	bindMaster = NULL;
 	entityNumber = -1;
 
@@ -25,8 +26,8 @@ rvClientEntity::rvClientEntity( void ) {
 	bindAxis.Identity();
 	bindJoint = INVALID_JOINT;
 	bindOrientated = false;
-	
-	memset( &refSound, 0, sizeof(refSound) );
+
+	memset(&refSound, 0, sizeof(refSound));
 	refSound.referenceSoundHandle = -1;
 }
 
@@ -35,12 +36,13 @@ rvClientEntity::rvClientEntity( void ) {
 rvClientEntity::~rvClientEntity
 ================
 */
-rvClientEntity::~rvClientEntity( void ) {
+rvClientEntity::~rvClientEntity(void)
+{
 	Unbind();
-	gameLocal.UnregisterClientEntity( this );
+	gameLocal.UnregisterClientEntity(this);
 
 	// Free sound emitter
-	soundSystem->FreeSoundEmitter( SOUNDWORLD_GAME, refSound.referenceSoundHandle, true );
+	soundSystem->FreeSoundEmitter(SOUNDWORLD_GAME, refSound.referenceSoundHandle, true);
 	refSound.referenceSoundHandle = -1;
 }
 
@@ -49,22 +51,23 @@ rvClientEntity::~rvClientEntity( void ) {
 rvClientEntity::Spawn
 ================
 */
-void rvClientEntity::Spawn( void ) {
-	idVec3	origin;
-	idMat3	axis;
+void rvClientEntity::Spawn(void)
+{
+	idVec3 origin;
+	idMat3 axis;
 
-	gameLocal.RegisterClientEntity( this );
+	gameLocal.RegisterClientEntity(this);
 
-	spawnNode.SetOwner( this );
-	bindNode.SetOwner( this );
+	spawnNode.SetOwner(this);
+	bindNode.SetOwner(this);
 
-	origin = spawnArgs.GetVector( "origin", "0 0 0" );
-	axis = spawnArgs.GetMatrix( "axis", "1 0 0 0 1 0 0 0 1" );
+	origin = spawnArgs.GetVector("origin", "0 0 0");
+	axis = spawnArgs.GetMatrix("axis", "1 0 0 0 1 0 0 0 1");
 
-	InitDefaultPhysics( origin, axis );
+	InitDefaultPhysics(origin, axis);
 
-	SetOrigin( origin );
-	SetAxis( axis );
+	SetOrigin(origin);
+	SetAxis(axis);
 }
 
 /*
@@ -72,7 +75,8 @@ void rvClientEntity::Spawn( void ) {
 rvClientEntity::Present
 ================
 */
-void rvClientEntity::Present ( void ) {
+void rvClientEntity::Present(void)
+{
 }
 
 /*
@@ -80,7 +84,8 @@ void rvClientEntity::Present ( void ) {
 rvClientEntity::FreeEntityDef
 ================
 */
-void rvClientEntity::FreeEntityDef ( void ) {
+void rvClientEntity::FreeEntityDef(void)
+{
 }
 
 /*
@@ -88,7 +93,8 @@ void rvClientEntity::FreeEntityDef ( void ) {
 rvClientEntity::Think
 ================
 */
-void rvClientEntity::Think ( void ) {
+void rvClientEntity::Think(void)
+{
 	UpdateBind();
 	UpdateSound();
 	Present();
@@ -99,24 +105,27 @@ void rvClientEntity::Think ( void ) {
 rvClientEntity::Bind
 ================
 */
-void rvClientEntity::Bind ( idEntity* master, jointHandle_t joint, bool isOrientated ) {
+void rvClientEntity::Bind(idEntity *master, jointHandle_t joint, bool isOrientated)
+{
 	Unbind();
 
-	if ( joint != INVALID_JOINT && !dynamic_cast<idAnimatedEntity*>(master) ) {
-		gameLocal.Warning( "rvClientEntity::Bind: entity '%s' cannot support skeletal models.", master->GetName() );
+	if (joint != INVALID_JOINT && !dynamic_cast<idAnimatedEntity *>(master))
+	{
+		gameLocal.Warning("rvClientEntity::Bind: entity '%s' cannot support skeletal models.", master->GetName());
 		joint = INVALID_JOINT;
 	}
 
 	bindMaster = master;
-	bindJoint  = joint;
+	bindJoint = joint;
 	bindOrigin = worldOrigin;
-	bindAxis   = worldAxis;
+	bindAxis = worldAxis;
 
-	bindNode.AddToEnd ( bindMaster->clientEntities );
-	
+	bindNode.AddToEnd(bindMaster->clientEntities);
+
 	bindOrientated = isOrientated;
-	if( physics ) {
-		physics->SetMaster( bindMaster, bindOrientated );
+	if (physics)
+	{
+		physics->SetMaster(bindMaster, bindOrientated);
 	}
 
 	UpdateBind();
@@ -127,13 +136,15 @@ void rvClientEntity::Bind ( idEntity* master, jointHandle_t joint, bool isOrient
 rvClientEntity::Bind
 ================
 */
-void rvClientEntity::Unbind	( void ) {
-	if ( !bindMaster ) {
+void rvClientEntity::Unbind(void)
+{
+	if (!bindMaster)
+	{
 		return;
 	}
 
 	bindMaster = NULL;
-	bindNode.Remove ( );
+	bindNode.Remove();
 }
 
 /*
@@ -141,10 +152,14 @@ void rvClientEntity::Unbind	( void ) {
 rvClientEntity::SetOrigin
 ================
 */
-void rvClientEntity::SetOrigin( const idVec3& origin ) {
-	if ( bindMaster ) {
+void rvClientEntity::SetOrigin(const idVec3 &origin)
+{
+	if (bindMaster)
+	{
 		bindOrigin = origin;
-	} else {
+	}
+	else
+	{
 		worldOrigin = origin;
 	}
 }
@@ -154,10 +169,14 @@ void rvClientEntity::SetOrigin( const idVec3& origin ) {
 rvClientEntity::SetAxis
 ================
 */
-void rvClientEntity::SetAxis( const idMat3& axis ) {
-	if ( bindMaster ) {
-		bindAxis = axis * bindMaster->GetRenderEntity()->axis.Transpose();		
-	} else {
+void rvClientEntity::SetAxis(const idMat3 &axis)
+{
+	if (bindMaster)
+	{
+		bindAxis = axis * bindMaster->GetRenderEntity()->axis.Transpose();
+	}
+	else
+	{
 		worldAxis = axis;
 	}
 }
@@ -167,22 +186,27 @@ void rvClientEntity::SetAxis( const idMat3& axis ) {
 rvClientEntity::UpdateBind
 ================
 */
-void rvClientEntity::UpdateBind ( void ) {
-	if ( !bindMaster ) {
+void rvClientEntity::UpdateBind(void)
+{
+	if (!bindMaster)
+	{
 		return;
 	}
 
-	if ( bindJoint != INVALID_JOINT ) {
-		static_cast<idAnimatedEntity*>(bindMaster.GetEntity())->GetJointWorldTransform ( bindJoint, gameLocal.time, worldOrigin, worldAxis );
-	} else {
-		bindMaster->GetPosition( worldOrigin, worldAxis );
-		//if ( !bindMaster->GetPhysicsToVisualTransform( worldOrigin, worldAxis ) ) {
+	if (bindJoint != INVALID_JOINT)
+	{
+		static_cast<idAnimatedEntity *>(bindMaster.GetEntity())->GetJointWorldTransform(bindJoint, gameLocal.time, worldOrigin, worldAxis);
+	}
+	else
+	{
+		bindMaster->GetPosition(worldOrigin, worldAxis);
+		// if ( !bindMaster->GetPhysicsToVisualTransform( worldOrigin, worldAxis ) ) {
 		//	bindMaster->GetPosition( worldOrigin, worldAxis );
-		//}
+		// }
 	}
 
 	worldOrigin += (bindOrigin * worldAxis);
-	worldAxis    = bindAxis * worldAxis;
+	worldAxis = bindAxis * worldAxis;
 }
 
 /*
@@ -190,7 +214,8 @@ void rvClientEntity::UpdateBind ( void ) {
 rvClientEntity::IsClient
 ================
 */
-bool rvClientEntity::IsClient ( void ) const {
+bool rvClientEntity::IsClient(void) const
+{
 	return true;
 }
 
@@ -199,13 +224,15 @@ bool rvClientEntity::IsClient ( void ) const {
 rvClientEntity::DrawDebugInfo
 ================
 */
-void rvClientEntity::DrawDebugInfo ( void ) const {
-	idBounds bounds ( idVec3(-8,-8,-8), idVec3(8,8,8) );
-	
-	gameRenderWorld->DebugBounds ( colorGreen, bounds, worldOrigin );
+void rvClientEntity::DrawDebugInfo(void) const
+{
+	idBounds bounds(idVec3(-8, -8, -8), idVec3(8, 8, 8));
 
-	if ( gameLocal.GetLocalPlayer() ) {	
-		gameRenderWorld->DrawText ( GetClassname ( ), worldOrigin, 0.1f, colorWhite, gameLocal.GetLocalPlayer()->viewAngles.ToMat3(), 1 );
+	gameRenderWorld->DebugBounds(colorGreen, bounds, worldOrigin);
+
+	if (gameLocal.GetLocalPlayer())
+	{
+		gameRenderWorld->DrawText(GetClassname(), worldOrigin, 0.1f, colorWhite, gameLocal.GetLocalPlayer()->viewAngles.ToMat3(), 1);
 	}
 }
 
@@ -214,12 +241,14 @@ void rvClientEntity::DrawDebugInfo ( void ) const {
 rvClientEntity::UpdateSound
 ================
 */
-void rvClientEntity::UpdateSound( void ) {
-	idSoundEmitter *emitter = soundSystem->EmitterForIndex( SOUNDWORLD_GAME, refSound.referenceSoundHandle );
-	if ( emitter ) {
+void rvClientEntity::UpdateSound(void)
+{
+	idSoundEmitter *emitter = soundSystem->EmitterForIndex(SOUNDWORLD_GAME, refSound.referenceSoundHandle);
+	if (emitter)
+	{
 		refSound.origin = worldOrigin;
 		refSound.velocity = vec3_origin;
-		emitter->UpdateEmitter( refSound.origin, refSound.velocity, refSound.listenerId, &refSound.parms );
+		emitter->UpdateEmitter(refSound.origin, refSound.velocity, refSound.listenerId, &refSound.parms);
 	}
 }
 
@@ -228,71 +257,80 @@ void rvClientEntity::UpdateSound( void ) {
 rvClientEntity::SetSoundVolume
 ================
 */
-void rvClientEntity::SetSoundVolume( float volume ) {
+void rvClientEntity::SetSoundVolume(float volume)
+{
 	refSound.parms.volume = volume;
 }
-
 
 /*
 ================
 rvClientEntity::StartSound
 ================
 */
-bool rvClientEntity::StartSound( const char *soundName, const s_channelType channel, int soundShaderFlags, bool broadcast, int *length ) {
+bool rvClientEntity::StartSound(const char *soundName, const s_channelType channel, int soundShaderFlags, bool broadcast, int *length)
+{
 	const idSoundShader *shader;
 	const char *sound;
 
-	if ( length ) {
+	if (length)
+	{
 		*length = 0;
 	}
 
 	idStr soundNameStr = soundName;
-	if( soundNameStr.CmpPrefix( "snd_" ) && soundNameStr.CmpPrefix( "lipsync_" ) ) {
-		common->Warning( "Non precached sound \'%s\'", soundName );
+	if (soundNameStr.CmpPrefix("snd_") && soundNameStr.CmpPrefix("lipsync_"))
+	{
+		common->Warning("Non precached sound \'%s\'", soundName);
 	}
 
-	if ( !spawnArgs.GetString( soundName, "", &sound ) ) {
+	if (!spawnArgs.GetString(soundName, "", &sound))
+	{
 		return false;
 	}
 
-	if ( *sound == '\0' ) {
+	if (*sound == '\0')
+	{
 		return false;
 	}
 
-	if ( !gameLocal.isNewFrame ) {
+	if (!gameLocal.isNewFrame)
+	{
 		// don't play the sound, but don't report an error
 		return true;
 	}
 
-	shader = declManager->FindSound( sound );
-	return StartSoundShader( shader, channel, soundShaderFlags );
+	shader = declManager->FindSound(sound);
+	return StartSoundShader(shader, channel, soundShaderFlags);
 }
-
 
 /*
 ================
 rvClientEntity::StartSoundShader
 ================
 */
-int rvClientEntity::StartSoundShader ( const idSoundShader* shader, const s_channelType channel, int soundShaderFlags )  {
-	if ( !shader ) {
+int rvClientEntity::StartSoundShader(const idSoundShader *shader, const s_channelType channel, int soundShaderFlags)
+{
+	if (!shader)
+	{
 		return 0;
 	}
-	
-	idSoundEmitter *emitter = soundSystem->EmitterForIndex( SOUNDWORLD_GAME, refSound.referenceSoundHandle );
-	if ( !emitter ) {
-		refSound.referenceSoundHandle = soundSystem->AllocSoundEmitter( SOUNDWORLD_GAME );
+
+	idSoundEmitter *emitter = soundSystem->EmitterForIndex(SOUNDWORLD_GAME, refSound.referenceSoundHandle);
+	if (!emitter)
+	{
+		refSound.referenceSoundHandle = soundSystem->AllocSoundEmitter(SOUNDWORLD_GAME);
 	}
 
 	UpdateSound();
-	
-	emitter = soundSystem->EmitterForIndex( SOUNDWORLD_GAME, refSound.referenceSoundHandle );
-	if( !emitter ) { 
-		return( 0 );
+
+	emitter = soundSystem->EmitterForIndex(SOUNDWORLD_GAME, refSound.referenceSoundHandle);
+	if (!emitter)
+	{
+		return (0);
 	}
 
-	emitter->UpdateEmitter( refSound.origin, refSound.velocity, refSound.listenerId, &refSound.parms );
-	return emitter->StartSound( shader, channel, gameLocal.random.RandomFloat(), soundShaderFlags  );
+	emitter->UpdateEmitter(refSound.origin, refSound.velocity, refSound.listenerId, &refSound.parms);
+	return emitter->StartSound(shader, channel, gameLocal.random.RandomFloat(), soundShaderFlags);
 }
 
 /*
@@ -303,8 +341,9 @@ Returns Returns memory size of an rvClientEntity.
 ================
 */
 
-size_t rvClientEntity::Size ( void ) const {
-	return sizeof( rvClientEntity );
+size_t rvClientEntity::Size(void) const
+{
+	return sizeof(rvClientEntity);
 }
 
 /*
@@ -312,22 +351,23 @@ size_t rvClientEntity::Size ( void ) const {
 rvClientEntity::Save
 ================
 */
-void rvClientEntity::Save( idSaveGame *savefile ) const {
-	savefile->WriteInt( entityNumber );
+void rvClientEntity::Save(idSaveGame *savefile) const
+{
+	savefile->WriteInt(entityNumber);
 
 	// idLinkList<rvClientEntity>	spawnNode;		- reconstructed in the master entity load
 	// idLinkList<rvClientEntity>	bindNode;		- reconstructed in the master entity load
 
-	savefile->WriteVec3( worldOrigin );
-	savefile->WriteVec3( worldVelocity );
-	savefile->WriteMat3( worldAxis );
+	savefile->WriteVec3(worldOrigin);
+	savefile->WriteVec3(worldVelocity);
+	savefile->WriteMat3(worldAxis);
 
-	bindMaster.Save( savefile );
-	savefile->WriteVec3( bindOrigin );
-	savefile->WriteMat3( bindAxis );
-	savefile->WriteJoint( bindJoint );
-	
-	savefile->WriteRefSound( refSound );
+	bindMaster.Save(savefile);
+	savefile->WriteVec3(bindOrigin);
+	savefile->WriteMat3(bindAxis);
+	savefile->WriteJoint(bindJoint);
+
+	savefile->WriteRefSound(refSound);
 }
 
 /*
@@ -335,22 +375,23 @@ void rvClientEntity::Save( idSaveGame *savefile ) const {
 rvClientEntity::Restore
 ================
 */
-void rvClientEntity::Restore( idRestoreGame *savefile ) {
-	savefile->ReadInt( entityNumber );
+void rvClientEntity::Restore(idRestoreGame *savefile)
+{
+	savefile->ReadInt(entityNumber);
 
 	// idLinkList<rvClientEntity>	spawnNode;		- reconstructed in the master entity load
 	// idLinkList<rvClientEntity>	bindNode;		- reconstructed in the master entity load
 
-	savefile->ReadVec3( worldOrigin );
-	savefile->ReadVec3( worldVelocity );
-	savefile->ReadMat3( worldAxis );
+	savefile->ReadVec3(worldOrigin);
+	savefile->ReadVec3(worldVelocity);
+	savefile->ReadMat3(worldAxis);
 
-	bindMaster.Restore( savefile );
-	savefile->ReadVec3( bindOrigin );
-	savefile->ReadMat3( bindAxis );
-	savefile->ReadJoint( bindJoint );
-	
-	savefile->ReadRefSound( refSound );
+	bindMaster.Restore(savefile);
+	savefile->ReadVec3(bindOrigin);
+	savefile->ReadMat3(bindAxis);
+	savefile->ReadJoint(bindJoint);
+
+	savefile->ReadRefSound(refSound);
 }
 
 /*
@@ -358,25 +399,27 @@ void rvClientEntity::Restore( idRestoreGame *savefile ) {
 rvClientEntity::RunPhysics
 ================
 */
-void rvClientEntity::RunPhysics ( void ) {
-	idPhysics* physics = GetPhysics( );
-	if( !physics ) {
+void rvClientEntity::RunPhysics(void)
+{
+	idPhysics *physics = GetPhysics();
+	if (!physics)
+	{
 		return;
 	}
 
-	rvClientPhysics* clientPhysics = (rvClientPhysics*)gameLocal.entities[ENTITYNUM_CLIENT];
-	static_cast<rvClientPhysics*>( clientPhysics )->currentEntityNumber = entityNumber;
+	rvClientPhysics *clientPhysics = (rvClientPhysics *)gameLocal.entities[ENTITYNUM_CLIENT];
+	static_cast<rvClientPhysics *>(clientPhysics)->currentEntityNumber = entityNumber;
 
 	// order important: 1) set client physics bind master to client ent's bind master
-	//					2) set physics to client ent's physics, which sets physics 
+	//					2) set physics to client ent's physics, which sets physics
 	//					   master to client ent's master
 	//					3) set client physics origin to client ent origin, depends on
 	//					   proper bind master from 1
-	clientPhysics->PushBindInfo( bindMaster, bindJoint, bindOrientated );
-	clientPhysics->SetPhysics( physics );
-	clientPhysics->PushOriginInfo( bindMaster ? bindOrigin : worldOrigin, bindMaster ? bindAxis : worldAxis );
+	clientPhysics->PushBindInfo(bindMaster, bindJoint, bindOrientated);
+	clientPhysics->SetPhysics(physics);
+	clientPhysics->PushOriginInfo(bindMaster ? bindOrigin : worldOrigin, bindMaster ? bindAxis : worldAxis);
 
-	physics->Evaluate ( gameLocal.time - gameLocal.previousTime, gameLocal.time );
+	physics->Evaluate(gameLocal.time - gameLocal.previousTime, gameLocal.time);
 
 	worldOrigin = physics->GetOrigin();
 	worldVelocity = physics->GetLinearVelocity();
@@ -386,7 +429,7 @@ void rvClientEntity::RunPhysics ( void ) {
 	//					2) reset physics with previous bind master
 	//					3) reset origin with previous bind master
 	clientPhysics->PopBindInfo();
-	clientPhysics->SetPhysics( NULL );
+	clientPhysics->SetPhysics(NULL);
 	clientPhysics->PopOriginInfo();
 
 	UpdateAnimationControllers();
@@ -397,7 +440,8 @@ void rvClientEntity::RunPhysics ( void ) {
 rvClientEntity::GetPhysics
 ================
 */
-idPhysics* rvClientEntity::GetPhysics ( void ) const {
+idPhysics *rvClientEntity::GetPhysics(void) const
+{
 	return physics;
 }
 
@@ -406,7 +450,8 @@ idPhysics* rvClientEntity::GetPhysics ( void ) const {
 rvClientEntity::Collide
 ================
 */
-bool rvClientEntity::Collide ( const trace_t &collision, const idVec3 &velocity ) {
+bool rvClientEntity::Collide(const trace_t &collision, const idVec3 &velocity)
+{
 	return false;
 }
 
@@ -415,8 +460,9 @@ bool rvClientEntity::Collide ( const trace_t &collision, const idVec3 &velocity 
 rvClientEntity::GetImpactInfo
 ================
 */
-void rvClientEntity::GetImpactInfo( idEntity *ent, int id, const idVec3 &point, impactInfo_t *info ) {
-	GetPhysics()->GetImpactInfo( id, point, info );
+void rvClientEntity::GetImpactInfo(idEntity *ent, int id, const idVec3 &point, impactInfo_t *info)
+{
+	GetPhysics()->GetImpactInfo(id, point, info);
 }
 
 /*
@@ -424,8 +470,9 @@ void rvClientEntity::GetImpactInfo( idEntity *ent, int id, const idVec3 &point, 
 rvClientEntity::ApplyImpulse
 ================
 */
-void rvClientEntity::ApplyImpulse( idEntity *ent, int id, const idVec3 &point, const idVec3 &impulse, bool splash ) {
-	GetPhysics()->ApplyImpulse( id, point, impulse );
+void rvClientEntity::ApplyImpulse(idEntity *ent, int id, const idVec3 &point, const idVec3 &impulse, bool splash)
+{
+	GetPhysics()->ApplyImpulse(id, point, impulse);
 }
 
 /*
@@ -433,8 +480,9 @@ void rvClientEntity::ApplyImpulse( idEntity *ent, int id, const idVec3 &point, c
 rvClientEntity::AddForce
 ================
 */
-void rvClientEntity::AddForce( idEntity *ent, int id, const idVec3 &point, const idVec3 &force ) {
-	GetPhysics()->AddForce( id, point, force );
+void rvClientEntity::AddForce(idEntity *ent, int id, const idVec3 &point, const idVec3 &force)
+{
+	GetPhysics()->AddForce(id, point, force);
 }
 
 /*
@@ -442,7 +490,8 @@ void rvClientEntity::AddForce( idEntity *ent, int id, const idVec3 &point, const
 rvClientEntity::UpdateAnimationControllers
 ================
 */
-bool rvClientEntity::UpdateAnimationControllers( void ) {
+bool rvClientEntity::UpdateAnimationControllers(void)
+{
 	return false;
 }
 
@@ -451,78 +500,97 @@ bool rvClientEntity::UpdateAnimationControllers( void ) {
 rvClientEntity::InitDefaultPhysics
 ================
 */
-void rvClientEntity::InitDefaultPhysics( const idVec3 &origin, const idMat3 &axis ) {
+void rvClientEntity::InitDefaultPhysics(const idVec3 &origin, const idMat3 &axis)
+{
 	const char *temp;
 	idClipModel *clipModel = NULL;
 
 	// check if a clipmodel key/value pair is set
-	if ( spawnArgs.GetString( "clipmodel", "", &temp ) ) {
+	if (spawnArgs.GetString("clipmodel", "", &temp))
+	{
 		// RAVEN BEGIN
 		// mwhitlock: Dynamic memory consolidation
 		RV_PUSH_HEAP_MEM(this);
 		// RAVEN END
-		clipModel = new idClipModel( temp );
+		clipModel = new idClipModel(temp);
 		// RAVEN BEGIN
 		// mwhitlock: Dynamic memory consolidation
 		RV_POP_HEAP();
 		// RAVEN END
 	}
 
-	if ( !spawnArgs.GetBool( "noclipmodel", "0" ) ) {
+	if (!spawnArgs.GetBool("noclipmodel", "0"))
+	{
 
 		// check if mins/maxs or size key/value pairs are set
-		if ( !clipModel ) {
+		if (!clipModel)
+		{
 			idVec3 size;
 			idBounds bounds;
 			bool setClipModel = false;
 
-			if ( spawnArgs.GetVector( "mins", NULL, bounds[0] ) &&
-				spawnArgs.GetVector( "maxs", NULL, bounds[1] ) ) {
-					setClipModel = true;
-					if ( bounds[0][0] > bounds[1][0] || bounds[0][1] > bounds[1][1] || bounds[0][2] > bounds[1][2] ) {
-						gameLocal.Error( "Invalid bounds '%s'-'%s' on client entity '%d'", bounds[0].ToString(), bounds[1].ToString(), entityNumber );
-					}
-				} else if ( spawnArgs.GetVector( "size", NULL, size ) ) {
-					if ( ( size.x < 0.0f ) || ( size.y < 0.0f ) || ( size.z < 0.0f ) ) {
-						gameLocal.Error( "Invalid size '%s' on client entity '%d'", size.ToString(), entityNumber );
-					}
-					bounds[0].Set( size.x * -0.5f, size.y * -0.5f, 0.0f );
-					bounds[1].Set( size.x * 0.5f, size.y * 0.5f, size.z );
-					setClipModel = true;
+			if (spawnArgs.GetVector("mins", NULL, bounds[0]) &&
+				spawnArgs.GetVector("maxs", NULL, bounds[1]))
+			{
+				setClipModel = true;
+				if (bounds[0][0] > bounds[1][0] || bounds[0][1] > bounds[1][1] || bounds[0][2] > bounds[1][2])
+				{
+					gameLocal.Error("Invalid bounds '%s'-'%s' on client entity '%d'", bounds[0].ToString(), bounds[1].ToString(), entityNumber);
 				}
+			}
+			else if (spawnArgs.GetVector("size", NULL, size))
+			{
+				if ((size.x < 0.0f) || (size.y < 0.0f) || (size.z < 0.0f))
+				{
+					gameLocal.Error("Invalid size '%s' on client entity '%d'", size.ToString(), entityNumber);
+				}
+				bounds[0].Set(size.x * -0.5f, size.y * -0.5f, 0.0f);
+				bounds[1].Set(size.x * 0.5f, size.y * 0.5f, size.z);
+				setClipModel = true;
+			}
 
-				if ( setClipModel ) {
-					int numSides;
-					idTraceModel trm;
+			if (setClipModel)
+			{
+				int numSides;
+				idTraceModel trm;
 
-					if ( spawnArgs.GetInt( "cylinder", "0", numSides ) && numSides > 0 ) {
-						trm.SetupCylinder( bounds, numSides < 3 ? 3 : numSides );
-					} else if ( spawnArgs.GetInt( "cone", "0", numSides ) && numSides > 0 ) {
-						trm.SetupCone( bounds, numSides < 3 ? 3 : numSides );
-						// RAVEN BEGIN
-						// bdube: added dodecahedron
-					} else if ( spawnArgs.GetInt( "dodecahedron", "0", numSides ) && numSides > 0 ) {
-						trm.SetupDodecahedron ( bounds );
-						// RAVEN END
-					} else {
-						trm.SetupBox( bounds );
-					}
+				if (spawnArgs.GetInt("cylinder", "0", numSides) && numSides > 0)
+				{
+					trm.SetupCylinder(bounds, numSides < 3 ? 3 : numSides);
+				}
+				else if (spawnArgs.GetInt("cone", "0", numSides) && numSides > 0)
+				{
+					trm.SetupCone(bounds, numSides < 3 ? 3 : numSides);
 					// RAVEN BEGIN
-					// mwhitlock: Dynamic memory consolidation
-					RV_PUSH_HEAP_MEM(this);
-					// RAVEN END
-					clipModel = new idClipModel( trm );
-					// RAVEN BEGIN
-					// mwhitlock: Dynamic memory consolidation
-					RV_POP_HEAP();
+					// bdube: added dodecahedron
+				}
+				else if (spawnArgs.GetInt("dodecahedron", "0", numSides) && numSides > 0)
+				{
+					trm.SetupDodecahedron(bounds);
 					// RAVEN END
 				}
+				else
+				{
+					trm.SetupBox(bounds);
+				}
+				// RAVEN BEGIN
+				// mwhitlock: Dynamic memory consolidation
+				RV_PUSH_HEAP_MEM(this);
+				// RAVEN END
+				clipModel = new idClipModel(trm);
+				// RAVEN BEGIN
+				// mwhitlock: Dynamic memory consolidation
+				RV_POP_HEAP();
+				// RAVEN END
+			}
 		}
 
 		// check if the visual model can be used as collision model
-		if ( !clipModel ) {
-			temp = spawnArgs.GetString( "model" );
-			if ( ( temp != NULL ) && ( *temp != 0 ) ) {
+		if (!clipModel)
+		{
+			temp = spawnArgs.GetString("model");
+			if ((temp != NULL) && (*temp != 0))
+			{
 				// RAVEN BEGIN
 				// jscott:slash problems
 				idStr canonical = temp;
@@ -532,7 +600,8 @@ void rvClientEntity::InitDefaultPhysics( const idVec3 &origin, const idMat3 &axi
 				RV_PUSH_HEAP_MEM(this);
 				// RAVEN END
 				clipModel = new idClipModel();
-				if ( !clipModel->LoadModel( canonical ) ) {
+				if (!clipModel->LoadModel(canonical))
+				{
 					delete clipModel;
 					clipModel = NULL;
 				}
@@ -544,17 +613,16 @@ void rvClientEntity::InitDefaultPhysics( const idVec3 &origin, const idMat3 &axi
 		}
 	}
 
-	defaultPhysicsObj.SetSelf( gameLocal.entities[ENTITYNUM_CLIENT] );
-	defaultPhysicsObj.SetClipModel( clipModel, 1.0f );
-	defaultPhysicsObj.SetOrigin( origin );
-	defaultPhysicsObj.SetAxis( axis );
+	defaultPhysicsObj.SetSelf(gameLocal.entities[ENTITYNUM_CLIENT]);
+	defaultPhysicsObj.SetClipModel(clipModel, 1.0f);
+	defaultPhysicsObj.SetOrigin(origin);
+	defaultPhysicsObj.SetAxis(axis);
 
 	physics = &defaultPhysicsObj;
 
 	// by default no collision
-	physics->SetContents( 0 );
+	physics->SetContents(0);
 }
-
 
 /*
 ===============================================================================
@@ -564,7 +632,7 @@ rvClientPhysics
 ===============================================================================
 */
 
-CLASS_DECLARATION( idEntity, rvClientPhysics )
+CLASS_DECLARATION(idEntity, rvClientPhysics)
 END_CLASS
 
 /*
@@ -572,7 +640,8 @@ END_CLASS
 rvClientPhysics::Spawn
 =====================
 */
-void rvClientPhysics::Spawn( void ) {
+void rvClientPhysics::Spawn(void)
+{
 	pushedOrientated = false;
 }
 
@@ -581,15 +650,17 @@ void rvClientPhysics::Spawn( void ) {
 rvClientPhysics::Collide
 =====================
 */
-bool rvClientPhysics::Collide( const trace_t &collision, const idVec3 &velocity ) {
-	assert ( currentEntityNumber >= 0 && currentEntityNumber < MAX_CENTITIES );
-	
-	rvClientEntity* cent;
-	cent = gameLocal.clientEntities [ currentEntityNumber ];
-	if ( cent ) {
-		return cent->Collide ( collision, velocity );
+bool rvClientPhysics::Collide(const trace_t &collision, const idVec3 &velocity)
+{
+	assert(currentEntityNumber >= 0 && currentEntityNumber < MAX_CENTITIES);
+
+	rvClientEntity *cent;
+	cent = gameLocal.clientEntities[currentEntityNumber];
+	if (cent)
+	{
+		return cent->Collide(collision, velocity);
 	}
-	
+
 	return false;
 }
 
@@ -598,7 +669,8 @@ bool rvClientPhysics::Collide( const trace_t &collision, const idVec3 &velocity 
 rvClientPhysics::PushBindInfo
 =====================
 */
-void rvClientPhysics::PushBindInfo( idEntity* master, jointHandle_t joint, bool orientated ) {
+void rvClientPhysics::PushBindInfo(idEntity *master, jointHandle_t joint, bool orientated)
+{
 	pushedBindJoint = joint;
 	pushedBindMaster = master;
 	pushedOrientated = fl.bindOrientated;
@@ -613,7 +685,8 @@ void rvClientPhysics::PushBindInfo( idEntity* master, jointHandle_t joint, bool 
 rvClientPhysics::PopBindInfo
 =====================
 */
-void rvClientPhysics::PopBindInfo( void ) {
+void rvClientPhysics::PopBindInfo(void)
+{
 	bindMaster = pushedBindMaster;
 	bindJoint = pushedBindJoint;
 	fl.bindOrientated = pushedOrientated;
@@ -624,16 +697,18 @@ void rvClientPhysics::PopBindInfo( void ) {
 rvClientPhysics::PushOriginInfo
 =====================
 */
-void rvClientPhysics::PushOriginInfo( const idVec3& origin, const idMat3& axis ) {
-	if( !GetPhysics() ) {
+void rvClientPhysics::PushOriginInfo(const idVec3 &origin, const idMat3 &axis)
+{
+	if (!GetPhysics())
+	{
 		return;
 	}
 
 	pushedOrigin = GetPhysics()->GetOrigin();
 	pushedAxis = GetPhysics()->GetAxis();
 
-	GetPhysics()->SetOrigin( origin );
-	GetPhysics()->SetAxis( axis );
+	GetPhysics()->SetOrigin(origin);
+	GetPhysics()->SetAxis(axis);
 }
 
 /*
@@ -641,11 +716,13 @@ void rvClientPhysics::PushOriginInfo( const idVec3& origin, const idMat3& axis )
 rvClientPhysics::PopOriginInfo
 =====================
 */
-void rvClientPhysics::PopOriginInfo( void ) {
-	if( !GetPhysics() ) {
+void rvClientPhysics::PopOriginInfo(void)
+{
+	if (!GetPhysics())
+	{
 		return;
 	}
 
-	GetPhysics()->SetOrigin( pushedOrigin );
-	GetPhysics()->SetAxis( pushedAxis );
+	GetPhysics()->SetOrigin(pushedOrigin);
+	GetPhysics()->SetAxis(pushedAxis);
 }

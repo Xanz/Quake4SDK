@@ -8,9 +8,10 @@
 idPlayer::HandleCheats
 ==============
 */
-void idPlayer::HandleCheats() {
+void idPlayer::HandleCheats()
+{
 }
 
-
-void idPlayer::ClearCheatState() {
+void idPlayer::ClearCheatState()
+{
 }

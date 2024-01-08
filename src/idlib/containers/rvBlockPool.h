@@ -17,60 +17,68 @@
 ===============================================================================
 */
 
-template<class type, int blockSize, byte memoryTag, Rv_Sys_Heap_ID_t heapID>
-class rvBlockPool {
+template <class type, int blockSize, byte memoryTag, Rv_Sys_Heap_ID_t heapID>
+class rvBlockPool
+{
 public:
-							rvBlockPool( void );
-							~rvBlockPool( void );
+	rvBlockPool(void);
+	~rvBlockPool(void);
 
-	void					Shutdown( void );
+	void Shutdown(void);
 
-	type *					Alloc( void );
-	void					Free( type *element );
+	type *Alloc(void);
+	void Free(type *element);
 
-	int						GetTotalCount( void ) const { return total; }
-	int						GetAllocCount( void ) const { return active; }
-	int						GetFreeCount( void ) const { return total - active; }
+	int GetTotalCount(void) const { return total; }
+	int GetAllocCount(void) const { return active; }
+	int GetFreeCount(void) const { return total - active; }
 
-	size_t					Allocated( void ) const { return( total * sizeof( type ) ); }
+	size_t Allocated(void) const { return (total * sizeof(type)); }
 
 private:
-	typedef struct element_s {
-		struct element_s *	next;
-		type				t;
+	typedef struct element_s
+	{
+		struct element_s *next;
+		type t;
 	} element_t;
-	typedef struct block_s {
-		element_t			elements[blockSize];
-		struct block_s *	next;
+	typedef struct block_s
+	{
+		element_t elements[blockSize];
+		struct block_s *next;
 	} block_t;
 
-	block_t *				blocks;
-	element_t *				free;
-	int						total;
-	int						active;
+	block_t *blocks;
+	element_t *free;
+	int total;
+	int active;
 };
 
-template<class type, int blockSize, byte memoryTag, Rv_Sys_Heap_ID_t heapID>
-rvBlockPool<type,blockSize,memoryTag,heapID>::rvBlockPool( void ) {
+template <class type, int blockSize, byte memoryTag, Rv_Sys_Heap_ID_t heapID>
+rvBlockPool<type, blockSize, memoryTag, heapID>::rvBlockPool(void)
+{
 	blocks = NULL;
 	free = NULL;
 	total = active = 0;
 }
 
-template<class type, int blockSize, byte memoryTag, Rv_Sys_Heap_ID_t heapID>
-rvBlockPool<type,blockSize,memoryTag,heapID>::~rvBlockPool( void ) {
+template <class type, int blockSize, byte memoryTag, Rv_Sys_Heap_ID_t heapID>
+rvBlockPool<type, blockSize, memoryTag, heapID>::~rvBlockPool(void)
+{
 	Shutdown();
 }
 
-template<class type, int blockSize, byte memoryTag, Rv_Sys_Heap_ID_t heapID>
-type *rvBlockPool<type,blockSize,memoryTag,heapID>::Alloc( void ) {
-	if ( !free ) {
+template <class type, int blockSize, byte memoryTag, Rv_Sys_Heap_ID_t heapID>
+type *rvBlockPool<type, blockSize, memoryTag, heapID>::Alloc(void)
+{
+	if (!free)
+	{
 		RV_PUSH_SYS_HEAP_ID(heapID);
 		block_t *block = new block_t;
 		RV_POP_HEAP();
 		block->next = blocks;
 		blocks = block;
-		for ( int i = 0; i < blockSize; i++ ) {
+		for (int i = 0; i < blockSize; i++)
+		{
 			block->elements[i].next = free;
 			free = &block->elements[i];
 		}
@@ -83,17 +91,20 @@ type *rvBlockPool<type,blockSize,memoryTag,heapID>::Alloc( void ) {
 	return &element->t;
 }
 
-template<class type, int blockSize, byte memoryTag, Rv_Sys_Heap_ID_t heapID>
-void rvBlockPool<type,blockSize,memoryTag,heapID>::Free( type *t ) {
-	element_t *element = (element_t *)( ( (unsigned char *) t ) - ( (int) &((element_t *)0)->t ) );
+template <class type, int blockSize, byte memoryTag, Rv_Sys_Heap_ID_t heapID>
+void rvBlockPool<type, blockSize, memoryTag, heapID>::Free(type *t)
+{
+	element_t *element = (element_t *)(((unsigned char *)t) - ((int)&((element_t *)0)->t));
 	element->next = free;
 	free = element;
 	active--;
 }
 
-template<class type, int blockSize, byte memoryTag, Rv_Sys_Heap_ID_t heapID>
-void rvBlockPool<type,blockSize,memoryTag,heapID>::Shutdown( void ) {
-	while( blocks ) {
+template <class type, int blockSize, byte memoryTag, Rv_Sys_Heap_ID_t heapID>
+void rvBlockPool<type, blockSize, memoryTag, heapID>::Shutdown(void)
+{
+	while (blocks)
+	{
 		block_t *block = blocks;
 		blocks = blocks->next;
 		delete block;

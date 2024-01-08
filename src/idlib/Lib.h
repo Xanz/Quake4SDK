@@ -1,7 +1,6 @@
 #ifndef __LIB_H__
 #define __LIB_H__
 
-
 /*
 ===============================================================================
 
@@ -19,22 +18,22 @@
 ===============================================================================
 */
 
-class idLib {
+class idLib
+{
 public:
-	static class idSys *		sys;
-	static class idCommon *		common;
-	static class idCVarSystem *	cvarSystem;
-	static class idFileSystem *	fileSystem;
-	static int					frameNumber;
+	static class idSys *sys;
+	static class idCommon *common;
+	static class idCVarSystem *cvarSystem;
+	static class idFileSystem *fileSystem;
+	static int frameNumber;
 
-	static void					Init( void );
-	static void					ShutDown( void );
+	static void Init(void);
+	static void ShutDown(void);
 
-	// wrapper to idCommon functions 
-	static void					Error( const char *fmt, ... );
-	static void					Warning( const char *fmt, ... );
+	// wrapper to idCommon functions
+	static void Error(const char *fmt, ...);
+	static void Warning(const char *fmt, ...);
 };
-
 
 /*
 ===============================================================================
@@ -57,69 +56,83 @@ if ( !verify(game) ) {
 
 #ifdef _DEBUG
 
-	#define ID_CONDITIONAL_ASSERT
+#define ID_CONDITIONAL_ASSERT
 
-	void AssertFailed( const char *file, int line, const char *expression );
-	#undef assert
-	#ifdef ID_CONDITIONAL_ASSERT
-		// lets you disable an assertion at runtime when needed
-		// could extend this to count and produce an assert log - useful for 'release with asserts' builds
-		#define assert( x ) \
-		{ \
-			volatile static bool assert_enabled = true; \
-			if ( assert_enabled ) { \
-				if ( x ) { } else AssertFailed( __FILE__, __LINE__, #x );	\
-			} \
-		}
-		#define verify( x ) \
-		( \
-			( ( x ) ? true : ( \
-				( { \
-					volatile static bool assert_enabled = true; \
-					if ( assert_enabled ) { AssertFailed( __FILE__, __LINE__, #x ); } \
-				} ) \
-				, false ) ) \
-		)
-	#else
-		#define assert( x )		if ( x ) { } else AssertFailed( __FILE__, __LINE__, #x )
-		#define verify( x )		( ( x ) ? true : ( AssertFailed( __FILE__, __LINE__, #x ), false ) )
-	#endif
+void AssertFailed(const char *file, int line, const char *expression);
+#undef assert
+#ifdef ID_CONDITIONAL_ASSERT
+// lets you disable an assertion at runtime when needed
+// could extend this to count and produce an assert log - useful for 'release with asserts' builds
+#define assert(x)                                     \
+	{                                                 \
+		volatile static bool assert_enabled = true;   \
+		if (assert_enabled)                           \
+		{                                             \
+			if (x)                                    \
+			{                                         \
+			}                                         \
+			else                                      \
+				AssertFailed(__FILE__, __LINE__, #x); \
+		}                                             \
+	}
+#define verify(x)                                                      \
+	(                                                                  \
+		((x) ? true : (({                                              \
+						   volatile static bool assert_enabled = true; \
+						   if (assert_enabled)                         \
+						   {                                           \
+							   AssertFailed(__FILE__, __LINE__, #x);   \
+						   }                                           \
+					   }),                                             \
+					   false)))
+#else
+#define assert(x) \
+	if (x)        \
+	{             \
+	}             \
+	else          \
+		AssertFailed(__FILE__, __LINE__, #x)
+#define verify(x) ((x) ? true : (AssertFailed(__FILE__, __LINE__, #x), false))
+#endif
 
 #else
 
-	#undef assert
-	#define assert( x )
-	#define verify( x )		( ( x ) ? true : false )
+#undef assert
+#define assert(x)
+#define verify(x) ((x) ? true : false)
 
 #endif
 
-#define assert_8_byte_aligned( pointer )		assert( (((UINT_PTR)(pointer))&7) == 0 );
-#define assert_16_byte_aligned( pointer )		assert( (((UINT_PTR)(pointer))&15) == 0 );
-#define assert_32_byte_aligned( pointer )		assert( (((UINT_PTR)(pointer))&31) == 0 );
+#define assert_8_byte_aligned(pointer) assert((((UINT_PTR)(pointer)) & 7) == 0);
+#define assert_16_byte_aligned(pointer) assert((((UINT_PTR)(pointer)) & 15) == 0);
+#define assert_32_byte_aligned(pointer) assert((((UINT_PTR)(pointer)) & 31) == 0);
 
 #ifndef __TYPE_INFO_GEN__
-#define compile_time_assert( x )				{ typedef int compile_time_assert_failed[(x) ? 1 : -1]; }
-#define file_scoped_compile_time_assert( x )	extern int compile_time_assert_failed[(x) ? 1 : -1]
-#define assert_sizeof( type, size )				file_scoped_compile_time_assert( sizeof( type ) == size )
-#define assert_offsetof( type, field, offset )	file_scoped_compile_time_assert( offsetof( type, field ) == offset )
-#define assert_sizeof_8_byte_multiple( type )	file_scoped_compile_time_assert( ( sizeof( type ) & 8 ) == 0 )
-#define assert_sizeof_16_byte_multiple( type )	file_scoped_compile_time_assert( ( sizeof( type ) & 15 ) == 0 )
-#define assert_sizeof_32_byte_multiple( type )	file_scoped_compile_time_assert( ( sizeof( type ) & 31 ) == 0 )
+#define compile_time_assert(x)                                \
+	{                                                         \
+		typedef int compile_time_assert_failed[(x) ? 1 : -1]; \
+	}
+#define file_scoped_compile_time_assert(x) extern int compile_time_assert_failed[(x) ? 1 : -1]
+#define assert_sizeof(type, size) file_scoped_compile_time_assert(sizeof(type) == size)
+#define assert_offsetof(type, field, offset) file_scoped_compile_time_assert(offsetof(type, field) == offset)
+#define assert_sizeof_8_byte_multiple(type) file_scoped_compile_time_assert((sizeof(type) & 8) == 0)
+#define assert_sizeof_16_byte_multiple(type) file_scoped_compile_time_assert((sizeof(type) & 15) == 0)
+#define assert_sizeof_32_byte_multiple(type) file_scoped_compile_time_assert((sizeof(type) & 31) == 0)
 #else
-#define compile_time_assert( x )
-#define file_scoped_compile_time_assert( x )
-#define assert_sizeof( type, size )
-#define assert_offsetof( type, field, offset )
-#define assert_sizeof_16_byte_multiple( type )
+#define compile_time_assert(x)
+#define file_scoped_compile_time_assert(x)
+#define assert_sizeof(type, size)
+#define assert_offsetof(type, field, offset)
+#define assert_sizeof_16_byte_multiple(type)
 #endif
 
-class idException {
+class idException
+{
 public:
 	char error[2048];
 
-	idException( const char *text = "" ) { strcpy( error, text ); }
+	idException(const char *text = "") { strcpy(error, text); }
 };
-
 
 /*
 ===============================================================================
@@ -129,13 +142,13 @@ public:
 ===============================================================================
 */
 
-typedef unsigned char			byte;		// 8 bits
-typedef unsigned short			word;		// 16 bits
-typedef unsigned int			dword;		// 32 bits
-typedef unsigned int			uint;
-typedef unsigned long			ulong;
+typedef unsigned char byte;	 // 8 bits
+typedef unsigned short word; // 16 bits
+typedef unsigned int dword;	 // 32 bits
+typedef unsigned int uint;
+typedef unsigned long ulong;
 
-typedef int						qhandle_t;
+typedef int qhandle_t;
 
 class idFile;
 class idVec3;
@@ -147,60 +160,59 @@ class idVec3;
 class ID_VEC4_ALIGN idVec4;
 
 #ifndef NULL
-#define NULL					((void *)0)
+#define NULL ((void *)0)
 #endif
 
 #ifndef BIT
-#define BIT( num )				( 1 << ( num ) )
+#define BIT(num) (1 << (num))
 #endif
 
-#define	MAX_STRING_CHARS		1024		// max length of a string
+#define MAX_STRING_CHARS 1024 // max length of a string
 
 // maximum world size
-#define MAX_WORLD_COORD			( 128 * 1024 )
-#define MIN_WORLD_COORD			( -128 * 1024 )
-#define MAX_WORLD_SIZE			( MAX_WORLD_COORD - MIN_WORLD_COORD )
+#define MAX_WORLD_COORD (128 * 1024)
+#define MIN_WORLD_COORD (-128 * 1024)
+#define MAX_WORLD_SIZE (MAX_WORLD_COORD - MIN_WORLD_COORD)
 
 // basic colors
-extern	ID_VEC4_ALIGN idVec4 colorBlack;
-extern	ID_VEC4_ALIGN idVec4 colorWhite;
-extern	ID_VEC4_ALIGN idVec4 colorRed;
-extern	ID_VEC4_ALIGN idVec4 colorGreen;
-extern	ID_VEC4_ALIGN idVec4 colorBlue;
-extern	ID_VEC4_ALIGN idVec4 colorYellow;
-extern	ID_VEC4_ALIGN idVec4 colorMagenta;
-extern	ID_VEC4_ALIGN idVec4 colorCyan;
-extern	ID_VEC4_ALIGN idVec4 colorOrange;
-extern	ID_VEC4_ALIGN idVec4 colorPurple;
-extern	ID_VEC4_ALIGN idVec4 colorPink;
-extern	ID_VEC4_ALIGN idVec4 colorBrown;
-extern	ID_VEC4_ALIGN idVec4 colorLtGrey;
-extern	ID_VEC4_ALIGN idVec4 colorMdGrey;
-extern	ID_VEC4_ALIGN idVec4 colorDkGrey;
+extern ID_VEC4_ALIGN idVec4 colorBlack;
+extern ID_VEC4_ALIGN idVec4 colorWhite;
+extern ID_VEC4_ALIGN idVec4 colorRed;
+extern ID_VEC4_ALIGN idVec4 colorGreen;
+extern ID_VEC4_ALIGN idVec4 colorBlue;
+extern ID_VEC4_ALIGN idVec4 colorYellow;
+extern ID_VEC4_ALIGN idVec4 colorMagenta;
+extern ID_VEC4_ALIGN idVec4 colorCyan;
+extern ID_VEC4_ALIGN idVec4 colorOrange;
+extern ID_VEC4_ALIGN idVec4 colorPurple;
+extern ID_VEC4_ALIGN idVec4 colorPink;
+extern ID_VEC4_ALIGN idVec4 colorBrown;
+extern ID_VEC4_ALIGN idVec4 colorLtGrey;
+extern ID_VEC4_ALIGN idVec4 colorMdGrey;
+extern ID_VEC4_ALIGN idVec4 colorDkGrey;
 
 // packs color floats in the range [0,1] into an integer
-dword	PackColor( const idVec3 &color );
-void	UnpackColor( const dword color, idVec3 &unpackedColor );
-dword	PackColor( const idVec4 &color );
-void	UnpackColor( const dword color, idVec4 &unpackedColor );
+dword PackColor(const idVec3 &color);
+void UnpackColor(const dword color, idVec3 &unpackedColor);
+dword PackColor(const idVec4 &color);
+void UnpackColor(const dword color, idVec4 &unpackedColor);
 
 // little/big endian conversion
-short	BigShort( short l );
-short	LittleShort( short l );
-int		BigLong( int l );
-int		LittleLong( int l );
-float	BigFloat( float l );
-float	LittleFloat( float l );
-void	BigRevBytes( void *bp, int elsize, int elcount );
-void	LittleRevBytes( void *bp, int elsize, int elcount );
-void	Swap_Init( void );
+short BigShort(short l);
+short LittleShort(short l);
+int BigLong(int l);
+int LittleLong(int l);
+float BigFloat(float l);
+float LittleFloat(float l);
+void BigRevBytes(void *bp, int elsize, int elcount);
+void LittleRevBytes(void *bp, int elsize, int elcount);
+void Swap_Init(void);
 
-bool	Swap_IsBigEndian( void );
+bool Swap_IsBigEndian(void);
 
 // for base64
-void	SixtetsForInt( byte *out, int src);
-int		IntForSixtets( byte *in );
-
+void SixtetsForInt(byte *out, int src);
+int IntForSixtets(byte *in);
 
 /*
 ===============================================================================
@@ -327,4 +339,4 @@ int		IntForSixtets( byte *in );
 #endif
 // RAVEN END
 
-#endif	/* !__LIB_H__ */
+#endif /* !__LIB_H__ */

@@ -12,8 +12,8 @@
 
 Multiplayer statistics events
 
-This file contains statistic event definitions.  rvStatManager exposes 
-game-related functions (i.e. 'Kill', 'FlagCaptured') which create the 
+This file contains statistic event definitions.  rvStatManager exposes
+game-related functions (i.e. 'Kill', 'FlagCaptured') which create the
 appropriate statistic event and add it to the statQueue in rvStatManager.
 
 The statQueue contains a complete picture of an MP game.  It can be parsed to
@@ -31,11 +31,12 @@ class rvPlayerStat;
 ================
 statType_t
 
-Type identifiers for RTTI of stat events, rvStatTeam-derived events must go 
+Type identifiers for RTTI of stat events, rvStatTeam-derived events must go
 after ST_STAT_TEAM
 ================
 */
-enum statType_t {
+enum statType_t
+{
 	// not an actual event, undefined marker
 	ST_NONE = 0,
 	// rvStat derived
@@ -64,38 +65,42 @@ rvStat
 An individual event we want to know about for stats.
 ================
 */
-class rvStat {
+class rvStat
+{
 
 	friend class rvStatAllocator;
 
 public:
-
-	statType_t					GetType( void ) const { return type; };
-	int							GetTimeStamp( void ) const { return timeStamp; };
-	byte						GetPlayerClientNum( void ) const { return playerClientNum; };
+	statType_t GetType(void) const { return type; };
+	int GetTimeStamp(void) const { return timeStamp; };
+	byte GetPlayerClientNum(void) const { return playerClientNum; };
 
 protected:
-
 	// moved to protected to prevent allocating these on the normal heap.
 	// these should only be allocatd by rvStatAllocator.
-	rvStat( int t ) { timeStamp = t; playerClientNum = -1; type = ST_NONE; };
-	virtual						~rvStat( void ) {};
+	rvStat(int t)
+	{
+		timeStamp = t;
+		playerClientNum = -1;
+		type = ST_NONE;
+	};
+	virtual ~rvStat(void){};
 
-	virtual void				RegisterInGame( rvPlayerStat* stats ) {};
+	virtual void RegisterInGame(rvPlayerStat *stats){};
 
 	// the entity number of the player associated with this statistic
-	byte						playerClientNum;
+	byte playerClientNum;
 
-	statType_t					type;
-	int							timeStamp;
+	statType_t type;
+	int timeStamp;
 
 private:
 	// because of the way memory is handled for these we want the compiler
 	// on our side to find abuses.  note that we aren't defining these.
 	// this change is propagated to all derived classes.
 	rvStat();
-	rvStat( const rvStat &rhs );
-	const rvStat &operator=( const rvStat &rhs );
+	rvStat(const rvStat &rhs);
+	const rvStat &operator=(const rvStat &rhs);
 };
 
 /*
@@ -105,27 +110,27 @@ rvStatTeam
 A team-related rvStat
 ================
 */
-class rvStatTeam : public rvStat {
+class rvStatTeam : public rvStat
+{
 
 	friend class rvStatAllocator;
 
 public:
-	virtual						~rvStatTeam( void ) {};
+	virtual ~rvStatTeam(void){};
 
-	int							GetTeam( void ) { return team; };
+	int GetTeam(void) { return team; };
+
 protected:
-
 	// see comment in rvStat
-	rvStatTeam( int t, int tm ) : rvStat( t ) { team = tm; };
+	rvStatTeam(int t, int tm) : rvStat(t) { team = tm; };
 
-	byte						team;
+	byte team;
 
 private:
 	// see comment in rvStat
 	rvStatTeam();
-	rvStatTeam( const rvStatTeam &rhs );
-	const rvStatTeam &operator=( const rvStat &rhs );
-
+	rvStatTeam(const rvStatTeam &rhs);
+	const rvStatTeam &operator=(const rvStat &rhs);
 };
 
 /*
@@ -133,7 +138,7 @@ private:
 
 rvStat/rvStatTeam-derived classes
 
-These are the individual events that get stored in the 
+These are the individual events that get stored in the
 statManager's stat queue
 
 ===============================================================================
@@ -146,12 +151,13 @@ rvStatBeginGame
 A game has begun
 ================
 */
-class rvStatBeginGame : public rvStat {
+class rvStatBeginGame : public rvStat
+{
 
 	friend class rvStatAllocator;
 
 protected:
-	rvStatBeginGame( int t ) : rvStat( t ) { type = ST_BEGIN_GAME; };
+	rvStatBeginGame(int t) : rvStat(t) { type = ST_BEGIN_GAME; };
 };
 
 /*
@@ -161,12 +167,13 @@ rvStatEndGame
 The current game has ended
 ================
 */
-class rvStatEndGame : public rvStat {
+class rvStatEndGame : public rvStat
+{
 
 	friend class rvStatAllocator;
 
 protected:
-	rvStatEndGame( int t ) : rvStat( t ) { type = ST_END_GAME; };
+	rvStatEndGame(int t) : rvStat(t) { type = ST_END_GAME; };
 };
 
 /*
@@ -176,12 +183,17 @@ rvStatClientConnect
 A player has connected
 ================
 */
-class rvStatClientConnect : public rvStat {
+class rvStatClientConnect : public rvStat
+{
 
 	friend class rvStatAllocator;
 
 protected:
-	rvStatClientConnect( int t, int p ) : rvStat( t ) { type = ST_CLIENT_CONNECT; playerClientNum = p; };
+	rvStatClientConnect(int t, int p) : rvStat(t)
+	{
+		type = ST_CLIENT_CONNECT;
+		playerClientNum = p;
+	};
 };
 
 /*
@@ -191,7 +203,8 @@ rvStatHit
 A player hit another player
 ================
 */
-class rvStatHit : public rvStat {
+class rvStatHit : public rvStat
+{
 
 	friend class rvStatAllocator;
 
@@ -200,12 +213,12 @@ public:
 	int GetWeapon() const { return weapon; }
 
 protected:
-	rvStatHit( int t, int p, int v, int w, bool countForAccuracy );
-	virtual void RegisterInGame( rvPlayerStat* stats );
+	rvStatHit(int t, int p, int v, int w, bool countForAccuracy);
+	virtual void RegisterInGame(rvPlayerStat *stats);
 
-	byte		weapon;
-	byte		victimClientNum;
-	bool		trackAccuracy;
+	byte weapon;
+	byte victimClientNum;
+	bool trackAccuracy;
 };
 
 /*
@@ -215,17 +228,18 @@ rvStatKill
 A player killed another player
 ================
 */
-class rvStatKill : public rvStat {
+class rvStatKill : public rvStat
+{
 
 	friend class rvStatAllocator;
 
 protected:
-	rvStatKill( int t, int p, int v, bool g, int mod );
-	virtual void RegisterInGame( rvPlayerStat* stats );
+	rvStatKill(int t, int p, int v, bool g, int mod);
+	virtual void RegisterInGame(rvPlayerStat *stats);
 
-	byte						methodOfDeath;
-	byte						victimClientNum;
-	bool						gibbed;
+	byte methodOfDeath;
+	byte victimClientNum;
+	bool gibbed;
 };
 
 /*
@@ -235,15 +249,16 @@ rvStatDeath
 A player died
 ================
 */
-class rvStatDeath : public rvStat {
+class rvStatDeath : public rvStat
+{
 
 	friend class rvStatAllocator;
 
 protected:
-	rvStatDeath( int t, int p, int mod );
-	virtual void RegisterInGame( rvPlayerStat* stats );
+	rvStatDeath(int t, int p, int mod);
+	virtual void RegisterInGame(rvPlayerStat *stats);
 
-	byte						methodOfDeath;
+	byte methodOfDeath;
 };
 
 /*
@@ -253,7 +268,8 @@ rvStatDamageDealt
 A player damaged another player
 ================
 */
-class rvStatDamageDealt : public rvStat {
+class rvStatDamageDealt : public rvStat
+{
 
 	friend class rvStatAllocator;
 
@@ -261,11 +277,11 @@ public:
 	int GetDamage() const { return damage; }
 
 protected:
-	rvStatDamageDealt( int t, int p, int w, int d );
-	virtual void RegisterInGame( rvPlayerStat* stats );
+	rvStatDamageDealt(int t, int p, int w, int d);
+	virtual void RegisterInGame(rvPlayerStat *stats);
 
-	byte		weapon;
-	short		damage;
+	byte weapon;
+	short damage;
 };
 
 /*
@@ -275,7 +291,8 @@ rvStatDamageTaken
 A player took damage from another player
 ================
 */
-class rvStatDamageTaken : public rvStat {
+class rvStatDamageTaken : public rvStat
+{
 
 	friend class rvStatAllocator;
 
@@ -283,11 +300,11 @@ public:
 	int GetDamage() const { return damage; }
 
 protected:
-	rvStatDamageTaken( int t, int p, int w, int d );
-	virtual void RegisterInGame( rvPlayerStat* stats );
+	rvStatDamageTaken(int t, int p, int w, int d);
+	virtual void RegisterInGame(rvPlayerStat *stats);
 
-	byte		weapon;
-	short		damage;
+	byte weapon;
+	short damage;
 };
 
 /*
@@ -297,20 +314,21 @@ rvStatFlagDrop
 A player dropped the flag (CTF)
 ================
 */
-class rvStatFlagDrop : public rvStatTeam {
+class rvStatFlagDrop : public rvStatTeam
+{
 
 	friend class rvStatAllocator;
 
 protected:
-	rvStatFlagDrop( int t, int p, int a, int tm );
+	rvStatFlagDrop(int t, int p, int a, int tm);
 
-	byte						attacker; // enemy who caused the flag drop
+	byte attacker; // enemy who caused the flag drop
 
 private:
 	// see comment in rvStat
 	rvStatFlagDrop();
-	rvStatFlagDrop( const rvStatFlagDrop &rhs );
-	const rvStatFlagDrop &operator=( const rvStatFlagDrop &rhs );
+	rvStatFlagDrop(const rvStatFlagDrop &rhs);
+	const rvStatFlagDrop &operator=(const rvStatFlagDrop &rhs);
 };
 
 /*
@@ -320,18 +338,19 @@ rvStatFlagReturn
 A player returned his teams flag
 ================
 */
-class rvStatFlagReturn : public rvStatTeam {
+class rvStatFlagReturn : public rvStatTeam
+{
 
 	friend class rvStatAllocator;
 
 protected:
-	rvStatFlagReturn( int t, int p, int tm );
+	rvStatFlagReturn(int t, int p, int tm);
 
 private:
 	// see comment in rvStat
 	rvStatFlagReturn();
-	rvStatFlagReturn( const rvStatFlagReturn &rhs );
-	const rvStatFlagReturn &operator=( const rvStatFlagReturn &rhs );
+	rvStatFlagReturn(const rvStatFlagReturn &rhs);
+	const rvStatFlagReturn &operator=(const rvStatFlagReturn &rhs);
 };
 
 /*
@@ -341,21 +360,22 @@ rvStatFlagCapture
 A player captured a flag (CTF)
 ================
 */
-class rvStatFlagCapture : public rvStatTeam {
+class rvStatFlagCapture : public rvStatTeam
+{
 
 	friend class rvStatAllocator;
 
 protected:
-	rvStatFlagCapture( int t, int p, int f, int tm );
-	virtual void RegisterInGame( rvPlayerStat* stats );
+	rvStatFlagCapture(int t, int p, int f, int tm);
+	virtual void RegisterInGame(rvPlayerStat *stats);
 
-	byte					flagTeam; // team of flag was captured
+	byte flagTeam; // team of flag was captured
 
 private:
 	// see comment in rvStat
 	rvStatFlagCapture();
-	rvStatFlagCapture( const rvStatFlagCapture &rhs );
-	const rvStatFlagCapture &operator=( const rvStatFlagCapture &rhs );
+	rvStatFlagCapture(const rvStatFlagCapture &rhs);
+	const rvStatFlagCapture &operator=(const rvStatFlagCapture &rhs);
 };
 
 #endif

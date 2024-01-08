@@ -14,11 +14,12 @@ that can be bound to other entities.  Should not be subclassed.
 ===============================================================================
 */
 
-class idSpawnableEntity : public idEntity {
+class idSpawnableEntity : public idEntity
+{
 public:
-	CLASS_PROTOTYPE( idSpawnableEntity );
+	CLASS_PROTOTYPE(idSpawnableEntity);
 
-	void				Spawn( void );
+	void Spawn(void);
 
 private:
 };
@@ -35,36 +36,37 @@ private:
 ===============================================================================
 */
 
-class idPlayerStart : public idEntity {
+class idPlayerStart : public idEntity
+{
 public:
-	CLASS_PROTOTYPE( idPlayerStart );
+	CLASS_PROTOTYPE(idPlayerStart);
 
-	enum {
+	enum
+	{
 		EVENT_TELEPORTPLAYER = idEntity::EVENT_MAXEVENTS,
 		EVENT_TELEPORTITEM,
 		EVENT_MAXEVENTS
 	};
 
-						idPlayerStart( void );
+	idPlayerStart(void);
 
-	void				Spawn( void );
+	void Spawn(void);
 
-	void				Save( idSaveGame *savefile ) const;
-	void				Restore( idRestoreGame *savefile );
+	void Save(idSaveGame *savefile) const;
+	void Restore(idRestoreGame *savefile);
 
-	virtual bool		ClientReceiveEvent( int event, int time, const idBitMsg &msg );
+	virtual bool ClientReceiveEvent(int event, int time, const idBitMsg &msg);
 
 private:
-	int					teleportStage;
+	int teleportStage;
 
-	void				Event_TeleportEntity( idEntity *activator, bool predicted, idVec3& prevOrigin = vec3_origin );
-	void				Event_Teleport( idEntity *activator );
-	void				Teleport( idEntity* other );
-	void				Event_TeleportStage( idPlayer *player );
-	void				Event_ResetCamera( idPlayer *player );
-	void				TeleportPlayer( idPlayer *player );
+	void Event_TeleportEntity(idEntity *activator, bool predicted, idVec3 &prevOrigin = vec3_origin);
+	void Event_Teleport(idEntity *activator);
+	void Teleport(idEntity *other);
+	void Event_TeleportStage(idPlayer *player);
+	void Event_ResetCamera(idPlayer *player);
+	void TeleportPlayer(idPlayer *player);
 };
-
 
 /*
 ===============================================================================
@@ -73,25 +75,26 @@ private:
   Bind to a mover to have the mover activate a trigger as it moves.
   When target by triggers, activating the trigger will toggle the
   activator on and off. Check "start_off" to have it spawn disabled.
-	
+
 ===============================================================================
 */
 
-class idActivator : public idEntity {
+class idActivator : public idEntity
+{
 public:
-	CLASS_PROTOTYPE( idActivator );
+	CLASS_PROTOTYPE(idActivator);
 
-	void				Spawn( void );
+	void Spawn(void);
 
-	void				Save( idSaveGame *savefile ) const;
-	void				Restore( idRestoreGame *savefile );
+	void Save(idSaveGame *savefile) const;
+	void Restore(idRestoreGame *savefile);
 
-	virtual void		Think( void );
+	virtual void Think(void);
 
 private:
-	bool				stay_on;
+	bool stay_on;
 
-	void				Event_Activate( idEntity *activator );
+	void Event_Activate(idEntity *activator);
 };
 
 /*
@@ -101,18 +104,19 @@ private:
 
 ===============================================================================
 */
-class idPathCorner : public idEntity {
+class idPathCorner : public idEntity
+{
 public:
-	CLASS_PROTOTYPE( idPathCorner );
+	CLASS_PROTOTYPE(idPathCorner);
 
-	void				Spawn( void );
+	void Spawn(void);
 
-	static void			DrawDebugInfo( void );
+	static void DrawDebugInfo(void);
 
-	static idPathCorner *RandomPath( const idEntity *source, const idEntity *ignore );
+	static idPathCorner *RandomPath(const idEntity *source, const idEntity *ignore);
 
 private:
-	void				Event_RandomPath( void );
+	void Event_RandomPath(void);
 };
 
 // RAVEN BEGIN
@@ -125,12 +129,12 @@ private:
 ===============================================================================
 */
 
-class rvDebugJumpPoint : public idEntity {
+class rvDebugJumpPoint : public idEntity
+{
 public:
+	CLASS_PROTOTYPE(rvDebugJumpPoint);
 
-	CLASS_PROTOTYPE( rvDebugJumpPoint );
-
-	void				Spawn();
+	void Spawn();
 };
 
 /*
@@ -141,50 +145,51 @@ public:
 ===============================================================================
 */
 
-class idDamagable : public idEntity {
+class idDamagable : public idEntity
+{
 public:
-	CLASS_PROTOTYPE( idDamagable );
+	CLASS_PROTOTYPE(idDamagable);
 
-						idDamagable( void );
+	idDamagable(void);
 
-	void				Save( idSaveGame *savefile ) const;
-	void				Restore( idRestoreGame *savefile );
+	void Save(idSaveGame *savefile) const;
+	void Restore(idRestoreGame *savefile);
 
-	void				Spawn( void );
-	void				Killed( idEntity *inflictor, idEntity *attacker, int damage, const idVec3 &dir, int location );
+	void Spawn(void);
+	void Killed(idEntity *inflictor, idEntity *attacker, int damage, const idVec3 &dir, int location);
 
-// RAVEN BEGIN
-// abahr:
-	virtual void		Damage( idEntity *inflictor, idEntity *attacker, const idVec3 &dir, const char *damageDefName, const float damageScale, const int location );
+	// RAVEN BEGIN
+	// abahr:
+	virtual void Damage(idEntity *inflictor, idEntity *attacker, const idVec3 &dir, const char *damageDefName, const float damageScale, const int location);
 
-	int					invincibleTime;
-// RAVEN BEGIN
-// abahr: changed to protected
+	int invincibleTime;
+	// RAVEN BEGIN
+	// abahr: changed to protected
 protected:
-	int					stage;
-	int					stageNext;
-	const idDict*		stageDict;
-	int					stageEndTime;
-	int					stageEndHealth;
-	int					stageEndSpeed;
-//jshepard: used to end a stage if a moveable is on the ground (for falling objects)
-	bool				stageEndOnGround;
-//jshepard: we want to activate certain objects when triggered-- falling blocks yes, barrels no.
-	bool				activateStageOnTrigger;
-		
-	virtual void		ExecuteStage	( void );
-	void				UpdateStage		( void );
-	idVec3				GetStageVector	( const char* key, const char* defaultString = "" ) const;
-	float				GetStageFloat	( const char* key, const char* defaultString = "" ) const;
-	int					GetStageInt		( const char* key, const char* defaultString = "" ) const;
-// RAVEN END
+	int stage;
+	int stageNext;
+	const idDict *stageDict;
+	int stageEndTime;
+	int stageEndHealth;
+	int stageEndSpeed;
+	// jshepard: used to end a stage if a moveable is on the ground (for falling objects)
+	bool stageEndOnGround;
+	// jshepard: we want to activate certain objects when triggered-- falling blocks yes, barrels no.
+	bool activateStageOnTrigger;
 
-	int					count;
-	int					nextTriggerTime;
+	virtual void ExecuteStage(void);
+	void UpdateStage(void);
+	idVec3 GetStageVector(const char *key, const char *defaultString = "") const;
+	float GetStageFloat(const char *key, const char *defaultString = "") const;
+	int GetStageInt(const char *key, const char *defaultString = "") const;
+	// RAVEN END
 
-	void				BecomeBroken( idEntity *activator );
-	void				Event_BecomeBroken( idEntity *activator );
-	void				Event_RestoreDamagable( void );
+	int count;
+	int nextTriggerTime;
+
+	void BecomeBroken(idEntity *activator);
+	void Event_BecomeBroken(idEntity *activator);
+	void Event_RestoreDamagable(void);
 };
 
 /*
@@ -195,16 +200,16 @@ protected:
 ===============================================================================
 */
 
-class idExplodable : public idEntity {
+class idExplodable : public idEntity
+{
 public:
-	CLASS_PROTOTYPE( idExplodable );
+	CLASS_PROTOTYPE(idExplodable);
 
-	void				Spawn( void );
+	void Spawn(void);
 
 private:
-	void				Event_Explode( idEntity *activator );
+	void Event_Explode(idEntity *activator);
 };
-
 
 /*
 ===============================================================================
@@ -214,28 +219,28 @@ private:
 ===============================================================================
 */
 
-class idSpring : public idEntity {
+class idSpring : public idEntity
+{
 public:
-	CLASS_PROTOTYPE( idSpring );
+	CLASS_PROTOTYPE(idSpring);
 
-	void				Spawn( void );
-	void				Save( idSaveGame *savefile ) const;
-	void				Restore( idRestoreGame *savefile );
+	void Spawn(void);
+	void Save(idSaveGame *savefile) const;
+	void Restore(idRestoreGame *savefile);
 
-	virtual void		Think( void );
+	virtual void Think(void);
 
 private:
-	idEntityPtr<idEntity>	ent1;
-	idEntityPtr<idEntity>	ent2;
-	int						id1;
-	int						id2;
-	idVec3					p1;
-	idVec3					p2;
-	idForce_Spring			spring;
+	idEntityPtr<idEntity> ent1;
+	idEntityPtr<idEntity> ent2;
+	int id1;
+	int id2;
+	idVec3 p1;
+	idVec3 p2;
+	idForce_Spring spring;
 
-	void				Event_LinkSpring( void );
+	void Event_LinkSpring(void);
 };
-
 
 /*
 ===============================================================================
@@ -245,36 +250,35 @@ private:
 ===============================================================================
 */
 
-class idForceField : public idEntity {
+class idForceField : public idEntity
+{
 public:
-	CLASS_PROTOTYPE( idForceField );
+	CLASS_PROTOTYPE(idForceField);
 
-	void				Save( idSaveGame *savefile ) const;
-	void				Restore( idRestoreGame *savefile );
+	void Save(idSaveGame *savefile) const;
+	void Restore(idRestoreGame *savefile);
 
-	void				Spawn( void );
+	void Spawn(void);
 
-	virtual void		Think( void );
+	virtual void Think(void);
 
-// RAVEN BEGIN
-// kfuller: idDamagable may want to change some things on the fly
-	void				SetExplosion(float force) { forceField.Explosion(force); }
-// RAVEN END
+	// RAVEN BEGIN
+	// kfuller: idDamagable may want to change some things on the fly
+	void SetExplosion(float force) { forceField.Explosion(force); }
+	// RAVEN END
 
-
-// RAVEN BEGIN
-// bdube: made force field protected
+	// RAVEN BEGIN
+	// bdube: made force field protected
 protected:
+	idForce_Field forceField;
 
-	idForce_Field		forceField;
-	
 private:
-// RAVEN END
-	void				Toggle( void );
+	// RAVEN END
+	void Toggle(void);
 
-	void				Event_Activate( idEntity *activator );
-	void				Event_Toggle( void );
-	void				Event_FindTargets( void );
+	void Event_Activate(idEntity *activator);
+	void Event_Toggle(void);
+	void Event_FindTargets(void);
 };
 
 // RAVEN BEGIN
@@ -287,28 +291,29 @@ private:
 ===============================================================================
 */
 
-class rvJumpPad : public idForceField {
+class rvJumpPad : public idForceField
+{
 public:
-	CLASS_PROTOTYPE( rvJumpPad );
+	CLASS_PROTOTYPE(rvJumpPad);
 
-	rvJumpPad ( void );
+	rvJumpPad(void);
 
-	void				Spawn( void );
-	void				Think( void );
+	void Spawn(void);
+	void Think(void);
 
 private:
+	int lastEffectTime;
 
-	int					lastEffectTime;
+	void Event_FindTargets(void);
 
-	void				Event_FindTargets( void );
-
-	enum {
+	enum
+	{
 		EVENT_JUMPFX = idEntity::EVENT_MAXEVENTS,
 		EVENT_MAXEVENTS
 	};
-	bool				ClientReceiveEvent( int event, int time, const idBitMsg &msg );
+	bool ClientReceiveEvent(int event, int time, const idBitMsg &msg);
 
-	idMat3				effectAxis;
+	idMat3 effectAxis;
 };
 // RAVEN END
 
@@ -320,69 +325,70 @@ private:
 ===============================================================================
 */
 
-class idAnimated : public idAFEntity_Gibbable {
+class idAnimated : public idAFEntity_Gibbable
+{
 public:
-	CLASS_PROTOTYPE( idAnimated );
+	CLASS_PROTOTYPE(idAnimated);
 
-							idAnimated();
-							~idAnimated();
+	idAnimated();
+	~idAnimated();
 
-	void					Save( idSaveGame *savefile ) const;
-	void					Restore( idRestoreGame *savefile );
+	void Save(idSaveGame *savefile) const;
+	void Restore(idRestoreGame *savefile);
 
-	void					Spawn( void );
-	virtual bool			LoadAF( const char* keyname );
-	bool					StartRagdoll( void );
-	virtual bool			GetPhysicsToSoundTransform( idVec3 &origin, idMat3 &axis );
+	void Spawn(void);
+	virtual bool LoadAF(const char *keyname);
+	bool StartRagdoll(void);
+	virtual bool GetPhysicsToSoundTransform(idVec3 &origin, idMat3 &axis);
 
-// RAVEN BEGIN
-// bdube: script 
-	void					Think ( void );
-	
-	virtual	void			Damage( idEntity *inflictor, idEntity *attacker, const idVec3 &dir, const char *damageDefName, const float damageScale, const int location );
- 	virtual bool			ShouldConstructScriptObjectAtSpawn( void ) const;
-// RAVEN END
+	// RAVEN BEGIN
+	// bdube: script
+	void Think(void);
+
+	virtual void Damage(idEntity *inflictor, idEntity *attacker, const idVec3 &dir, const char *damageDefName, const float damageScale, const int location);
+	virtual bool ShouldConstructScriptObjectAtSpawn(void) const;
+	// RAVEN END
 
 private:
-	int						num_anims;
-	int						current_anim_index;
-	int						anim;
-	int						blendFrames;
-	jointHandle_t			soundJoint;
-	idEntityPtr<idEntity>	activator;
-	bool					activated;
+	int num_anims;
+	int current_anim_index;
+	int anim;
+	int blendFrames;
+	jointHandle_t soundJoint;
+	idEntityPtr<idEntity> activator;
+	bool activated;
 
-// RAVEN BEGIN
-// bdube: script variables
+	// RAVEN BEGIN
+	// bdube: script variables
 	// script control
-	idThread *				scriptThread;
-	idStr					state;
-	idStr					idealState;
-	int						animDoneTime[ANIM_NumAnimChannels];
+	idThread *scriptThread;
+	idStr state;
+	idStr idealState;
+	int animDoneTime[ANIM_NumAnimChannels];
 
 	// Script state management
-	void					UpdateScript( void );
-	void					SetState( const char *statename, int blend );
-	void					CallHandler ( const char* handler );
-// RAVEN END
+	void UpdateScript(void);
+	void SetState(const char *statename, int blend);
+	void CallHandler(const char *handler);
+	// RAVEN END
 
-	void					PlayNextAnim( void );
+	void PlayNextAnim(void);
 
-	void					Event_Activate( idEntity *activator );	
-	void					Event_Start( void );
-	void					Event_StartRagdoll( void );
-	void					Event_AnimDone( int animIndex );
-	void					Event_Footstep( void );
-	void					Event_LaunchMissiles( const char *projectilename, const char *sound, const char *launchjoint, const char *targetjoint, int numshots, int framedelay );
-	void					Event_LaunchMissilesUpdate( int launchjoint, int targetjoint, int numshots, int framedelay );
+	void Event_Activate(idEntity *activator);
+	void Event_Start(void);
+	void Event_StartRagdoll(void);
+	void Event_AnimDone(int animIndex);
+	void Event_Footstep(void);
+	void Event_LaunchMissiles(const char *projectilename, const char *sound, const char *launchjoint, const char *targetjoint, int numshots, int framedelay);
+	void Event_LaunchMissilesUpdate(int launchjoint, int targetjoint, int numshots, int framedelay);
 
-// RAVEN BEGIN
-// kfuller: added
-	void					Event_SetAnimState( const char* state, int blendframes );
-	void					Event_PlayAnim( int channel, const char *animname );
-	void					Event_PlayCycle( int channel, const char *animname );
-	void					Event_AnimDone2( int channel, int blendFrames );
-// RAVEN END	
+	// RAVEN BEGIN
+	// kfuller: added
+	void Event_SetAnimState(const char *state, int blendframes);
+	void Event_PlayAnim(int channel, const char *animname);
+	void Event_PlayCycle(int channel, const char *animname);
+	void Event_AnimDone2(int channel, int blendFrames);
+	// RAVEN END
 };
 
 /*
@@ -393,37 +399,37 @@ private:
 ===============================================================================
 */
 
-class idStaticEntity : public idEntity {
+class idStaticEntity : public idEntity
+{
 public:
-	CLASS_PROTOTYPE( idStaticEntity );
+	CLASS_PROTOTYPE(idStaticEntity);
 
-						idStaticEntity( void );
+	idStaticEntity(void);
 
-	void				Save( idSaveGame *savefile ) const;
-	void				Restore( idRestoreGame *savefile );
+	void Save(idSaveGame *savefile) const;
+	void Restore(idRestoreGame *savefile);
 
-	void				Spawn( void );
-	void				ShowEditingDialog( void );
-	virtual void		Hide( void );
-	virtual void		Show( void );
-	void				Fade( const idVec4 &to, float fadeTime );
-	virtual void		Think( void );
+	void Spawn(void);
+	void ShowEditingDialog(void);
+	virtual void Hide(void);
+	virtual void Show(void);
+	void Fade(const idVec4 &to, float fadeTime);
+	virtual void Think(void);
 
-	virtual void		WriteToSnapshot( idBitMsgDelta &msg ) const;
-	virtual void		ReadFromSnapshot( const idBitMsgDelta &msg );
+	virtual void WriteToSnapshot(idBitMsgDelta &msg) const;
+	virtual void ReadFromSnapshot(const idBitMsgDelta &msg);
 
 private:
-	void				Event_Activate( idEntity *activator );
+	void Event_Activate(idEntity *activator);
 
-	int					spawnTime;
-	bool				active;
-	idVec4				fadeFrom;
-	idVec4				fadeTo;
-	int					fadeStart;
-	int					fadeEnd;
-	bool				runGui;
+	int spawnTime;
+	bool active;
+	idVec4 fadeFrom;
+	idVec4 fadeTo;
+	int fadeStart;
+	int fadeEnd;
+	bool runGui;
 };
-
 
 /*
 ===============================================================================
@@ -433,26 +439,25 @@ idFuncEmitter
 ===============================================================================
 */
 
-class idFuncEmitter : public idStaticEntity {
+class idFuncEmitter : public idStaticEntity
+{
 public:
-	CLASS_PROTOTYPE( idFuncEmitter );
+	CLASS_PROTOTYPE(idFuncEmitter);
 
-						idFuncEmitter( void );
+	idFuncEmitter(void);
 
-	void				Save( idSaveGame *savefile ) const;
-	void				Restore( idRestoreGame *savefile );
+	void Save(idSaveGame *savefile) const;
+	void Restore(idRestoreGame *savefile);
 
-	void				Spawn( void );
-	void				Event_Activate( idEntity *activator );
+	void Spawn(void);
+	void Event_Activate(idEntity *activator);
 
-	virtual void		WriteToSnapshot( idBitMsgDelta &msg ) const;
-	virtual void		ReadFromSnapshot( const idBitMsgDelta &msg );
+	virtual void WriteToSnapshot(idBitMsgDelta &msg) const;
+	virtual void ReadFromSnapshot(const idBitMsgDelta &msg);
 
 private:
-	bool				hidden;
-
+	bool hidden;
 };
-
 
 // RAVEN BEGIN
 // bdube: not using
@@ -500,19 +505,19 @@ idFuncSplat
 ===============================================================================
 */
 
-class idFuncSplat : public idFuncEmitter {
+class idFuncSplat : public idFuncEmitter
+{
 public:
-	CLASS_PROTOTYPE( idFuncSplat );
+	CLASS_PROTOTYPE(idFuncSplat);
 
-	idFuncSplat( void );
+	idFuncSplat(void);
 
-	void				Spawn( void );
+	void Spawn(void);
 
 private:
-	void				Event_Activate( idEntity *activator );
-	void				Event_Splat();
+	void Event_Activate(idEntity *activator);
+	void Event_Splat();
 };
-
 
 /*
 ===============================================================================
@@ -522,23 +527,23 @@ idTextEntity
 ===============================================================================
 */
 
-class idTextEntity : public idEntity {
+class idTextEntity : public idEntity
+{
 public:
-	CLASS_PROTOTYPE( idTextEntity );
+	CLASS_PROTOTYPE(idTextEntity);
 
-	void				Spawn( void );
+	void Spawn(void);
 
-	void				Save( idSaveGame *savefile ) const;
-	void				Restore( idRestoreGame *savefile );
+	void Save(idSaveGame *savefile) const;
+	void Restore(idRestoreGame *savefile);
 
-	virtual void		Think( void );
-	virtual void		ClientPredictionThink( void );
+	virtual void Think(void);
+	virtual void ClientPredictionThink(void);
 
 private:
-	idStr				text;
-	bool				playerOriented;
+	idStr text;
+	bool playerOriented;
 };
-
 
 /*
 ===============================================================================
@@ -548,122 +553,130 @@ idLocationEntity
 ===============================================================================
 */
 
-class idLocationEntity : public idEntity {
+class idLocationEntity : public idEntity
+{
 public:
-	CLASS_PROTOTYPE( idLocationEntity );
+	CLASS_PROTOTYPE(idLocationEntity);
 
-	void				Spawn( void );
+	void Spawn(void);
 
-	const char *		GetLocation( void ) const;
+	const char *GetLocation(void) const;
 
 private:
 };
 
-class idLocationSeparatorEntity : public idEntity {
+class idLocationSeparatorEntity : public idEntity
+{
 public:
-	CLASS_PROTOTYPE( idLocationSeparatorEntity );
+	CLASS_PROTOTYPE(idLocationSeparatorEntity);
 
-	void				Spawn( void );
+	void Spawn(void);
 
 private:
 };
 
-class idVacuumSeparatorEntity : public idEntity {
+class idVacuumSeparatorEntity : public idEntity
+{
 public:
-	CLASS_PROTOTYPE( idVacuumSeparatorEntity );
+	CLASS_PROTOTYPE(idVacuumSeparatorEntity);
 
-						idVacuumSeparatorEntity( void );
+	idVacuumSeparatorEntity(void);
 
-	void				Spawn( void );
+	void Spawn(void);
 
-	void				Save( idSaveGame *savefile ) const;
-	void				Restore( idRestoreGame *savefile );
+	void Save(idSaveGame *savefile) const;
+	void Restore(idRestoreGame *savefile);
 
-	void				Event_Activate( idEntity *activator );	
+	void Event_Activate(idEntity *activator);
 
 private:
-	qhandle_t			portal;
+	qhandle_t portal;
 };
 
-class idVacuumEntity : public idEntity {
+class idVacuumEntity : public idEntity
+{
 public:
-	CLASS_PROTOTYPE( idVacuumEntity );
+	CLASS_PROTOTYPE(idVacuumEntity);
 
-	void				Spawn( void );
+	void Spawn(void);
 
 private:
 };
 
 // RAVEN BEGIN
 // abahr
-class rvGravitySeparatorEntity : public idEntity {
+class rvGravitySeparatorEntity : public idEntity
+{
 public:
-	CLASS_PROTOTYPE( rvGravitySeparatorEntity );
+	CLASS_PROTOTYPE(rvGravitySeparatorEntity);
 
-						rvGravitySeparatorEntity( void );
+	rvGravitySeparatorEntity(void);
 
-	void				Spawn( void );
+	void Spawn(void);
 
-	void				Save( idSaveGame *savefile ) const;
-	void				Restore( idRestoreGame *savefile );
+	void Save(idSaveGame *savefile) const;
+	void Restore(idRestoreGame *savefile);
 
-	void				Event_Activate( idEntity *activator );	
+	void Event_Activate(idEntity *activator);
 
 private:
-	qhandle_t			portal;
+	qhandle_t portal;
 };
 
-class rvGravityArea : public idEntity {
+class rvGravityArea : public idEntity
+{
 public:
-	ABSTRACT_PROTOTYPE( rvGravityArea );
+	ABSTRACT_PROTOTYPE(rvGravityArea);
 
-	void					Spawn( void );
+	void Spawn(void);
 
-	virtual int				GetArea() const { return area; }
-	virtual const idVec3	GetGravity( const idVec3& origin, const idMat3& axis, int clipMask, idEntity* passEntity ) const = 0;
-	virtual const idVec3	GetGravity( const idEntity* ent ) const = 0;
-	virtual const idVec3	GetGravity( const rvClientEntity* ent ) const = 0;
+	virtual int GetArea() const { return area; }
+	virtual const idVec3 GetGravity(const idVec3 &origin, const idMat3 &axis, int clipMask, idEntity *passEntity) const = 0;
+	virtual const idVec3 GetGravity(const idEntity *ent) const = 0;
+	virtual const idVec3 GetGravity(const rvClientEntity *ent) const = 0;
 
-	void					Save( idSaveGame *savefile ) const;
-	void					Restore( idRestoreGame *savefile );
+	void Save(idSaveGame *savefile) const;
+	void Restore(idRestoreGame *savefile);
 
-	bool					IsEqualTo( const rvGravityArea* area ) const;
-	bool					operator==( const rvGravityArea* area ) const;
-	bool					operator==( const rvGravityArea& area ) const;
-	bool					operator!=( const rvGravityArea* area ) const;
-	bool					operator!=( const rvGravityArea& area ) const;
+	bool IsEqualTo(const rvGravityArea *area) const;
+	bool operator==(const rvGravityArea *area) const;
+	bool operator==(const rvGravityArea &area) const;
+	bool operator!=(const rvGravityArea *area) const;
+	bool operator!=(const rvGravityArea &area) const;
 
 protected:
-	int						area;
+	int area;
 };
 
-class rvGravityArea_Static : public rvGravityArea {
+class rvGravityArea_Static : public rvGravityArea
+{
 public:
-	CLASS_PROTOTYPE( rvGravityArea_Static );
+	CLASS_PROTOTYPE(rvGravityArea_Static);
 
-	void					Spawn( void );
+	void Spawn(void);
 
-	virtual const idVec3	GetGravity( const idVec3& origin, const idMat3& axis, int clipMask, idEntity* passEntity ) const { return gravity; }
-	virtual const idVec3	GetGravity( const idEntity* ent ) const { return gravity; }
-	virtual const idVec3	GetGravity( const rvClientEntity* ent ) const { return gravity; }
+	virtual const idVec3 GetGravity(const idVec3 &origin, const idMat3 &axis, int clipMask, idEntity *passEntity) const { return gravity; }
+	virtual const idVec3 GetGravity(const idEntity *ent) const { return gravity; }
+	virtual const idVec3 GetGravity(const rvClientEntity *ent) const { return gravity; }
 
-	void					Save( idSaveGame *savefile ) const;
-	void					Restore( idRestoreGame *savefile );
+	void Save(idSaveGame *savefile) const;
+	void Restore(idRestoreGame *savefile);
 
 protected:
-	idVec3					gravity;
+	idVec3 gravity;
 };
 
-class rvGravityArea_SurfaceNormal : public rvGravityArea {
+class rvGravityArea_SurfaceNormal : public rvGravityArea
+{
 public:
-	CLASS_PROTOTYPE( rvGravityArea_SurfaceNormal );
+	CLASS_PROTOTYPE(rvGravityArea_SurfaceNormal);
 
-	virtual const idVec3	GetGravity( const idVec3& origin, const idMat3& axis, int clipMask, idEntity* passEntity ) const;
-	virtual const idVec3	GetGravity( const idEntity* ent ) const;
-	virtual const idVec3	GetGravity( const rvClientEntity* ent ) const;
+	virtual const idVec3 GetGravity(const idVec3 &origin, const idMat3 &axis, int clipMask, idEntity *passEntity) const;
+	virtual const idVec3 GetGravity(const idEntity *ent) const;
+	virtual const idVec3 GetGravity(const rvClientEntity *ent) const;
 
 protected:
-	virtual const idVec3	GetGravity( const idPhysics* physics ) const;
+	virtual const idVec3 GetGravity(const idPhysics *physics) const;
 };
 // RAVEN END
 
@@ -675,35 +688,35 @@ protected:
 ===============================================================================
 */
 
-class idBeam : public idEntity {
+class idBeam : public idEntity
+{
 public:
-	CLASS_PROTOTYPE( idBeam );
+	CLASS_PROTOTYPE(idBeam);
 
-						idBeam();
+	idBeam();
 
-	void				Spawn( void );
+	void Spawn(void);
 
-	void				Save( idSaveGame *savefile ) const;
-	void				Restore( idRestoreGame *savefile );
+	void Save(idSaveGame *savefile) const;
+	void Restore(idRestoreGame *savefile);
 
-	virtual void		Think( void );
+	virtual void Think(void);
 
-	void				SetMaster( idBeam *masterbeam );
-	void				SetBeamTarget( const idVec3 &origin );
+	void SetMaster(idBeam *masterbeam);
+	void SetBeamTarget(const idVec3 &origin);
 
-	virtual void		Show( void );
+	virtual void Show(void);
 
-	virtual void		WriteToSnapshot( idBitMsgDelta &msg ) const;
-	virtual void		ReadFromSnapshot( const idBitMsgDelta &msg );
+	virtual void WriteToSnapshot(idBitMsgDelta &msg) const;
+	virtual void ReadFromSnapshot(const idBitMsgDelta &msg);
 
 private:
-	void				Event_MatchTarget( void );
-	void				Event_Activate( idEntity *activator );
+	void Event_MatchTarget(void);
+	void Event_Activate(idEntity *activator);
 
-	idEntityPtr<idBeam>	target;
-	idEntityPtr<idBeam>	master;
+	idEntityPtr<idBeam> target;
+	idEntityPtr<idBeam> master;
 };
-
 
 /*
 ===============================================================================
@@ -715,22 +728,21 @@ private:
 
 class idRenderModelLiquid;
 
-class idLiquid : public idEntity {
+class idLiquid : public idEntity
+{
 public:
-	CLASS_PROTOTYPE( idLiquid );
+	CLASS_PROTOTYPE(idLiquid);
 
-	void				Spawn( void );
+	void Spawn(void);
 
-	void				Save( idSaveGame *savefile ) const;
-	void				Restore( idRestoreGame *savefile );
+	void Save(idSaveGame *savefile) const;
+	void Restore(idRestoreGame *savefile);
 
 private:
-	void				Event_Touch( idEntity *other, trace_t *trace );
-
+	void Event_Touch(idEntity *other, trace_t *trace);
 
 	idRenderModelLiquid *model;
 };
-
 
 /*
 ===============================================================================
@@ -740,26 +752,26 @@ private:
 ===============================================================================
 */
 
-class idShaking : public idEntity {
+class idShaking : public idEntity
+{
 public:
-	CLASS_PROTOTYPE( idShaking );
+	CLASS_PROTOTYPE(idShaking);
 
-							idShaking();
-							~idShaking();
+	idShaking();
+	~idShaking();
 
-	void					Spawn( void );
+	void Spawn(void);
 
-	void					Save( idSaveGame *savefile ) const;
-	void					Restore( idRestoreGame *savefile );
+	void Save(idSaveGame *savefile) const;
+	void Restore(idRestoreGame *savefile);
 
 private:
-	idPhysics_Parametric	physicsObj;
-	bool					active;
+	idPhysics_Parametric physicsObj;
+	bool active;
 
-	void					BeginShaking( void );
-	void					Event_Activate( idEntity *activator );
+	void BeginShaking(void);
+	void Event_Activate(idEntity *activator);
 };
-
 
 /*
 ===============================================================================
@@ -769,38 +781,38 @@ private:
 ===============================================================================
 */
 
-class idEarthQuake : public idEntity {
+class idEarthQuake : public idEntity
+{
 public:
-	CLASS_PROTOTYPE( idEarthQuake );
-			
-						idEarthQuake();
+	CLASS_PROTOTYPE(idEarthQuake);
 
-	void				Spawn( void );
+	idEarthQuake();
 
-	void				Save( idSaveGame *savefile ) const;
-	void				Restore( idRestoreGame *savefile );
+	void Spawn(void);
 
-	virtual void		Think( void );
+	void Save(idSaveGame *savefile) const;
+	void Restore(idRestoreGame *savefile);
 
-// RAVEN BEGIN
-// kfuller: look for fx entities and the like that may want to be triggered when a mortar round (aka earthquake) goes off
+	virtual void Think(void);
+
+	// RAVEN BEGIN
+	// kfuller: look for fx entities and the like that may want to be triggered when a mortar round (aka earthquake) goes off
 protected:
-	void				AffectNearbyEntities(float affectRadius);
-// RAVEN END
+	void AffectNearbyEntities(float affectRadius);
+	// RAVEN END
 
 private:
-	int					nextTriggerTime;
-	int					shakeStopTime;
-	float				wait;
-	float				random;
-	bool				triggered;
-	bool				playerOriented;
-	bool				disabled;
-	float				shakeTime;
+	int nextTriggerTime;
+	int shakeStopTime;
+	float wait;
+	float random;
+	bool triggered;
+	bool playerOriented;
+	bool disabled;
+	float shakeTime;
 
-	void				Event_Activate( idEntity *activator );
+	void Event_Activate(idEntity *activator);
 };
-
 
 /*
 ===============================================================================
@@ -810,22 +822,23 @@ private:
 ===============================================================================
 */
 
-class idFuncPortal : public idEntity {
+class idFuncPortal : public idEntity
+{
 public:
-	CLASS_PROTOTYPE( idFuncPortal );
-			
-						idFuncPortal();
+	CLASS_PROTOTYPE(idFuncPortal);
 
-	void				Spawn( void );
+	idFuncPortal();
 
-	void				Save( idSaveGame *savefile ) const;
-	void				Restore( idRestoreGame *savefile );
+	void Spawn(void);
+
+	void Save(idSaveGame *savefile) const;
+	void Restore(idRestoreGame *savefile);
 
 private:
-	qhandle_t			portal;
-	bool				state;
+	qhandle_t portal;
+	bool state;
 
-	void				Event_Activate( idEntity *activator );
+	void Event_Activate(idEntity *activator);
 };
 
 /*
@@ -836,21 +849,22 @@ private:
 ===============================================================================
 */
 
-class idFuncAASPortal : public idEntity {
+class idFuncAASPortal : public idEntity
+{
 public:
-	CLASS_PROTOTYPE( idFuncAASPortal );
-			
-						idFuncAASPortal();
+	CLASS_PROTOTYPE(idFuncAASPortal);
 
-	void				Spawn( void );
+	idFuncAASPortal();
 
-	void				Save( idSaveGame *savefile ) const;
-	void				Restore( idRestoreGame *savefile );
+	void Spawn(void);
+
+	void Save(idSaveGame *savefile) const;
+	void Restore(idRestoreGame *savefile);
 
 private:
-	bool				state;
+	bool state;
 
-	void				Event_Activate( idEntity *activator );
+	void Event_Activate(idEntity *activator);
 };
 
 /*
@@ -861,25 +875,25 @@ private:
 ===============================================================================
 */
 
-class idFuncAASObstacle : public idEntity {
+class idFuncAASObstacle : public idEntity
+{
 public:
-	CLASS_PROTOTYPE( idFuncAASObstacle );
-			
-						idFuncAASObstacle();
+	CLASS_PROTOTYPE(idFuncAASObstacle);
 
-	void				Spawn( void );
+	idFuncAASObstacle();
 
-	void				Save( idSaveGame *savefile ) const;
-	void				Restore( idRestoreGame *savefile );
+	void Spawn(void);
 
-	void				SetState ( bool _state );
+	void Save(idSaveGame *savefile) const;
+	void Restore(idRestoreGame *savefile);
+
+	void SetState(bool _state);
 
 private:
-	bool				state;
+	bool state;
 
-	void				Event_Activate( idEntity *activator );
+	void Event_Activate(idEntity *activator);
 };
-
 
 /*
 ===============================================================================
@@ -889,28 +903,28 @@ idFuncRadioChatter
 ===============================================================================
 */
 
-class idFuncRadioChatter : public idEntity {
+class idFuncRadioChatter : public idEntity
+{
 public:
-	CLASS_PROTOTYPE( idFuncRadioChatter );
+	CLASS_PROTOTYPE(idFuncRadioChatter);
 
-						idFuncRadioChatter();
+	idFuncRadioChatter();
 
-	void				Spawn( void );
+	void Spawn(void);
 
-	void				Save( idSaveGame *savefile ) const;
-	void				Restore( idRestoreGame *savefile );
+	void Save(idSaveGame *savefile) const;
+	void Restore(idRestoreGame *savefile);
 
-	static void			RepeatLast ( void );
+	static void RepeatLast(void);
 
 private:
 	static idEntityPtr<idFuncRadioChatter> lastRadioChatter;
-	float				time;
-	bool				isActive;
-	void				Event_Activate( idEntity *activator );
-	void				Event_ResetRadioHud( idEntity *activator );
-	void				Event_IsActive( void );
+	float time;
+	bool isActive;
+	void Event_Activate(idEntity *activator);
+	void Event_ResetRadioHud(idEntity *activator);
+	void Event_IsActive(void);
 };
-
 
 /*
 ===============================================================================
@@ -920,36 +934,36 @@ private:
 ===============================================================================
 */
 
-class idPhantomObjects : public idEntity {
+class idPhantomObjects : public idEntity
+{
 public:
-	CLASS_PROTOTYPE( idPhantomObjects );
-			
-						idPhantomObjects();
+	CLASS_PROTOTYPE(idPhantomObjects);
 
-	void				Spawn( void );
+	idPhantomObjects();
 
-	void				Save( idSaveGame *savefile ) const;
-	void				Restore( idRestoreGame *savefile );
+	void Spawn(void);
 
-	virtual void		Think( void );
+	void Save(idSaveGame *savefile) const;
+	void Restore(idRestoreGame *savefile);
+
+	virtual void Think(void);
 
 private:
-	void				Event_Activate( idEntity *activator );
-	void				Event_Throw( void );
-	void				Event_ShakeObject( idEntity *object, int starttime );
+	void Event_Activate(idEntity *activator);
+	void Event_Throw(void);
+	void Event_ShakeObject(idEntity *object, int starttime);
 
-	int					end_time;
-	float				throw_time;
-	float				shake_time;
-	idVec3				shake_ang;
-	float				speed;
-	int					min_wait;
-	int					max_wait;
-	idEntityPtr<idActor>target;
-	idList<int>			targetTime;
-	idList<idVec3>		lastTargetPos;
+	int end_time;
+	float throw_time;
+	float shake_time;
+	idVec3 shake_ang;
+	float speed;
+	int min_wait;
+	int max_wait;
+	idEntityPtr<idActor> target;
+	idList<int> targetTime;
+	idList<idVec3> lastTargetPos;
 };
-
 
 /*
 ===============================================================================
@@ -959,16 +973,16 @@ rvFuncSaveGame
 ===============================================================================
 */
 
-class rvFuncSaveGame : public idEntity {
+class rvFuncSaveGame : public idEntity
+{
 public:
-	CLASS_PROTOTYPE( rvFuncSaveGame );
+	CLASS_PROTOTYPE(rvFuncSaveGame);
 
-	void				Spawn( void );
+	void Spawn(void);
 
-	void				Event_Activate		( idEntity *activator );
+	void Event_Activate(idEntity *activator);
 
 private:
 };
-
 
 #endif /* !__GAME_MISC_H__ */

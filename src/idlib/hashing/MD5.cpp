@@ -28,9 +28,9 @@ will fill a supplied 16-byte array with the digest.
 /* MD5 context. */
 typedef struct
 {
-	unsigned int	state[4];
-    unsigned int	bits[2];
-    unsigned char	in[64];
+    unsigned int state[4];
+    unsigned int bits[2];
+    unsigned char in[64];
 } MD5_CTX;
 
 /* The four core functions - F1 is optimized somewhat */
@@ -41,7 +41,7 @@ typedef struct
 #define F4(x, y, z) (y ^ (x | ~z))
 
 /* This is the central step in the MD5 algorithm. */
-#define MD5STEP(f, w, x, y, z, data, s) ( w += f(x, y, z) + data,  w = w<<s | w>>(32-s),  w += x )
+#define MD5STEP(f, w, x, y, z, data, s) (w += f(x, y, z) + data, w = w << s | w >> (32 - s), w += x)
 
 /*
 =================
@@ -52,7 +52,8 @@ reflect the addition of 16 longwords of new data.  MD5Update blocks
 the data and converts bytes into longwords for this routine.
 =================
 */
-void MD5_Transform( unsigned int state[4], unsigned int const in[16] ) {
+void MD5_Transform(unsigned int state[4], unsigned int const in[16])
+{
     register unsigned int a, b, c, d;
 
     a = state[0];
@@ -60,7 +61,7 @@ void MD5_Transform( unsigned int state[4], unsigned int const in[16] ) {
     c = state[2];
     d = state[3];
 
-	LittleRevBytes( const_cast< unsigned int * >( in ), sizeof(unsigned int), 16 );
+    LittleRevBytes(const_cast<unsigned int *>(in), sizeof(unsigned int), 16);
 
     MD5STEP(F1, a, b, c, d, in[0] + 0xd76aa478, 7);
     MD5STEP(F1, d, a, b, c, in[1] + 0xe8c7b756, 12);
@@ -130,7 +131,7 @@ void MD5_Transform( unsigned int state[4], unsigned int const in[16] ) {
     MD5STEP(F4, c, d, a, b, in[2] + 0x2ad7d2bb, 15);
     MD5STEP(F4, b, c, d, a, in[9] + 0xeb86d391, 21);
 
-	LittleRevBytes( const_cast< unsigned int * >( in ), sizeof(unsigned int), 16 );
+    LittleRevBytes(const_cast<unsigned int *>(in), sizeof(unsigned int), 16);
 
     state[0] += a;
     state[1] += b;
@@ -145,7 +146,8 @@ MD5_Init
 MD5 initialization. Begins an MD5 operation, writing a new context.
 ==================
 */
-void MD5_Init( MD5_CTX *ctx ) {
+void MD5_Init(MD5_CTX *ctx)
+{
     ctx->state[0] = 0x67452301;
     ctx->state[1] = 0xefcdab89;
     ctx->state[2] = 0x98badcfe;
@@ -163,45 +165,50 @@ MD5 block update operation. Continues an MD5 message-digest operation,
 processing another message block, and updating the context.
 ===================
 */
-void MD5_Update( MD5_CTX *ctx, unsigned char const *buf, unsigned int len ) {
+void MD5_Update(MD5_CTX *ctx, unsigned char const *buf, unsigned int len)
+{
     unsigned int t;
 
     /* Update bitcount */
 
     t = ctx->bits[0];
-	if ( ( ctx->bits[0] = t + ( (unsigned int) len << 3 ) ) < t ) {
-        ctx->bits[1]++;         /* Carry from low to high */
-	}
+    if ((ctx->bits[0] = t + ((unsigned int)len << 3)) < t)
+    {
+        ctx->bits[1]++; /* Carry from low to high */
+    }
     ctx->bits[1] += len >> 29;
 
-    t = ( t >> 3 ) & 0x3f;        /* Bytes already in shsInfo->data */
+    t = (t >> 3) & 0x3f; /* Bytes already in shsInfo->data */
 
     /* Handle any leading odd-sized chunks */
 
-    if ( t ) {
-        unsigned char *p = (unsigned char *) ctx->in + t;
+    if (t)
+    {
+        unsigned char *p = (unsigned char *)ctx->in + t;
 
         t = 64 - t;
-        if ( len < t ) {
-            memcpy( p, buf, len );
+        if (len < t)
+        {
+            memcpy(p, buf, len);
             return;
         }
-        memcpy( p, buf, t );
-        MD5_Transform( ctx->state, (unsigned int *) ctx->in );
+        memcpy(p, buf, t);
+        MD5_Transform(ctx->state, (unsigned int *)ctx->in);
         buf += t;
         len -= t;
     }
     /* Process data in 64-byte chunks */
 
-    while( len >= 64 ) {
-        memcpy( ctx->in, buf, 64 );
-        MD5_Transform( ctx->state, (unsigned int *) ctx->in );
+    while (len >= 64)
+    {
+        memcpy(ctx->in, buf, 64);
+        MD5_Transform(ctx->state, (unsigned int *)ctx->in);
         buf += 64;
         len -= 64;
     }
 
     /* Handle any remaining bytes of data. */
-    memcpy( ctx->in, buf, len );
+    memcpy(ctx->in, buf, len);
 }
 
 /*
@@ -212,12 +219,13 @@ MD5 finalization. Ends an MD5 message-digest operation,
 writing the message digest and zeroizing the context.
 ===============
 */
-void MD5_Final( MD5_CTX *ctx, unsigned char digest[16] ) {
+void MD5_Final(MD5_CTX *ctx, unsigned char digest[16])
+{
     unsigned count;
     unsigned char *p;
 
     /* Compute number of bytes mod 64 */
-    count = ( ctx->bits[0] >> 3 ) & 0x3F;
+    count = (ctx->bits[0] >> 3) & 0x3F;
 
     /* Set the first char of padding to 0x80.  This is safe since there is
        always at least one byte free */
@@ -228,28 +236,31 @@ void MD5_Final( MD5_CTX *ctx, unsigned char digest[16] ) {
     count = 64 - 1 - count;
 
     /* Pad out to 56 mod 64 */
-    if ( count < 8 ) {
+    if (count < 8)
+    {
         /* Two lots of padding:  Pad the first block to 64 bytes */
-        memset( p, 0, count );
-        MD5_Transform( ctx->state, (unsigned int *) ctx->in );
+        memset(p, 0, count);
+        MD5_Transform(ctx->state, (unsigned int *)ctx->in);
 
         /* Now fill the next block with 56 bytes */
-        memset( ctx->in, 0, 56 );
-    } else {
+        memset(ctx->in, 0, 56);
+    }
+    else
+    {
         /* Pad block to 56 bytes */
-        memset( p, 0, count - 8 );
+        memset(p, 0, count - 8);
     }
 
     /* Append length in bits and transform */
-	unsigned int val0 = ctx->bits[0];
-	unsigned int val1 = ctx->bits[1];
-	
-    ((unsigned int *) ctx->in)[14] = LittleLong( val0 );
-    ((unsigned int *) ctx->in)[15] = LittleLong( val1 );
+    unsigned int val0 = ctx->bits[0];
+    unsigned int val1 = ctx->bits[1];
 
-    MD5_Transform( ctx->state, (unsigned int *) ctx->in );
-    memcpy( digest, ctx->state, 16 );
-    memset( ctx, 0, sizeof( ctx ) );        /* In case it's sensitive */
+    ((unsigned int *)ctx->in)[14] = LittleLong(val0);
+    ((unsigned int *)ctx->in)[15] = LittleLong(val1);
+
+    MD5_Transform(ctx->state, (unsigned int *)ctx->in);
+    memcpy(digest, ctx->state, 16);
+    memset(ctx, 0, sizeof(ctx)); /* In case it's sensitive */
 }
 
 /*
@@ -257,16 +268,17 @@ void MD5_Final( MD5_CTX *ctx, unsigned char digest[16] ) {
 MD5_BlockChecksum
 ===============
 */
-unsigned long MD5_BlockChecksum( const void *data, int length ) {
-	unsigned long	digest[4];
-	unsigned long	val;
-	MD5_CTX			ctx;
+unsigned long MD5_BlockChecksum(const void *data, int length)
+{
+    unsigned long digest[4];
+    unsigned long val;
+    MD5_CTX ctx;
 
-	MD5_Init( &ctx );
-	MD5_Update( &ctx, (unsigned char *)data, length );
-	MD5_Final( &ctx, (unsigned char *)digest );
+    MD5_Init(&ctx);
+    MD5_Update(&ctx, (unsigned char *)data, length);
+    MD5_Final(&ctx, (unsigned char *)digest);
 
-	val = digest[0] ^ digest[1] ^ digest[2] ^ digest[3];
+    val = digest[0] ^ digest[1] ^ digest[2] ^ digest[3];
 
-	return val;
+    return val;
 }

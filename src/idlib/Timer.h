@@ -10,33 +10,35 @@
 ===============================================================================
 */
 
-class idTimer {
+class idTimer
+{
 public:
-					idTimer( void );
-					idTimer( double clockTicks );
-					~idTimer( void );
+	idTimer(void);
+	idTimer(double clockTicks);
+	~idTimer(void);
 
-	idTimer			operator+( const idTimer &t ) const;
-	idTimer			operator-( const idTimer &t ) const;
-	idTimer &		operator+=( const idTimer &t );
-	idTimer &		operator-=( const idTimer &t );
+	idTimer operator+(const idTimer &t) const;
+	idTimer operator-(const idTimer &t) const;
+	idTimer &operator+=(const idTimer &t);
+	idTimer &operator-=(const idTimer &t);
 
-	void			Start( void );
-	void			Stop( void );
-	void			Clear( void );
-	double			ClockTicks( void ) const;
-	double			Milliseconds( void ) const;
+	void Start(void);
+	void Stop(void);
+	void Clear(void);
+	double ClockTicks(void) const;
+	double Milliseconds(void) const;
 
 private:
-	static double	base;
-	enum			{
-						TS_STARTED,
-						TS_STOPPED
-					} state;
-	double			start;
-	double			clockTicks;
+	static double base;
+	enum
+	{
+		TS_STARTED,
+		TS_STOPPED
+	} state;
+	double start;
+	double clockTicks;
 
-	void			InitBaseClockTicks( void ) const;
+	void InitBaseClockTicks(void) const;
 };
 
 /*
@@ -44,7 +46,8 @@ private:
 idTimer::idTimer
 =================
 */
-ID_INLINE idTimer::idTimer( void ) {
+ID_INLINE idTimer::idTimer(void)
+{
 	state = TS_STOPPED;
 	clockTicks = 0.0;
 }
@@ -54,7 +57,8 @@ ID_INLINE idTimer::idTimer( void ) {
 idTimer::idTimer
 =================
 */
-ID_INLINE idTimer::idTimer( double _clockTicks ) {
+ID_INLINE idTimer::idTimer(double _clockTicks)
+{
 	state = TS_STOPPED;
 	clockTicks = _clockTicks;
 }
@@ -64,7 +68,8 @@ ID_INLINE idTimer::idTimer( double _clockTicks ) {
 idTimer::~idTimer
 =================
 */
-ID_INLINE idTimer::~idTimer( void ) {
+ID_INLINE idTimer::~idTimer(void)
+{
 }
 
 /*
@@ -72,9 +77,10 @@ ID_INLINE idTimer::~idTimer( void ) {
 idTimer::operator+
 =================
 */
-ID_INLINE idTimer idTimer::operator+( const idTimer &t ) const {
-	assert( state == TS_STOPPED && t.state == TS_STOPPED );
-	return idTimer( clockTicks + t.clockTicks );
+ID_INLINE idTimer idTimer::operator+(const idTimer &t) const
+{
+	assert(state == TS_STOPPED && t.state == TS_STOPPED);
+	return idTimer(clockTicks + t.clockTicks);
 }
 
 /*
@@ -82,9 +88,10 @@ ID_INLINE idTimer idTimer::operator+( const idTimer &t ) const {
 idTimer::operator-
 =================
 */
-ID_INLINE idTimer idTimer::operator-( const idTimer &t ) const {
-	assert( state == TS_STOPPED && t.state == TS_STOPPED );
-	return idTimer( clockTicks - t.clockTicks );
+ID_INLINE idTimer idTimer::operator-(const idTimer &t) const
+{
+	assert(state == TS_STOPPED && t.state == TS_STOPPED);
+	return idTimer(clockTicks - t.clockTicks);
 }
 
 /*
@@ -92,8 +99,9 @@ ID_INLINE idTimer idTimer::operator-( const idTimer &t ) const {
 idTimer::operator+=
 =================
 */
-ID_INLINE idTimer &idTimer::operator+=( const idTimer &t ) {
-	assert( state == TS_STOPPED && t.state == TS_STOPPED );
+ID_INLINE idTimer &idTimer::operator+=(const idTimer &t)
+{
+	assert(state == TS_STOPPED && t.state == TS_STOPPED);
 	clockTicks += t.clockTicks;
 	return *this;
 }
@@ -103,8 +111,9 @@ ID_INLINE idTimer &idTimer::operator+=( const idTimer &t ) {
 idTimer::operator-=
 =================
 */
-ID_INLINE idTimer &idTimer::operator-=( const idTimer &t ) {
-	assert( state == TS_STOPPED && t.state == TS_STOPPED );
+ID_INLINE idTimer &idTimer::operator-=(const idTimer &t)
+{
+	assert(state == TS_STOPPED && t.state == TS_STOPPED);
 	clockTicks -= t.clockTicks;
 	return *this;
 }
@@ -114,8 +123,9 @@ ID_INLINE idTimer &idTimer::operator-=( const idTimer &t ) {
 idTimer::Start
 =================
 */
-ID_INLINE void idTimer::Start( void ) {
-	assert( state == TS_STOPPED );
+ID_INLINE void idTimer::Start(void)
+{
+	assert(state == TS_STOPPED);
 	state = TS_STARTED;
 	start = idLib::sys->GetClockTicks();
 }
@@ -125,13 +135,16 @@ ID_INLINE void idTimer::Start( void ) {
 idTimer::Stop
 =================
 */
-ID_INLINE void idTimer::Stop( void ) {
-	assert( state == TS_STARTED );
+ID_INLINE void idTimer::Stop(void)
+{
+	assert(state == TS_STARTED);
 	clockTicks += idLib::sys->GetClockTicks() - start;
-	if ( base < 0.0 ) {
+	if (base < 0.0)
+	{
 		InitBaseClockTicks();
 	}
-	if ( clockTicks > base ) {
+	if (clockTicks > base)
+	{
 		clockTicks -= base;
 	}
 	state = TS_STOPPED;
@@ -142,7 +155,8 @@ ID_INLINE void idTimer::Stop( void ) {
 idTimer::Clear
 =================
 */
-ID_INLINE void idTimer::Clear( void ) {
+ID_INLINE void idTimer::Clear(void)
+{
 	clockTicks = 0.0;
 }
 
@@ -151,8 +165,9 @@ ID_INLINE void idTimer::Clear( void ) {
 idTimer::ClockTicks
 =================
 */
-ID_INLINE double idTimer::ClockTicks( void ) const {
-	assert( state == TS_STOPPED );
+ID_INLINE double idTimer::ClockTicks(void) const
+{
+	assert(state == TS_STOPPED);
 	return clockTicks;
 }
 
@@ -161,11 +176,11 @@ ID_INLINE double idTimer::ClockTicks( void ) const {
 idTimer::Milliseconds
 =================
 */
-ID_INLINE double idTimer::Milliseconds( void ) const {
-	assert( state == TS_STOPPED );
-	return clockTicks / ( idLib::sys->ClockTicksPerSecond() * 0.001 );
+ID_INLINE double idTimer::Milliseconds(void) const
+{
+	assert(state == TS_STOPPED);
+	return clockTicks / (idLib::sys->ClockTicksPerSecond() * 0.001);
 }
-
 
 /*
 ===============================================================================
@@ -175,22 +190,23 @@ ID_INLINE double idTimer::Milliseconds( void ) const {
 ===============================================================================
 */
 
-class idTimerReport {
+class idTimerReport
+{
 public:
-					idTimerReport( void );
-					~idTimerReport( void );
+	idTimerReport(void);
+	~idTimerReport(void);
 
-	void			SetReportName( const char *name );
-	int				AddReport( const char *name );
-	void			Clear( void );
-	void			Reset( void );
-	void			PrintReport( void );
-	void			AddTime( const char *name, idTimer *time );
+	void SetReportName(const char *name);
+	int AddReport(const char *name);
+	void Clear(void);
+	void Reset(void);
+	void PrintReport(void);
+	void AddTime(const char *name, idTimer *time);
 
 private:
-	idList<idTimer*>timers;
-	idStrList		names;
-	idStr			reportName;
+	idList<idTimer *> timers;
+	idStrList names;
+	idStr reportName;
 };
 
 #endif /* !__TIMER_H__ */

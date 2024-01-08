@@ -20,15 +20,16 @@
 
 #include "Simd_InstructionMacros.h"
 
-ALIGN4_INIT1( float SIMD_SP_infinity, idMath::INFINITY );
-ALIGN4_INIT1( float SIMD_SP_negInfinity, -idMath::INFINITY );
+ALIGN4_INIT1(float SIMD_SP_infinity, idMath::INFINITY);
+ALIGN4_INIT1(float SIMD_SP_negInfinity, -idMath::INFINITY);
 
 /*
 ============
 SSE3_Dot
 ============
 */
-float SSE3_Dot( const idVec4 &v1, const idVec4 &v2 ) {
+float SSE3_Dot(const idVec4 &v1, const idVec4 &v2)
+{
 	float d;
 	__asm {
 		mov		esi, v1
@@ -47,20 +48,22 @@ float SSE3_Dot( const idVec4 &v1, const idVec4 &v2 ) {
 idSIMD_SSE3::GetName
 ============
 */
-const char * idSIMD_SSE3::GetName( void ) const {
+const char *idSIMD_SSE3::GetName(void) const
+{
 	return "MMX & SSE & SSE2 & SSE3";
 }
 
-#pragma warning( disable : 4731 )	// frame pointer register 'ebx' modified by inline assembly code
+#pragma warning(disable : 4731) // frame pointer register 'ebx' modified by inline assembly code
 
 /*
 ============
 idSIMD_SSE3::TransformVertsNew
 ============
 */
-void VPCALL idSIMD_SSE3::TransformVertsNew( idDrawVert *verts, const int numVerts, idBounds &bounds, const idJointMat *joints, const idVec4 *base, const jointWeight_t *weights, const int numWeights ) {
-	assert_16_byte_aligned( joints );
-	assert_16_byte_aligned( base );
+void VPCALL idSIMD_SSE3::TransformVertsNew(idDrawVert *verts, const int numVerts, idBounds &bounds, const idJointMat *joints, const idVec4 *base, const jointWeight_t *weights, const int numWeights)
+{
+	assert_16_byte_aligned(joints);
+	assert_16_byte_aligned(base);
 
 	__asm {
 		push		ebx
@@ -88,9 +91,9 @@ void VPCALL idSIMD_SSE3::TransformVertsNew( idDrawVert *verts, const int numVert
 		add			esi, BASEVECTOR_SIZE
 		movaps		xmm1, xmm2
 
-		mulps		xmm0, [edi+ebx+ 0]						// xmm0 = m0, m1, m2, t0
-		mulps		xmm1, [edi+ebx+16]						// xmm1 = m3, m4, m5, t1
-		mulps		xmm2, [edi+ebx+32]						// xmm2 = m6, m7, m8, t2
+		mulps		xmm0, [edi+ebx+ 0] // xmm0 = m0, m1, m2, t0
+		mulps		xmm1, [edi+ebx+16] // xmm1 = m3, m4, m5, t1
+		mulps		xmm2, [edi+ebx+32] // xmm2 = m6, m7, m8, t2
 
 		cmp			dword ptr [edx-JOINTWEIGHT_SIZE+JOINTWEIGHT_NEXTVERTEXOFFSET_OFFSET], JOINTWEIGHT_SIZE
 
@@ -104,9 +107,9 @@ void VPCALL idSIMD_SSE3::TransformVertsNew( idDrawVert *verts, const int numVert
 		add			esi, BASEVECTOR_SIZE
 		movaps		xmm4, xmm5
 
-		mulps		xmm3, [edi+ebx+ 0]						// xmm3 = m0, m1, m2, t0
-		mulps		xmm4, [edi+ebx+16]						// xmm4 = m3, m4, m5, t1
-		mulps		xmm5, [edi+ebx+32]						// xmm5 = m6, m7, m8, t2
+		mulps		xmm3, [edi+ebx+ 0] // xmm3 = m0, m1, m2, t0
+		mulps		xmm4, [edi+ebx+16] // xmm4 = m3, m4, m5, t1
+		mulps		xmm5, [edi+ebx+32] // xmm5 = m6, m7, m8, t2
 
 		cmp			dword ptr [edx-JOINTWEIGHT_SIZE+JOINTWEIGHT_NEXTVERTEXOFFSET_OFFSET], JOINTWEIGHT_SIZE
 
@@ -150,10 +153,11 @@ void VPCALL idSIMD_SSE3::TransformVertsNew( idDrawVert *verts, const int numVert
 idSIMD_SSE3::TransformVertsAndTangents
 ============
 */
-void VPCALL idSIMD_SSE3::TransformVertsAndTangents( idDrawVert *verts, const int numVerts, idBounds &bounds, const idJointMat *joints, const idVec4 *base, const jointWeight_t *weights, const int numWeights ) {
+void VPCALL idSIMD_SSE3::TransformVertsAndTangents(idDrawVert *verts, const int numVerts, idBounds &bounds, const idJointMat *joints, const idVec4 *base, const jointWeight_t *weights, const int numWeights)
+{
 
-	assert_16_byte_aligned( joints );
-	assert_16_byte_aligned( base );
+	assert_16_byte_aligned(joints);
+	assert_16_byte_aligned(base);
 
 	__asm {
 		push		ebx
@@ -181,9 +185,9 @@ void VPCALL idSIMD_SSE3::TransformVertsAndTangents( idDrawVert *verts, const int
 		movaps		xmm0, xmm2
 		movaps		xmm1, xmm2
 
-		mulps		xmm0, [edi+ebx+ 0]						// xmm0 = m0, m1, m2, t0
-		mulps		xmm1, [edi+ebx+16]						// xmm1 = m3, m4, m5, t1
-		mulps		xmm2, [edi+ebx+32]						// xmm2 = m6, m7, m8, t2
+		mulps		xmm0, [edi+ebx+ 0] // xmm0 = m0, m1, m2, t0
+		mulps		xmm1, [edi+ebx+16] // xmm1 = m3, m4, m5, t1
+		mulps		xmm2, [edi+ebx+32] // xmm2 = m6, m7, m8, t2
 
 		cmp			dword ptr [edx-JOINTWEIGHT_SIZE+JOINTWEIGHT_NEXTVERTEXOFFSET_OFFSET], JOINTWEIGHT_SIZE
 
@@ -197,9 +201,9 @@ void VPCALL idSIMD_SSE3::TransformVertsAndTangents( idDrawVert *verts, const int
 		movaps		xmm3, xmm5
 		movaps		xmm4, xmm5
 
-		mulps		xmm3, [edi+ebx+ 0]						// xmm3 = m0, m1, m2, t0
-		mulps		xmm4, [edi+ebx+16]						// xmm4 = m3, m4, m5, t1
-		mulps		xmm5, [edi+ebx+32]						// xmm5 = m6, m7, m8, t2
+		mulps		xmm3, [edi+ebx+ 0] // xmm3 = m0, m1, m2, t0
+		mulps		xmm4, [edi+ebx+16] // xmm4 = m3, m4, m5, t1
+		mulps		xmm5, [edi+ebx+32] // xmm5 = m6, m7, m8, t2
 
 		cmp			dword ptr [edx-JOINTWEIGHT_SIZE+JOINTWEIGHT_NEXTVERTEXOFFSET_OFFSET], JOINTWEIGHT_SIZE
 
@@ -213,7 +217,7 @@ void VPCALL idSIMD_SSE3::TransformVertsAndTangents( idDrawVert *verts, const int
 		add			esi, 4*BASEVECTOR_SIZE
 		add			eax, DRAWVERT_SIZE
 
-		// transform vertex
+			// transform vertex
 		movaps		xmm3, [esi-4*BASEVECTOR_SIZE]
 		movaps		xmm4, xmm3
 		movaps		xmm5, xmm3
@@ -236,7 +240,7 @@ void VPCALL idSIMD_SSE3::TransformVertsAndTangents( idDrawVert *verts, const int
 		minps		xmm6, xmm5
 		maxps		xmm7, xmm5
 
-		// transform normal
+			// transform normal
 		movaps		xmm3, [esi-3*BASEVECTOR_SIZE]
 		movaps		xmm4, xmm3
 		movaps		xmm5, xmm3
@@ -255,7 +259,7 @@ void VPCALL idSIMD_SSE3::TransformVertsAndTangents( idDrawVert *verts, const int
 
 		movss		[ecx+eax-DRAWVERT_SIZE+DRAWVERT_NORMAL_OFFSET+8], xmm4
 
-		// transform first tangent
+			// transform first tangent
 		movaps		xmm3, [esi-2*BASEVECTOR_SIZE]
 		movaps		xmm4, xmm3
 		movaps		xmm5, xmm3
@@ -274,7 +278,7 @@ void VPCALL idSIMD_SSE3::TransformVertsAndTangents( idDrawVert *verts, const int
 
 		movss		[ecx+eax-DRAWVERT_SIZE+DRAWVERT_TANGENT0_OFFSET+8], xmm4
 
-		// transform second tangent
+			// transform second tangent
 		movaps		xmm3, [esi-1*BASEVECTOR_SIZE]
 
 		mulps		xmm0, xmm3
@@ -308,10 +312,11 @@ void VPCALL idSIMD_SSE3::TransformVertsAndTangents( idDrawVert *verts, const int
 idSIMD_SSE3::TransformVertsAndTangentsFast
 ============
 */
-void VPCALL idSIMD_SSE3::TransformVertsAndTangentsFast( idDrawVert *verts, const int numVerts, idBounds &bounds, const idJointMat *joints, const idVec4 *base, const jointWeight_t *weights, const int numWeights ) {
+void VPCALL idSIMD_SSE3::TransformVertsAndTangentsFast(idDrawVert *verts, const int numVerts, idBounds &bounds, const idJointMat *joints, const idVec4 *base, const jointWeight_t *weights, const int numWeights)
+{
 
-	assert_16_byte_aligned( joints );
-	assert_16_byte_aligned( base );
+	assert_16_byte_aligned(joints);
+	assert_16_byte_aligned(base);
 
 	__asm {
 		push		ebx
@@ -336,15 +341,15 @@ void VPCALL idSIMD_SSE3::TransformVertsAndTangentsFast( idDrawVert *verts, const
 
 		add			esi, 4*BASEVECTOR_SIZE
 
-		movaps		xmm0, [edi+ebx+ 0]						// xmm0 = m0, m1, m2, t0
-		movaps		xmm1, [edi+ebx+16]						// xmm1 = m3, m4, m5, t1
-		movaps		xmm2, [edi+ebx+32]						// xmm2 = m6, m7, m8, t2
+		movaps		xmm0, [edi+ebx+ 0] // xmm0 = m0, m1, m2, t0
+		movaps		xmm1, [edi+ebx+16] // xmm1 = m3, m4, m5, t1
+		movaps		xmm2, [edi+ebx+32] // xmm2 = m6, m7, m8, t2
 
 		add			edx, dword ptr [edx+JOINTWEIGHT_NEXTVERTEXOFFSET_OFFSET]
 
 		add			eax, DRAWVERT_SIZE
 
-		// transform vertex
+			// transform vertex
 		movaps		xmm3, [esi-4*BASEVECTOR_SIZE]
 		movaps		xmm4, xmm3
 		movaps		xmm5, xmm3
@@ -367,7 +372,7 @@ void VPCALL idSIMD_SSE3::TransformVertsAndTangentsFast( idDrawVert *verts, const
 		minps		xmm6, xmm5
 		maxps		xmm7, xmm5
 
-		// transform normal
+			// transform normal
 		movaps		xmm3, [esi-3*BASEVECTOR_SIZE]
 		movaps		xmm4, xmm3
 		movaps		xmm5, xmm3
@@ -386,7 +391,7 @@ void VPCALL idSIMD_SSE3::TransformVertsAndTangentsFast( idDrawVert *verts, const
 
 		movss		[ecx+eax-DRAWVERT_SIZE+DRAWVERT_NORMAL_OFFSET+8], xmm4
 
-		// transform first tangent
+			// transform first tangent
 		movaps		xmm3, [esi-2*BASEVECTOR_SIZE]
 		movaps		xmm4, xmm3
 		movaps		xmm5, xmm3
@@ -405,7 +410,7 @@ void VPCALL idSIMD_SSE3::TransformVertsAndTangentsFast( idDrawVert *verts, const
 
 		movss		[ecx+eax-DRAWVERT_SIZE+DRAWVERT_TANGENT0_OFFSET+8], xmm4
 
-		// transform second tangent
+			// transform second tangent
 		movaps		xmm3, [esi-1*BASEVECTOR_SIZE]
 
 		mulps		xmm0, xmm3

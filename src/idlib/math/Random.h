@@ -10,56 +10,64 @@
 ===============================================================================
 */
 
-class idRandom {
+class idRandom
+{
 public:
-						idRandom( int seed = 0 );
+	idRandom(int seed = 0);
 
-	void				SetSeed( int seed );
-	int					GetSeed( void ) const;
+	void SetSeed(int seed);
+	int GetSeed(void) const;
 
-	int					RandomInt( void );			// random integer in the range [0, MAX_RAND]
-	int					RandomInt( int max );		// random integer in the range [0, max[
-	float				RandomFloat( void );		// random number in the range [0.0f, 1.0f]
-	float				CRandomFloat( void );		// random number in the range [-1.0f, 1.0f]
+	int RandomInt(void);	  // random integer in the range [0, MAX_RAND]
+	int RandomInt(int max);	  // random integer in the range [0, max[
+	float RandomFloat(void);  // random number in the range [0.0f, 1.0f]
+	float CRandomFloat(void); // random number in the range [-1.0f, 1.0f]
 
-	static const int	MAX_RAND = 0x7fff;
+	static const int MAX_RAND = 0x7fff;
 
 private:
-	int					seed;
+	int seed;
 };
 
-ID_INLINE idRandom::idRandom( int seed ) {
+ID_INLINE idRandom::idRandom(int seed)
+{
 	this->seed = seed;
 }
 
-ID_INLINE void idRandom::SetSeed( int seed ) {
+ID_INLINE void idRandom::SetSeed(int seed)
+{
 	this->seed = seed;
 }
 
-ID_INLINE int idRandom::GetSeed( void ) const {
+ID_INLINE int idRandom::GetSeed(void) const
+{
 	return seed;
 }
 
-ID_INLINE int idRandom::RandomInt( void ) {
+ID_INLINE int idRandom::RandomInt(void)
+{
 	seed = 69069 * seed + 1;
-	return ( seed & idRandom::MAX_RAND );
+	return (seed & idRandom::MAX_RAND);
 }
 
-ID_INLINE int idRandom::RandomInt( int max ) {
-	if ( max == 0 ) {
-		return 0;			// avoid divide by zero error
+ID_INLINE int idRandom::RandomInt(int max)
+{
+	if (max == 0)
+	{
+		return 0; // avoid divide by zero error
 	}
 	return RandomInt() % max;
 }
 
-ID_INLINE float idRandom::RandomFloat( void ) {
-	return ( RandomInt() / ( float )( idRandom::MAX_RAND + 1 ) );
+ID_INLINE float idRandom::RandomFloat(void)
+{
+	return (RandomInt() / (float)(idRandom::MAX_RAND + 1));
 }
 
-ID_INLINE float idRandom::CRandomFloat( void ) {
-	return ( 2.0f * ( RandomFloat() - 0.5f ) );
+ID_INLINE float idRandom::CRandomFloat(void)
+{
+	return (2.0f * (RandomFloat() - 0.5f));
 }
-
 
 /*
 ===============================================================================
@@ -69,63 +77,72 @@ ID_INLINE float idRandom::CRandomFloat( void ) {
 ===============================================================================
 */
 
-class idRandom2 {
+class idRandom2
+{
 public:
-							idRandom2( unsigned long seed = 0 );
+	idRandom2(unsigned long seed = 0);
 
-	void					SetSeed( unsigned long seed );
-	unsigned long			GetSeed( void ) const;
+	void SetSeed(unsigned long seed);
+	unsigned long GetSeed(void) const;
 
-	int						RandomInt( void );			// random integer in the range [0, MAX_RAND]
-	int						RandomInt( int max );		// random integer in the range [0, max]
-	float					RandomFloat( void );		// random number in the range [0.0f, 1.0f]
-	float					CRandomFloat( void );		// random number in the range [-1.0f, 1.0f]
+	int RandomInt(void);	  // random integer in the range [0, MAX_RAND]
+	int RandomInt(int max);	  // random integer in the range [0, max]
+	float RandomFloat(void);  // random number in the range [0.0f, 1.0f]
+	float CRandomFloat(void); // random number in the range [-1.0f, 1.0f]
 
-	static const int		MAX_RAND = 0x7fff;
+	static const int MAX_RAND = 0x7fff;
 
 private:
-	unsigned long			seed;
+	unsigned long seed;
 
-	static const unsigned long	IEEE_ONE = 0x3f800000;
-	static const unsigned long	IEEE_MASK = 0x007fffff;
+	static const unsigned long IEEE_ONE = 0x3f800000;
+	static const unsigned long IEEE_MASK = 0x007fffff;
 };
 
-ID_INLINE idRandom2::idRandom2( unsigned long seed ) {
+ID_INLINE idRandom2::idRandom2(unsigned long seed)
+{
 	this->seed = seed;
 }
 
-ID_INLINE void idRandom2::SetSeed( unsigned long seed ) {
+ID_INLINE void idRandom2::SetSeed(unsigned long seed)
+{
 	this->seed = seed;
 }
 
-ID_INLINE unsigned long idRandom2::GetSeed( void ) const {
+ID_INLINE unsigned long idRandom2::GetSeed(void) const
+{
 	return seed;
 }
 
-ID_INLINE int idRandom2::RandomInt( void ) {
+ID_INLINE int idRandom2::RandomInt(void)
+{
 	seed = 1664525L * seed + 1013904223L;
-	return ( (int) seed & idRandom2::MAX_RAND );
+	return ((int)seed & idRandom2::MAX_RAND);
 }
 
-ID_INLINE int idRandom2::RandomInt( int max ) {
-	if ( max == 0 ) {
-		return 0;		// avoid divide by zero error
+ID_INLINE int idRandom2::RandomInt(int max)
+{
+	if (max == 0)
+	{
+		return 0; // avoid divide by zero error
 	}
-	return ( RandomInt() >> ( 16 - idMath::BitsForInteger( max ) ) ) % max;
+	return (RandomInt() >> (16 - idMath::BitsForInteger(max))) % max;
 }
 
-ID_INLINE float idRandom2::RandomFloat( void ) {
+ID_INLINE float idRandom2::RandomFloat(void)
+{
 	unsigned long i;
 	seed = 1664525L * seed + 1013904223L;
-	i = idRandom2::IEEE_ONE | ( seed & idRandom2::IEEE_MASK );
-	return ( ( *(float *)&i ) - 1.0f );
+	i = idRandom2::IEEE_ONE | (seed & idRandom2::IEEE_MASK);
+	return ((*(float *)&i) - 1.0f);
 }
 
-ID_INLINE float idRandom2::CRandomFloat( void ) {
+ID_INLINE float idRandom2::CRandomFloat(void)
+{
 	unsigned long i;
 	seed = 1664525L * seed + 1013904223L;
-	i = idRandom2::IEEE_ONE | ( seed & idRandom2::IEEE_MASK );
-	return ( 2.0f * ( *(float *)&i ) - 3.0f );
+	i = idRandom2::IEEE_ONE | (seed & idRandom2::IEEE_MASK);
+	return (2.0f * (*(float *)&i) - 3.0f);
 }
 
 #endif /* !__MATH_RANDOM_H__ */

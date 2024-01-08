@@ -6,8 +6,10 @@
 idFreeView::~idFreeView
 ===============
 */
-idFreeView::~idFreeView() {
-	if ( physics ) {
+idFreeView::~idFreeView()
+{
+	if (physics)
+	{
 		delete physics;
 		physics = NULL;
 	}
@@ -18,29 +20,36 @@ idFreeView::~idFreeView() {
 idFreeView::SetFreeView
 ===============
 */
-void idFreeView::SetFreeView( int clientNum ) {
-	trace_t		trace;
-	idPlayer	*p;
-	idVec3		start, end;
-	idClip		*clipWorld;
+void idFreeView::SetFreeView(int clientNum)
+{
+	trace_t trace;
+	idPlayer *p;
+	idVec3 start, end;
+	idClip *clipWorld;
 
-	if ( !physics ) {
+	if (!physics)
+	{
 		Setup();
 	}
-	p = static_cast<idPlayer*>( gameLocal.entities[ clientNum ] );
-	if ( !p ) {
+	p = static_cast<idPlayer *>(gameLocal.entities[clientNum]);
+	if (!p)
+	{
 		PickRandomSpawn();
 		return;
 	}
 	start = p->GetEyePosition();
-	end = start; end[2] += 20.0f;
-	clipWorld = gameLocal.GetEntityClipWorld( p );
-	if ( clipWorld ) {
-		clipWorld->Translation( trace, start, end, physics->GetClipModel(), mat3_identity, MASK_PLAYERSOLID, NULL, NULL );
-		physics->SetOrigin( trace.endpos );
-	} else {
-		assert( false );
-		physics->SetOrigin( start );
+	end = start;
+	end[2] += 20.0f;
+	clipWorld = gameLocal.GetEntityClipWorld(p);
+	if (clipWorld)
+	{
+		clipWorld->Translation(trace, start, end, physics->GetClipModel(), mat3_identity, MASK_PLAYERSOLID, NULL, NULL);
+		physics->SetOrigin(trace.endpos);
+	}
+	else
+	{
+		assert(false);
+		physics->SetOrigin(start);
 	}
 	viewAngles = p->viewAngles;
 	viewAngles[2] = 0.0f;
@@ -52,39 +61,43 @@ void idFreeView::SetFreeView( int clientNum ) {
 idFreeView::PickRandomSpawn
 ===============
 */
-void idFreeView::PickRandomSpawn( void ) {
-	if ( !physics ) {
+void idFreeView::PickRandomSpawn(void)
+{
+	if (!physics)
+	{
 		Setup();
 	}
 	idPlayerStart *start = gameLocal.RandomSpawn();
-	physics->SetOrigin( start->GetPhysics()->GetOrigin() + idVec3( 0.0f, 0.0f, pm_normalheight.GetFloat() ) );
+	physics->SetOrigin(start->GetPhysics()->GetOrigin() + idVec3(0.0f, 0.0f, pm_normalheight.GetFloat()));
 	viewAngles = start->GetPhysics()->GetAxis().ToAngles();
 	snapAngle = true;
 }
-	
+
 /*
 ===============
 idFreeView::Fly
 ===============
 */
-void idFreeView::Fly( const usercmd_t &ucmd ) {
-	idAngles	src;
+void idFreeView::Fly(const usercmd_t &ucmd)
+{
+	idAngles src;
 
-	assert( physics );
+	assert(physics);
 
-	src[0] = SHORT2ANGLE( ucmd.angles[0] );
-	src[1] = SHORT2ANGLE( ucmd.angles[1] );
+	src[0] = SHORT2ANGLE(ucmd.angles[0]);
+	src[1] = SHORT2ANGLE(ucmd.angles[1]);
 	src[2] = 0.0f;
 
-	if ( snapAngle ) {
+	if (snapAngle)
+	{
 		viewAngleOffset = viewAngles - src;
 		snapAngle = false;
 	}
-	
+
 	viewAngles = src + viewAngleOffset;
-	
-	physics->SetPlayerInput( ucmd, viewAngles );
-	physics->Evaluate( gameLocal.time - gameLocal.previousTime, gameLocal.time );	
+
+	physics->SetPlayerInput(ucmd, viewAngles);
+	physics->Evaluate(gameLocal.time - gameLocal.previousTime, gameLocal.time);
 }
 
 /*
@@ -92,27 +105,29 @@ void idFreeView::Fly( const usercmd_t &ucmd ) {
 idFreeView::Draw
 ===============
 */
-void idFreeView::Draw( void ) {
+void idFreeView::Draw(void)
+{
 
-	assert( physics );
+	assert(physics);
 
 	view.vieworg = physics->PlayerGetOrigin();
 	view.viewaxis = viewAngles.ToMat3();
 	view.time = gameLocal.time;
-	gameLocal.CalcFov( g_fov.GetFloat(), view.fov_x, view.fov_y );
+	gameLocal.CalcFov(g_fov.GetFloat(), view.fov_x, view.fov_y);
 
 	// free flying demo client rendering
-	gameLocal.mpGame.SetShaderParms( &view );
+	gameLocal.mpGame.SetShaderParms(&view);
 	// FIXME: player hud? draw scoreboard?
-	soundSystem->PlaceListener( view.vieworg, view.viewaxis, 0, gameLocal.time, "Undefined" );
+	soundSystem->PlaceListener(view.vieworg, view.viewaxis, 0, gameLocal.time, "Undefined");
 	// from idPlayerView::SingleView
 	idCamera *portalSky = gameLocal.GetPortalSky();
-	if ( portalSky ) {
+	if (portalSky)
+	{
 		renderView_t portalSkyView = view;
-		portalSky->GetViewParms( &portalSkyView );
-		gameRenderWorld->RenderScene( &portalSkyView, RF_DEFER_COMMAND_SUBMIT | RF_PORTAL_SKY );
+		portalSky->GetViewParms(&portalSkyView);
+		gameRenderWorld->RenderScene(&portalSkyView, RF_DEFER_COMMAND_SUBMIT | RF_PORTAL_SKY);
 	}
-	gameRenderWorld->RenderScene( &view, RF_PRIMARY_VIEW );
+	gameRenderWorld->RenderScene(&view, RF_PRIMARY_VIEW);
 }
 
 /*
@@ -120,27 +135,28 @@ void idFreeView::Draw( void ) {
 idFreeView::Setup
 ===============
 */
-void idFreeView::Setup( void ) {
-	idClipModel	*clip;
-	idBounds	b;
+void idFreeView::Setup(void)
+{
+	idClipModel *clip;
+	idBounds b;
 
-	assert( !physics );
+	assert(!physics);
 
-	memset( &view, 0, sizeof( view ) );
+	memset(&view, 0, sizeof(view));
 	view.viewID = 0;
 	view.x = view.y = 0;
 	view.width = 640;
 	view.height = 480;
-	gameLocal.CalcFov( g_fov.GetFloat(), view.fov_x, view.fov_y );
+	gameLocal.CalcFov(g_fov.GetFloat(), view.fov_x, view.fov_y);
 	view.cramZNear = false;
 
-	b = idBounds( vec3_origin ).Expand( pm_spectatebbox.GetFloat() * 0.5f );
-	clip = new idClipModel( idTraceModel( b ), declManager->FindMaterial( "textures/flesh_boundingbox" ) );
+	b = idBounds(vec3_origin).Expand(pm_spectatebbox.GetFloat() * 0.5f);
+	clip = new idClipModel(idTraceModel(b), declManager->FindMaterial("textures/flesh_boundingbox"));
 	physics = new idPhysics_Player();
-	physics->SetSpeed( pm_spectatespeed.GetFloat(), pm_crouchspeed.GetFloat() );
-	physics->SetClipModelNoLink( clip );
-	physics->SetClipMask( MASK_PLAYERSOLID );
-	physics->SetMovementType( PM_SPECTATOR );	
+	physics->SetSpeed(pm_spectatespeed.GetFloat(), pm_crouchspeed.GetFloat());
+	physics->SetClipModelNoLink(clip);
+	physics->SetClipMask(MASK_PLAYERSOLID);
+	physics->SetMovementType(PM_SPECTATOR);
 }
 
 /*
@@ -148,8 +164,10 @@ void idFreeView::Setup( void ) {
 idFreeView::Shutdown
 ===============
 */
-void idFreeView::Shutdown( void ) {
-	if ( physics ) {
+void idFreeView::Shutdown(void)
+{
+	if (physics)
+	{
 		delete physics;
 		physics = NULL;
 	}
@@ -160,6 +178,7 @@ void idFreeView::Shutdown( void ) {
 idFreeView::GetOrigin
 ===============
 */
-const idVec3 &idFreeView::GetOrigin( void ) {
+const idVec3 &idFreeView::GetOrigin(void)
+{
 	return view.vieworg;
 }

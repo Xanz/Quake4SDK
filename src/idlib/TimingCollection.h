@@ -22,62 +22,62 @@
 // Easy and quick way to remove all of this from the codebase
 #ifdef RV_TIMERCOLLECTION
 
-#define MAX_TIMERS	16
+#define MAX_TIMERS 16
 
 class rvSingleTiming
 {
 public:
-	int						mTotalUpdates;
-	double					mCurValue;
-	double					mTotalValue;
-	double					mPeakValue;
-	double					mLimit;
-	int						mLimitExceeded;
-	int						mLimitExceededTimesFive;
-	int						mDisplayLevel;
+	int mTotalUpdates;
+	double mCurValue;
+	double mTotalValue;
+	double mPeakValue;
+	double mLimit;
+	int mLimitExceeded;
+	int mLimitExceededTimesFive;
+	int mDisplayLevel;
 
-	idStr					mName;
-	idStr					mParentName;
+	idStr mName;
+	idStr mParentName;
 
-	idStr					mStartFile;
-	int						mStartLine;
-	idStr					mEndFile;
-	int						mEndLine;
+	idStr mStartFile;
+	int mStartLine;
+	idStr mEndFile;
+	int mEndLine;
 
 	rvSingleTiming();
-	rvSingleTiming( idStr &newName );
+	rvSingleTiming(idStr &newName);
 
-	void 					Clear();
-	void 					OutputDataToFile( idFile *file, int framesRecorded );
-	void 					OutputInfoToFile( idFile *file );
+	void Clear();
+	void OutputDataToFile(idFile *file, int framesRecorded);
+	void OutputInfoToFile(idFile *file);
 };
 
 class rvTimingCollection
 {
 protected:
-	idTimer					mTimer[MAX_TIMERS];
-	idStr					mTimerName[MAX_TIMERS];
+	idTimer mTimer[MAX_TIMERS];
+	idStr mTimerName[MAX_TIMERS];
 
-	idList<rvSingleTiming>	mTimings;
-	idHashTable	<int>		mTimingsIndex;
+	idList<rvSingleTiming> mTimings;
+	idHashTable<int> mTimingsIndex;
 
-	int						mCurTimer;
-	int						mUpdates;
-	int						mCurrentlyUpdating;
-	int						mFramesRecorded;
+	int mCurTimer;
+	int mUpdates;
+	int mCurrentlyUpdating;
+	int mFramesRecorded;
 
-	rvSingleTiming			*GetTiming( idStr &timingName );
-	void					DisplayTimingValues( void );
-	void					OutputToFile( void );
+	rvSingleTiming *GetTiming(idStr &timingName);
+	void DisplayTimingValues(void);
+	void OutputToFile(void);
 
 public:
 	rvTimingCollection();
 
-	void					InitFrame( bool inUse, bool displayText, bool outputFileWhenDone );
-	void					_TimingStart( const char *timingName, const char *fileName, const int lineNum );
-	void					_TimingStop( double msecLimit, const char *fileName, const int lineNum );
-	void					AppendToDict( idDict* dict );
-	void					Clear( void );
+	void InitFrame(bool inUse, bool displayText, bool outputFileWhenDone);
+	void _TimingStart(const char *timingName, const char *fileName, const int lineNum);
+	void _TimingStop(double msecLimit, const char *fileName, const int lineNum);
+	void AppendToDict(idDict *dict);
+	void Clear(void);
 };
 
 #else
@@ -86,13 +86,13 @@ class rvTimingCollection
 {
 protected:
 public:
-	rvTimingCollection(){}
+	rvTimingCollection() {}
 
-	void					InitFrame( bool inUse, bool displayText, bool outputFileWhenDone ){}
-	void					_TimingStart( const char *timingName, const char *fileName, const int lineNum ){}
-	void					_TimingStop( double msecLimit, const char *fileName, const int lineNum ){}
-	void					AppendToDict( idDict* dict ){}
-	void					Clear( void ){}
+	void InitFrame(bool inUse, bool displayText, bool outputFileWhenDone) {}
+	void _TimingStart(const char *timingName, const char *fileName, const int lineNum) {}
+	void _TimingStop(double msecLimit, const char *fileName, const int lineNum) {}
+	void AppendToDict(idDict *dict) {}
+	void Clear(void) {}
 };
 
 #endif

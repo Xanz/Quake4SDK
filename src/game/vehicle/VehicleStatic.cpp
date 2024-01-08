@@ -10,16 +10,18 @@
 #include "../Game_local.h"
 #include "VehicleStatic.h"
 
-CLASS_DECLARATION( rvVehicle, rvVehicleStatic )
-	EVENT( AI_ScriptedAnim, rvVehicleStatic::Event_ScriptedAnim )
-	EVENT( AI_ScriptedDone,	rvVehicleStatic::Event_ScriptedDone )
-	EVENT( AI_ScriptedStop,	rvVehicleStatic::Event_ScriptedStop )
+CLASS_DECLARATION(rvVehicle, rvVehicleStatic)
+EVENT(AI_ScriptedAnim, rvVehicleStatic::Event_ScriptedAnim)
+EVENT(AI_ScriptedDone, rvVehicleStatic::Event_ScriptedDone)
+EVENT(AI_ScriptedStop, rvVehicleStatic::Event_ScriptedStop)
 END_CLASS
 
-rvVehicleStatic::rvVehicleStatic ( void ) {
+rvVehicleStatic::rvVehicleStatic(void)
+{
 }
 
-rvVehicleStatic::~rvVehicleStatic ( void ) {
+rvVehicleStatic::~rvVehicleStatic(void)
+{
 }
 
 /*
@@ -27,8 +29,9 @@ rvVehicleStatic::~rvVehicleStatic ( void ) {
 rvVehicleStatic::Spawn
 ================
 */
-void rvVehicleStatic::Spawn( void ) {
-	BecomeActive( TH_THINK );		
+void rvVehicleStatic::Spawn(void)
+{
+	BecomeActive(TH_THINK);
 }
 
 /*
@@ -36,15 +39,18 @@ void rvVehicleStatic::Spawn( void ) {
 rvVehicleStatic::AddDriver
 ================
 */
-int rvVehicleStatic::AddDriver ( int position, idActor* driver ) {
-	int pos = rvVehicle::AddDriver( position, driver );
-	
-	if( pos < 0 ) {
+int rvVehicleStatic::AddDriver(int position, idActor *driver)
+{
+	int pos = rvVehicle::AddDriver(position, driver);
+
+	if (pos < 0)
+	{
 		return pos;
 	}
 
-	if( GetHud() ) {
-		GetHud()->HandleNamedEvent( "hideGunInfo" );
+	if (GetHud())
+	{
+		GetHud()->HandleNamedEvent("hideGunInfo");
 	}
 
 	return pos;
@@ -55,15 +61,18 @@ int rvVehicleStatic::AddDriver ( int position, idActor* driver ) {
 rvVehicleStatic::RemoveDriver
 ================
 */
-bool rvVehicleStatic::RemoveDriver ( int position, bool force ) {
-	bool result = rvVehicle::RemoveDriver( position, force );
+bool rvVehicleStatic::RemoveDriver(int position, bool force)
+{
+	bool result = rvVehicle::RemoveDriver(position, force);
 
-	if( !result ) {
+	if (!result)
+	{
 		return result;
 	}
 
-	if( GetHud() ) {
-		GetHud()->HandleNamedEvent( "showGunInfo" );
+	if (GetHud())
+	{
+		GetHud()->HandleNamedEvent("showGunInfo");
 	}
 
 	return result;
@@ -74,9 +83,11 @@ bool rvVehicleStatic::RemoveDriver ( int position, bool force ) {
 rvVehicleStatic::UpdateHUD
 ================
 */
-void rvVehicleStatic::UpdateHUD( idActor* driver, idUserInterface* gui ) {
-	if( driver && driver->IsType( idPlayer::GetClassType() ) ) {
-		static_cast<idPlayer*>(driver)->UpdateHudStats( gui );
+void rvVehicleStatic::UpdateHUD(idActor *driver, idUserInterface *gui)
+{
+	if (driver && driver->IsType(idPlayer::GetClassType()))
+	{
+		static_cast<idPlayer *>(driver)->UpdateHudStats(gui);
 	}
 }
 
@@ -85,12 +96,16 @@ void rvVehicleStatic::UpdateHUD( idActor* driver, idUserInterface* gui ) {
 rvVehicleStatic::Event_ScriptedAnim
 ================
 */
-void rvVehicleStatic::Event_ScriptedAnim( const char* animname, int blendFrames, bool loop, bool endWithIdle ) {
+void rvVehicleStatic::Event_ScriptedAnim(const char *animname, int blendFrames, bool loop, bool endWithIdle)
+{
 	vfl.endWithIdle = endWithIdle;
-	if ( loop ) {
-		PlayCycle ( ANIMCHANNEL_TORSO, animname, blendFrames );
-	} else {
-		PlayAnim ( ANIMCHANNEL_TORSO, animname, blendFrames );
+	if (loop)
+	{
+		PlayCycle(ANIMCHANNEL_TORSO, animname, blendFrames);
+	}
+	else
+	{
+		PlayAnim(ANIMCHANNEL_TORSO, animname, blendFrames);
 	}
 	vfl.scripted = true;
 }
@@ -100,8 +115,9 @@ void rvVehicleStatic::Event_ScriptedAnim( const char* animname, int blendFrames,
 rvVehicleStatic::Event_ScriptedDone
 ================
 */
-void rvVehicleStatic::Event_ScriptedDone( void ) {
-	idThread::ReturnInt( !vfl.scripted );
+void rvVehicleStatic::Event_ScriptedDone(void)
+{
+	idThread::ReturnInt(!vfl.scripted);
 }
 
 /*
@@ -109,10 +125,12 @@ void rvVehicleStatic::Event_ScriptedDone( void ) {
 rvVehicleStatic::Event_ScriptedStop
 ================
 */
-void rvVehicleStatic::Event_ScriptedStop( void ) {
+void rvVehicleStatic::Event_ScriptedStop(void)
+{
 	vfl.scripted = false;
 
-	if ( vfl.endWithIdle ) {
-		PlayCycle( ANIMCHANNEL_TORSO, spawnArgs.GetString( "idle" ), 2 );
+	if (vfl.endWithIdle)
+	{
+		PlayCycle(ANIMCHANNEL_TORSO, spawnArgs.GetString("idle"), 2);
 	}
 }

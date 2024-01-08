@@ -15,22 +15,23 @@ Stat selection window
 ===============================================================================
 */
 
-class rvStatWindow {
+class rvStatWindow
+{
 public:
 	rvStatWindow();
-	void						SetupStatWindow( idUserInterface* statHud, bool useSpectator = false );
-	void						SelectPlayer( int clientNum );
-	int							ClientNumFromSelection( int selectionIndex, int selectionTeam );
-	void						ClearWindow( void );
-	int							GetSelectedClientNum( int* selectionIndexOut, int* selectionTeamOut );
-private:
-	idList<idPlayer*>			stroggPlayers;
-	idList<idPlayer*>			marinePlayers;
-	idList<idPlayer*>			players;
-	idList<idPlayer*>			spectators;
-	
-	idUserInterface*			statHud;
-};
+	void SetupStatWindow(idUserInterface *statHud, bool useSpectator = false);
+	void SelectPlayer(int clientNum);
+	int ClientNumFromSelection(int selectionIndex, int selectionTeam);
+	void ClearWindow(void);
+	int GetSelectedClientNum(int *selectionIndexOut, int *selectionTeamOut);
 
+private:
+	idList<idPlayer *> stroggPlayers;
+	idList<idPlayer *> marinePlayers;
+	idList<idPlayer *> players;
+	idList<idPlayer *> spectators;
+
+	idUserInterface *statHud;
+};
 
 #endif

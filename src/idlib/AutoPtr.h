@@ -1,18 +1,17 @@
 #ifndef __AUTOPTR_H__
 #define __AUTOPTR_H__
 
-
 // this class is NOT safe for array new's.  It will not properly call
 // the destructor for each element and you will silently leak memory.
 // it does work for classes requiring no destructor however(base types)
-template<typename type>
+template <typename type>
 class idAutoPtr
 {
 public:
 	explicit idAutoPtr(type *ptr = 0)
 		: mPtr(ptr)
-		{
-		}
+	{
+	}
 
 	~idAutoPtr()
 	{
@@ -20,9 +19,9 @@ public:
 	}
 
 	type &operator*() const
-		{
+	{
 		return *mPtr;
-		}
+	}
 
 	type *operator->() const
 	{
@@ -39,7 +38,7 @@ public:
 		type *ptr = mPtr;
 		mPtr = NULL;
 		return ptr;
-		}
+	}
 
 	void reset(type *ptr = NULL)
 	{
@@ -48,15 +47,15 @@ public:
 		mPtr = ptr;
 	}
 
-	operator type*()
+	operator type *()
 	{
 		return get();
 	}
 
 private:
 	// disallow copies
-	idAutoPtr<type> &operator=(idAutoPtr<type>& ptr);
-	idAutoPtr(idAutoPtr<type>& ptr);
+	idAutoPtr<type> &operator=(idAutoPtr<type> &ptr);
+	idAutoPtr(idAutoPtr<type> &ptr);
 
 	type *mPtr;
 };

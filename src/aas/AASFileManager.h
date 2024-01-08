@@ -10,14 +10,15 @@
 ===============================================================================
 */
 
-class idAASFileManager {
+class idAASFileManager
+{
 public:
-	virtual						~idAASFileManager( void ) {}
+	virtual ~idAASFileManager(void) {}
 
-	virtual idAASFile *			LoadAAS( const char *fileName, unsigned int mapFileCRC ) = 0;
-	virtual void				FreeAAS( idAASFile *file ) = 0;
+	virtual idAASFile *LoadAAS(const char *fileName, unsigned int mapFileCRC) = 0;
+	virtual void FreeAAS(idAASFile *file) = 0;
 };
 
-extern idAASFileManager *		AASFileManager;
+extern idAASFileManager *AASFileManager;
 
 #endif /* !__AASFILEMANAGER_H__ */

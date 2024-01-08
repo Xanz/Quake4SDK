@@ -3,7 +3,7 @@
 #pragma hdrstop
 
 #if !defined(__TIMINGCOLLECTION_H_)
-	#include "TimingCollection.h"
+#include "TimingCollection.h"
 #endif
 
 #ifdef RV_TIMERCOLLECTION
@@ -14,23 +14,23 @@
 //
 //-----------------------------------------------------------------------------
 
-void rvSingleTiming::Clear( void )
+void rvSingleTiming::Clear(void)
 {
-	mTotalUpdates			= 0;
-	mCurValue				= 0;
-	mTotalValue				= 0;
-	mPeakValue				= 0;
-	mLimit					= 0;
-	mLimitExceeded			= 0;
-	mLimitExceededTimesFive	= 0;
-	mDisplayLevel			= 0;
-	mName					= "";
-	mParentName				= "";
+	mTotalUpdates = 0;
+	mCurValue = 0;
+	mTotalValue = 0;
+	mPeakValue = 0;
+	mLimit = 0;
+	mLimitExceeded = 0;
+	mLimitExceededTimesFive = 0;
+	mDisplayLevel = 0;
+	mName = "";
+	mParentName = "";
 
-	mStartFile				= "";
-	mStartLine				= 0;
-	mEndFile				= "";
-	mEndLine				= 0;
+	mStartFile = "";
+	mStartLine = 0;
+	mEndFile = "";
+	mEndLine = 0;
 }
 
 //-----------------------------------------------------------------------------
@@ -50,7 +50,7 @@ rvSingleTiming::rvSingleTiming()
 //
 //-----------------------------------------------------------------------------
 
-rvSingleTiming::rvSingleTiming( idStr &newName )
+rvSingleTiming::rvSingleTiming(idStr &newName)
 {
 	Clear();
 	mName = newName;
@@ -62,21 +62,21 @@ rvSingleTiming::rvSingleTiming( idStr &newName )
 //
 //-----------------------------------------------------------------------------
 
-void rvSingleTiming::OutputDataToFile( idFile *file, int framesRecorded )
+void rvSingleTiming::OutputDataToFile(idFile *file, int framesRecorded)
 {
-	char	buffer[1024];
-	idStr	outputName = "";
+	char buffer[1024];
+	idStr outputName = "";
 
-	for( int i = 0; i < mDisplayLevel; i++ )
+	for (int i = 0; i < mDisplayLevel; i++)
 	{
 		outputName += "**";
 	}
 	outputName += mName;
 
-	sprintf(buffer, "%-36s %-9.3f %-9.3f %-9.3f %-9.3f %-9i %-9i %-9.3f\n", outputName.c_str(), 
-		(float)mTotalValue, (float)( mTotalValue / (float)framesRecorded), (float)mPeakValue,
-		(float)mLimit, mLimitExceeded, mLimitExceededTimesFive, (float)(mTotalUpdates / (float)framesRecorded) );
-	file->Write ( buffer, strlen( buffer ) );
+	sprintf(buffer, "%-36s %-9.3f %-9.3f %-9.3f %-9.3f %-9i %-9i %-9.3f\n", outputName.c_str(),
+			(float)mTotalValue, (float)(mTotalValue / (float)framesRecorded), (float)mPeakValue,
+			(float)mLimit, mLimitExceeded, mLimitExceededTimesFive, (float)(mTotalUpdates / (float)framesRecorded));
+	file->Write(buffer, strlen(buffer));
 }
 
 //-----------------------------------------------------------------------------
@@ -85,29 +85,16 @@ void rvSingleTiming::OutputDataToFile( idFile *file, int framesRecorded )
 //
 //-----------------------------------------------------------------------------
 
-void rvSingleTiming::OutputInfoToFile( idFile *file )
+void rvSingleTiming::OutputInfoToFile(idFile *file)
 {
-	char	buffer[1024];
+	char buffer[1024];
 
-	sprintf(buffer, "Name: %s\nParent: %s\n", mName.c_str(), mParentName.c_str() );
-	file->Write ( buffer, strlen( buffer ) );
+	sprintf(buffer, "Name: %s\nParent: %s\n", mName.c_str(), mParentName.c_str());
+	file->Write(buffer, strlen(buffer));
 
-	sprintf(buffer, "Starting at %s(%d)\nEnding at %s(%d)\n\n", mStartFile.c_str(), mStartLine, mEndFile.c_str(), mEndLine );
-	file->Write ( buffer, strlen( buffer ) );
+	sprintf(buffer, "Starting at %s(%d)\nEnding at %s(%d)\n\n", mStartFile.c_str(), mStartLine, mEndFile.c_str(), mEndLine);
+	file->Write(buffer, strlen(buffer));
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 //-----------------------------------------------------------------------------
 //
@@ -115,12 +102,12 @@ void rvSingleTiming::OutputInfoToFile( idFile *file )
 //
 //-----------------------------------------------------------------------------
 
-void rvTimingCollection::Clear( void )
+void rvTimingCollection::Clear(void)
 {
-	mUpdates			= 0;
-	mCurTimer			= 0;
-	mFramesRecorded		= 0;
-	mCurrentlyUpdating	= 0;
+	mUpdates = 0;
+	mCurTimer = 0;
+	mFramesRecorded = 0;
+	mCurrentlyUpdating = 0;
 	mTimings.Clear();
 	mTimingsIndex.Clear();
 }
@@ -142,20 +129,20 @@ rvTimingCollection::rvTimingCollection()
 //
 //-----------------------------------------------------------------------------
 
-rvSingleTiming *rvTimingCollection::GetTiming( idStr &timingName )
+rvSingleTiming *rvTimingCollection::GetTiming(idStr &timingName)
 {
 	int *handle = NULL;
 
-	if( mTimingsIndex.Get( timingName, &handle ) ) 
-	{	
-		return( &mTimings[*handle] );
+	if (mTimingsIndex.Get(timingName, &handle))
+	{
+		return (&mTimings[*handle]);
 	}
 
-	rvSingleTiming	newTiming( timingName );
-	int				index = mTimings.Num();
-	
-	mTimingsIndex.Set( timingName, index );
-	mTimings.Append( newTiming );
+	rvSingleTiming newTiming(timingName);
+	int index = mTimings.Num();
+
+	mTimingsIndex.Set(timingName, index);
+	mTimings.Append(newTiming);
 	return &mTimings[index];
 }
 
@@ -165,12 +152,15 @@ rvSingleTiming *rvTimingCollection::GetTiming( idStr &timingName )
 //
 //-----------------------------------------------------------------------------
 
-void rvTimingCollection::DisplayTimingValues( void ) {
+void rvTimingCollection::DisplayTimingValues(void)
+{
 	// Fixme: the display resulting from this is really, really a mess - quite unreadable.
-	common->Printf ( "Timer: \n" );
-	for( int i = 0; i < mTimings.Num(); i++ ) {
-		if ( (int)(mTimings[i].mCurValue) ) {
-			common->Printf( "\t%s %3i\n", mTimings[i].mName.c_str(), (int)(mTimings[i].mCurValue) );
+	common->Printf("Timer: \n");
+	for (int i = 0; i < mTimings.Num(); i++)
+	{
+		if ((int)(mTimings[i].mCurValue))
+		{
+			common->Printf("\t%s %3i\n", mTimings[i].mName.c_str(), (int)(mTimings[i].mCurValue));
 		}
 	}
 }
@@ -181,48 +171,48 @@ void rvTimingCollection::DisplayTimingValues( void ) {
 //
 //-----------------------------------------------------------------------------
 
-void rvTimingCollection::OutputToFile( void )
+void rvTimingCollection::OutputToFile(void)
 {
-	idFile	*file	= NULL;
-	idStr	name;
-	char	buffer[1024];
+	idFile *file = NULL;
+	idStr name;
+	char buffer[1024];
 
 	// Fixme: Do we have any good information for building a better file name here?
 
 	name = "Timings/output.txt";
 
-	file = fileSystem->OpenFileWrite ( name );
-	if ( !file )
+	file = fileSystem->OpenFileWrite(name);
+	if (!file)
 	{
 		return;
 	}
 
-	sprintf( buffer, "Total frames = %d\n\n", mFramesRecorded );
-	file->Write( buffer, strlen( buffer ) );
+	sprintf(buffer, "Total frames = %d\n\n", mFramesRecorded);
+	file->Write(buffer, strlen(buffer));
 
-	sprintf( buffer, "%-36s %-9s %-9s %-9s %-9s %-9s %-9s %-9s\n\n",
-		"Name", "Total", "Average", "Peak", "Limit", "Exceeded", "Exceed*5", "Calls" );
-	file->Write ( buffer, strlen( buffer ) );
+	sprintf(buffer, "%-36s %-9s %-9s %-9s %-9s %-9s %-9s %-9s\n\n",
+			"Name", "Total", "Average", "Peak", "Limit", "Exceeded", "Exceed*5", "Calls");
+	file->Write(buffer, strlen(buffer));
 
-	for( int i = 0; i < mTimings.Num(); i++ )
+	for (int i = 0; i < mTimings.Num(); i++)
 	{
-		mTimings[i].OutputDataToFile( file, mFramesRecorded );
-		if( !( ( i + 1 )%3) )	// break up the prints into groups of 3 to make scanning visually easier.
+		mTimings[i].OutputDataToFile(file, mFramesRecorded);
+		if (!((i + 1) % 3)) // break up the prints into groups of 3 to make scanning visually easier.
 		{
-			sprintf( buffer, "\n" );
-			file->Write( buffer, strlen( buffer ) );
+			sprintf(buffer, "\n");
+			file->Write(buffer, strlen(buffer));
 		}
 	}
 
-	sprintf(buffer, "\n\nInformation about categories\n\n" );
-	file->Write ( buffer, strlen( buffer ) );
+	sprintf(buffer, "\n\nInformation about categories\n\n");
+	file->Write(buffer, strlen(buffer));
 
-	for( int i = 0; i < mTimings.Num(); i++ )
+	for (int i = 0; i < mTimings.Num(); i++)
 	{
-		mTimings[i].OutputInfoToFile( file );
+		mTimings[i].OutputInfoToFile(file);
 	}
 
-	fileSystem->CloseFile ( file );
+	fileSystem->CloseFile(file);
 	file = NULL;
 }
 
@@ -232,16 +222,16 @@ void rvTimingCollection::OutputToFile( void )
 //
 //-----------------------------------------------------------------------------
 
-void rvTimingCollection::AppendToDict( idDict *dict )
+void rvTimingCollection::AppendToDict(idDict *dict)
 {
-	if( !mCurrentlyUpdating )
+	if (!mCurrentlyUpdating)
 	{
 		return;
 	}
 
-	for( int i = 0; i < mTimings.Num(); i++ )
+	for (int i = 0; i < mTimings.Num(); i++)
 	{
-		dict->Set ( mTimings[i].mName.c_str(), va( "%0.3g\t%0.3g\t", mTimings[i].mCurValue, mTimings[i].mTotalValue ) );
+		dict->Set(mTimings[i].mName.c_str(), va("%0.3g\t%0.3g\t", mTimings[i].mCurValue, mTimings[i].mTotalValue));
 	}
 }
 
@@ -251,15 +241,15 @@ void rvTimingCollection::AppendToDict( idDict *dict )
 //
 //-----------------------------------------------------------------------------
 
-void rvTimingCollection::InitFrame( bool inUse, bool displayText, bool outputFileWhenDone )
+void rvTimingCollection::InitFrame(bool inUse, bool displayText, bool outputFileWhenDone)
 {
 	// Do our quick reject test to ensure this is quick when not in use.
 
-	if( !inUse )
+	if (!inUse)
 	{
-		if( mCurrentlyUpdating )
+		if (mCurrentlyUpdating)
 		{
-			if( outputFileWhenDone )
+			if (outputFileWhenDone)
 			{
 				OutputToFile();
 			}
@@ -272,7 +262,7 @@ void rvTimingCollection::InitFrame( bool inUse, bool displayText, bool outputFil
 	mUpdates++;
 	mFramesRecorded++;
 
-	if( mUpdates >= 10 && displayText )
+	if (mUpdates >= 10 && displayText)
 	{
 		// ??  If we display output every single frame, we get REALLY bogged down.  It is bad.
 
@@ -285,19 +275,19 @@ void rvTimingCollection::InitFrame( bool inUse, bool displayText, bool outputFil
 
 	// Clear only the curValues and record information.
 
-	for( int i = 0; i < mTimings.Num(); i++ )
+	for (int i = 0; i < mTimings.Num(); i++)
 	{
-		if( mTimings[i].mCurValue > mTimings[i].mPeakValue )
+		if (mTimings[i].mCurValue > mTimings[i].mPeakValue)
 		{
 			mTimings[i].mPeakValue = mTimings[i].mCurValue;
 		}
 
-		if( mTimings[i].mLimit > 0.0 && mTimings[i].mCurValue > mTimings[i].mLimit )
+		if (mTimings[i].mLimit > 0.0 && mTimings[i].mCurValue > mTimings[i].mLimit)
 		{
 			mTimings[i].mLimitExceeded++;
 		}
 
-		if( mTimings[i].mLimit > 0.0 && mTimings[i].mCurValue > mTimings[i].mLimit * 5 )
+		if (mTimings[i].mLimit > 0.0 && mTimings[i].mCurValue > mTimings[i].mLimit * 5)
 		{
 			mTimings[i].mLimitExceededTimesFive++;
 		}
@@ -312,19 +302,19 @@ void rvTimingCollection::InitFrame( bool inUse, bool displayText, bool outputFil
 //
 //-----------------------------------------------------------------------------
 
-void rvTimingCollection::_TimingStart( const char *timingName, const char *fileName, const int lineNum )
+void rvTimingCollection::_TimingStart(const char *timingName, const char *fileName, const int lineNum)
 {
 	// Do our quick reject test to ensure this is quick when not in use.
 
-	if( !mCurrentlyUpdating )
+	if (!mCurrentlyUpdating)
 	{
 		return;
 	}
 
 	// Go up the timer list.
 
-	mCurTimer++; 
-	assert( mCurTimer < MAX_TIMERS );
+	mCurTimer++;
+	assert(mCurTimer < MAX_TIMERS);
 
 	// Keep track of the current function being timed in case we nest and need to know our parent.
 
@@ -332,9 +322,9 @@ void rvTimingCollection::_TimingStart( const char *timingName, const char *fileN
 
 	// Set the information about this timer.
 
-	rvSingleTiming *curTiming = GetTiming( mTimerName[mCurTimer] );
-	
-	if( mCurTimer == 0 )
+	rvSingleTiming *curTiming = GetTiming(mTimerName[mCurTimer]);
+
+	if (mCurTimer == 0)
 	{
 		curTiming->mParentName = "base";
 	}
@@ -342,9 +332,9 @@ void rvTimingCollection::_TimingStart( const char *timingName, const char *fileN
 	{
 		curTiming->mParentName = mTimerName[mCurTimer - 1];
 	}
-	curTiming->mStartFile		= fileName;
-	curTiming->mStartLine		= lineNum;
-	curTiming->mDisplayLevel	= mCurTimer - 1;
+	curTiming->mStartFile = fileName;
+	curTiming->mStartLine = lineNum;
+	curTiming->mDisplayLevel = mCurTimer - 1;
 
 	// Start the timer; do it last to avoid timing the rest of this function.
 
@@ -358,11 +348,11 @@ void rvTimingCollection::_TimingStart( const char *timingName, const char *fileN
 //
 //-----------------------------------------------------------------------------
 
-void rvTimingCollection::_TimingStop( double msecLimit, const char *fileName, const int lineNum )
+void rvTimingCollection::_TimingStop(double msecLimit, const char *fileName, const int lineNum)
 {
 	// Do our quick reject test to ensure this is quick when not in use.
 
-	if( !mCurrentlyUpdating )
+	if (!mCurrentlyUpdating)
 	{
 		return;
 	}
@@ -373,26 +363,26 @@ void rvTimingCollection::_TimingStop( double msecLimit, const char *fileName, co
 
 	// Update incidental information on the timer.
 
-	rvSingleTiming *curTiming = GetTiming( mTimerName[mCurTimer] );
-	
+	rvSingleTiming *curTiming = GetTiming(mTimerName[mCurTimer]);
+
 	curTiming->mEndFile = fileName;
 	curTiming->mEndLine = lineNum;
 
-	curTiming->mLimit	= msecLimit;
+	curTiming->mLimit = msecLimit;
 
 	// Add the actual timing values to the rvSingleTiming
 
-	double	frameTime = mTimer[mCurTimer].Milliseconds();
+	double frameTime = mTimer[mCurTimer].Milliseconds();
 
-	curTiming->mCurValue	+= frameTime;
-	curTiming->mTotalValue	+= frameTime;
+	curTiming->mCurValue += frameTime;
+	curTiming->mTotalValue += frameTime;
 
 	curTiming->mTotalUpdates++;
 
 	// Go back down the timer list.
 
 	mCurTimer--;
-	assert( mCurTimer >= 0 );
+	assert(mCurTimer >= 0);
 }
 
 #endif

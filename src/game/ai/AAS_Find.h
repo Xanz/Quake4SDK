@@ -18,19 +18,18 @@ class rvAIHelper;
 ===============================================================================
 */
 
-class rvAASFindGoalForHide : public idAASCallback {
+class rvAASFindGoalForHide : public idAASCallback
+{
 public:
-	rvAASFindGoalForHide	( const idVec3 &hideFromPos );
-	~rvAASFindGoalForHide	( void );
+	rvAASFindGoalForHide(const idVec3 &hideFromPos);
+	~rvAASFindGoalForHide(void);
 
 protected:
-
-	virtual bool		TestArea	( class idAAS *aas, int areaNum, const aasArea_t& area );
+	virtual bool TestArea(class idAAS *aas, int areaNum, const aasArea_t &area);
 
 private:
-
-	pvsHandle_t			hidePVS;
-	int					PVSAreas[ idEntity::MAX_PVS_AREAS ];
+	pvsHandle_t hidePVS;
+	int PVSAreas[idEntity::MAX_PVS_AREAS];
 };
 
 /*
@@ -39,18 +38,16 @@ private:
 ===============================================================================
 */
 
-class rvAASFindGoalOutOfRange : public idAASCallback {
+class rvAASFindGoalOutOfRange : public idAASCallback
+{
 public:
-	
-	rvAASFindGoalOutOfRange ( idAI* _owner );
+	rvAASFindGoalOutOfRange(idAI *_owner);
 
 protected:
-
-	virtual bool		TestPoint		( class idAAS *aas, const idVec3& point, const float zAllow=0.0f );
+	virtual bool TestPoint(class idAAS *aas, const idVec3 &point, const float zAllow = 0.0f);
 
 private:
-
-	idAI*			owner;
+	idAI *owner;
 };
 
 /*
@@ -59,32 +56,31 @@ private:
 ===============================================================================
 */
 
-class rvAASFindGoalForAttack : public idAASCallback {
+class rvAASFindGoalForAttack : public idAASCallback
+{
 public:
-	rvAASFindGoalForAttack		( idAI *self );
-	~rvAASFindGoalForAttack	( void );
+	rvAASFindGoalForAttack(idAI *self);
+	~rvAASFindGoalForAttack(void);
 
+	bool TestCachedGoals(int count, aasGoal_t &goal);
 
-	bool				TestCachedGoals	( int count, aasGoal_t& goal );
+	virtual void Init(void);
+	virtual void Finish(void);
 
-	virtual void		Init			( void );
-	virtual void		Finish			( void );
-	
 private:
+	virtual bool TestArea(class idAAS *aas, int areaNum, const aasArea_t &area);
+	virtual bool TestPoint(class idAAS *aas, const idVec3 &point, const float zAllow = 0.0f);
 
-	virtual bool		TestArea		( class idAAS *aas, int areaNum, const aasArea_t& area );
-	virtual bool		TestPoint		( class idAAS *aas, const idVec3& point, const float zAllow=0.0f );
-	
-	bool				TestCachedGoal	( int index );
+	bool TestCachedGoal(int index);
 
-	idAI*				owner;
-	
-  	pvsHandle_t			targetPVS;
-  	int					PVSAreas[ idEntity::MAX_PVS_AREAS ];
-	
-	idList<aasGoal_t>	cachedGoals;
-	int					cachedIndex;
-	int					cachedAreaNum;
+	idAI *owner;
+
+	pvsHandle_t targetPVS;
+	int PVSAreas[idEntity::MAX_PVS_AREAS];
+
+	idList<aasGoal_t> cachedGoals;
+	int cachedIndex;
+	int cachedAreaNum;
 };
 
 /*
@@ -93,20 +89,19 @@ private:
 ===============================================================================
 */
 
-class rvAASFindGoalForTether : public idAASCallback {
+class rvAASFindGoalForTether : public idAASCallback
+{
 public:
-	rvAASFindGoalForTether	( idAI* owner, rvAITether* helper );
-	~rvAASFindGoalForTether	( void );
+	rvAASFindGoalForTether(idAI *owner, rvAITether *helper);
+	~rvAASFindGoalForTether(void);
 
 protected:
-
-	virtual bool		TestArea	( class idAAS *aas, int areaNum, const aasArea_t& area );
-	virtual bool		TestPoint	( class idAAS* aas, const idVec3& pos, const float zAllow=0.0f );
+	virtual bool TestArea(class idAAS *aas, int areaNum, const aasArea_t &area);
+	virtual bool TestPoint(class idAAS *aas, const idVec3 &pos, const float zAllow = 0.0f);
 
 private:
-
-	idAI*			owner;
-	rvAITether*		tether;
+	idAI *owner;
+	rvAITether *tether;
 };
 
 #endif // __AAS_FIND__

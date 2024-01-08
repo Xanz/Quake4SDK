@@ -4,16 +4,16 @@
 
 #include "../Game_local.h"
 
-ABSTRACT_DECLARATION( idClass, idPhysics )
+ABSTRACT_DECLARATION(idClass, idPhysics)
 END_CLASS
-
 
 /*
 ================
 idPhysics::~idPhysics
 ================
 */
-idPhysics::~idPhysics( void ) {
+idPhysics::~idPhysics(void)
+{
 }
 
 /*
@@ -21,7 +21,8 @@ idPhysics::~idPhysics( void ) {
 idPhysics::Save
 ================
 */
-void idPhysics::Save( idSaveGame *savefile ) const {
+void idPhysics::Save(idSaveGame *savefile) const
+{
 }
 
 /*
@@ -29,7 +30,8 @@ void idPhysics::Save( idSaveGame *savefile ) const {
 idPhysics::Restore
 ================
 */
-void idPhysics::Restore( idRestoreGame *savefile ) {
+void idPhysics::Restore(idRestoreGame *savefile)
+{
 }
 
 /*
@@ -37,8 +39,9 @@ void idPhysics::Restore( idRestoreGame *savefile ) {
 idPhysics::SetClipBox
 ================
 */
-void idPhysics::SetClipBox( const idBounds &bounds, float density ) {
-	SetClipModel( new idClipModel( idTraceModel( bounds ) ), density );
+void idPhysics::SetClipBox(const idBounds &bounds, float density)
+{
+	SetClipModel(new idClipModel(idTraceModel(bounds)), density);
 }
 
 /*
@@ -46,11 +49,12 @@ void idPhysics::SetClipBox( const idBounds &bounds, float density ) {
 idPhysics::SnapTimeToPhysicsFrame
 ================
 */
-int idPhysics::SnapTimeToPhysicsFrame( int t ) {
+int idPhysics::SnapTimeToPhysicsFrame(int t)
+{
 	int s;
-// RAVEN BEGIN
-// bdube: use GetMSec access rather than USERCMD_TIME
+	// RAVEN BEGIN
+	// bdube: use GetMSec access rather than USERCMD_TIME
 	s = t + gameLocal.GetMSec() - 1;
-	return ( s - s % gameLocal.GetMSec() );
-// RAVEN END
+	return (s - s % gameLocal.GetMSec());
+	// RAVEN END
 }

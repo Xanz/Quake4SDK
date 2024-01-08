@@ -13,33 +13,33 @@
 
 class rvVehicleAI;
 
-class rvVehicleMonster : public rvVehicle {
+class rvVehicleMonster : public rvVehicle
+{
 	friend class rvVehicleAI;
+
 public:
+	CLASS_PROTOTYPE(rvVehicleMonster);
 
-	CLASS_PROTOTYPE( rvVehicleMonster );
+	rvVehicleMonster(void);
+	~rvVehicleMonster(void);
 
-							rvVehicleMonster	( void );
-							~rvVehicleMonster	( void );
+	void Spawn(void);
+	void Think(void);
+	void Save(idSaveGame *savefile) const;
+	void Restore(idRestoreGame *savefile);
 
-	void					Spawn				( void );
-	void					Think				( void );
-	void					Save				( idSaveGame *savefile ) const;
-	void					Restore				( idRestoreGame *savefile );
-
-	bool					SkipImpulse			( idEntity* ent, int id );
+	bool SkipImpulse(idEntity *ent, int id);
 
 protected:
-	
-	void					SetClipModel		( idPhysics & physicsObj );
+	void SetClipModel(idPhysics &physicsObj);
 
-	const idVec3 &			GetTargetOrigin		( void );
-	idVec3					GetVectorToTarget	( void );
-	const idVec3 &			GetEnemyOrigin		( void );
-	idVec3					GetVectorToEnemy	( void );
-	void					LookAtEntity		( idEntity *ent, float duration );
+	const idVec3 &GetTargetOrigin(void);
+	idVec3 GetVectorToTarget(void);
+	const idVec3 &GetEnemyOrigin(void);
+	idVec3 GetVectorToEnemy(void);
+	void LookAtEntity(idEntity *ent, float duration);
 
-	idEntityPtr<rvVehicleAI>	driver;
+	idEntityPtr<rvVehicleAI> driver;
 };
 
 #endif // __GAME_VEHICLEMONSTER_H__

@@ -14,12 +14,13 @@
 ===================================================================================
 */
 
-class rvPhysics_VehicleMonster : public idPhysics_RigidBody {
+class rvPhysics_VehicleMonster : public idPhysics_RigidBody
+{
 public:
-	CLASS_PROTOTYPE( rvPhysics_VehicleMonster );
+	CLASS_PROTOTYPE(rvPhysics_VehicleMonster);
 
-	bool					Evaluate						( int timeStepMSec, int endTimeMSec );
-	void					SetGravity						( const idVec3 & v );
+	bool Evaluate(int timeStepMSec, int endTimeMSec);
+	void SetGravity(const idVec3 &v);
 };
 
 #endif /* !__PHYSICS_VEHICLE_MONSTER_H__ */

@@ -16,9 +16,10 @@
 rvVehicleController::rvVehicleController
 =====================
 */
-rvVehicleController::rvVehicleController ( void ) {
-	mVehicle  = NULL;
-	//mDriver   = NULL;
+rvVehicleController::rvVehicleController(void)
+{
+	mVehicle = NULL;
+	// mDriver   = NULL;
 	mPosition = 0;
 }
 
@@ -27,9 +28,10 @@ rvVehicleController::rvVehicleController ( void ) {
 rvVehicleController::Save
 =====================
 */
-void rvVehicleController::Save ( idSaveGame *savefile ) const {
-	mVehicle.Save ( savefile );
-	savefile->WriteInt ( mPosition );
+void rvVehicleController::Save(idSaveGame *savefile) const
+{
+	mVehicle.Save(savefile);
+	savefile->WriteInt(mPosition);
 }
 
 /*
@@ -37,9 +39,10 @@ void rvVehicleController::Save ( idSaveGame *savefile ) const {
 rvVehicleController::Restore
 =====================
 */
-void rvVehicleController::Restore ( idRestoreGame *savefile ) {
-	mVehicle.Restore ( savefile );
-	savefile->ReadInt ( mPosition );
+void rvVehicleController::Restore(idRestoreGame *savefile)
+{
+	mVehicle.Restore(savefile);
+	savefile->ReadInt(mPosition);
 }
 
 /*
@@ -47,31 +50,36 @@ void rvVehicleController::Restore ( idRestoreGame *savefile ) {
 rvVehicleController::Drive
 =====================
 */
-bool rvVehicleController::Drive ( rvVehicle* vehicle, idActor* driver ) {
-	assert ( vehicle && driver );
+bool rvVehicleController::Drive(rvVehicle *vehicle, idActor *driver)
+{
+	assert(vehicle && driver);
 
 	// Flip the vehicle back over?
-	if ( vehicle->IsFlipped ( ) ) {
-		vehicle->AutoRight ( vehicle );
+	if (vehicle->IsFlipped())
+	{
+		vehicle->AutoRight(vehicle);
 		return false;
 	}
-		
+
 	// Add the driver to the vehicle and cache the position it was added.
-	if ( -1 == (mPosition = vehicle->AddDriver ( 0, driver ) ) ) {
+	if (-1 == (mPosition = vehicle->AddDriver(0, driver)))
+	{
 		return false;
 	}
-	
-	mVehicle = vehicle;	
 
-	//twhitaker: for scripted callback events
+	mVehicle = vehicle;
+
+	// twhitaker: for scripted callback events
 	vehicle->OnEnter();
-	
-	if ( driver->IsType( idPlayer::GetClassType() ) ) {
-		idPlayer * player = static_cast< idPlayer *>( driver );
 
-		if ( player->GetHud() ) {
-			GetHud()->Activate( true, gameLocal.time );
-			GetHud()->HandleNamedEvent( "showExitmessage" );
+	if (driver->IsType(idPlayer::GetClassType()))
+	{
+		idPlayer *player = static_cast<idPlayer *>(driver);
+
+		if (player->GetHud())
+		{
+			GetHud()->Activate(true, gameLocal.time);
+			GetHud()->HandleNamedEvent("showExitmessage");
 		}
 	}
 
@@ -83,26 +91,31 @@ bool rvVehicleController::Drive ( rvVehicle* vehicle, idActor* driver ) {
 rvVehicleController::Eject
 =====================
 */
-bool rvVehicleController::Eject ( bool force ) {
-	if ( !GetVehicle() ) {
+bool rvVehicleController::Eject(bool force)
+{
+	if (!GetVehicle())
+	{
 		return true;
 	}
-	
-	if ( GetDriver()->IsType( idPlayer::GetClassType() ) ) {
-		idPlayer * player = static_cast< idPlayer *>( GetDriver() );
 
-		if ( player->GetHud() ) {
-			GetHud()->HandleNamedEvent( "hideExitmessage" );
+	if (GetDriver()->IsType(idPlayer::GetClassType()))
+	{
+		idPlayer *player = static_cast<idPlayer *>(GetDriver());
+
+		if (player->GetHud())
+		{
+			GetHud()->HandleNamedEvent("hideExitmessage");
 		}
 	}
 
-	if ( mVehicle->RemoveDriver ( GetPosition(), force ) ) {
+	if (mVehicle->RemoveDriver(GetPosition(), force))
+	{
 		mVehicle->OnExit();
 		mVehicle = NULL;
 
 		return true;
 	}
-	
+
 	return false;
 }
 
@@ -111,8 +124,9 @@ bool rvVehicleController::Eject ( bool force ) {
 rvVehicleController::FindClearExitPoint
 =====================
 */
-bool rvVehicleController::FindClearExitPoint( idVec3& origin, idMat3& axis ) const {
-	return GetVehicle()->FindClearExitPoint( mPosition, origin, axis );
+bool rvVehicleController::FindClearExitPoint(idVec3 &origin, idMat3 &axis) const
+{
+	return GetVehicle()->FindClearExitPoint(mPosition, origin, axis);
 }
 
 /*
@@ -120,8 +134,9 @@ bool rvVehicleController::FindClearExitPoint( idVec3& origin, idMat3& axis ) con
 rvVehicleController::KillVehicles
 =====================
 */
-void rvVehicleController::KillVehicles ( void ) {
-	KillEntities( idCmdArgs(), rvVehicle::GetClassType() );
+void rvVehicleController::KillVehicles(void)
+{
+	KillEntities(idCmdArgs(), rvVehicle::GetClassType());
 }
 
 /*
@@ -129,24 +144,28 @@ void rvVehicleController::KillVehicles ( void ) {
 rvVehicleController::DrawHUD
 =====================
 */
-void rvVehicleController::DrawHUD ( void ) {
-	assert ( mVehicle );
+void rvVehicleController::DrawHUD(void)
+{
+	assert(mVehicle);
 
-	if ( GetDriver() && GetDriver()->IsType( idPlayer::GetClassType() ) ) {
-		idPlayer * player = static_cast<idPlayer*>( GetDriver() );
-		rvVehicleWeapon * weapon = mVehicle->GetPosition( mPosition )->GetActiveWeapon();
-		if ( weapon ) {
-			if ( weapon->CanZoom() && player->IsZoomed() && player == gameLocal.GetLocalPlayer() ) {
-				weapon->GetZoomGui()->Redraw( gameLocal.time );			
+	if (GetDriver() && GetDriver()->IsType(idPlayer::GetClassType()))
+	{
+		idPlayer *player = static_cast<idPlayer *>(GetDriver());
+		rvVehicleWeapon *weapon = mVehicle->GetPosition(mPosition)->GetActiveWeapon();
+		if (weapon)
+		{
+			if (weapon->CanZoom() && player->IsZoomed() && player == gameLocal.GetLocalPlayer())
+			{
+				weapon->GetZoomGui()->Redraw(gameLocal.time);
 			}
-//            if ( mVehicle->GetHud() ) {
-//				mVehicle->GetHud()->SetStateFloat( "tram_heatpct", weapon->GetOverheatPercent());
-//	 			mVehicle->GetHud()->SetStateFloat( "tram_overheat", weapon->GetOverheatState());
-//			}
+			//            if ( mVehicle->GetHud() ) {
+			//				mVehicle->GetHud()->SetStateFloat( "tram_heatpct", weapon->GetOverheatPercent());
+			//	 			mVehicle->GetHud()->SetStateFloat( "tram_overheat", weapon->GetOverheatState());
+			//			}
 		}
 	}
 
-	mVehicle->DrawHUD ( mPosition );
+	mVehicle->DrawHUD(mPosition);
 }
 
 /*
@@ -154,10 +173,12 @@ void rvVehicleController::DrawHUD ( void ) {
 rvVehicleController::StartRadioChatter
 =====================
 */
-void rvVehicleController::StartRadioChatter	( void ) {
-	assert ( mVehicle );
-	if ( mVehicle->GetHud () ) {
-		mVehicle->GetHud ()->HandleNamedEvent( "radioChatterUp" );
+void rvVehicleController::StartRadioChatter(void)
+{
+	assert(mVehicle);
+	if (mVehicle->GetHud())
+	{
+		mVehicle->GetHud()->HandleNamedEvent("radioChatterUp");
 	}
 }
 
@@ -166,10 +187,12 @@ void rvVehicleController::StartRadioChatter	( void ) {
 rvVehicleController::StopRadioChatter
 =====================
 */
-void rvVehicleController::StopRadioChatter ( void ) {
-	assert ( mVehicle );
-	if ( mVehicle->GetHud () ) {
-		mVehicle->GetHud ()->HandleNamedEvent( "radioChatterDown" );
+void rvVehicleController::StopRadioChatter(void)
+{
+	assert(mVehicle);
+	if (mVehicle->GetHud())
+	{
+		mVehicle->GetHud()->HandleNamedEvent("radioChatterDown");
 	}
 }
 
@@ -178,9 +201,11 @@ void rvVehicleController::StopRadioChatter ( void ) {
 rvVehicleController::Give
 =====================
 */
-void rvVehicleController::Give ( const char* statname, const char* value ) {
-	if( mVehicle.IsValid() ) {
-		mVehicle->Give ( statname, value );
+void rvVehicleController::Give(const char *statname, const char *value)
+{
+	if (mVehicle.IsValid())
+	{
+		mVehicle->Give(statname, value);
 	}
 }
 
@@ -189,9 +214,11 @@ void rvVehicleController::Give ( const char* statname, const char* value ) {
 rvVehicleController::GetEyePosition
 =====================
 */
-void rvVehicleController::GetEyePosition ( idVec3& origin, idMat3& axis ) const {
-	if( mVehicle.IsValid() ) {
-		mVehicle->GetEyePosition ( mPosition, origin, axis );
+void rvVehicleController::GetEyePosition(idVec3 &origin, idMat3 &axis) const
+{
+	if (mVehicle.IsValid())
+	{
+		mVehicle->GetEyePosition(mPosition, origin, axis);
 	}
 }
 
@@ -200,9 +227,11 @@ void rvVehicleController::GetEyePosition ( idVec3& origin, idMat3& axis ) const 
 rvVehicleController::GetDriverPosition
 =====================
 */
-void rvVehicleController::GetDriverPosition ( idVec3& origin, idMat3& axis ) const {
-	if( mVehicle.IsValid() ) {
-		mVehicle->GetDriverPosition ( mPosition, origin, axis );
+void rvVehicleController::GetDriverPosition(idVec3 &origin, idMat3 &axis) const
+{
+	if (mVehicle.IsValid())
+	{
+		mVehicle->GetDriverPosition(mPosition, origin, axis);
 	}
 }
 
@@ -211,11 +240,13 @@ void rvVehicleController::GetDriverPosition ( idVec3& origin, idMat3& axis ) con
 rvVehicleController::GetVehicle
 =====================
 */
-rvVehicle* rvVehicleController::GetVehicle ( void ) const {
+rvVehicle *rvVehicleController::GetVehicle(void) const
+{
 	return mVehicle;
 }
 
-idActor* rvVehicleController::GetDriver ( void ) const {
+idActor *rvVehicleController::GetDriver(void) const
+{
 	return (GetVehicle()) ? GetVehicle()->GetPosition(GetPosition())->GetDriver() : NULL;
 }
 
@@ -224,9 +255,11 @@ idActor* rvVehicleController::GetDriver ( void ) const {
 rvVehicleController::SetInput
 =====================
 */
-void rvVehicleController::SetInput ( const usercmd_t& cmd, const idAngles &angles ) {
-	if( mVehicle.IsValid() ) {
-		mVehicle->SetInput ( mPosition, cmd, angles );
+void rvVehicleController::SetInput(const usercmd_t &cmd, const idAngles &angles)
+{
+	if (mVehicle.IsValid())
+	{
+		mVehicle->SetInput(mPosition, cmd, angles);
 	}
 }
 
@@ -235,9 +268,11 @@ void rvVehicleController::SetInput ( const usercmd_t& cmd, const idAngles &angle
 rvVehicleController::GetInput
 =====================
 */
-void rvVehicleController::GetInput( usercmd_t& cmd, idAngles &newAngles ) const {
-	if( mVehicle.IsValid() ) {
-		mVehicle->GetInput( mPosition, cmd, newAngles );
+void rvVehicleController::GetInput(usercmd_t &cmd, idAngles &newAngles) const
+{
+	if (mVehicle.IsValid())
+	{
+		mVehicle->GetInput(mPosition, cmd, newAngles);
 	}
 }
 
@@ -246,7 +281,8 @@ void rvVehicleController::GetInput( usercmd_t& cmd, idAngles &newAngles ) const 
 rvVehicleController::GetHud
 ================
 */
-idUserInterface* rvVehicleController::GetHud( void ) {
+idUserInterface *rvVehicleController::GetHud(void)
+{
 	return (IsDriving()) ? mVehicle->GetHud() : NULL;
 }
 
@@ -255,7 +291,8 @@ idUserInterface* rvVehicleController::GetHud( void ) {
 rvVehicleController::GetHud
 ================
 */
-const idUserInterface* rvVehicleController::GetHud( void ) const {
+const idUserInterface *rvVehicleController::GetHud(void) const
+{
 	return (IsDriving()) ? mVehicle->GetHud() : NULL;
 }
 
@@ -264,9 +301,10 @@ const idUserInterface* rvVehicleController::GetHud( void ) const {
 rvVehicleController::WriteToSnapshot
 ================
 */
-void rvVehicleController::WriteToSnapshot ( idBitMsgDelta &msg ) const {
-	msg.WriteLong ( mPosition );
-	msg.WriteLong ( mVehicle.GetSpawnId ( ) );
+void rvVehicleController::WriteToSnapshot(idBitMsgDelta &msg) const
+{
+	msg.WriteLong(mPosition);
+	msg.WriteLong(mVehicle.GetSpawnId());
 }
 
 /*
@@ -274,9 +312,10 @@ void rvVehicleController::WriteToSnapshot ( idBitMsgDelta &msg ) const {
 rvVehicleController::ReadFromSnapshot
 ================
 */
-void rvVehicleController::ReadFromSnapshot ( const idBitMsgDelta &msg ) {
-	mPosition = msg.ReadLong ( );
-	mVehicle.SetSpawnId ( msg.ReadLong ( ) );
+void rvVehicleController::ReadFromSnapshot(const idBitMsgDelta &msg)
+{
+	mPosition = msg.ReadLong();
+	mVehicle.SetSpawnId(msg.ReadLong());
 }
 
 /*
@@ -284,9 +323,10 @@ void rvVehicleController::ReadFromSnapshot ( const idBitMsgDelta &msg ) {
 rvVehicleController::UpdateCursorGUI
 ================
 */
-void rvVehicleController::UpdateCursorGUI ( idUserInterface* ui ) {
-	assert ( mVehicle );
-	mVehicle->UpdateCursorGUI ( mPosition, ui );
+void rvVehicleController::UpdateCursorGUI(idUserInterface *ui)
+{
+	assert(mVehicle);
+	mVehicle->UpdateCursorGUI(mPosition, ui);
 }
 
 /*
@@ -294,8 +334,10 @@ void rvVehicleController::UpdateCursorGUI ( idUserInterface* ui ) {
 rvVehicleController::SelectWeapon
 ================
 */
-void rvVehicleController::SelectWeapon ( int weapon ) {
-	if( mVehicle.IsValid() ) {
-		mVehicle->GetPosition( mPosition )->SelectWeapon( weapon );
+void rvVehicleController::SelectWeapon(int weapon)
+{
+	if (mVehicle.IsValid())
+	{
+		mVehicle->GetPosition(mPosition)->SelectWeapon(weapon);
 	}
 }

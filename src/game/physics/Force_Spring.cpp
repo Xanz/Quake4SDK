@@ -4,7 +4,7 @@
 
 #include "../Game_local.h"
 
-CLASS_DECLARATION( idForce, idForce_Spring )
+CLASS_DECLARATION(idForce, idForce_Spring)
 END_CLASS
 
 /*
@@ -12,17 +12,18 @@ END_CLASS
 idForce_Spring::idForce_Spring
 ================
 */
-idForce_Spring::idForce_Spring( void ) {
-	Kstretch		= 100.0f;
-	Kcompress		= 100.0f;
-	damping			= 0.0f;
-	restLength		= 0.0f;
-	physics1		= NULL;
-	id1				= 0;
-	p1				= vec3_zero;
-	physics2		= NULL;
-	id2				= 0;
-	p2				= vec3_zero;
+idForce_Spring::idForce_Spring(void)
+{
+	Kstretch = 100.0f;
+	Kcompress = 100.0f;
+	damping = 0.0f;
+	restLength = 0.0f;
+	physics1 = NULL;
+	id1 = 0;
+	p1 = vec3_zero;
+	physics2 = NULL;
+	id2 = 0;
+	p2 = vec3_zero;
 }
 
 /*
@@ -30,7 +31,8 @@ idForce_Spring::idForce_Spring( void ) {
 idForce_Spring::~idForce_Spring
 ================
 */
-idForce_Spring::~idForce_Spring( void ) {
+idForce_Spring::~idForce_Spring(void)
+{
 }
 
 /*
@@ -38,7 +40,8 @@ idForce_Spring::~idForce_Spring( void ) {
 idForce_Spring::InitSpring
 ================
 */
-void idForce_Spring::InitSpring( float Kstretch, float Kcompress, float damping, float restLength ) {
+void idForce_Spring::InitSpring(float Kstretch, float Kcompress, float damping, float restLength)
+{
 	this->Kstretch = Kstretch;
 	this->Kcompress = Kcompress;
 	this->damping = damping;
@@ -50,7 +53,8 @@ void idForce_Spring::InitSpring( float Kstretch, float Kcompress, float damping,
 idForce_Spring::SetPosition
 ================
 */
-void idForce_Spring::SetPosition( idPhysics *physics1, int id1, const idVec3 &p1, idPhysics *physics2, int id2, const idVec3 &p2 ) {
+void idForce_Spring::SetPosition(idPhysics *physics1, int id1, const idVec3 &p1, idPhysics *physics2, int id2, const idVec3 &p2)
+{
 	this->physics1 = physics1;
 	this->id1 = id1;
 	this->p1 = p1;
@@ -64,7 +68,8 @@ void idForce_Spring::SetPosition( idPhysics *physics1, int id1, const idVec3 &p1
 idForce_Spring::Evaluate
 ================
 */
-void idForce_Spring::Evaluate( int time ) {
+void idForce_Spring::Evaluate(int time)
+{
 	float length;
 	idMat3 axis;
 	idVec3 pos1, pos2, velocity1, velocity2, force, dampingForce;
@@ -74,50 +79,62 @@ void idForce_Spring::Evaluate( int time ) {
 	pos2 = p2;
 	velocity1 = velocity2 = vec3_origin;
 
-	if ( physics1 ) {
-		axis = physics1->GetAxis( id1 );
-		pos1 = physics1->GetOrigin( id1 );
+	if (physics1)
+	{
+		axis = physics1->GetAxis(id1);
+		pos1 = physics1->GetOrigin(id1);
 		pos1 += p1 * axis;
-		if ( damping > 0.0f ) {
-			physics1->GetImpactInfo( id1, pos1, &info );
+		if (damping > 0.0f)
+		{
+			physics1->GetImpactInfo(id1, pos1, &info);
 			velocity1 = info.velocity;
 		}
 	}
 
-	if ( physics2 ) {
-		axis = physics2->GetAxis( id2 );
-		pos2 = physics2->GetOrigin( id2 );
+	if (physics2)
+	{
+		axis = physics2->GetAxis(id2);
+		pos2 = physics2->GetOrigin(id2);
 		pos2 += p2 * axis;
-		if ( damping > 0.0f ) {
-			physics2->GetImpactInfo( id2, pos2, &info );
+		if (damping > 0.0f)
+		{
+			physics2->GetImpactInfo(id2, pos2, &info);
 			velocity2 = info.velocity;
 		}
 	}
 
 	force = pos2 - pos1;
-	dampingForce = ( damping * ( ((velocity2 - velocity1) * force) / (force * force) ) ) * force;
+	dampingForce = (damping * (((velocity2 - velocity1) * force) / (force * force))) * force;
 	length = force.Normalize();
 
 	// if the spring is stretched
-	if ( length > restLength ) {
-		if ( Kstretch > 0.0f ) {
-			force = ( Square( length - restLength ) * Kstretch ) * force - dampingForce;
-			if ( physics1 ) {
-				physics1->AddForce( id1, pos1, force );
+	if (length > restLength)
+	{
+		if (Kstretch > 0.0f)
+		{
+			force = (Square(length - restLength) * Kstretch) * force - dampingForce;
+			if (physics1)
+			{
+				physics1->AddForce(id1, pos1, force);
 			}
-			if ( physics2 ) {
-				physics2->AddForce( id2, pos2, -force );
+			if (physics2)
+			{
+				physics2->AddForce(id2, pos2, -force);
 			}
 		}
 	}
-	else {
-		if ( Kcompress > 0.0f ) {
-			force = ( Square( length - restLength ) * Kcompress ) * force - dampingForce;
-			if ( physics1 ) {
-				physics1->AddForce( id1, pos1, -force );
+	else
+	{
+		if (Kcompress > 0.0f)
+		{
+			force = (Square(length - restLength) * Kcompress) * force - dampingForce;
+			if (physics1)
+			{
+				physics1->AddForce(id1, pos1, -force);
 			}
-			if ( physics2 ) {
-				physics2->AddForce( id2, pos2, force );
+			if (physics2)
+			{
+				physics2->AddForce(id2, pos2, force);
 			}
 		}
 	}
@@ -128,11 +145,14 @@ void idForce_Spring::Evaluate( int time ) {
 idForce_Spring::RemovePhysics
 ================
 */
-void idForce_Spring::RemovePhysics( const idPhysics *phys ) {
-	if ( physics1 == phys ) {
+void idForce_Spring::RemovePhysics(const idPhysics *phys)
+{
+	if (physics1 == phys)
+	{
 		physics1 = NULL;
 	}
-	if ( physics2 == phys ) {
+	if (physics2 == phys)
+	{
 		physics2 = NULL;
 	}
 }
@@ -142,11 +162,12 @@ void idForce_Spring::RemovePhysics( const idPhysics *phys ) {
 idForce_Spring::Save
 ================
 */
-void idForce_Spring::Save( idSaveGame *savefile ) const {
-	savefile->WriteFloat ( Kstretch );
-	savefile->WriteFloat ( Kcompress );
-	savefile->WriteFloat ( damping );
-	savefile->WriteFloat ( restLength );
+void idForce_Spring::Save(idSaveGame *savefile) const
+{
+	savefile->WriteFloat(Kstretch);
+	savefile->WriteFloat(Kcompress);
+	savefile->WriteFloat(damping);
+	savefile->WriteFloat(restLength);
 }
 
 /*
@@ -154,10 +175,10 @@ void idForce_Spring::Save( idSaveGame *savefile ) const {
 idForce_Spring::Restore
 ================
 */
-void idForce_Spring::Restore( idRestoreGame *savefile ) {
-	savefile->ReadFloat ( Kstretch );
-	savefile->ReadFloat ( Kcompress );
-	savefile->ReadFloat ( damping );
-	savefile->ReadFloat ( restLength );
+void idForce_Spring::Restore(idRestoreGame *savefile)
+{
+	savefile->ReadFloat(Kstretch);
+	savefile->ReadFloat(Kcompress);
+	savefile->ReadFloat(damping);
+	savefile->ReadFloat(restLength);
 }
-

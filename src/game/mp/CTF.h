@@ -18,47 +18,50 @@ rvCTF_AssaultPoint
 ===============================================================================
 */
 
-class rvCTF_AssaultPoint : public idEntity {
+class rvCTF_AssaultPoint : public idEntity
+{
 public:
-	CLASS_PROTOTYPE( rvCTF_AssaultPoint );
-	void	Spawn( void );
+	CLASS_PROTOTYPE(rvCTF_AssaultPoint);
+	void Spawn(void);
 
 	rvCTF_AssaultPoint();
 	~rvCTF_AssaultPoint();
 
-	int GetOwner( void ); 
-	int GetIndex( void ); 
-	
-	void SetOwnerColor ( void );
-	void SetOwner ( int newOwner );
-	void Reset ( void );
+	int GetOwner(void);
+	int GetIndex(void);
+
+	void SetOwnerColor(void);
+	void SetOwner(int newOwner);
+	void Reset(void);
 
 private:
-	void	Event_Touch( idEntity *activator, trace_t *trace );
-	void    Event_InitializeLinks( void );
-	void	ResetSpawns( int team );	
-	
-	void	ResetIndices( void );
-    
+	void Event_Touch(idEntity *activator, trace_t *trace);
+	void Event_InitializeLinks(void);
+	void ResetSpawns(int team);
+
+	void ResetIndices(void);
+
 	// these could be maintained as lists to allow multiple AP paths
 	// the assault point one step closer to the Strogg base
-	idEntityPtr<idEntity>	toStrogg;
+	idEntityPtr<idEntity> toStrogg;
 	// the assault point one step closer to the Marine base
-	idEntityPtr<idEntity>	toMarine;
+	idEntityPtr<idEntity> toMarine;
 
 	// who currently owns this assault point
-	int	owner;
+	int owner;
 	int index;
 	bool linked;
 
-	idClipModel* trigger;
+	idClipModel *trigger;
 };
 
-ID_INLINE int rvCTF_AssaultPoint::GetOwner( void ) {
+ID_INLINE int rvCTF_AssaultPoint::GetOwner(void)
+{
 	return owner;
 }
 
-ID_INLINE int rvCTF_AssaultPoint::GetIndex( void ) {
+ID_INLINE int rvCTF_AssaultPoint::GetIndex(void)
+{
 	return index;
 }
 
@@ -69,16 +72,18 @@ rvCTFAssaultPlayerStart
 
 ===============================================================================
 */
-class rvCTFAssaultPlayerStart : public idPlayerStart {
+class rvCTFAssaultPlayerStart : public idPlayerStart
+{
 public:
-	CLASS_PROTOTYPE( rvCTFAssaultPlayerStart );
+	CLASS_PROTOTYPE(rvCTFAssaultPlayerStart);
 
-	void				Spawn( void );
+	void Spawn(void);
 
-	int					GetTeam( void );
+	int GetTeam(void);
+
 private:
-	void				Event_Activate( idEntity *activator );
-	int					team;
+	void Event_Activate(idEntity *activator);
+	int team;
 };
 
 #endif

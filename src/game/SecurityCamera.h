@@ -10,62 +10,67 @@
 ===================================================================================
 */
 
-
-class idSecurityCamera : public idEntity {
+class idSecurityCamera : public idEntity
+{
 public:
-	CLASS_PROTOTYPE( idSecurityCamera );
-	
-							~idSecurityCamera( void );
+	CLASS_PROTOTYPE(idSecurityCamera);
 
-	void					Spawn( void );
+	~idSecurityCamera(void);
 
-	void					Save( idSaveGame *savefile ) const;
-	void					Restore( idRestoreGame *savefile );
+	void Spawn(void);
 
-	virtual void			Think( void );
+	void Save(idSaveGame *savefile) const;
+	void Restore(idRestoreGame *savefile);
 
-	virtual renderView_t *	GetRenderView();
-	virtual void			Killed( idEntity *inflictor, idEntity *attacker, int damage, const idVec3 &dir, int location );
-	virtual bool			Pain( idEntity *inflictor, idEntity *attacker, int damage, const idVec3 &dir, int location );
-	virtual void			Present( void );
+	virtual void Think(void);
+
+	virtual renderView_t *GetRenderView();
+	virtual void Killed(idEntity *inflictor, idEntity *attacker, int damage, const idVec3 &dir, int location);
+	virtual bool Pain(idEntity *inflictor, idEntity *attacker, int damage, const idVec3 &dir, int location);
+	virtual void Present(void);
 
 private:
+	enum
+	{
+		SCANNING,
+		LOSINGINTEREST,
+		ALERT,
+		ACTIVATED
+	};
 
-	enum { SCANNING, LOSINGINTEREST, ALERT, ACTIVATED };
+	float angle;
+	float sweepAngle;
+	int modelAxis;
+	bool flipAxis;
+	float scanDist;
+	float scanFov;
 
-	float					angle;
-	float					sweepAngle;
-	int						modelAxis;
-	bool					flipAxis;
-	float					scanDist;
-	float					scanFov;
-							
-	float					sweepStart;
-	float					sweepEnd;
-	bool					negativeSweep;
-	bool					sweeping;
-	int						alertMode;
-	float					stopSweeping;
-	float					scanFovCos;
+	float sweepStart;
+	float sweepEnd;
+	bool negativeSweep;
+	bool sweeping;
+	int alertMode;
+	float stopSweeping;
+	float scanFovCos;
 
-	idVec3					viewOffset;
-							
-	int						pvsArea;
-	idPhysics_RigidBody		physicsObj;
-	idTraceModel			trm;
+	idVec3 viewOffset;
 
-	void					StartSweep( void );
-	bool					CanSeePlayer( void );
-	void					SetAlertMode( int status );
-	void					DrawFov( void );
-	const idVec3			GetAxis( void ) const;
-	float					SweepSpeed( void ) const;
+	int pvsArea;
+	idPhysics_RigidBody physicsObj;
+	idTraceModel trm;
 
-	void					Event_ReverseSweep( void );
-	void					Event_ContinueSweep( void );
-	void					Event_Pause( void );
-	void					Event_Alert( void );
-	void					Event_AddLight( void );
+	void StartSweep(void);
+	bool CanSeePlayer(void);
+	void SetAlertMode(int status);
+	void DrawFov(void);
+	const idVec3 GetAxis(void) const;
+	float SweepSpeed(void) const;
+
+	void Event_ReverseSweep(void);
+	void Event_ContinueSweep(void);
+	void Event_Pause(void);
+	void Event_Alert(void);
+	void Event_AddLight(void);
 };
 
 #endif /* !__GAME_SECURITYCAMERA_H__ */

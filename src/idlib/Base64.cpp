@@ -38,32 +38,38 @@ POSSIBILITY OF SUCH DAMAGE.
 idBase64::Encode
 ============
 */
-static const char sixtet_to_base64[] = 
+static const char sixtet_to_base64[] =
 	"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
-void idBase64::Encode( const byte *from, int size ) {
+void idBase64::Encode(const byte *from, int size)
+{
 	int i, j;
 	unsigned long w;
 	byte *to;
-	
-	EnsureAlloced( 4*(size+3)/3 + 2 ); // ratio and padding + trailing \0
+
+	EnsureAlloced(4 * (size + 3) / 3 + 2); // ratio and padding + trailing \0
 	to = data;
-	
+
 	w = 0;
 	i = 0;
-	while (size > 0) {
-		w |= *from << i*8;
+	while (size > 0)
+	{
+		w |= *from << i * 8;
 		++from;
 		--size;
 		++i;
-		if (size == 0 || i == 3) {
+		if (size == 0 || i == 3)
+		{
 			byte out[4];
-			SixtetsForInt( out, w );
-			for (j = 0; j*6 < i*8; ++j) {
-				*to++ = sixtet_to_base64[ out[j] ];
+			SixtetsForInt(out, w);
+			for (j = 0; j * 6 < i * 8; ++j)
+			{
+				*to++ = sixtet_to_base64[out[j]];
 			}
-			if (size == 0) {
-				for (j = i; j < 3; ++j) {
+			if (size == 0)
+			{
+				for (j = i; j < 3; ++j)
+				{
 					*to++ = '=';
 				}
 			}
@@ -71,7 +77,7 @@ void idBase64::Encode( const byte *from, int size ) {
 			i = 0;
 		}
 	}
-	
+
 	*to++ = '\0';
 	len = to - data;
 }
@@ -83,8 +89,9 @@ returns the minimum size in bytes of the target buffer for decoding
 4 base64 digits <-> 3 bytes
 ============
 */
-int idBase64::DecodeLength( void ) const {
-	return 3*len/4;
+int idBase64::DecodeLength(void) const
+{
+	return 3 * len / 4;
 }
 
 /*
@@ -92,17 +99,20 @@ int idBase64::DecodeLength( void ) const {
 idBase64::Decode
 ============
 */
-int idBase64::Decode( byte *to ) const {
+int idBase64::Decode(byte *to) const
+{
 	unsigned long w;
 	int i, j;
 	size_t n;
 	static char base64_to_sixtet[256];
 	static int tab_init = 0;
 	byte *from = data;
-	
-	if (!tab_init) {
-		memset( base64_to_sixtet, 0, 256 );
-		for (i = 0; (j = sixtet_to_base64[i]) != '\0'; ++i) {
+
+	if (!tab_init)
+	{
+		memset(base64_to_sixtet, 0, 256);
+		for (i = 0; (j = sixtet_to_base64[i]) != '\0'; ++i)
+		{
 			base64_to_sixtet[j] = i;
 		}
 		tab_init = 1;
@@ -111,18 +121,22 @@ int idBase64::Decode( byte *to ) const {
 	w = 0;
 	i = 0;
 	n = 0;
-	byte in[4] = {0,0,0,0};
-	while (*from != '\0' && *from != '=' ) {
-		if (*from == ' ' || *from == '\n') {
+	byte in[4] = {0, 0, 0, 0};
+	while (*from != '\0' && *from != '=')
+	{
+		if (*from == ' ' || *from == '\n')
+		{
 			++from;
 			continue;
 		}
-		in[i] = base64_to_sixtet[* (unsigned char *) from];
+		in[i] = base64_to_sixtet[*(unsigned char *)from];
 		++i;
 		++from;
-		if (*from == '\0' || *from == '=' || i == 4) {
-			w = IntForSixtets( in );
-			for (j = 0; j*8 < i*6; ++j) {
+		if (*from == '\0' || *from == '=' || i == 4)
+		{
+			w = IntForSixtets(in);
+			for (j = 0; j * 8 < i * 6; ++j)
+			{
 				*to++ = w & 0xff;
 				++n;
 				w >>= 8;
@@ -139,8 +153,9 @@ int idBase64::Decode( byte *to ) const {
 idBase64::Encode
 ============
 */
-void idBase64::Encode( const idStr &src ) {
-	Encode( (const byte *)src.c_str(), src.Length() );
+void idBase64::Encode(const idStr &src)
+{
+	Encode((const byte *)src.c_str(), src.Length());
 }
 
 /*
@@ -148,9 +163,10 @@ void idBase64::Encode( const idStr &src ) {
 idBase64::Decode
 ============
 */
-void idBase64::Decode( idStr &dest ) const {
-	byte *buf = new byte[ DecodeLength()+1 ]; // +1 for trailing \0
-	int out = Decode( buf );
+void idBase64::Decode(idStr &dest) const
+{
+	byte *buf = new byte[DecodeLength() + 1]; // +1 for trailing \0
+	int out = Decode(buf);
 	buf[out] = '\0';
 	dest = (const char *)buf;
 	delete[] buf;
@@ -161,10 +177,11 @@ void idBase64::Decode( idStr &dest ) const {
 idBase64::Decode
 ============
 */
-void idBase64::Decode( idFile *dest ) const {	
-	byte *buf = new byte[ DecodeLength()+1 ]; // +1 for trailing \0
-	int out = Decode( buf );
-	dest->Write( buf, out );
+void idBase64::Decode(idFile *dest) const
+{
+	byte *buf = new byte[DecodeLength() + 1]; // +1 for trailing \0
+	int out = Decode(buf);
+	dest->Write(buf, out);
 	delete[] buf;
 }
 

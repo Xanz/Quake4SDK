@@ -19,109 +19,111 @@ extern const idEventDef EV_SetGravity;
 ===============================================================================
 */
 
-class idItem : public idEntity {
+class idItem : public idEntity
+{
 public:
-	CLASS_PROTOTYPE( idItem );
+	CLASS_PROTOTYPE(idItem);
 
-							idItem();
-	virtual					~idItem();
+	idItem();
+	virtual ~idItem();
 
-	void					Save( idSaveGame *savefile ) const;
-	void					Restore( idRestoreGame *savefile );
+	void Save(idSaveGame *savefile) const;
+	void Restore(idRestoreGame *savefile);
 
-	void					Spawn( void );
-	void					GetAttributes( idDict &attributes );
-	virtual bool			GiveToPlayer( idPlayer *player );
-	virtual bool			Pickup( idPlayer *player );
-	virtual void			Think( void );
-	virtual void			Present();
-	virtual	void			InstanceJoin( void );
-	virtual void			InstanceLeave( void );
-	virtual bool			GetPhysicsToVisualTransform( idVec3 &origin, idMat3 &axis );
+	void Spawn(void);
+	void GetAttributes(idDict &attributes);
+	virtual bool GiveToPlayer(idPlayer *player);
+	virtual bool Pickup(idPlayer *player);
+	virtual void Think(void);
+	virtual void Present();
+	virtual void InstanceJoin(void);
+	virtual void InstanceLeave(void);
+	virtual bool GetPhysicsToVisualTransform(idVec3 &origin, idMat3 &axis);
 
-// RAVEN BEGIN
-// mekberg: added
-	virtual bool			Collide( const trace_t &collision, const idVec3 &velocity );
-// RAVEN END
-	
-	enum {
+	// RAVEN BEGIN
+	// mekberg: added
+	virtual bool Collide(const trace_t &collision, const idVec3 &velocity);
+	// RAVEN END
+
+	enum
+	{
 		EVENT_PICKUP = idEntity::EVENT_MAXEVENTS,
 		EVENT_RESPAWNFX,
 		EVENT_MAXEVENTS
 	};
 
-	virtual void			ClientPredictionThink( void );
-	virtual bool			ClientReceiveEvent( int event, int time, const idBitMsg &msg );
+	virtual void ClientPredictionThink(void);
+	virtual bool ClientReceiveEvent(int event, int time, const idBitMsg &msg);
 
 	// networking
-	virtual void			WriteToSnapshot( idBitMsgDelta &msg ) const;
-	virtual void			ReadFromSnapshot( const idBitMsgDelta &msg );
+	virtual void WriteToSnapshot(idBitMsgDelta &msg) const;
+	virtual void ReadFromSnapshot(const idBitMsgDelta &msg);
 
-	virtual void			Hide( void );
-	virtual void			Show( void );
+	virtual void Hide(void);
+	virtual void Show(void);
 
-	virtual bool			ClientStale( void );
-	virtual void			ClientUnstale( void );
+	virtual bool ClientStale(void);
+	virtual void ClientUnstale(void);
 
-	int						IsVisible() { return srvReady; }
+	int IsVisible() { return srvReady; }
 
-	rvClientEntityPtr<rvClientEffect>	effectIdle;
-	bool					simpleItem;
-	bool					pickedUp;
-	const idDeclSkin*		pickupSkin;
-	void					Event_DropToFloor	( void );
+	rvClientEntityPtr<rvClientEffect> effectIdle;
+	bool simpleItem;
+	bool pickedUp;
+	const idDeclSkin *pickupSkin;
+	void Event_DropToFloor(void);
+
 protected:
+	void UpdateTrigger(void);
+	void SendPickupMsg(int clientNum);
 
-	void					UpdateTrigger( void );
-	void					SendPickupMsg( int clientNum );
-
-	idClipModel *			trigger;
-	bool					spin;
+	idClipModel *trigger;
+	bool spin;
 	// only a small subset of idItem need their physics object synced
-	bool					syncPhysics;
+	bool syncPhysics;
 
-	bool					pulse;
-	bool					canPickUp;
-	const idDeclSkin*		skin;
+	bool pulse;
+	bool canPickUp;
+	const idDeclSkin *skin;
 
 private:
-	idVec3					orgOrigin;
+	idVec3 orgOrigin;
 
-	rvPhysics_Particle		physicsObj;
+	rvPhysics_Particle physicsObj;
 
 	// for item pulse effect
-	int						itemShellHandle;
-	const idMaterial *		shellMaterial;
+	int itemShellHandle;
+	const idMaterial *shellMaterial;
 
 	// used to update the item pulse effect
-	mutable bool			inView;
-	mutable int				inViewTime;
-	mutable int				lastCycle;
-	mutable int				lastRenderViewTime;
+	mutable bool inView;
+	mutable int inViewTime;
+	mutable int lastCycle;
+	mutable int lastRenderViewTime;
 
 	// synced through snapshots to indicate show/hide or pickupSkin state
 	// -1 on a client means undef, 0 not ready, 1 ready
 public: // FIXME: Temp hack while Eric gets back to me about why GameState.cpp is trying to access this directly
-	int						srvReady;
+	int srvReady;
+
 private: // FIXME: Temp hack while Eric gets back to me about why GameState.cpp is trying to access this directly
-	int						clReady;
+	int clReady;
 
-	int						itemPVSArea;
+	int itemPVSArea;
 
-	bool					UpdateRenderEntity	( renderEntity_s *renderEntity, const renderView_t *renderView ) const;
-	static bool				ModelCallback		( renderEntity_s *renderEntity, const renderView_t *renderView );
+	bool UpdateRenderEntity(renderEntity_s *renderEntity, const renderView_t *renderView) const;
+	static bool ModelCallback(renderEntity_s *renderEntity, const renderView_t *renderView);
 
+	void Event_Touch(idEntity *other, trace_t *trace);
+	void Event_Trigger(idEntity *activator);
+	void Event_Respawn(void);
+	void Event_RespawnFx(void);
+	void Event_Pickup(int clientNum);
 
-	void					Event_Touch			( idEntity *other, trace_t *trace );
-	void					Event_Trigger		( idEntity *activator );
-	void					Event_Respawn		( void );
-	void					Event_RespawnFx		( void );
-	void					Event_Pickup		( int clientNum );
-  
-// RAVEN BEGIN
-// abahr
-	void					Event_SetGravity();
-// RAVEN END
+	// RAVEN BEGIN
+	// abahr
+	void Event_SetGravity();
+	// RAVEN END
 };
 
 /*
@@ -132,27 +134,27 @@ private: // FIXME: Temp hack while Eric gets back to me about why GameState.cpp 
 ===============================================================================
 */
 
-class idItemPowerup : public idItem {
+class idItemPowerup : public idItem
+{
 public:
-	CLASS_PROTOTYPE( idItemPowerup );
+	CLASS_PROTOTYPE(idItemPowerup);
 
-							idItemPowerup();
+	idItemPowerup();
 
-	void					Save( idSaveGame *savefile ) const;
-	void					Restore( idRestoreGame *savefile );
+	void Save(idSaveGame *savefile) const;
+	void Restore(idRestoreGame *savefile);
 
-	void					Spawn();
-	virtual bool			GiveToPlayer( idPlayer *player );
-	virtual void			Think( void );
-	virtual bool			Pickup( idPlayer *player );
+	void Spawn();
+	virtual bool GiveToPlayer(idPlayer *player);
+	virtual void Think(void);
+	virtual bool Pickup(idPlayer *player);
 
 protected:
-
-	int						time;
-	int						type;
-	int						droppedTime;
-	int						team;
-	bool					unique;
+	int time;
+	int type;
+	int droppedTime;
+	int team;
+	bool unique;
 };
 
 /*
@@ -163,29 +165,30 @@ protected:
 ===============================================================================
 */
 
-class riDeadZonePowerup : public idItemPowerup {
+class riDeadZonePowerup : public idItemPowerup
+{
 public:
-	CLASS_PROTOTYPE( riDeadZonePowerup );
+	CLASS_PROTOTYPE(riDeadZonePowerup);
 
-							riDeadZonePowerup();
+	riDeadZonePowerup();
 
-	void					Save( idSaveGame *savefile ) const;
-	void					Restore( idRestoreGame *savefile );
+	void Save(idSaveGame *savefile) const;
+	void Restore(idRestoreGame *savefile);
 
-	virtual bool			Pickup( idPlayer *player );
+	virtual bool Pickup(idPlayer *player);
 
-	void					Spawn();
-	void					Show();
+	void Spawn();
+	void Show();
 
-	virtual bool			Collide( const trace_t &collision, const idVec3 &velocity );
+	virtual bool Collide(const trace_t &collision, const idVec3 &velocity);
 
-	int						powerup;
+	int powerup;
 
 protected:
-	void					ResetSpawn( int powerup );
+	void ResetSpawn(int powerup);
 
 private:
-	void					Event_ResetSpawn( void );
+	void Event_ResetSpawn(void);
 };
 
 /*
@@ -196,28 +199,29 @@ private:
 ===============================================================================
 */
 
-class rvItemCTFFlag : public idItem {
+class rvItemCTFFlag : public idItem
+{
 public:
-	CLASS_PROTOTYPE( rvItemCTFFlag );
-	
-							rvItemCTFFlag();
-							
-	void					Spawn();
-	virtual bool			GiveToPlayer ( idPlayer* player );
-	virtual bool			Pickup( idPlayer *player );
-	
-	static void				ResetFlag( int type );
-	virtual void			Think( void );
+	CLASS_PROTOTYPE(rvItemCTFFlag);
 
-	virtual bool			Collide( const trace_t &collision, const idVec3 &velocity );
+	rvItemCTFFlag();
+
+	void Spawn();
+	virtual bool GiveToPlayer(idPlayer *player);
+	virtual bool Pickup(idPlayer *player);
+
+	static void ResetFlag(int type);
+	virtual void Think(void);
+
+	virtual bool Collide(const trace_t &collision, const idVec3 &velocity);
 
 private:
-	int						team;
-	int						powerup;
-	bool					dropped;
-	
-	void					Event_ResetFlag( void );
-	void					Event_LinkTrigger( void );
+	int team;
+	int powerup;
+	bool dropped;
+
+	void Event_ResetFlag(void);
+	void Event_LinkTrigger(void);
 };
 
 /*
@@ -228,29 +232,30 @@ private:
 ===============================================================================
 */
 
-class idObjective : public idItem {
+class idObjective : public idItem
+{
 public:
-	CLASS_PROTOTYPE( idObjective );
+	CLASS_PROTOTYPE(idObjective);
 
-							idObjective();
+	idObjective();
 
-	void					Save( idSaveGame *savefile ) const;
-	void					Restore( idRestoreGame *savefile );
+	void Save(idSaveGame *savefile) const;
+	void Restore(idRestoreGame *savefile);
 
-	void					Spawn();
+	void Spawn();
 
 private:
-	idVec3					playerPos;
+	idVec3 playerPos;
 
-// RAVEN BEGIN
-// mekberg: store triggered time for timed removal.
-	int						triggerTime;
-// RAVEN END
+	// RAVEN BEGIN
+	// mekberg: store triggered time for timed removal.
+	int triggerTime;
+	// RAVEN END
 
-	void					Event_Trigger( idEntity *activator );
-	void					Event_HideObjective( idEntity *e );
-	void					Event_GetPlayerPos();
- 	void					Event_CamShot();
+	void Event_Trigger(idEntity *activator);
+	void Event_HideObjective(idEntity *e);
+	void Event_GetPlayerPos();
+	void Event_CamShot();
 };
 
 /*
@@ -261,30 +266,31 @@ private:
 ===============================================================================
 */
 
-class idMoveableItem : public idItem {
+class idMoveableItem : public idItem
+{
 public:
-	CLASS_PROTOTYPE( idMoveableItem );
+	CLASS_PROTOTYPE(idMoveableItem);
 
-							idMoveableItem();
-	virtual					~idMoveableItem();
+	idMoveableItem();
+	virtual ~idMoveableItem();
 
-	void					Save( idSaveGame *savefile ) const;
-	void					Restore( idRestoreGame *savefile );
+	void Save(idSaveGame *savefile) const;
+	void Restore(idRestoreGame *savefile);
 
-	void					Spawn( void );
-	virtual void			Think( void );
+	void Spawn(void);
+	virtual void Think(void);
 
- 	static void				DropItems( idAnimatedEntity *ent, const char *type, idList<idEntity *> *list );
-	static idEntity*		DropItem( const char *classname, const idVec3 &origin, const idMat3 &axis, const idVec3 &velocity, int activateDelay, int removeDelay );
+	static void DropItems(idAnimatedEntity *ent, const char *type, idList<idEntity *> *list);
+	static idEntity *DropItem(const char *classname, const idVec3 &origin, const idMat3 &axis, const idVec3 &velocity, int activateDelay, int removeDelay);
 
-	virtual void			WriteToSnapshot( idBitMsgDelta &msg ) const;
-	virtual void			ReadFromSnapshot( const idBitMsgDelta &msg );
+	virtual void WriteToSnapshot(idBitMsgDelta &msg) const;
+	virtual void ReadFromSnapshot(const idBitMsgDelta &msg);
 
 private:
-	idPhysics_RigidBody		physicsObj;
+	idPhysics_RigidBody physicsObj;
 
- 	void					Gib( const idVec3 &dir, const char *damageDefName );
- 	void					Event_Gib( const char *damageDefName );
+	void Gib(const idVec3 &dir, const char *damageDefName);
+	void Event_Gib(const char *damageDefName);
 };
 
 /*
@@ -295,15 +301,16 @@ private:
 ===============================================================================
 */
 
-class idItemRemover : public idEntity {
+class idItemRemover : public idEntity
+{
 public:
-	CLASS_PROTOTYPE( idItemRemover );
+	CLASS_PROTOTYPE(idItemRemover);
 
-	void					Spawn();
-	void					RemoveItem( idPlayer *player );
+	void Spawn();
+	void RemoveItem(idPlayer *player);
 
 private:
-	void					Event_Trigger( idEntity *activator );
+	void Event_Trigger(idEntity *activator);
 };
 
 /*
@@ -314,28 +321,29 @@ private:
 ===============================================================================
 */
 
-class idObjectiveComplete : public idItemRemover {
+class idObjectiveComplete : public idItemRemover
+{
 public:
-	CLASS_PROTOTYPE( idObjectiveComplete );
+	CLASS_PROTOTYPE(idObjectiveComplete);
 
-							idObjectiveComplete();
+	idObjectiveComplete();
 
-	void					Save( idSaveGame *savefile ) const;
-	void					Restore( idRestoreGame *savefile );
+	void Save(idSaveGame *savefile) const;
+	void Restore(idRestoreGame *savefile);
 
-	void					Spawn();
+	void Spawn();
 
 private:
-	idVec3					playerPos;
+	idVec3 playerPos;
 
-// RAVEN BEGIN
-// mekberg: store triggered time for timed removal.
-	int						triggerTime;
-// RAVEN END
+	// RAVEN BEGIN
+	// mekberg: store triggered time for timed removal.
+	int triggerTime;
+	// RAVEN END
 
-	void					Event_Trigger( idEntity *activator );
-	void					Event_HideObjective( idEntity *e );
-	void					Event_GetPlayerPos();
+	void Event_Trigger(idEntity *activator);
+	void Event_HideObjective(idEntity *e);
+	void Event_GetPlayerPos();
 };
 
 /*
@@ -346,17 +354,17 @@ private:
 ===============================================================================
 */
 
-class rvObjectiveFailed : public idItemRemover {
+class rvObjectiveFailed : public idItemRemover
+{
 public:
-	CLASS_PROTOTYPE( rvObjectiveFailed );
+	CLASS_PROTOTYPE(rvObjectiveFailed);
 
-							rvObjectiveFailed ();
+	rvObjectiveFailed();
+
 private:
-
-	void					Event_Trigger( idEntity *activator );
+	void Event_Trigger(idEntity *activator);
 };
 
 #endif /* !__GAME_ITEM_H__ */
-
 
 // RAVEN END

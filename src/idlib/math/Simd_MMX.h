@@ -10,13 +10,14 @@
 ===============================================================================
 */
 
-class idSIMD_MMX : public idSIMD_Generic {
-#if defined( _WIN32 ) || defined( __linux__ )
+class idSIMD_MMX : public idSIMD_Generic
+{
+#if defined(_WIN32) || defined(__linux__)
 public:
-	virtual const char * VPCALL GetName( void ) const;
+	virtual const char *VPCALL GetName(void) const;
 
-	virtual void VPCALL Memcpy( void *dst,			const void *src,		const int count );
-	virtual void VPCALL Memset( void *dst,			const int val,			const int count );
+	virtual void VPCALL Memcpy(void *dst, const void *src, const int count);
+	virtual void VPCALL Memset(void *dst, const int val, const int count);
 
 #endif
 };

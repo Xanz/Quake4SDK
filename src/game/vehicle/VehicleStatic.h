@@ -14,22 +14,21 @@
 class rvVehicleStatic : public rvVehicle
 {
 public:
+	CLASS_PROTOTYPE(rvVehicleStatic);
 
-	CLASS_PROTOTYPE( rvVehicleStatic );
+	rvVehicleStatic(void);
+	~rvVehicleStatic(void);
 
-							rvVehicleStatic		( void );
-							~rvVehicleStatic	( void );
+	void Spawn(void);
 
-	void					Spawn				( void );
+	virtual int AddDriver(int position, idActor *driver);
+	virtual bool RemoveDriver(int position, bool force = false);
 
-	virtual int				AddDriver			( int position, idActor* driver );
-	virtual bool			RemoveDriver		( int position, bool force = false );
+	virtual void UpdateHUD(idActor *driver, idUserInterface *gui);
 
-	virtual void			UpdateHUD			( idActor* driver, idUserInterface* gui );
-
-	void					Event_ScriptedAnim	( const char* animname, int blendFrames, bool loop, bool endWithIdle );
-	void 					Event_ScriptedDone	( void );
-	void					Event_ScriptedStop	( void );
+	void Event_ScriptedAnim(const char *animname, int blendFrames, bool loop, bool endWithIdle);
+	void Event_ScriptedDone(void);
+	void Event_ScriptedStop(void);
 };
 
 #endif // __GAME_VEHICLESTATIC_H__

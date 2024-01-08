@@ -5,39 +5,37 @@
 #include "../Weapon.h"
 
 const int HYPERBLASTER_SPARM_BATTERY = 6;
-const int HYPERBLASTER_SPIN_SPEED	 = 300;
+const int HYPERBLASTER_SPIN_SPEED = 300;
 
-class rvWeaponHyperblaster : public rvWeapon {
+class rvWeaponHyperblaster : public rvWeapon
+{
 public:
+	CLASS_PROTOTYPE(rvWeaponHyperblaster);
 
-	CLASS_PROTOTYPE( rvWeaponHyperblaster );
+	rvWeaponHyperblaster(void);
 
-	rvWeaponHyperblaster ( void );
-
-	virtual void			Spawn				( void );
-	void					Save				( idSaveGame *savefile ) const;
-	void					Restore				( idRestoreGame *savefile );
-	void					PreSave				( void );
-	void					PostSave			( void );
+	virtual void Spawn(void);
+	void Save(idSaveGame *savefile) const;
+	void Restore(idRestoreGame *savefile);
+	void PreSave(void);
+	void PostSave(void);
 
 protected:
+	jointHandle_t jointBatteryView;
+	bool spinning;
 
-	jointHandle_t			jointBatteryView;
-	bool					spinning;
-
-	void					SpinUp				( void );
-	void					SpinDown			( void );
+	void SpinUp(void);
+	void SpinDown(void);
 
 private:
+	stateResult_t State_Idle(const stateParms_t &parms);
+	stateResult_t State_Fire(const stateParms_t &parms);
+	stateResult_t State_Reload(const stateParms_t &parms);
 
-	stateResult_t		State_Idle		( const stateParms_t& parms );
-	stateResult_t		State_Fire		( const stateParms_t& parms );
-	stateResult_t		State_Reload	( const stateParms_t& parms );
-	
-	CLASS_STATES_PROTOTYPE ( rvWeaponHyperblaster );
+	CLASS_STATES_PROTOTYPE(rvWeaponHyperblaster);
 };
 
-CLASS_DECLARATION( rvWeapon, rvWeaponHyperblaster )
+CLASS_DECLARATION(rvWeapon, rvWeaponHyperblaster)
 END_CLASS
 
 /*
@@ -45,7 +43,8 @@ END_CLASS
 rvWeaponHyperblaster::rvWeaponHyperblaster
 ================
 */
-rvWeaponHyperblaster::rvWeaponHyperblaster ( void ) {
+rvWeaponHyperblaster::rvWeaponHyperblaster(void)
+{
 }
 
 /*
@@ -53,11 +52,12 @@ rvWeaponHyperblaster::rvWeaponHyperblaster ( void ) {
 rvWeaponHyperblaster::Spawn
 ================
 */
-void rvWeaponHyperblaster::Spawn ( void ) {
-	jointBatteryView = viewAnimator->GetJointHandle ( spawnArgs.GetString ( "joint_view_battery" ) );
-	spinning		 = false;
-	
-	SetState ( "Raise", 0 );	
+void rvWeaponHyperblaster::Spawn(void)
+{
+	jointBatteryView = viewAnimator->GetJointHandle(spawnArgs.GetString("joint_view_battery"));
+	spinning = false;
+
+	SetState("Raise", 0);
 }
 
 /*
@@ -65,9 +65,10 @@ void rvWeaponHyperblaster::Spawn ( void ) {
 rvWeaponHyperblaster::Save
 ================
 */
-void rvWeaponHyperblaster::Save ( idSaveGame *savefile ) const {
-	savefile->WriteJoint ( jointBatteryView );
-	savefile->WriteBool ( spinning );
+void rvWeaponHyperblaster::Save(idSaveGame *savefile) const
+{
+	savefile->WriteJoint(jointBatteryView);
+	savefile->WriteBool(spinning);
 }
 
 /*
@@ -75,9 +76,10 @@ void rvWeaponHyperblaster::Save ( idSaveGame *savefile ) const {
 rvWeaponHyperblaster::Restore
 ================
 */
-void rvWeaponHyperblaster::Restore ( idRestoreGame *savefile ) {
-	savefile->ReadJoint ( jointBatteryView );
-	savefile->ReadBool ( spinning );
+void rvWeaponHyperblaster::Restore(idRestoreGame *savefile)
+{
+	savefile->ReadJoint(jointBatteryView);
+	savefile->ReadBool(spinning);
 }
 
 /*
@@ -85,15 +87,15 @@ void rvWeaponHyperblaster::Restore ( idRestoreGame *savefile ) {
 rvWeaponHyperBlaster::PreSave
 ================
 */
-void rvWeaponHyperblaster::PreSave ( void ) {
+void rvWeaponHyperblaster::PreSave(void)
+{
 
-	SetState ( "Idle", 4 );
+	SetState("Idle", 4);
 
-	StopSound( SND_CHANNEL_WEAPON, false );
-	StopSound( SND_CHANNEL_BODY, false );
-	StopSound( SND_CHANNEL_ITEM, false );
-	StopSound( SND_CHANNEL_ANY, false );
-	
+	StopSound(SND_CHANNEL_WEAPON, false);
+	StopSound(SND_CHANNEL_BODY, false);
+	StopSound(SND_CHANNEL_ITEM, false);
+	StopSound(SND_CHANNEL_ANY, false);
 }
 
 /*
@@ -101,7 +103,8 @@ void rvWeaponHyperblaster::PreSave ( void ) {
 rvWeaponHyperBlaster::PostSave
 ================
 */
-void rvWeaponHyperblaster::PostSave ( void ) {
+void rvWeaponHyperblaster::PostSave(void)
+{
 }
 
 /*
@@ -109,17 +112,20 @@ void rvWeaponHyperblaster::PostSave ( void ) {
 rvWeaponHyperblaster::SpinUp
 ================
 */
-void rvWeaponHyperblaster::SpinUp ( void ) {
-	if ( spinning ) {
+void rvWeaponHyperblaster::SpinUp(void)
+{
+	if (spinning)
+	{
 		return;
 	}
-	
-	if ( jointBatteryView != INVALID_JOINT ) {
-		viewAnimator->SetJointAngularVelocity ( jointBatteryView, idAngles(0,HYPERBLASTER_SPIN_SPEED,0), gameLocal.time, 50 );
+
+	if (jointBatteryView != INVALID_JOINT)
+	{
+		viewAnimator->SetJointAngularVelocity(jointBatteryView, idAngles(0, HYPERBLASTER_SPIN_SPEED, 0), gameLocal.time, 50);
 	}
 
-	StopSound ( SND_CHANNEL_BODY2, false );
-	StartSound ( "snd_battery_spin", SND_CHANNEL_BODY2, 0, false, NULL );
+	StopSound(SND_CHANNEL_BODY2, false);
+	StartSound("snd_battery_spin", SND_CHANNEL_BODY2, 0, false, NULL);
 	spinning = true;
 }
 
@@ -128,16 +134,19 @@ void rvWeaponHyperblaster::SpinUp ( void ) {
 rvWeaponHyperblaster::SpinDown
 ================
 */
-void rvWeaponHyperblaster::SpinDown	( void ) {
-	if ( !spinning ) {
+void rvWeaponHyperblaster::SpinDown(void)
+{
+	if (!spinning)
+	{
 		return;
 	}
-	
-	StopSound ( SND_CHANNEL_BODY2, false );
-	StartSound ( "snd_battery_spindown", SND_CHANNEL_BODY2, 0, false, NULL );
 
-	if ( jointBatteryView != INVALID_JOINT ) {
-		viewAnimator->SetJointAngularVelocity ( jointBatteryView, idAngles(0,0,0), gameLocal.time, 500 );
+	StopSound(SND_CHANNEL_BODY2, false);
+	StartSound("snd_battery_spindown", SND_CHANNEL_BODY2, 0, false, NULL);
+
+	if (jointBatteryView != INVALID_JOINT)
+	{
+		viewAnimator->SetJointAngularVelocity(jointBatteryView, idAngles(0, 0, 0), gameLocal.time, 500);
 	}
 
 	spinning = false;
@@ -146,15 +155,15 @@ void rvWeaponHyperblaster::SpinDown	( void ) {
 /*
 ===============================================================================
 
-	States 
+	States
 
 ===============================================================================
 */
 
-CLASS_STATES_DECLARATION ( rvWeaponHyperblaster )
-	STATE ( "Idle",				rvWeaponHyperblaster::State_Idle)
-	STATE ( "Fire",				rvWeaponHyperblaster::State_Fire )
-	STATE ( "Reload",			rvWeaponHyperblaster::State_Reload )
+CLASS_STATES_DECLARATION(rvWeaponHyperblaster)
+STATE("Idle", rvWeaponHyperblaster::State_Idle)
+STATE("Fire", rvWeaponHyperblaster::State_Fire)
+STATE("Reload", rvWeaponHyperblaster::State_Reload)
 END_CLASS_STATES
 
 /*
@@ -162,55 +171,72 @@ END_CLASS_STATES
 rvWeaponHyperblaster::State_Idle
 ================
 */
-stateResult_t rvWeaponHyperblaster::State_Idle( const stateParms_t& parms ) {
-	enum {
+stateResult_t rvWeaponHyperblaster::State_Idle(const stateParms_t &parms)
+{
+	enum
+	{
 		STAGE_INIT,
 		STAGE_WAIT,
-	};	
-	switch ( parms.stage ) {
-		case STAGE_INIT:
-			if ( !AmmoAvailable ( ) ) {
-				SetStatus ( WP_OUTOFAMMO );
-			} else {
-				SetStatus ( WP_READY );
-			}
+	};
+	switch (parms.stage)
+	{
+	case STAGE_INIT:
+		if (!AmmoAvailable())
+		{
+			SetStatus(WP_OUTOFAMMO);
+		}
+		else
+		{
+			SetStatus(WP_READY);
+		}
 
-			SpinDown ( );
+		SpinDown();
 
-			if ( ClipSize() ) {
-				viewModel->SetShaderParm ( HYPERBLASTER_SPARM_BATTERY, (float)AmmoInClip()/ClipSize() );
-			} else {
-				viewModel->SetShaderParm ( HYPERBLASTER_SPARM_BATTERY, 1.0f );		
-			}
-			PlayCycle( ANIMCHANNEL_ALL, "idle", parms.blendFrames );
-			return SRESULT_STAGE ( STAGE_WAIT );
-		
-		case STAGE_WAIT:			
-			if ( wsfl.lowerWeapon ) {
-				SetState ( "Lower", 4 );
+		if (ClipSize())
+		{
+			viewModel->SetShaderParm(HYPERBLASTER_SPARM_BATTERY, (float)AmmoInClip() / ClipSize());
+		}
+		else
+		{
+			viewModel->SetShaderParm(HYPERBLASTER_SPARM_BATTERY, 1.0f);
+		}
+		PlayCycle(ANIMCHANNEL_ALL, "idle", parms.blendFrames);
+		return SRESULT_STAGE(STAGE_WAIT);
+
+	case STAGE_WAIT:
+		if (wsfl.lowerWeapon)
+		{
+			SetState("Lower", 4);
+			return SRESULT_DONE;
+		}
+		if (!clipSize)
+		{
+			if (gameLocal.time > nextAttackTime && wsfl.attack && AmmoAvailable())
+			{
+				SetState("Fire", 0);
 				return SRESULT_DONE;
-			}		
-			if ( !clipSize ) {
-				if ( gameLocal.time > nextAttackTime && wsfl.attack && AmmoAvailable ( ) ) {
-					SetState ( "Fire", 0 );
-					return SRESULT_DONE;
-				} 
-			} else {
-				if ( gameLocal.time > nextAttackTime && wsfl.attack && AmmoInClip ( ) ) {
-					SetState ( "Fire", 0 );
-					return SRESULT_DONE;
-				}  
-				if ( wsfl.attack && AutoReload() && !AmmoInClip ( ) && AmmoAvailable () ) {
-					SetState ( "Reload", 4 );
-					return SRESULT_DONE;			
-				}
-				if ( wsfl.netReload || (wsfl.reload && AmmoInClip() < ClipSize() && AmmoAvailable()>AmmoInClip()) ) {
-					SetState ( "Reload", 4 );
-					return SRESULT_DONE;			
-				}				
 			}
+		}
+		else
+		{
+			if (gameLocal.time > nextAttackTime && wsfl.attack && AmmoInClip())
+			{
+				SetState("Fire", 0);
+				return SRESULT_DONE;
+			}
+			if (wsfl.attack && AutoReload() && !AmmoInClip() && AmmoAvailable())
+			{
+				SetState("Reload", 4);
+				return SRESULT_DONE;
+			}
+			if (wsfl.netReload || (wsfl.reload && AmmoInClip() < ClipSize() && AmmoAvailable() > AmmoInClip()))
+			{
+				SetState("Reload", 4);
+				return SRESULT_DONE;
+			}
+		}
 
-			return SRESULT_WAIT;
+		return SRESULT_WAIT;
 	}
 	return SRESULT_ERROR;
 }
@@ -220,34 +246,42 @@ stateResult_t rvWeaponHyperblaster::State_Idle( const stateParms_t& parms ) {
 rvWeaponHyperblaster::State_Fire
 ================
 */
-stateResult_t rvWeaponHyperblaster::State_Fire ( const stateParms_t& parms ) {
-	enum {
+stateResult_t rvWeaponHyperblaster::State_Fire(const stateParms_t &parms)
+{
+	enum
+	{
 		STAGE_INIT,
 		STAGE_WAIT,
-	};	
-	switch ( parms.stage ) {
-		case STAGE_INIT:
-			SpinUp ( );
-			nextAttackTime = gameLocal.time + (fireRate * owner->PowerUpModifier ( PMOD_FIRERATE ));
-			Attack ( false, 1, spread, 0, 1.0f );
-			if ( ClipSize() ) {
-				viewModel->SetShaderParm ( HYPERBLASTER_SPARM_BATTERY, (float)AmmoInClip()/ClipSize() );
-			} else {
-				viewModel->SetShaderParm ( HYPERBLASTER_SPARM_BATTERY, 1.0f );		
-			}
-			PlayAnim ( ANIMCHANNEL_ALL, "fire", 0 );	
-			return SRESULT_STAGE ( STAGE_WAIT );
-	
-		case STAGE_WAIT:		
-			if ( wsfl.attack && gameLocal.time >= nextAttackTime && AmmoInClip() && !wsfl.lowerWeapon ) {
-				SetState ( "Fire", 0 );
-				return SRESULT_DONE;
-			}
-			if ( (!wsfl.attack || !AmmoInClip() || wsfl.lowerWeapon) && AnimDone ( ANIMCHANNEL_ALL, 0 ) ) {
-				SetState ( "Idle", 0 );
-				return SRESULT_DONE;
-			}		
-			return SRESULT_WAIT;
+	};
+	switch (parms.stage)
+	{
+	case STAGE_INIT:
+		SpinUp();
+		nextAttackTime = gameLocal.time + (fireRate * owner->PowerUpModifier(PMOD_FIRERATE));
+		Attack(false, 1, spread, 0, 1.0f);
+		if (ClipSize())
+		{
+			viewModel->SetShaderParm(HYPERBLASTER_SPARM_BATTERY, (float)AmmoInClip() / ClipSize());
+		}
+		else
+		{
+			viewModel->SetShaderParm(HYPERBLASTER_SPARM_BATTERY, 1.0f);
+		}
+		PlayAnim(ANIMCHANNEL_ALL, "fire", 0);
+		return SRESULT_STAGE(STAGE_WAIT);
+
+	case STAGE_WAIT:
+		if (wsfl.attack && gameLocal.time >= nextAttackTime && AmmoInClip() && !wsfl.lowerWeapon)
+		{
+			SetState("Fire", 0);
+			return SRESULT_DONE;
+		}
+		if ((!wsfl.attack || !AmmoInClip() || wsfl.lowerWeapon) && AnimDone(ANIMCHANNEL_ALL, 0))
+		{
+			SetState("Idle", 0);
+			return SRESULT_DONE;
+		}
+		return SRESULT_WAIT;
 	}
 	return SRESULT_ERROR;
 }
@@ -257,39 +291,46 @@ stateResult_t rvWeaponHyperblaster::State_Fire ( const stateParms_t& parms ) {
 rvWeaponHyperblaster::State_Reload
 ================
 */
-stateResult_t rvWeaponHyperblaster::State_Reload ( const stateParms_t& parms ) {
-	enum {
+stateResult_t rvWeaponHyperblaster::State_Reload(const stateParms_t &parms)
+{
+	enum
+	{
 		STAGE_INIT,
 		STAGE_WAIT,
-	};	
-	switch ( parms.stage ) {
-		case STAGE_INIT:
-			if ( wsfl.netReload ) {
-				wsfl.netReload = false;
-			} else {
-				NetReload ( );
-			}
-			
-			SpinDown ( );
+	};
+	switch (parms.stage)
+	{
+	case STAGE_INIT:
+		if (wsfl.netReload)
+		{
+			wsfl.netReload = false;
+		}
+		else
+		{
+			NetReload();
+		}
 
-			viewModel->SetShaderParm ( HYPERBLASTER_SPARM_BATTERY, 0 );
-			
-			SetStatus ( WP_RELOAD );
-			PlayAnim ( ANIMCHANNEL_ALL, "reload", parms.blendFrames );
-			return SRESULT_STAGE ( STAGE_WAIT );
-			
-		case STAGE_WAIT:
-			if ( AnimDone ( ANIMCHANNEL_ALL, 4 ) ) {
-				AddToClip ( ClipSize() );
-				SetState ( "Idle", 4 );
-				return SRESULT_DONE;
-			}
-			if ( wsfl.lowerWeapon ) {
-				SetState ( "Lower", 4 );
-				return SRESULT_DONE;
-			}
-			return SRESULT_WAIT;
+		SpinDown();
+
+		viewModel->SetShaderParm(HYPERBLASTER_SPARM_BATTERY, 0);
+
+		SetStatus(WP_RELOAD);
+		PlayAnim(ANIMCHANNEL_ALL, "reload", parms.blendFrames);
+		return SRESULT_STAGE(STAGE_WAIT);
+
+	case STAGE_WAIT:
+		if (AnimDone(ANIMCHANNEL_ALL, 4))
+		{
+			AddToClip(ClipSize());
+			SetState("Idle", 4);
+			return SRESULT_DONE;
+		}
+		if (wsfl.lowerWeapon)
+		{
+			SetState("Lower", 4);
+			return SRESULT_DONE;
+		}
+		return SRESULT_WAIT;
 	}
 	return SRESULT_ERROR;
 }
-			

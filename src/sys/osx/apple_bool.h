@@ -1,9 +1,9 @@
 
-// With GCC and xCode, a bool is 4 bytes. There are two approaches to 
+// With GCC and xCode, a bool is 4 bytes. There are two approaches to
 // making bool one byte. You could #define bool as an unsigned char. The downside
 // is that a function that take bool and one that takes a char will no longer have a unique function
 // signature. You could #define bool to custom class that defines a bool operator, which
-// fixes the function signature but includes others problems such as bool bitfields, 
+// fixes the function signature but includes others problems such as bool bitfields,
 // classes that have a bool operator, C function that accept ... as a param, the keyword
 // volatile.
 
@@ -15,4 +15,3 @@
 #endif
 
 #define bool unsigned char
-

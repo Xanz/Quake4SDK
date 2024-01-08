@@ -343,5 +343,3 @@
 #define glSwapBuffers use_qglSwapBuffers
 #define glGetProcAddressARB use_qglGetProcAddressARB
 #define glGetCurrentContext use_qglGetCurrentContext
-
-

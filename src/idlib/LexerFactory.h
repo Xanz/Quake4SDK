@@ -4,10 +4,9 @@
 class LexerFactory
 {
 public:
-
-	static Lexer *MakeLexer( int flags );
-	static Lexer *MakeLexer( char const * const filename, int flags = 0, bool OSPath = false );
-	static Lexer *MakeLexer( char const * const ptr, int length, char const * const name, int flags = 0 );
+	static Lexer *MakeLexer(int flags);
+	static Lexer *MakeLexer(char const *const filename, int flags = 0, bool OSPath = false);
+	static Lexer *MakeLexer(char const *const ptr, int length, char const *const name, int flags = 0);
 
 private:
 	static int GetReadBinary();

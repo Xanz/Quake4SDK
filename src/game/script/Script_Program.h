@@ -11,51 +11,70 @@ class idThread;
 class idSaveGame;
 class idRestoreGame;
 
-#define MAX_STRING_LEN		128
+#define MAX_STRING_LEN 128
 // RAVEN BEGIN
 // ddynerman: higher max limit, initially 196608
 // jshepard: ... then 393216
-#define MAX_GLOBALS			589824			// in bytes
+#define MAX_GLOBALS 589824 // in bytes
 
-// jshepard: raise the limits. Formerly 1024, 3072 and 81920. 
-#define MAX_STRINGS			2048
-#define MAX_FUNCS			6144
-#define MAX_STATEMENTS		163840			// statement_t - 18 bytes last I checked
+// jshepard: raise the limits. Formerly 1024, 3072 and 81920.
+#define MAX_STRINGS 2048
+#define MAX_FUNCS 6144
+#define MAX_STATEMENTS 163840 // statement_t - 18 bytes last I checked
 // RAVEN END
-typedef enum {
-	ev_error = -1, ev_void, ev_scriptevent, ev_namespace, ev_string, ev_float, ev_vector, ev_entity, ev_field, ev_function, ev_virtualfunction, ev_pointer, ev_object, ev_jumpoffset, ev_argsize, ev_boolean
+typedef enum
+{
+	ev_error = -1,
+	ev_void,
+	ev_scriptevent,
+	ev_namespace,
+	ev_string,
+	ev_float,
+	ev_vector,
+	ev_entity,
+	ev_field,
+	ev_function,
+	ev_virtualfunction,
+	ev_pointer,
+	ev_object,
+	ev_jumpoffset,
+	ev_argsize,
+	ev_boolean
 } etype_t;
 
-class function_t {
+class function_t
+{
 public:
-						function_t();
+	function_t();
 
-	size_t				Allocated( void ) const;
-	void				SetName( const char *name );
-	const char			*Name( void ) const;
-	void				Clear( void );
+	size_t Allocated(void) const;
+	void SetName(const char *name);
+	const char *Name(void) const;
+	void Clear(void);
 
 private:
-	idStr 				name;
+	idStr name;
+
 public:
-	const idEventDef	*eventdef;
-	idVarDef			*def;
-	const idTypeDef		*type;
-	int 				firstStatement;
-	int 				numStatements;
-	int 				parmTotal;
-	int 				locals; 			// total ints of parms + locals
-	int					filenum; 			// source file defined in
-	idList<int>			parmSize;
+	const idEventDef *eventdef;
+	idVarDef *def;
+	const idTypeDef *type;
+	int firstStatement;
+	int numStatements;
+	int parmTotal;
+	int locals;	 // total ints of parms + locals
+	int filenum; // source file defined in
+	idList<int> parmSize;
 };
 
-typedef union eval_s {
-	const char			*stringPtr;
-	float				_float;
-	float				vector[ 3 ];
-	function_t			*function;
-	int 				_int;
-	int 				entity;
+typedef union eval_s
+{
+	const char *stringPtr;
+	float _float;
+	float vector[3];
+	function_t *function;
+	int _int;
+	int entity;
 } eval_t;
 
 /***********************************************************************
@@ -66,66 +85,67 @@ Contains type information for variables and functions.
 
 ***********************************************************************/
 
-class idTypeDef {
+class idTypeDef
+{
 private:
-	etype_t						type;
-	idStr 						name;
-	int							size;
+	etype_t type;
+	idStr name;
+	int size;
 
 	// function types are more complex
-	idTypeDef					*auxType;					// return type
-	idList<idTypeDef *>			parmTypes;
-	idStrList					parmNames;
-	idList<const function_t *>	functions;
+	idTypeDef *auxType; // return type
+	idList<idTypeDef *> parmTypes;
+	idStrList parmNames;
+	idList<const function_t *> functions;
 
 public:
-	idVarDef					*def;						// a def that points to this type
+	idVarDef *def; // a def that points to this type
 
-						idTypeDef( const idTypeDef &other );
-						idTypeDef( etype_t etype, idVarDef *edef, const char *ename, int esize, idTypeDef *aux );
-						virtual ~idTypeDef( void ) { }
-	void				operator=( const idTypeDef& other );
-	size_t				Allocated( void ) const;
+	idTypeDef(const idTypeDef &other);
+	idTypeDef(etype_t etype, idVarDef *edef, const char *ename, int esize, idTypeDef *aux);
+	virtual ~idTypeDef(void) {}
+	void operator=(const idTypeDef &other);
+	size_t Allocated(void) const;
 
-	bool				Inherits( const idTypeDef *basetype ) const;
-	bool				MatchesType( const idTypeDef &matchtype ) const;
-	bool				MatchesVirtualFunction( const idTypeDef &matchfunc ) const;
-	void				AddFunctionParm( idTypeDef *parmtype, const char *name );
-	void				AddField( idTypeDef *fieldtype, const char *name );
+	bool Inherits(const idTypeDef *basetype) const;
+	bool MatchesType(const idTypeDef &matchtype) const;
+	bool MatchesVirtualFunction(const idTypeDef &matchfunc) const;
+	void AddFunctionParm(idTypeDef *parmtype, const char *name);
+	void AddField(idTypeDef *fieldtype, const char *name);
 
-	void				SetName( const char *newname );
-	const char			*Name( void ) const;
+	void SetName(const char *newname);
+	const char *Name(void) const;
 
-	etype_t				Type( void ) const;
-	int					Size( void ) const;
+	etype_t Type(void) const;
+	int Size(void) const;
 
-	idTypeDef			*SuperClass( void ) const;
-	
-	idTypeDef			*ReturnType( void ) const;
-	void				SetReturnType( idTypeDef *type );
+	idTypeDef *SuperClass(void) const;
 
-	idTypeDef			*FieldType( void ) const;
-	void				SetFieldType( idTypeDef *type );
+	idTypeDef *ReturnType(void) const;
+	void SetReturnType(idTypeDef *type);
 
-	idTypeDef			*PointerType( void ) const;
-	void				SetPointerType( idTypeDef *type );
+	idTypeDef *FieldType(void) const;
+	void SetFieldType(idTypeDef *type);
 
-	int					NumParameters( void ) const;
-	idTypeDef			*GetParmType( int parmNumber ) const;
-	const char			*GetParmName( int parmNumber ) const;
+	idTypeDef *PointerType(void) const;
+	void SetPointerType(idTypeDef *type);
 
-	int					NumFunctions( void ) const;
-	int					GetFunctionNumber( const function_t *func ) const;
-	const function_t	*GetFunction( int funcNumber ) const;
-	void				AddFunction( const function_t *func );
+	int NumParameters(void) const;
+	idTypeDef *GetParmType(int parmNumber) const;
+	const char *GetParmName(int parmNumber) const;
 
-// RAVEN BEGIN
+	int NumFunctions(void) const;
+	int GetFunctionNumber(const function_t *func) const;
+	const function_t *GetFunction(int funcNumber) const;
+	void AddFunction(const function_t *func);
+
+	// RAVEN BEGIN
 	// abahr
-	virtual const char*	GetReturnedValAsString( idProgram& program ) { return ""; }
-	virtual void		PushOntoStack( idThread* thread, const char* source ) { assert(0); }
-	virtual bool		IsValid( const char* source ) const { return true; }
-	virtual const char*	Format() const { return ""; }
-// RAVEN END
+	virtual const char *GetReturnedValAsString(idProgram &program) { return ""; }
+	virtual void PushOntoStack(idThread *thread, const char *source) { assert(0); }
+	virtual bool IsValid(const char *source) const { return true; }
+	virtual const char *Format() const { return ""; }
+	// RAVEN END
 };
 
 // RAVEN BEGIN
@@ -136,19 +156,19 @@ public:
 rvTypeDefInt
 
 ***********************************************************************/
-class rvTypeDefInt : public idTypeDef {
+class rvTypeDefInt : public idTypeDef
+{
 public:
-				rvTypeDefInt( const idTypeDef &other ) : idTypeDef( other ) {}
-				rvTypeDefInt( etype_t etype, idVarDef *edef, const char *ename, int esize, idTypeDef *aux ) : idTypeDef( etype, edef, ename, esize, aux ) {}
+	rvTypeDefInt(const idTypeDef &other) : idTypeDef(other) {}
+	rvTypeDefInt(etype_t etype, idVarDef *edef, const char *ename, int esize, idTypeDef *aux) : idTypeDef(etype, edef, ename, esize, aux) {}
 
-	const char*	GetReturnedValAsString( idProgram& program );
-	void		PushOntoStack( idThread* thread, const char* source );
-	bool		IsValid( const char* source ) const;
+	const char *GetReturnedValAsString(idProgram &program);
+	void PushOntoStack(idThread *thread, const char *source);
+	bool IsValid(const char *source) const;
 
 protected:
-	const char*	Format() const { return "%d"; }
-	int			Parse( const char* source ) const;
-
+	const char *Format() const { return "%d"; }
+	int Parse(const char *source) const;
 };
 
 /***********************************************************************
@@ -156,18 +176,19 @@ protected:
 rvTypeDefFloat
 
 ***********************************************************************/
-class rvTypeDefFloat : public idTypeDef {
+class rvTypeDefFloat : public idTypeDef
+{
 public:
-				rvTypeDefFloat( const idTypeDef &other ) : idTypeDef( other ) {}
-				rvTypeDefFloat( etype_t etype, idVarDef *edef, const char *ename, int esize, idTypeDef *aux ) : idTypeDef( etype, edef, ename, esize, aux ) {}
+	rvTypeDefFloat(const idTypeDef &other) : idTypeDef(other) {}
+	rvTypeDefFloat(etype_t etype, idVarDef *edef, const char *ename, int esize, idTypeDef *aux) : idTypeDef(etype, edef, ename, esize, aux) {}
 
-	const char*	GetReturnedValAsString( idProgram& program );
-	void		PushOntoStack( idThread* thread, const char* source );
-	bool		IsValid( const char* source ) const;
+	const char *GetReturnedValAsString(idProgram &program);
+	void PushOntoStack(idThread *thread, const char *source);
+	bool IsValid(const char *source) const;
 
 protected:
-	const char*	Format() const { return "%f"; }
-	float		Parse( const char* source ) const;
+	const char *Format() const { return "%f"; }
+	float Parse(const char *source) const;
 };
 
 /***********************************************************************
@@ -175,18 +196,19 @@ protected:
 rvTypeDefVec3
 
 ***********************************************************************/
-class rvTypeDefVec3 : public idTypeDef {
+class rvTypeDefVec3 : public idTypeDef
+{
 public:
-				rvTypeDefVec3( const idTypeDef &other ) : idTypeDef( other ) {}
-				rvTypeDefVec3( etype_t etype, idVarDef *edef, const char *ename, int esize, idTypeDef *aux ) : idTypeDef( etype, edef, ename, esize, aux ) {}
+	rvTypeDefVec3(const idTypeDef &other) : idTypeDef(other) {}
+	rvTypeDefVec3(etype_t etype, idVarDef *edef, const char *ename, int esize, idTypeDef *aux) : idTypeDef(etype, edef, ename, esize, aux) {}
 
-	const char*	GetReturnedValAsString( idProgram& program );
-	void		PushOntoStack( idThread* thread, const char* source );
-	bool		IsValid( const char* source ) const;
+	const char *GetReturnedValAsString(idProgram &program);
+	void PushOntoStack(idThread *thread, const char *source);
+	bool IsValid(const char *source) const;
 
 protected:
-	const char*	Format() const { return "%f %f %f"; }
-	idVec3		Parse( const char* source ) const;
+	const char *Format() const { return "%f %f %f"; }
+	idVec3 Parse(const char *source) const;
 };
 
 /***********************************************************************
@@ -194,17 +216,18 @@ protected:
 rvTypeDefEntity
 
 ***********************************************************************/
-class rvTypeDefEntity : public idTypeDef {
+class rvTypeDefEntity : public idTypeDef
+{
 public:
-				rvTypeDefEntity( const idTypeDef &other ) : idTypeDef( other ) {}
-				rvTypeDefEntity( etype_t etype, idVarDef *edef, const char *ename, int esize, idTypeDef *aux ) : idTypeDef( etype, edef, ename, esize, aux ) {}
+	rvTypeDefEntity(const idTypeDef &other) : idTypeDef(other) {}
+	rvTypeDefEntity(etype_t etype, idVarDef *edef, const char *ename, int esize, idTypeDef *aux) : idTypeDef(etype, edef, ename, esize, aux) {}
 
-	const char*	GetReturnedValAsString( idProgram& program );
-	void		PushOntoStack( idThread* thread, const char* source );
-	bool		IsValid( const char* source ) const;
+	const char *GetReturnedValAsString(idProgram &program);
+	void PushOntoStack(idThread *thread, const char *source);
+	bool IsValid(const char *source) const;
 
 protected:
-	idEntity*	Parse( const char* source ) const;
+	idEntity *Parse(const char *source) const;
 };
 
 /***********************************************************************
@@ -212,17 +235,18 @@ protected:
 rvTypeDefString
 
 ***********************************************************************/
-class rvTypeDefString : public idTypeDef {
+class rvTypeDefString : public idTypeDef
+{
 public:
-				rvTypeDefString( const idTypeDef &other ) : idTypeDef( other ) {}
-				rvTypeDefString( etype_t etype, idVarDef *edef, const char *ename, int esize, idTypeDef *aux ) : idTypeDef( etype, edef, ename, esize, aux ) {}
+	rvTypeDefString(const idTypeDef &other) : idTypeDef(other) {}
+	rvTypeDefString(etype_t etype, idVarDef *edef, const char *ename, int esize, idTypeDef *aux) : idTypeDef(etype, edef, ename, esize, aux) {}
 
-	const char*	GetReturnedValAsString( idProgram& program );
-	void		PushOntoStack( idThread* thread, const char* source );
-	bool		IsValid( const char* source ) const;
+	const char *GetReturnedValAsString(idProgram &program);
+	void PushOntoStack(idThread *thread, const char *source);
+	bool IsValid(const char *source) const;
 
 protected:
-	const char*	Parse( const char* source ) const;
+	const char *Parse(const char *source) const;
 };
 
 /***********************************************************************
@@ -230,18 +254,19 @@ protected:
 rvTypeDefBool
 
 ***********************************************************************/
-class rvTypeDefBool : public idTypeDef {
+class rvTypeDefBool : public idTypeDef
+{
 public:
-				rvTypeDefBool( const idTypeDef &other ) : idTypeDef( other ) {}
-				rvTypeDefBool( etype_t etype, idVarDef *edef, const char *ename, int esize, idTypeDef *aux ) : idTypeDef( etype, edef, ename, esize, aux ) {}
+	rvTypeDefBool(const idTypeDef &other) : idTypeDef(other) {}
+	rvTypeDefBool(etype_t etype, idVarDef *edef, const char *ename, int esize, idTypeDef *aux) : idTypeDef(etype, edef, ename, esize, aux) {}
 
-	const char*	GetReturnedValAsString( idProgram& program );
-	void		PushOntoStack( idThread* thread, const char* source );
-	bool		IsValid( const char* source ) const;
+	const char *GetReturnedValAsString(idProgram &program);
+	void PushOntoStack(idThread *thread, const char *source);
+	bool IsValid(const char *source) const;
 
 protected:
-	const char*	Format() const { return "%u"; }
-	bool		Parse( const char* source ) const;
+	const char *Format() const { return "%u"; }
+	bool Parse(const char *source) const;
 };
 // RAVEN END
 
@@ -254,30 +279,31 @@ In-game representation of objects in scripts.  Use the idScriptVariable template
 
 ***********************************************************************/
 
-class idScriptObject {
+class idScriptObject
+{
 private:
-	idTypeDef					*type;
-	
+	idTypeDef *type;
+
 public:
-	byte						*data;
+	byte *data;
 
-								idScriptObject();
-								~idScriptObject();
+	idScriptObject();
+	~idScriptObject();
 
-	void						Save( idSaveGame *savefile ) const;			// archives object for save game file
-	void						Restore( idRestoreGame *savefile );			// unarchives object from save game file
+	void Save(idSaveGame *savefile) const; // archives object for save game file
+	void Restore(idRestoreGame *savefile); // unarchives object from save game file
 
-	void						Free( void );
-	bool						SetType( const char *typeName );
-	void						ClearObject( void );
-	bool						HasObject( void ) const;
-	idTypeDef					*GetTypeDef( void ) const;
-	const char					*GetTypeName( void ) const;
-	const function_t			*GetConstructor( void ) const;
-	const function_t			*GetDestructor( void ) const;
-	const function_t			*GetFunction( const char *name ) const;
+	void Free(void);
+	bool SetType(const char *typeName);
+	void ClearObject(void);
+	bool HasObject(void) const;
+	idTypeDef *GetTypeDef(void) const;
+	const char *GetTypeName(void) const;
+	const function_t *GetConstructor(void) const;
+	const function_t *GetDestructor(void) const;
+	const function_t *GetFunction(const char *name) const;
 
-	byte						*GetVariable( const char *name, etype_t etype ) const;
+	byte *GetVariable(const char *name, etype_t etype) const;
 };
 
 /***********************************************************************
@@ -290,66 +316,78 @@ will cause an error.
 
 ***********************************************************************/
 
-template<class type, etype_t etype, class returnType>
-class idScriptVariable {
+template <class type, etype_t etype, class returnType>
+class idScriptVariable
+{
 private:
-	type				*data;
+	type *data;
 
 public:
-						idScriptVariable();
-	bool				IsLinked( void ) const;
-	void				Unlink( void );
-	void				LinkTo( idScriptObject &obj, const char *name );
-	idScriptVariable	&operator=( const returnType &value );
-						operator returnType() const;
+	idScriptVariable();
+	bool IsLinked(void) const;
+	void Unlink(void);
+	void LinkTo(idScriptObject &obj, const char *name);
+	idScriptVariable &operator=(const returnType &value);
+	operator returnType() const;
 };
 
-template<class type, etype_t etype, class returnType>
-ID_INLINE idScriptVariable<type, etype, returnType>::idScriptVariable() {
+template <class type, etype_t etype, class returnType>
+ID_INLINE idScriptVariable<type, etype, returnType>::idScriptVariable()
+{
 	data = NULL;
 }
 
-template<class type, etype_t etype, class returnType>
-ID_INLINE bool idScriptVariable<type, etype, returnType>::IsLinked( void ) const {
-	return ( data != NULL );
+template <class type, etype_t etype, class returnType>
+ID_INLINE bool idScriptVariable<type, etype, returnType>::IsLinked(void) const
+{
+	return (data != NULL);
 }
 
-template<class type, etype_t etype, class returnType>
-ID_INLINE void idScriptVariable<type, etype, returnType>::Unlink( void ) {
+template <class type, etype_t etype, class returnType>
+ID_INLINE void idScriptVariable<type, etype, returnType>::Unlink(void)
+{
 	data = NULL;
 }
 
-template<class type, etype_t etype, class returnType>
-ID_INLINE void idScriptVariable<type, etype, returnType>::LinkTo( idScriptObject &obj, const char *name ) {
-	data = ( type * )obj.GetVariable( name, etype );
-	if ( !data ) {
-		gameError( "Missing '%s' field in script object '%s'", name, obj.GetTypeName() );
+template <class type, etype_t etype, class returnType>
+ID_INLINE void idScriptVariable<type, etype, returnType>::LinkTo(idScriptObject &obj, const char *name)
+{
+	data = (type *)obj.GetVariable(name, etype);
+	if (!data)
+	{
+		gameError("Missing '%s' field in script object '%s'", name, obj.GetTypeName());
 	}
 }
 
-template<class type, etype_t etype, class returnType>
-ID_INLINE idScriptVariable<type, etype, returnType> &idScriptVariable<type, etype, returnType>::operator=( const returnType &value ) {
+template <class type, etype_t etype, class returnType>
+ID_INLINE idScriptVariable<type, etype, returnType> &idScriptVariable<type, etype, returnType>::operator=(const returnType &value)
+{
 	// check if we attempt to access the object before it's been linked
-	assert( data );
+	assert(data);
 
 	// make sure we don't crash if we don't have a pointer
-	if ( data ) {
-		*data = ( type )value;
+	if (data)
+	{
+		*data = (type)value;
 	}
 	return *this;
 }
 
-template<class type, etype_t etype, class returnType>
-ID_INLINE idScriptVariable<type, etype, returnType>::operator returnType() const {
+template <class type, etype_t etype, class returnType>
+ID_INLINE idScriptVariable<type, etype, returnType>::operator returnType() const
+{
 	// check if we attempt to access the object before it's been linked
-	assert( data );
+	assert(data);
 
 	// make sure we don't crash if we don't have a pointer
-	if ( data ) {
-		return ( const returnType )*data;
-	} else {
+	if (data)
+	{
+		return (const returnType)*data;
+	}
+	else
+	{
 		// reasonably safe value
-		return ( const returnType )0;
+		return (const returnType)0;
 	}
 }
 
@@ -364,11 +402,11 @@ sample the data for non-dynamic values.
 
 ***********************************************************************/
 
-typedef idScriptVariable<bool, ev_boolean, bool>			idScriptBool;
-typedef idScriptVariable<float, ev_float, float>			idScriptFloat;
-typedef idScriptVariable<float, ev_float, int>				idScriptInt;
-typedef idScriptVariable<idVec3, ev_vector, idVec3>			idScriptVector;
-typedef idScriptVariable<idStr, ev_string, const char *>	idScriptString;
+typedef idScriptVariable<bool, ev_boolean, bool> idScriptBool;
+typedef idScriptVariable<float, ev_float, float> idScriptFloat;
+typedef idScriptVariable<float, ev_float, int> idScriptInt;
+typedef idScriptVariable<idVec3, ev_vector, idVec3> idScriptVector;
+typedef idScriptVariable<idStr, ev_string, const char *> idScriptString;
 
 /***********************************************************************
 
@@ -379,9 +417,10 @@ display an error message with line and file info.
 
 ***********************************************************************/
 
-class idCompileError : public idException {
+class idCompileError : public idException
+{
 public:
-	idCompileError( const char *text ) : idException( text ) {}
+	idCompileError(const char *text) : idException(text) {}
 };
 
 /***********************************************************************
@@ -393,66 +432,72 @@ defined in script.
 
 ***********************************************************************/
 
-typedef union varEval_s {
-	idScriptObject			**objectPtrPtr;
-	char					*stringPtr;
-	float					*floatPtr;
-	idVec3					*vectorPtr;
-	function_t				*functionPtr;
-	int 					*intPtr;
-	byte					*bytePtr;
-	int 					*entityNumberPtr;
-	int						virtualFunction;
-	int						jumpOffset;
-	int						stackOffset;		// offset in stack for local variables
-	int						argSize;
-	varEval_s				*evalPtr;
-	int						ptrOffset;
+typedef union varEval_s
+{
+	idScriptObject **objectPtrPtr;
+	char *stringPtr;
+	float *floatPtr;
+	idVec3 *vectorPtr;
+	function_t *functionPtr;
+	int *intPtr;
+	byte *bytePtr;
+	int *entityNumberPtr;
+	int virtualFunction;
+	int jumpOffset;
+	int stackOffset; // offset in stack for local variables
+	int argSize;
+	varEval_s *evalPtr;
+	int ptrOffset;
 } varEval_t;
 
 class idVarDefName;
 
-class idVarDef {
+class idVarDef
+{
 	friend class idVarDefName;
 
 public:
-	int						num;
-	varEval_t				value;
-	idVarDef *				scope; 			// function, namespace, or object the var was defined in
-	int						numUsers;		// number of users if this is a constant
+	int num;
+	varEval_t value;
+	idVarDef *scope; // function, namespace, or object the var was defined in
+	int numUsers;	 // number of users if this is a constant
 
-	typedef enum {
-		uninitialized, initializedVariable, initializedConstant, stackVariable
+	typedef enum
+	{
+		uninitialized,
+		initializedVariable,
+		initializedConstant,
+		stackVariable
 	} initialized_t;
 
-	initialized_t			initialized;
+	initialized_t initialized;
 
 public:
-							idVarDef( idTypeDef *typeptr = NULL );
-							~idVarDef();
+	idVarDef(idTypeDef *typeptr = NULL);
+	~idVarDef();
 
-	const char *			Name( void ) const;
-	const char *			GlobalName( void ) const;
+	const char *Name(void) const;
+	const char *GlobalName(void) const;
 
-	void					SetTypeDef( idTypeDef *_type ) { typeDef = _type; }
-	idTypeDef *				TypeDef( void ) const { return typeDef; }
-	etype_t					Type( void ) const { return ( typeDef != NULL ) ? typeDef->Type() : ev_void; }
+	void SetTypeDef(idTypeDef *_type) { typeDef = _type; }
+	idTypeDef *TypeDef(void) const { return typeDef; }
+	etype_t Type(void) const { return (typeDef != NULL) ? typeDef->Type() : ev_void; }
 
-	int						DepthOfScope( const idVarDef *otherScope ) const;
+	int DepthOfScope(const idVarDef *otherScope) const;
 
-	void					SetFunction( function_t *func );
-	void					SetObject( idScriptObject *object );
-	void					SetValue( const eval_t &value, bool constant );
-	void					SetString( const char *string, bool constant );
+	void SetFunction(function_t *func);
+	void SetObject(idScriptObject *object);
+	void SetValue(const eval_t &value, bool constant);
+	void SetString(const char *string, bool constant);
 
-	idVarDef *				Next( void ) const { return next; }		// next var def with same name
+	idVarDef *Next(void) const { return next; } // next var def with same name
 
-	void					PrintInfo( idFile *file, int instructionPointer ) const;
+	void PrintInfo(idFile *file, int instructionPointer) const;
 
 private:
-	idTypeDef *				typeDef;
-	idVarDefName *			name;		// name of this var
-	idVarDef *				next;		// next var with the same name
+	idTypeDef *typeDef;
+	idVarDefName *name; // name of this var
+	idVarDef *next;		// next var with the same name
 };
 
 /***********************************************************************
@@ -461,20 +506,25 @@ private:
 
 ***********************************************************************/
 
-class idVarDefName {
+class idVarDefName
+{
 public:
-							idVarDefName( void ) { defs = NULL; }
-							idVarDefName( const char *n ) { name = n; defs = NULL; }
+	idVarDefName(void) { defs = NULL; }
+	idVarDefName(const char *n)
+	{
+		name = n;
+		defs = NULL;
+	}
 
-	const char *			Name( void ) const { return name; }
-	idVarDef *				GetDefs( void ) const { return defs; }
+	const char *Name(void) const { return name; }
+	idVarDef *GetDefs(void) const { return defs; }
 
-	void					AddDef( idVarDef *def );
-	void					RemoveDef( idVarDef *def );
+	void AddDef(idVarDef *def);
+	void RemoveDef(idVarDef *def);
 
 private:
-	idStr					name;
-	idVarDef *				defs;
+	idStr name;
+	idVarDef *defs;
 };
 
 /***********************************************************************
@@ -483,51 +533,52 @@ private:
 
 ***********************************************************************/
 
-extern	idTypeDef	type_void;
-extern	idTypeDef	type_scriptevent;
-extern	idTypeDef	type_namespace;
+extern idTypeDef type_void;
+extern idTypeDef type_scriptevent;
+extern idTypeDef type_namespace;
 // RAVEN BEGIN
 // abahr
-extern	rvTypeDefString	type_string;
-extern	rvTypeDefFloat	type_float;
-extern	rvTypeDefVec3	type_vector;
-extern	rvTypeDefEntity	type_entity;
+extern rvTypeDefString type_string;
+extern rvTypeDefFloat type_float;
+extern rvTypeDefVec3 type_vector;
+extern rvTypeDefEntity type_entity;
 // RAVEN END
-extern  idTypeDef	type_field;
-extern	idTypeDef	type_function;
-extern	idTypeDef	type_virtualfunction;
-extern  idTypeDef	type_pointer;
-extern	idTypeDef	type_object;
-extern	idTypeDef	type_jumpoffset;	// only used for jump opcodes
-extern	idTypeDef	type_argsize;		// only used for function call and thread opcodes
+extern idTypeDef type_field;
+extern idTypeDef type_function;
+extern idTypeDef type_virtualfunction;
+extern idTypeDef type_pointer;
+extern idTypeDef type_object;
+extern idTypeDef type_jumpoffset; // only used for jump opcodes
+extern idTypeDef type_argsize;	  // only used for function call and thread opcodes
 // RAVEN BEGIN
 // abahr
-extern	rvTypeDefBool	type_boolean;
+extern rvTypeDefBool type_boolean;
 // RAVEN END
 
-extern	idVarDef	def_void;
-extern	idVarDef	def_scriptevent;
-extern	idVarDef	def_namespace;
-extern	idVarDef	def_string;
-extern	idVarDef	def_float;
-extern	idVarDef	def_vector;
-extern	idVarDef	def_entity;
-extern	idVarDef	def_field;
-extern	idVarDef	def_function;
-extern	idVarDef	def_virtualfunction;
-extern	idVarDef	def_pointer;
-extern	idVarDef	def_object;
-extern	idVarDef	def_jumpoffset;		// only used for jump opcodes
-extern	idVarDef	def_argsize;		// only used for function call and thread opcodes
-extern	idVarDef	def_boolean;
+extern idVarDef def_void;
+extern idVarDef def_scriptevent;
+extern idVarDef def_namespace;
+extern idVarDef def_string;
+extern idVarDef def_float;
+extern idVarDef def_vector;
+extern idVarDef def_entity;
+extern idVarDef def_field;
+extern idVarDef def_function;
+extern idVarDef def_virtualfunction;
+extern idVarDef def_pointer;
+extern idVarDef def_object;
+extern idVarDef def_jumpoffset; // only used for jump opcodes
+extern idVarDef def_argsize;	// only used for function call and thread opcodes
+extern idVarDef def_boolean;
 
-typedef struct statement_s {
-	unsigned short	op;
-	idVarDef		*a;
-	idVarDef		*b;
-	idVarDef		*c;
-	unsigned short	linenumber;
-	unsigned short	file;
+typedef struct statement_s
+{
+	unsigned short op;
+	idVarDef *a;
+	idVarDef *b;
+	idVarDef *c;
+	unsigned short linenumber;
+	unsigned short file;
 } statement_t;
 
 /***********************************************************************
@@ -541,116 +592,117 @@ single idProgram.
 
 ***********************************************************************/
 
-class idProgram {
+class idProgram
+{
 private:
-	idStrList									fileList;
-	idStr 										filename;
-	int											filenum;
+	idStrList fileList;
+	idStr filename;
+	int filenum;
 
-	int											numVariables;
-	byte										variables[ MAX_GLOBALS ];
-	idStaticList<byte,MAX_GLOBALS>				variableDefaults;
-	idStaticList<function_t,MAX_FUNCS>			functions;
-	idStaticList<statement_t,MAX_STATEMENTS>	statements;
-	idList<idTypeDef *>							types;
-	idList<idVarDefName *>						varDefNames;
-	idHashIndex									varDefNameHash;
-	idList<idVarDef *>							varDefs;
+	int numVariables;
+	byte variables[MAX_GLOBALS];
+	idStaticList<byte, MAX_GLOBALS> variableDefaults;
+	idStaticList<function_t, MAX_FUNCS> functions;
+	idStaticList<statement_t, MAX_STATEMENTS> statements;
+	idList<idTypeDef *> types;
+	idList<idVarDefName *> varDefNames;
+	idHashIndex varDefNameHash;
+	idList<idVarDef *> varDefs;
 
-	idVarDef									*sysDef;
+	idVarDef *sysDef;
 
-	int											top_functions;
-	int											top_statements;
-	int											top_types;
-	int											top_defs;
-	int											top_files;
+	int top_functions;
+	int top_statements;
+	int top_types;
+	int top_defs;
+	int top_files;
 
-	void										CompileStats( void );
+	void CompileStats(void);
 
 public:
-	idVarDef									*returnDef;
-	idVarDef									*returnStringDef;
+	idVarDef *returnDef;
+	idVarDef *returnStringDef;
 
-												idProgram();
-												~idProgram();
+	idProgram();
+	~idProgram();
 
 	// save games
-	void										Save( idSaveGame *savefile ) const;
-	bool										Restore( idRestoreGame *savefile );
-	int											CalculateChecksum( void ) const;		// Used to insure program code has not
-																						//    changed between savegames
+	void Save(idSaveGame *savefile) const;
+	bool Restore(idRestoreGame *savefile);
+	int CalculateChecksum(void) const; // Used to insure program code has not
+									   //    changed between savegames
 
-	void										Startup( const char *defaultScript );
-	void										Restart( void );
-	bool										CompileText( const char *source, const char *text, bool console );
-	const function_t							*CompileFunction( const char *functionName, const char *text );
-	void										CompileFile( const char *filename );
-	void										BeginCompilation( void );
-	void										FinishCompilation( void );
-	void										DisassembleStatement( idFile *file, int instructionPointer ) const;
-	void										Disassemble( void ) const;
-	void										FreeData( void );
+	void Startup(const char *defaultScript);
+	void Restart(void);
+	bool CompileText(const char *source, const char *text, bool console);
+	const function_t *CompileFunction(const char *functionName, const char *text);
+	void CompileFile(const char *filename);
+	void BeginCompilation(void);
+	void FinishCompilation(void);
+	void DisassembleStatement(idFile *file, int instructionPointer) const;
+	void Disassemble(void) const;
+	void FreeData(void);
 
-	const char									*GetFilename( int num );
-	int											GetFilenum( const char *name );
-	int											GetLineNumberForStatement( int index );
-	const char									*GetFilenameForStatement( int index );
+	const char *GetFilename(int num);
+	int GetFilenum(const char *name);
+	int GetLineNumberForStatement(int index);
+	const char *GetFilenameForStatement(int index);
 
-	idTypeDef									*AllocType( idTypeDef &type );
-	idTypeDef									*AllocType( etype_t etype, idVarDef *edef, const char *ename, int esize, idTypeDef *aux );
-	idTypeDef									*GetType( idTypeDef &type, bool allocate );
-	idTypeDef									*FindType( const char *name );
+	idTypeDef *AllocType(idTypeDef &type);
+	idTypeDef *AllocType(etype_t etype, idVarDef *edef, const char *ename, int esize, idTypeDef *aux);
+	idTypeDef *GetType(idTypeDef &type, bool allocate);
+	idTypeDef *FindType(const char *name);
 
-	idVarDef									*AllocDef( idTypeDef *type, const char *name, idVarDef *scope, bool constant );
-	idVarDef									*GetDef( const idTypeDef *type, const char *name, const idVarDef *scope ) const;
-	void										FreeDef( idVarDef *d, const idVarDef *scope );
-	idVarDef									*FindFreeResultDef( idTypeDef *type, const char *name, idVarDef *scope, const idVarDef *a, const idVarDef *b );
-	idVarDef									*GetDefList( const char *name ) const;
-	void										AddDefToNameList( idVarDef *def, const char *name );
+	idVarDef *AllocDef(idTypeDef *type, const char *name, idVarDef *scope, bool constant);
+	idVarDef *GetDef(const idTypeDef *type, const char *name, const idVarDef *scope) const;
+	void FreeDef(idVarDef *d, const idVarDef *scope);
+	idVarDef *FindFreeResultDef(idTypeDef *type, const char *name, idVarDef *scope, const idVarDef *a, const idVarDef *b);
+	idVarDef *GetDefList(const char *name) const;
+	void AddDefToNameList(idVarDef *def, const char *name);
 
-	function_t									*FindFunction( const char *name ) const;						// returns NULL if function not found
-	function_t									*FindFunction( const char *name, const idTypeDef *type ) const;	// returns NULL if function not found
-	function_t									&AllocFunction( idVarDef *def );
-	function_t									*GetFunction( int index );
-	int											GetFunctionIndex( const function_t *func );
+	function_t *FindFunction(const char *name) const;						 // returns NULL if function not found
+	function_t *FindFunction(const char *name, const idTypeDef *type) const; // returns NULL if function not found
+	function_t &AllocFunction(idVarDef *def);
+	function_t *GetFunction(int index);
+	int GetFunctionIndex(const function_t *func);
 
-	void										SetEntity( const char *name, idEntity *ent );
+	void SetEntity(const char *name, idEntity *ent);
 
-	statement_t									*AllocStatement( void );
-	statement_t									&GetStatement( int index );
-	int											NumStatements( void ) { return statements.Num(); }
+	statement_t *AllocStatement(void);
+	statement_t &GetStatement(int index);
+	int NumStatements(void) { return statements.Num(); }
 
-	int 										GetReturnedInteger( void );
+	int GetReturnedInteger(void);
 
-// RAVEN BEGIN
-// abahr: adding helper functions for other types
-	float										GetReturnedFloat();
-	idVec3										GetReturnedVec3();
-	idEntity*									GetReturnedEntity();
-	const char*									GetReturnedString();
-	bool										GetReturnedBool();
-// RAVEN END
+	// RAVEN BEGIN
+	// abahr: adding helper functions for other types
+	float GetReturnedFloat();
+	idVec3 GetReturnedVec3();
+	idEntity *GetReturnedEntity();
+	const char *GetReturnedString();
+	bool GetReturnedBool();
+	// RAVEN END
 
-	void										ReturnFloat( float value );
-	void										ReturnInteger( int value );
-	void										ReturnVector( idVec3 const &vec );
-	void										ReturnString( const char *string );
-// RAVEN BEGIN
-// abahr: added const
-	void										ReturnEntity( const idEntity *ent );
-// RAVEN END
-	
-	int											NumFilenames( void ) { return fileList.Num( ); }
-	
-// RAVEN BEGIN
-// bdube: added
-	void										ListStates( void );
-// jscott: added for debug with inlines and memory log
-	void										Shutdown( void );
-// jscott: added for stats
-	size_t										ScriptSummary( const idCmdArgs &args );
-	size_t										ClassSummary( const idCmdArgs &args );
-// RAVEN END
+	void ReturnFloat(float value);
+	void ReturnInteger(int value);
+	void ReturnVector(idVec3 const &vec);
+	void ReturnString(const char *string);
+	// RAVEN BEGIN
+	// abahr: added const
+	void ReturnEntity(const idEntity *ent);
+	// RAVEN END
+
+	int NumFilenames(void) { return fileList.Num(); }
+
+	// RAVEN BEGIN
+	// bdube: added
+	void ListStates(void);
+	// jscott: added for debug with inlines and memory log
+	void Shutdown(void);
+	// jscott: added for stats
+	size_t ScriptSummary(const idCmdArgs &args);
+	size_t ClassSummary(const idCmdArgs &args);
+	// RAVEN END
 };
 
 /*
@@ -658,8 +710,9 @@ public:
 idProgram::GetStatement
 ================
 */
-ID_INLINE statement_t &idProgram::GetStatement( int index ) {
-	return statements[ index ];
+ID_INLINE statement_t &idProgram::GetStatement(int index)
+{
+	return statements[index];
 }
 
 /*
@@ -667,8 +720,9 @@ ID_INLINE statement_t &idProgram::GetStatement( int index ) {
 idProgram::GetFunction
 ================
 */
-ID_INLINE function_t *idProgram::GetFunction( int index ) {
-	return &functions[ index ];
+ID_INLINE function_t *idProgram::GetFunction(int index)
+{
+	return &functions[index];
 }
 
 /*
@@ -676,7 +730,8 @@ ID_INLINE function_t *idProgram::GetFunction( int index ) {
 idProgram::GetFunctionIndex
 ================
 */
-ID_INLINE int idProgram::GetFunctionIndex( const function_t *func ) {
+ID_INLINE int idProgram::GetFunctionIndex(const function_t *func)
+{
 	return func - &functions[0];
 }
 
@@ -685,11 +740,12 @@ ID_INLINE int idProgram::GetFunctionIndex( const function_t *func ) {
 idProgram::GetReturnedInteger
 ================
 */
-ID_INLINE int idProgram::GetReturnedInteger( void ) {
-// RAVEN BEGIN
-// abahr: because we only return floats in idThread we need to only get floats
+ID_INLINE int idProgram::GetReturnedInteger(void)
+{
+	// RAVEN BEGIN
+	// abahr: because we only return floats in idThread we need to only get floats
 	return (int)GetReturnedFloat();
-// RAVEN END
+	// RAVEN END
 }
 
 // RAVEN BEGIN
@@ -699,7 +755,8 @@ ID_INLINE int idProgram::GetReturnedInteger( void ) {
 idProgram::GetReturnedFloat
 ================
 */
-ID_INLINE float idProgram::GetReturnedFloat() {
+ID_INLINE float idProgram::GetReturnedFloat()
+{
 	return *returnDef->value.floatPtr;
 }
 
@@ -708,7 +765,8 @@ ID_INLINE float idProgram::GetReturnedFloat() {
 idProgram::GetReturnedVec3
 ================
 */
-ID_INLINE idVec3 idProgram::GetReturnedVec3() {
+ID_INLINE idVec3 idProgram::GetReturnedVec3()
+{
 	return *returnDef->value.vectorPtr;
 }
 
@@ -717,7 +775,8 @@ ID_INLINE idVec3 idProgram::GetReturnedVec3() {
 idProgram::GetReturnedString
 ================
 */
-ID_INLINE const char* idProgram::GetReturnedString() {
+ID_INLINE const char *idProgram::GetReturnedString()
+{
 	return returnDef->value.stringPtr;
 }
 
@@ -726,7 +785,8 @@ ID_INLINE const char* idProgram::GetReturnedString() {
 idProgram::GetReturnedBool
 ================
 */
-ID_INLINE bool idProgram::GetReturnedBool() {
+ID_INLINE bool idProgram::GetReturnedBool()
+{
 	return GetReturnedInteger() != 0;
 }
 // RAVEN END
@@ -736,7 +796,8 @@ ID_INLINE bool idProgram::GetReturnedBool() {
 idProgram::ReturnFloat
 ================
 */
-ID_INLINE void idProgram::ReturnFloat( float value ) {
+ID_INLINE void idProgram::ReturnFloat(float value)
+{
 	*returnDef->value.floatPtr = value;
 }
 
@@ -745,7 +806,8 @@ ID_INLINE void idProgram::ReturnFloat( float value ) {
 idProgram::ReturnInteger
 ================
 */
-ID_INLINE void idProgram::ReturnInteger( int value ) {
+ID_INLINE void idProgram::ReturnInteger(int value)
+{
 	*returnDef->value.intPtr = value;
 }
 
@@ -754,7 +816,8 @@ ID_INLINE void idProgram::ReturnInteger( int value ) {
 idProgram::ReturnVector
 ================
 */
-ID_INLINE void idProgram::ReturnVector( idVec3 const &vec ) {
+ID_INLINE void idProgram::ReturnVector(idVec3 const &vec)
+{
 	*returnDef->value.vectorPtr = vec;
 }
 
@@ -763,8 +826,9 @@ ID_INLINE void idProgram::ReturnVector( idVec3 const &vec ) {
 idProgram::ReturnString
 ================
 */
-ID_INLINE void idProgram::ReturnString( const char *string ) {
-	idStr::Copynz( returnStringDef->value.stringPtr, string, MAX_STRING_LEN );
+ID_INLINE void idProgram::ReturnString(const char *string)
+{
+	idStr::Copynz(returnStringDef->value.stringPtr, string, MAX_STRING_LEN);
 }
 
 /*
@@ -772,8 +836,9 @@ ID_INLINE void idProgram::ReturnString( const char *string ) {
 idProgram::GetFilename
 ================
 */
-ID_INLINE const char *idProgram::GetFilename( int num ) {
-	return fileList[ num ];
+ID_INLINE const char *idProgram::GetFilename(int num)
+{
+	return fileList[num];
 }
 
 /*
@@ -781,8 +846,9 @@ ID_INLINE const char *idProgram::GetFilename( int num ) {
 idProgram::GetLineNumberForStatement
 ================
 */
-ID_INLINE int idProgram::GetLineNumberForStatement( int index ) {
-	return statements[ index ].linenumber;
+ID_INLINE int idProgram::GetLineNumberForStatement(int index)
+{
+	return statements[index].linenumber;
 }
 
 /*
@@ -790,8 +856,9 @@ ID_INLINE int idProgram::GetLineNumberForStatement( int index ) {
 idProgram::GetFilenameForStatement
 ================
 */
-ID_INLINE const char *idProgram::GetFilenameForStatement( int index ) {
-	return GetFilename( statements[ index ].file );
+ID_INLINE const char *idProgram::GetFilenameForStatement(int index)
+{
+	return GetFilename(statements[index].file);
 }
 
 #endif /* !__SCRIPT_PROGRAM_H__ */

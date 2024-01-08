@@ -3,22 +3,22 @@
 
 #include "Game_local.h"
 
-const idEventDef EV_OpenGate( "<openGate>" );
-const idEventDef EV_CloseGate( "<closeGate>" );
+const idEventDef EV_OpenGate("<openGate>");
+const idEventDef EV_CloseGate("<closeGate>");
 
 //=======================================================
 //
 //	rvTramGate
 //
 //=======================================================
-CLASS_DECLARATION( idAnimatedEntity, rvTramGate )
-	EVENT( EV_Touch,			rvTramGate::Event_Touch )
-	EVENT( EV_Activate,			rvTramGate::Event_Activate )
-	EVENT( EV_OpenGate,			rvTramGate::Event_OpenGate )
-	EVENT( EV_CloseGate,		rvTramGate::Event_CloseGate )
-	EVENT( EV_Door_Lock,		rvTramGate::Event_Lock )
-	EVENT( EV_Door_IsOpen,		rvTramGate::Event_IsOpen )
-	EVENT( EV_Door_IsLocked,	rvTramGate::Event_IsLocked )
+CLASS_DECLARATION(idAnimatedEntity, rvTramGate)
+EVENT(EV_Touch, rvTramGate::Event_Touch)
+EVENT(EV_Activate, rvTramGate::Event_Activate)
+EVENT(EV_OpenGate, rvTramGate::Event_OpenGate)
+EVENT(EV_CloseGate, rvTramGate::Event_CloseGate)
+EVENT(EV_Door_Lock, rvTramGate::Event_Lock)
+EVENT(EV_Door_IsOpen, rvTramGate::Event_IsOpen)
+EVENT(EV_Door_IsLocked, rvTramGate::Event_IsLocked)
 END_CLASS
 
 /*
@@ -26,7 +26,8 @@ END_CLASS
 rvTramGate::Spawn
 ================
 */
-void rvTramGate::Spawn() {
+void rvTramGate::Spawn()
+{
 	SpawnDoors();
 
 	AdjustFrameRate();
@@ -37,8 +38,9 @@ void rvTramGate::Spawn() {
 rvTramGate::~rvTramGate
 ================
 */
-rvTramGate::~rvTramGate() {
-	doorList.RemoveContents( true );
+rvTramGate::~rvTramGate()
+{
+	doorList.RemoveContents(true);
 }
 
 /*
@@ -46,34 +48,38 @@ rvTramGate::~rvTramGate() {
 rvTramGate::SpawnDoors
 ================
 */
-void rvTramGate::SpawnDoors() {
-	idDict	args;
-	idVec3	dir = spawnArgs.GetAngles("doorsAxisOffset").ToMat3() * GetPhysics()->GetAxis()[1];
+void rvTramGate::SpawnDoors()
+{
+	idDict args;
+	idVec3 dir = spawnArgs.GetAngles("doorsAxisOffset").ToMat3() * GetPhysics()->GetAxis()[1];
 
-	args.Set( "team", GetName() );
-	args.SetMatrix( "rotation", dir.ToMat3() );
-	args.SetVector( "origin", GetPhysics()->GetOrigin() );
+	args.Set("team", GetName());
+	args.SetMatrix("rotation", dir.ToMat3());
+	args.SetVector("origin", GetPhysics()->GetOrigin());
 
 	int len = strlen("door_");
-	for( const idKeyValue* kv = spawnArgs.MatchPrefix("door"); kv; kv = spawnArgs.MatchPrefix("door", kv) ) {
-		args.Set( kv->GetKey().Right(kv->GetKey().Length() - len), kv->GetValue() );
+	for (const idKeyValue *kv = spawnArgs.MatchPrefix("door"); kv; kv = spawnArgs.MatchPrefix("door", kv))
+	{
+		args.Set(kv->GetKey().Right(kv->GetKey().Length() - len), kv->GetValue());
 	}
 
-	args.SetFloat( "movedir", (-dir).ToYaw() );
-	idDoor* door = gameLocal.SpawnSafeEntityDef<idDoor>( spawnArgs.GetString("def_door1"), &args );
-	if( door ) {
+	args.SetFloat("movedir", (-dir).ToYaw());
+	idDoor *door = gameLocal.SpawnSafeEntityDef<idDoor>(spawnArgs.GetString("def_door1"), &args);
+	if (door)
+	{
 		doorList.Alloc() = door;
-		door->SetDoorFrameController( this );
+		door->SetDoorFrameController(this);
 	}
 
-	args.SetFloat( "movedir", dir.ToYaw() );
-	door = gameLocal.SpawnSafeEntityDef<idDoor>( spawnArgs.GetString("def_door2"), &args );
-	if( door ) {
+	args.SetFloat("movedir", dir.ToYaw());
+	door = gameLocal.SpawnSafeEntityDef<idDoor>(spawnArgs.GetString("def_door2"), &args);
+	if (door)
+	{
 		doorList.Alloc() = door;
-		door->SetDoorFrameController( this );
+		door->SetDoorFrameController(this);
 	}
 
-	//assert( GetDoorMaster() == door->GetMoveMaster() );
+	// assert( GetDoorMaster() == door->GetMoveMaster() );
 }
 
 /*
@@ -81,9 +87,10 @@ void rvTramGate::SpawnDoors() {
 rvTramGate::AdjustFrameRate
 ================
 */
-void rvTramGate::AdjustFrameRate() {
-	GetAnimator()->SetPlaybackRate( "open", spawnArgs.GetFloat("openFrameRateScale") );
-	GetAnimator()->SetPlaybackRate( "close", spawnArgs.GetFloat("closeFrameRateScale") );
+void rvTramGate::AdjustFrameRate()
+{
+	GetAnimator()->SetPlaybackRate("open", spawnArgs.GetFloat("openFrameRateScale"));
+	GetAnimator()->SetPlaybackRate("close", spawnArgs.GetFloat("closeFrameRateScale"));
 }
 
 /*
@@ -91,8 +98,9 @@ void rvTramGate::AdjustFrameRate() {
 rvTramGate::OpenGate
 ================
 */
-void rvTramGate::OpenGate() {
-	PlayAnim( ANIMCHANNEL_ALL, "open" );
+void rvTramGate::OpenGate()
+{
+	PlayAnim(ANIMCHANNEL_ALL, "open");
 }
 
 /*
@@ -100,8 +108,9 @@ void rvTramGate::OpenGate() {
 rvTramGate::CloseGate
 ================
 */
-void rvTramGate::CloseGate() {
-	PlayAnim( ANIMCHANNEL_ALL, "close" );
+void rvTramGate::CloseGate()
+{
+	PlayAnim(ANIMCHANNEL_ALL, "close");
 }
 
 /*
@@ -109,10 +118,12 @@ void rvTramGate::CloseGate() {
 rvTramGate::Save
 ================
 */
-void rvTramGate::Save( idSaveGame *savefile ) const {
-	savefile->WriteInt( doorList.Num() );
-	for( int i = 0; i < doorList.Num(); i++ ) {
-		doorList[i].Save( savefile );
+void rvTramGate::Save(idSaveGame *savefile) const
+{
+	savefile->WriteInt(doorList.Num());
+	for (int i = 0; i < doorList.Num(); i++)
+	{
+		doorList[i].Save(savefile);
 	}
 }
 
@@ -121,13 +132,15 @@ void rvTramGate::Save( idSaveGame *savefile ) const {
 rvTramGate::Restore
 ================
 */
-void rvTramGate::Restore( idRestoreGame *savefile ) {
+void rvTramGate::Restore(idRestoreGame *savefile)
+{
 	int num = 0;
 	idEntityPtr<idDoor> temp;
-	savefile->ReadInt( num );
-	for( int i = 0; i < num; i++ ) {
-		temp.Restore( savefile );
-		doorList.Append( temp );
+	savefile->ReadInt(num);
+	for (int i = 0; i < num; i++)
+	{
+		temp.Restore(savefile);
+		doorList.Append(temp);
 	}
 }
 
@@ -136,15 +149,17 @@ void rvTramGate::Restore( idRestoreGame *savefile ) {
 rvTramGate::PlayAnim
 ================
 */
-int rvTramGate::PlayAnim( int channel, const char* animName, int blendFrames ) {
-	int animHandle = GetAnimator()->GetAnim( animName );
+int rvTramGate::PlayAnim(int channel, const char *animName, int blendFrames)
+{
+	int animHandle = GetAnimator()->GetAnim(animName);
 
-	if( !animHandle ) {
-		ClearAllAnims( blendFrames );
+	if (!animHandle)
+	{
+		ClearAllAnims(blendFrames);
 		return 0;
 	}
 
-	GetAnimator()->PlayAnim( channel, animHandle, gameLocal.GetTime(), FRAME2MS(blendFrames) );
+	GetAnimator()->PlayAnim(channel, animHandle, gameLocal.GetTime(), FRAME2MS(blendFrames));
 	return GetAnimator()->CurrentAnim(channel)->PlayLength();
 }
 
@@ -153,15 +168,17 @@ int rvTramGate::PlayAnim( int channel, const char* animName, int blendFrames ) {
 rvTramGate::CycleAnim
 ================
 */
-void rvTramGate::CycleAnim( int channel, const char* animName, int blendFrames ) {
-	int animHandle = GetAnimator()->GetAnim( animName );
+void rvTramGate::CycleAnim(int channel, const char *animName, int blendFrames)
+{
+	int animHandle = GetAnimator()->GetAnim(animName);
 
-	if( !animHandle ) {
-		ClearAllAnims( blendFrames );
+	if (!animHandle)
+	{
+		ClearAllAnims(blendFrames);
 		return;
 	}
 
-	GetAnimator()->CycleAnim( channel, animHandle, gameLocal.GetTime(), FRAME2MS(blendFrames) );
+	GetAnimator()->CycleAnim(channel, animHandle, gameLocal.GetTime(), FRAME2MS(blendFrames));
 }
 
 /*
@@ -169,8 +186,9 @@ void rvTramGate::CycleAnim( int channel, const char* animName, int blendFrames )
 rvTramGate::Event_Touch
 ================
 */
-void rvTramGate::ClearAllAnims( int blendFrames ) {
-	GetAnimator()->ClearAllAnims( gameLocal.GetTime(), FRAME2MS(blendFrames) );
+void rvTramGate::ClearAllAnims(int blendFrames)
+{
+	GetAnimator()->ClearAllAnims(gameLocal.GetTime(), FRAME2MS(blendFrames));
 }
 
 /*
@@ -178,8 +196,9 @@ void rvTramGate::ClearAllAnims( int blendFrames ) {
 rvTramGate::Event_Touch
 ================
 */
-void rvTramGate::ClearAnim( int channel, int blendFrames ) {
-	GetAnimator()->Clear( channel, gameLocal.GetTime(), FRAME2MS(blendFrames) ); 
+void rvTramGate::ClearAnim(int channel, int blendFrames)
+{
+	GetAnimator()->Clear(channel, gameLocal.GetTime(), FRAME2MS(blendFrames));
 }
 
 /*
@@ -187,7 +206,8 @@ void rvTramGate::ClearAnim( int channel, int blendFrames ) {
 rvTramGate::Event_Touch
 ================
 */
-bool rvTramGate::AnimIsPlaying( int channel, int blendFrames ) {
+bool rvTramGate::AnimIsPlaying(int channel, int blendFrames)
+{
 	return GetAnimator()->CurrentAnim(channel)->GetEndTime() - FRAME2MS(blendFrames) >= gameLocal.GetTime();
 }
 
@@ -196,7 +216,8 @@ bool rvTramGate::AnimIsPlaying( int channel, int blendFrames ) {
 rvTramGate::IsOpen
 ================
 */
-bool rvTramGate::IsOpen() const {
+bool rvTramGate::IsOpen() const
+{
 	return (IsDoorMasterValid()) ? GetDoorMaster()->IsOpen() : false;
 }
 
@@ -205,7 +226,8 @@ bool rvTramGate::IsOpen() const {
 rvTramGate::IsClosed
 ================
 */
-bool rvTramGate::IsClosed() const {
+bool rvTramGate::IsClosed() const
+{
 	return (IsDoorMasterValid()) ? GetDoorMaster()->IsClosed() : false;
 }
 
@@ -214,7 +236,8 @@ bool rvTramGate::IsClosed() const {
 rvTramGate::GetDoorMaster
 ================
 */
-idDoor* rvTramGate::GetDoorMaster() const {
+idDoor *rvTramGate::GetDoorMaster() const
+{
 	return doorList.Num() ? doorList[0] : NULL;
 }
 
@@ -223,7 +246,8 @@ idDoor* rvTramGate::GetDoorMaster() const {
 rvTramGate::IsDoorMasterValid
 ================
 */
-bool rvTramGate::IsDoorMasterValid() const {
+bool rvTramGate::IsDoorMasterValid() const
+{
 	return GetDoorMaster() != NULL;
 }
 
@@ -232,16 +256,21 @@ bool rvTramGate::IsDoorMasterValid() const {
 rvTramGate::Event_Touch
 ================
 */
-void rvTramGate::Event_Touch( idEntity* other, trace_t* trace ) {
-	if( !IsDoorMasterValid() ) {
+void rvTramGate::Event_Touch(idEntity *other, trace_t *trace)
+{
+	if (!IsDoorMasterValid())
+	{
 		return;
 	}
 
-	if( IsClosed() ) {
+	if (IsClosed())
+	{
 		OpenGate();
-		GetDoorMaster()->ProcessEvent( &EV_Touch, this, trace );	
-	} else if( IsOpen() ) {
-		GetDoorMaster()->ProcessEvent( &EV_Touch, this, trace );	
+		GetDoorMaster()->ProcessEvent(&EV_Touch, this, trace);
+	}
+	else if (IsOpen())
+	{
+		GetDoorMaster()->ProcessEvent(&EV_Touch, this, trace);
 	}
 }
 
@@ -250,16 +279,20 @@ void rvTramGate::Event_Touch( idEntity* other, trace_t* trace ) {
 rvTramGate::Event_Activate
 ================
 */
-void rvTramGate::Event_Activate( idEntity* activator ) {
-	if( !IsDoorMasterValid() ) {
+void rvTramGate::Event_Activate(idEntity *activator)
+{
+	if (!IsDoorMasterValid())
+	{
 		return;
 	}
-	
+
 	// FIXME: may need some better logic than this.
-	const char* animName = (IsClosed()) ? "open" : (IsOpen()) ? "close" : NULL;
-	if( animName ) {
-		PlayAnim( ANIMCHANNEL_ALL, animName );
-		GetDoorMaster()->ProcessEvent( &EV_Activate, this );
+	const char *animName = (IsClosed()) ? "open" : (IsOpen()) ? "close"
+															  : NULL;
+	if (animName)
+	{
+		PlayAnim(ANIMCHANNEL_ALL, animName);
+		GetDoorMaster()->ProcessEvent(&EV_Activate, this);
 	}
 }
 
@@ -268,7 +301,8 @@ void rvTramGate::Event_Activate( idEntity* activator ) {
 rvTramGate::Event_OpenGate
 ================
 */
-void rvTramGate::Event_OpenGate() {
+void rvTramGate::Event_OpenGate()
+{
 	OpenGate();
 }
 
@@ -277,7 +311,8 @@ void rvTramGate::Event_OpenGate() {
 rvTramGate::Event_CloseGate
 ================
 */
-void rvTramGate::Event_CloseGate() {
+void rvTramGate::Event_CloseGate()
+{
 	CloseGate();
 }
 
@@ -286,8 +321,9 @@ void rvTramGate::Event_CloseGate() {
 rvTramGate::Event_IsOpen
 ================
 */
-void rvTramGate::Event_IsOpen( void ) {
-	idThread::ReturnInt( IsOpen() );
+void rvTramGate::Event_IsOpen(void)
+{
+	idThread::ReturnInt(IsOpen());
 }
 
 /*
@@ -295,8 +331,9 @@ void rvTramGate::Event_IsOpen( void ) {
 rvTramGate::Event_IsLocked
 ================
 */
-void rvTramGate::Event_IsLocked( void ) {
-	idThread::ReturnInt( (IsDoorMasterValid()) ? GetDoorMaster()->IsLocked() : 0 );
+void rvTramGate::Event_IsLocked(void)
+{
+	idThread::ReturnInt((IsDoorMasterValid()) ? GetDoorMaster()->IsLocked() : 0);
 }
 
 /*
@@ -304,8 +341,10 @@ void rvTramGate::Event_IsLocked( void ) {
 rvTramGate::Event_Lock
 ================
 */
-void rvTramGate::Event_Lock( int f ) {
-	if( IsDoorMasterValid() ) {
-		GetDoorMaster()->Lock( f );
+void rvTramGate::Event_Lock(int f)
+{
+	if (IsDoorMasterValid())
+	{
+		GetDoorMaster()->Lock(f);
 	}
 }

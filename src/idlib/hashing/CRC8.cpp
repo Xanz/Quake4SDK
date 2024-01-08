@@ -6,8 +6,8 @@
    CRC-8
 */
 
-#define CRC8_INIT_VALUE		0x0000
-#define CRC8_XOR_VALUE		0x0000
+#define CRC8_INIT_VALUE 0x0000
+#define CRC8_XOR_VALUE 0x0000
 
 #ifdef CREATE_CRC_TABLE
 
@@ -18,24 +18,28 @@ static byte crctable[256];
    x^8 + x^2 + x^1 + x^0
 */
 
-void make_crc_table( void ) {
+void make_crc_table(void)
+{
 	int i, j;
 	unsigned long poly, c;
 	/* terms of polynomial defining this crc (except x^8): */
-	static const byte p[] = {0,1,2};
+	static const byte p[] = {0, 1, 2};
 
 	/* make exclusive-or pattern from polynomial (0x07) */
 	poly = 0L;
-	for ( i = 0; i < sizeof( p ) / sizeof( byte ); i++ ) {
+	for (i = 0; i < sizeof(p) / sizeof(byte); i++)
+	{
 		poly |= 1L << p[i];
 	}
 
-	for ( i = 0; i < 256; i++ ) {
+	for (i = 0; i < 256; i++)
+	{
 		c = i;
-		for ( j = 0; j < 8; j++ ) {
-			c = ( c & 0x80 ) ? poly ^ ( c << 1 ) : ( c << 1 );
+		for (j = 0; j < 8; j++)
+		{
+			c = (c & 0x80) ? poly ^ (c << 1) : (c << 1);
 		}
-		crctable[i] = (byte) c;
+		crctable[i] = (byte)c;
 	}
 }
 
@@ -76,39 +80,44 @@ static byte crctable[256] = {
 	0xAE, 0xA9, 0xA0, 0xA7, 0xB2, 0xB5, 0xBC, 0xBB,
 	0x96, 0x91, 0x98, 0x9F, 0x8A, 0x8D, 0x84, 0x83,
 	0xDE, 0xD9, 0xD0, 0xD7, 0xC2, 0xC5, 0xCC, 0xCB,
-	0xE6, 0xE1, 0xE8, 0xEF, 0xFA, 0xFD, 0xF4, 0xF3
-};
+	0xE6, 0xE1, 0xE8, 0xEF, 0xFA, 0xFD, 0xF4, 0xF3};
 
 #endif
 
-void CRC8_InitChecksum( unsigned char &crcvalue ) {
+void CRC8_InitChecksum(unsigned char &crcvalue)
+{
 	crcvalue = CRC8_INIT_VALUE;
 }
 
-void CRC8_Update( unsigned char &crcvalue, const byte data ) {
+void CRC8_Update(unsigned char &crcvalue, const byte data)
+{
 	crcvalue = crctable[crcvalue ^ data];
 }
 
-void CRC8_UpdateChecksum( unsigned char &crcvalue, const void *data, int length ) {
+void CRC8_UpdateChecksum(unsigned char &crcvalue, const void *data, int length)
+{
 	unsigned char crc;
-	const unsigned char *buf = (const unsigned char *) data;
+	const unsigned char *buf = (const unsigned char *)data;
 
 	crc = crcvalue;
-	while( length-- ) {
+	while (length--)
+	{
 		crc = crctable[crc ^ *buf++];
 	}
 	crcvalue = crc;
 }
 
-void CRC8_FinishChecksum( unsigned char &crcvalue ) {
+void CRC8_FinishChecksum(unsigned char &crcvalue)
+{
 	crcvalue ^= CRC8_XOR_VALUE;
 }
 
-unsigned char CRC8_BlockChecksum( const void *data, int length ) {
+unsigned char CRC8_BlockChecksum(const void *data, int length)
+{
 	unsigned char crc;
 
-	CRC8_InitChecksum( crc );
-	CRC8_UpdateChecksum( crc, data, length );
-	CRC8_FinishChecksum( crc );
+	CRC8_InitChecksum(crc);
+	CRC8_UpdateChecksum(crc, data, length);
+	CRC8_FinishChecksum(crc);
 	return crc;
 }

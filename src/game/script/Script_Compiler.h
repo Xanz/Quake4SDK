@@ -1,23 +1,25 @@
 #ifndef __SCRIPT_COMPILER_H__
 #define __SCRIPT_COMPILER_H__
 
-const char * const RESULT_STRING = "<RESULT>";
+const char *const RESULT_STRING = "<RESULT>";
 
-typedef struct opcode_s {
-	char		*name;
-	char		*opname;
-	int			priority;
-	bool		rightAssociative;
-	idVarDef	*type_a;
-	idVarDef	*type_b;
-	idVarDef	*type_c;
+typedef struct opcode_s
+{
+	char *name;
+	char *opname;
+	int priority;
+	bool rightAssociative;
+	idVarDef *type_a;
+	idVarDef *type_b;
+	idVarDef *type_c;
 } opcode_t;
 
 // These opcodes are no longer necessary:
 // OP_PUSH_OBJ:
 // OP_PUSH_OBJENT:
 
-enum {
+enum
+{
 	OP_RETURN,
 
 	OP_UINC_F,
@@ -41,7 +43,7 @@ enum {
 	OP_ADD_SV,
 	OP_SUB_F,
 	OP_SUB_V,
-	
+
 	OP_EQ_F,
 	OP_EQ_V,
 	OP_EQ_S,
@@ -49,7 +51,7 @@ enum {
 	OP_EQ_EO,
 	OP_EQ_OE,
 	OP_EQ_OO,
-	
+
 	OP_NE_F,
 	OP_NE_V,
 	OP_NE_S,
@@ -57,7 +59,7 @@ enum {
 	OP_NE_EO,
 	OP_NE_OE,
 	OP_NE_OO,
-	
+
 	OP_LE,
 	OP_GE,
 	OP_LT,
@@ -69,7 +71,7 @@ enum {
 	OP_INDIRECT_ENT,
 	OP_INDIRECT_BOOL,
 	OP_INDIRECT_OBJ,
-	
+
 	OP_ADDRESS,
 
 	OP_EVENTCALL,
@@ -157,95 +159,96 @@ enum {
 	OP_OR_BOOLF,
 	OP_OR_FBOOL,
 	OP_OR_BOOLBOOL,
-	
+
 	OP_BITAND,
 	OP_BITOR,
 
-	OP_BREAK,			// placeholder op.  not used in final code
-	OP_CONTINUE,		// placeholder op.  not used in final code
+	OP_BREAK,	 // placeholder op.  not used in final code
+	OP_CONTINUE, // placeholder op.  not used in final code
 
 	NUM_OPCODES
 };
 
-class idCompiler {
+class idCompiler
+{
 private:
-	static bool		punctuationValid[ 256 ];
-	static char		*punctuation[];
+	static bool punctuationValid[256];
+	static char *punctuation[];
 
-	idParser		parser;
-	idParser		*parserPtr;
-	idToken			token;
-					
-	idTypeDef		*immediateType;
-	eval_t			immediate;
-					
-	bool			eof;
-	bool			console;
-	bool			callthread;
-	int				braceDepth;
-	int				loopDepth;
-	int				currentLineNumber;
-	int				currentFileNumber;
-	int				errorCount;
-					
-	idVarDef		*scope;				// the function being parsed, or NULL
-	const idVarDef	*basetype;			// for accessing fields
+	idParser parser;
+	idParser *parserPtr;
+	idToken token;
 
-	float			Divide( float numerator, float denominator );
-	void			Error( const char *error, ... ) const;
-	void			Warning( const char *message, ... ) const;
-	idVarDef		*OptimizeOpcode( const opcode_t *op, idVarDef *var_a, idVarDef *var_b );
-	idVarDef		*EmitOpcode( const opcode_t *op, idVarDef *var_a, idVarDef *var_b );
-	idVarDef		*EmitOpcode( int op, idVarDef *var_a, idVarDef *var_b );
-	bool			EmitPush( idVarDef *expression, const idTypeDef *funcArg );
-	void			NextToken( void );
-	void			ExpectToken( const char *string );
-	bool			CheckToken( const char *string );
-	void			ParseName( idStr &name );
-	void			SkipOutOfFunction( void );
-	void			SkipToSemicolon( void );
-	idTypeDef		*CheckType( void );
-	idTypeDef		*ParseType( void );
-	idVarDef		*FindImmediate( const idTypeDef *type, const eval_t *eval, const char *string ) const;
-	idVarDef		*GetImmediate( idTypeDef *type, const eval_t *eval, const char *string );
-	idVarDef		*VirtualFunctionConstant( idVarDef *func );
-	idVarDef		*SizeConstant( int size );
-	idVarDef		*JumpConstant( int value );
-	idVarDef		*JumpDef( int jumpfrom, int jumpto );
-	idVarDef		*JumpTo( int jumpto );
-	idVarDef		*JumpFrom( int jumpfrom );
-	idVarDef		*ParseImmediate( void );
-	idVarDef		*EmitFunctionParms( int op, idVarDef *func, int startarg, int startsize, idVarDef *object );
-	idVarDef		*ParseFunctionCall( idVarDef *func );
-	idVarDef		*ParseObjectCall( idVarDef *object, idVarDef *func );
-	idVarDef		*ParseEventCall( idVarDef *object, idVarDef *func );
-	idVarDef		*ParseSysObjectCall( idVarDef *func );
-	idVarDef		*LookupDef( const char *name, const idVarDef *baseobj );
-	idVarDef		*ParseValue( void );
-	idVarDef		*GetTerm( void );
-	bool			TypeMatches( etype_t type1, etype_t type2 ) const;
-	idVarDef		*GetExpression( int priority );
-	idTypeDef		*GetTypeForEventArg( char argType );
-	void			PatchLoop( int start, int continuePos );
-	void			ParseReturnStatement( void );
-	void			ParseWhileStatement( void );
-	void			ParseForStatement( void );
-	void			ParseDoWhileStatement( void );
-	void			ParseIfStatement( void );
-	void			ParseStatement( void );
-	void			ParseObjectDef( const char *objname );
-	idTypeDef		*ParseFunction( idTypeDef *returnType, const char *name );
-	void			ParseFunctionDef( idTypeDef *returnType, const char *name );
-	void			ParseVariableDef( idTypeDef *type, const char *name );
-	void			ParseEventDef( idTypeDef *type, const char *name );
-	void			ParseDefs( void );
-	void			ParseNamespace( idVarDef *newScope );
+	idTypeDef *immediateType;
+	eval_t immediate;
 
-public :
-	static opcode_t	opcodes[];
+	bool eof;
+	bool console;
+	bool callthread;
+	int braceDepth;
+	int loopDepth;
+	int currentLineNumber;
+	int currentFileNumber;
+	int errorCount;
 
-					idCompiler();
-	void			CompileFile( const char *text, const char *filename, bool console );
+	idVarDef *scope;		  // the function being parsed, or NULL
+	const idVarDef *basetype; // for accessing fields
+
+	float Divide(float numerator, float denominator);
+	void Error(const char *error, ...) const;
+	void Warning(const char *message, ...) const;
+	idVarDef *OptimizeOpcode(const opcode_t *op, idVarDef *var_a, idVarDef *var_b);
+	idVarDef *EmitOpcode(const opcode_t *op, idVarDef *var_a, idVarDef *var_b);
+	idVarDef *EmitOpcode(int op, idVarDef *var_a, idVarDef *var_b);
+	bool EmitPush(idVarDef *expression, const idTypeDef *funcArg);
+	void NextToken(void);
+	void ExpectToken(const char *string);
+	bool CheckToken(const char *string);
+	void ParseName(idStr &name);
+	void SkipOutOfFunction(void);
+	void SkipToSemicolon(void);
+	idTypeDef *CheckType(void);
+	idTypeDef *ParseType(void);
+	idVarDef *FindImmediate(const idTypeDef *type, const eval_t *eval, const char *string) const;
+	idVarDef *GetImmediate(idTypeDef *type, const eval_t *eval, const char *string);
+	idVarDef *VirtualFunctionConstant(idVarDef *func);
+	idVarDef *SizeConstant(int size);
+	idVarDef *JumpConstant(int value);
+	idVarDef *JumpDef(int jumpfrom, int jumpto);
+	idVarDef *JumpTo(int jumpto);
+	idVarDef *JumpFrom(int jumpfrom);
+	idVarDef *ParseImmediate(void);
+	idVarDef *EmitFunctionParms(int op, idVarDef *func, int startarg, int startsize, idVarDef *object);
+	idVarDef *ParseFunctionCall(idVarDef *func);
+	idVarDef *ParseObjectCall(idVarDef *object, idVarDef *func);
+	idVarDef *ParseEventCall(idVarDef *object, idVarDef *func);
+	idVarDef *ParseSysObjectCall(idVarDef *func);
+	idVarDef *LookupDef(const char *name, const idVarDef *baseobj);
+	idVarDef *ParseValue(void);
+	idVarDef *GetTerm(void);
+	bool TypeMatches(etype_t type1, etype_t type2) const;
+	idVarDef *GetExpression(int priority);
+	idTypeDef *GetTypeForEventArg(char argType);
+	void PatchLoop(int start, int continuePos);
+	void ParseReturnStatement(void);
+	void ParseWhileStatement(void);
+	void ParseForStatement(void);
+	void ParseDoWhileStatement(void);
+	void ParseIfStatement(void);
+	void ParseStatement(void);
+	void ParseObjectDef(const char *objname);
+	idTypeDef *ParseFunction(idTypeDef *returnType, const char *name);
+	void ParseFunctionDef(idTypeDef *returnType, const char *name);
+	void ParseVariableDef(idTypeDef *type, const char *name);
+	void ParseEventDef(idTypeDef *type, const char *name);
+	void ParseDefs(void);
+	void ParseNamespace(idVarDef *newScope);
+
+public:
+	static opcode_t opcodes[];
+
+	idCompiler();
+	void CompileFile(const char *text, const char *filename, bool console);
 };
 
 #endif /* !__SCRIPT_COMPILER_H__ */
