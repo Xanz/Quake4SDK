@@ -10,6 +10,5 @@ del "%Q4InstallPath%\q4mp\game000.pk4"
 del "%Q4InstallPath%\q4mp\game100.pk4"
 del "%Q4InstallPath%\q4mp\game200.pk4"
 del "%Q4InstallPath%\q4mp\game300.pk4"
-rename ".\Builds\Win32\Release\Gamex86.dll" "gamex86.dll"
-xcopy /Y ".\Builds\Win32\Release\gamex86.dll" "%Q4InstallPath%\%Q4ModName%\"
+xcopy /Y ".\build\Release\gamex86.dll" "%Q4InstallPath%\%Q4ModName%\"
 pause
