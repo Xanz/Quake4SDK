@@ -91,6 +91,10 @@ class ThreadedAlloc; // class that is only used to expand the AutoCrit template 
 #pragma warning(disable : 4714) // function marked as __forceinline not inlined
 #pragma warning(disable : 4800) // forcing value to bool 'true' or 'false' (performance warning)
 
+// VS2022 warnings
+#pragma warning(disable : 4595)
+#pragma warning(disable : 4091)
+
 class AlignmentChecker
 {
 public:
