@@ -91,21 +91,21 @@ not necessary to push edi/esi
 		"jnz		loop1_1\n\t"
 		"emms\n\t");
 #elif 1
-	__asm__ __volatile__(
-		//        "mov		%esi, src\n\t"
-		//        "mov		%edi, dest\n\t"
-		//        "mov		%ecx, count\n\t"
-		"shr		%%ecx, 3\n\t" // 8 bytes per iteration
-		"0:\n\t"
-		"movq	%%mm1,  0[%%esi]\n\t" // Read in source data
-		"movntq	0[%%edi], %%mm1\n\t"  // Non-temporal stores
-		"add		%%esi, 8\n\t"
-		"add		%%edi, 8\n\t"
-		"dec		%%ecx \n\t"
-		"jnz		0b\n\t"
-		"emms\n\t"
-		: /* no outputs */
-		: "S"(src), "D"(dest), "c"(count));
+	// __asm__ __volatile__(
+	// 	//        "mov		%esi, src\n\t"
+	// 	//        "mov		%edi, dest\n\t"
+	// 	//        "mov		%ecx, count\n\t"
+	// 	"shr		%%ecx, 3\n\t" // 8 bytes per iteration
+	// 	"0:\n\t"
+	// 	"movq	%%mm1,  0[%%esi]\n\t" // Read in source data
+	// 	"movntq	0[%%edi], %%mm1\n\t"  // Non-temporal stores
+	// 	"add		%%esi, 8\n\t"
+	// 	"add		%%edi, 8\n\t"
+	// 	"dec		%%ecx \n\t"
+	// 	"jnz		0b\n\t"
+	// 	"emms\n\t"
+	// 	: /* no outputs */
+	// 	: "S"(src), "D"(dest), "c"(count));
 #endif
 }
 
@@ -154,41 +154,41 @@ loop1:
 	}
 	EMMS_INSTRUCTION
 #else
-	__asm__ __volatile__(
-		//"mov %%esi, src \n\t"
-		//"mov %%edi, dest \n\t"
-		//"mov %%ecx, count \n\t"
-		"shr %%ecx, 6 \n\t" // 64 bytes per iteration
-		"\n\t"
-		"1: \n\t"
-		"prefetchnta 64[%%ESI] \n\t" // Prefetch next loop, non-temporal
-		"prefetchnta 96[%%ESI] \n\t"
-		"\n\t"
-		"movq %%mm1, 0[%%ESI] \n\t" // Read in source data
-		"movq %%mm2, 8[%%ESI] \n\t"
-		"movq %%mm3, 16[%%ESI] \n\t"
-		"movq %%mm4, 24[%%ESI] \n\t"
-		"movq %%mm5, 32[%%ESI] \n\t"
-		"movq %%mm6, 40[%%ESI] \n\t"
-		"movq %%mm7, 48[%%ESI] \n\t"
-		"movq %%mm0, 56[%%ESI] \n\t"
-		"\n\t"
-		"movntq 0[%%EDI], %%mm1 \n\t" // Non-temporal stores
-		"movntq 8[%%EDI], %%mm2 \n\t"
-		"movntq 16[%%EDI], %%mm3 \n\t"
-		"movntq 24[%%EDI], %%mm4 \n\t"
-		"movntq 32[%%EDI], %%mm5 \n\t"
-		"movntq 40[%%EDI], %%mm6 \n\t"
-		"movntq 48[%%EDI], %%mm7 \n\t"
-		"movntq 56[%%EDI], %%mm0 \n\t"
-		"\n\t"
-		"add %%esi, 64 \n\t"
-		"add %%edi, 64 \n\t"
-		"dec %%ecx \n\t"
-		"jnz 1b \n\t"
-		"emms \n\t"
-		:
-		: "S"(src), "D"(dest), "c"(count));
+	// __asm__ __volatile__(
+	// 	//"mov %%esi, src \n\t"
+	// 	//"mov %%edi, dest \n\t"
+	// 	//"mov %%ecx, count \n\t"
+	// 	"shr %%ecx, 6 \n\t" // 64 bytes per iteration
+	// 	"\n\t"
+	// 	"1: \n\t"
+	// 	"prefetchnta 64[%%ESI] \n\t" // Prefetch next loop, non-temporal
+	// 	"prefetchnta 96[%%ESI] \n\t"
+	// 	"\n\t"
+	// 	"movq %%mm1, 0[%%ESI] \n\t" // Read in source data
+	// 	"movq %%mm2, 8[%%ESI] \n\t"
+	// 	"movq %%mm3, 16[%%ESI] \n\t"
+	// 	"movq %%mm4, 24[%%ESI] \n\t"
+	// 	"movq %%mm5, 32[%%ESI] \n\t"
+	// 	"movq %%mm6, 40[%%ESI] \n\t"
+	// 	"movq %%mm7, 48[%%ESI] \n\t"
+	// 	"movq %%mm0, 56[%%ESI] \n\t"
+	// 	"\n\t"
+	// 	"movntq 0[%%EDI], %%mm1 \n\t" // Non-temporal stores
+	// 	"movntq 8[%%EDI], %%mm2 \n\t"
+	// 	"movntq 16[%%EDI], %%mm3 \n\t"
+	// 	"movntq 24[%%EDI], %%mm4 \n\t"
+	// 	"movntq 32[%%EDI], %%mm5 \n\t"
+	// 	"movntq 40[%%EDI], %%mm6 \n\t"
+	// 	"movntq 48[%%EDI], %%mm7 \n\t"
+	// 	"movntq 56[%%EDI], %%mm0 \n\t"
+	// 	"\n\t"
+	// 	"add %%esi, 64 \n\t"
+	// 	"add %%edi, 64 \n\t"
+	// 	"dec %%ecx \n\t"
+	// 	"jnz 1b \n\t"
+	// 	"emms \n\t"
+	// 	:
+	// 	: "S"(src), "D"(dest), "c"(count));
 #endif
 }
 

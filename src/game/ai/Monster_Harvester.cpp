@@ -868,7 +868,7 @@ const char *rvMonsterHarvester::GetMeleeAttackAnim(const idVec3 &target)
 	{
 		if (partHealth[PART_LEG_FR] <= 0)
 		{
-			return false;
+			return NULL;
 		}
 		animName = "attack_rleg_fw_rt";
 	}
@@ -876,7 +876,7 @@ const char *rvMonsterHarvester::GetMeleeAttackAnim(const idVec3 &target)
 	{
 		if (partHealth[PART_LEG_FL] <= 0)
 		{
-			return false;
+			return NULL;
 		}
 		animName = "attack_lleg_fw_lt";
 	}
@@ -886,7 +886,7 @@ const char *rvMonsterHarvester::GetMeleeAttackAnim(const idVec3 &target)
 		{
 			if (partHealth[PART_LEG_FL] <= 0)
 			{
-				return false;
+				return NULL;
 			}
 			animName = "attack_lleg_fw";
 		}
@@ -894,7 +894,7 @@ const char *rvMonsterHarvester::GetMeleeAttackAnim(const idVec3 &target)
 		{
 			if (partHealth[PART_LEG_FR] <= 0)
 			{
-				return false;
+				return NULL;
 			}
 			animName = "attack_rleg_fw";
 		}
