@@ -64,3 +64,5 @@ Just a little note I've added a build.sh script for basic support for IDE's with
 
 # Support
 If you have any issues feel free to raise them here, or contact me on Discord.
+
+If you are trying to install Quake 4 Natively on Linux take a look at these instructions [here](docs/quake4Linux.md).
