@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.13.0)
-project(Quake4SDK VERSION 1.4.3)
+project(Quake4SDK VERSION 1.4.4)
 
 file(GLOB_RECURSE SOURCES src/*.cpp src/*.c src/game/game.def)
 file(GLOB_RECURSE HEADERS src/*.h)

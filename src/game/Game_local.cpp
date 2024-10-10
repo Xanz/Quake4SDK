@@ -608,6 +608,9 @@ void idGameLocal::Init(void)
 	// RAVEN END
 
 	networkSystem->AddSortFunction(filterByMod);
+	Printf("-------------------------------- \n");
+	Printf("Xanz SDK Version 1.4.4 Loaded! \n");
+	Printf("-------------------------------- \n");
 }
 
 /*

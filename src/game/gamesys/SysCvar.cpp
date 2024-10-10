@@ -33,7 +33,7 @@ const char *ui_teamArgs[] = {"Marine", "Strogg", NULL};
 
 struct gameVersion_s
 {
-	gameVersion_s(void) { sprintf(string, "%s %s V%s %s %s", GAME_NAME, BUILD_DEBUG, VERSION_STRING_DOTTED, BUILD_STRING, __DATE__); }
+	gameVersion_s(void) { sprintf(string, "%s %s V%s %s %s", "Xanz SDK", BUILD_DEBUG, VERSION_STRING_DOTTED, BUILD_STRING, __DATE__); }
 	char string[256];
 } gameVersion;
 

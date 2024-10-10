@@ -14806,7 +14806,7 @@ void idPlayer::WritePlayerStateToSnapshot(idBitMsgDelta &msg) const
 
 	for (i = 0; i < MAX_AMMO; i++)
 	{
-		msg.WriteBits(inventory.ammo[i], ASYNC_PLAYER_INV_AMMO_BITS);
+		msg.WriteLong(inventory.ammo[i]);
 	}
 
 	for (i = 0; i < POWERUP_MAX; i++)
@@ -14834,7 +14834,7 @@ void idPlayer::ReadPlayerStateFromSnapshot(const idBitMsgDelta &msg)
 
 	for (i = 0; i < MAX_AMMO; i++)
 	{
-		ammo = msg.ReadBits(ASYNC_PLAYER_INV_AMMO_BITS);
+		ammo = msg.ReadLong();
 		if (gameLocal.time >= inventory.ammoPredictTime)
 		{
 			inventory.ammo[i] = ammo;
