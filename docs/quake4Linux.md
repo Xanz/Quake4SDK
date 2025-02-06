@@ -2,7 +2,7 @@
 I've created these instructions to hopefully help with installing the native Linux binaries so that the SDK can be used on Linux. If you have linux users you can point them to this doc to help them install the game.
 Disclaimer: I've only tested this with Ubuntu 23.04 but the setup should more or less be the same for other Linux based OS.
 
-Download the Linux binaries from [here](https://www.mediafire.com/file/m9u2gl9bnl3159f/quake4-linux-1.4.2.x86.run/file). These are needed to run the game natively, They are not provided by steam. You can grab the binaries from other places if you would prefer. 
+Download the Linux binaries from [here](https://drive.proton.me/urls/7SJAA678RM#p4fEhFelkAFG). These are needed to run the game natively, They are not provided by steam. You can grab the binaries from other places if you would prefer. 
 
 Just run the installer in a terminal, make sure to run with sudo. The installer seems to fall over otherwise. I had to later chown the game install to actually be able to start the game so make sure to do this as well after the game is done installing.
 
