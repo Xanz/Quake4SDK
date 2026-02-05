@@ -8,12 +8,23 @@ Just run the installer in a terminal, make sure to run with sudo. The installer 
 
 Remove the following libraries: libgcc_s.so.1 and libstdc++.so.6
 
-I would recommend you install the following libraries in the latest Ubuntu version.
+I would recommend you to run the following commands
 
+
+## For Ubuntu-based systems
 ```bash
 sudo apt-get install libsdl1.2debian:i386
 # second one installs audio support for ubuntu 23.04+.
 sudo apt install pipewire-alsa:i386
+```
+
+## For Arch-based systems
+```bash
+sudo pacman -S lib32-libx11
+sudo pacman -S lib32-libpulse
+# The following commands will require yay to be installed
+yay -S lib32-sdl
+yay -S sdl
 ```
 
 You will also need to create a CD key file. You can just copy your steam key and create a “quake4key” and paste the key into the file. You will need to place this file in the q4base folder.
