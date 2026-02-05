@@ -26,11 +26,20 @@ You will need to copy any missing .pk4 files from your retail/steam q4base to th
 
 ## Ubuntu Additional Setup
 Make sure to install the following libraries, without these you will not be able to launch the game.
-
 ```bash
 sudo apt-get install libsdl1.2debian:i386
 # second one installs audio support for ubuntu 23.04+.
 sudo apt install pipewire-alsa:i386
+```
+
+## Arch Additional Setup
+Make sure to install the following libraries, without these you will not be able to launch the game.
+```bash
+sudo pacman -S lib32-libx11
+sudo pacman -S lib32-libpulse
+# The following commands require yay to be installed. Alternative AUR package managers can be used.
+yay -S lib32-sdl
+yay -S sdl
 ```
 
 
