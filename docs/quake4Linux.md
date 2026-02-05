@@ -22,7 +22,7 @@ sudo apt install pipewire-alsa:i386
 ```bash
 sudo pacman -S lib32-libx11
 sudo pacman -S lib32-libpulse
-# The following commands will require yay to be installed
+# The following commands require yay to be installed
 yay -S lib32-sdl
 yay -S sdl
 ```
